@@ -383,6 +383,22 @@
         "1.6.12"
       ],
       "bankProblems": []
+    },
+    {
+      "id": "c1.5.08",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Decimal search for √2; Theorem 4; irrational",
+      "lessonScreens": [
+        "1.7.02",
+        "1.7.03",
+        "1.7.04",
+        "1.7.05",
+        "1.7.06",
+        "1.7.07"
+      ],
+      "bankProblems": []
     }
   ]
 }

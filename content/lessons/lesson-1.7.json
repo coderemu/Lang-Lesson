@@ -1,0 +1,372 @@
+{
+  "id": "1.7",
+  "title": "Square root of 2 is not a fraction",
+  "book": {
+    "chapter": 1,
+    "sections": "§5"
+  },
+  "minutes": 10,
+  "goal": "Find decimals that come near √2, and follow Lang's proof that no fraction is equal to √2.",
+  "needs": [
+    "1.5",
+    "1.6"
+  ],
+  "rulesEarned": [
+    "thm-4"
+  ],
+  "generalHint": "Check the squares. Compare each square with 2. Follow the proof one line at a time.",
+  "next": {
+    "id": "1.8",
+    "title": "Division and inverses"
+  },
+  "screens": [
+    {
+      "id": "1.7.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Multiply fractions",
+      "prompt": "Find the product. You can type a fraction.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\dfrac{3}{4} \\cdot \\dfrac{8}{9} =",
+        "answer": {
+          "value": 0.6666666666666666,
+          "correctTitle": "Yes, 2/3.",
+          "correctWhy": "Cancel first: 3/9 = 1/3 and 8/4 = 2. The product is 2/3.",
+          "mistakes": [
+            {
+              "match": 0.8461538461538461,
+              "reply": "You added the tops and the bottoms. To multiply, multiply the tops and the bottoms."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Cancel common factors before you multiply."
+      ],
+      "caption": "Type a number, then check."
+    },
+    {
+      "id": "1.7.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "The side of a square",
+      "prompt": "A square has an area of 2. Guess the length of its side.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "one",
+            "label": "1",
+            "reply": "1 · 1 = 1. The area is only 1. The side must be longer."
+          },
+          {
+            "id": "onefour",
+            "label": "1.4"
+          },
+          {
+            "id": "two",
+            "label": "2",
+            "reply": "2 · 2 = 4. The area is 4. The side must be shorter."
+          }
+        ],
+        "correct": "onefour",
+        "feedback": {
+          "correctTitle": "Good guess. It is between 1 and 2.",
+          "correctWhy": "1.4 · 1.4 = 1.96. This is close to 2."
+        }
+      },
+      "caption": "Pick one, then check."
+    },
+    {
+      "id": "1.7.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Between 1 and 2",
+      "prompt": "1² = 1 and 2² = 4, so the side is between 1 and 2. Now test two decimals: 1.4² = 1.96 and 1.5² = 2.25.",
+      "interaction": {
+        "type": "choice",
+        "question": "Is the side of the square between 1.4 and 1.5?",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Yes, between 1.4 and 1.5"
+          },
+          {
+            "id": "no",
+            "label": "No, it is not between them",
+            "reply": "1.4² = 1.96 is smaller than 2. 1.5² = 2.25 is larger than 2. Where must the number with square 2 be?"
+          }
+        ],
+        "correct": "yes",
+        "feedback": {
+          "correctTitle": "Yes, between 1.4 and 1.5.",
+          "correctWhy": "1.96 is below 2 and 2.25 is above 2. The side is between 1.4 and 1.5."
+        }
+      },
+      "hints": [
+        "Compare each square with 2."
+      ]
+    },
+    {
+      "id": "1.7.04",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "The next digit",
+      "prompt": "Next, 1.41² = 1.9881 and 1.42² = 2.0164. So the side is between 1.41 and 1.42. Try the next digit: multiply 1.414 by 1.414.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "1.414 \\cdot 1.414 =",
+        "answer": {
+          "value": 1.999396,
+          "correctTitle": "Yes, 1.999396.",
+          "correctWhy": "The square of 1.414 is very near 2, but it is not 2.",
+          "mistakes": [
+            {
+              "match": 2,
+              "reply": "A calculator can round. Multiply 1.414 × 1.414 in full. Is the result 1.999396 or 2?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Multiply 1414 by 1414. Then put the decimal point in the result: 6 places."
+      ],
+      "caption": "Type the product, then check."
+    },
+    {
+      "id": "1.7.05",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Proof by contradiction",
+      "prompt": "To prove that something cannot be true, suppose that it is true. Then show that this gives an impossible result. For example: suppose it rained last night. Then the street is wet.",
+      "interaction": {
+        "type": "choice",
+        "question": "The street is dry. What follows?",
+        "options": [
+          {
+            "id": "no",
+            "label": "It did not rain last night"
+          },
+          {
+            "id": "yes",
+            "label": "It rained last night",
+            "reply": "If it rained, the street would be wet. The street is dry. Can it have rained?"
+          }
+        ],
+        "correct": "no",
+        "feedback": {
+          "correctTitle": "Yes, it did not rain.",
+          "correctWhy": "The supposition \"it rained\" gives a wet street. The street is dry, so the supposition is false."
+        }
+      }
+    },
+    {
+      "id": "1.7.06",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The square root of 2",
+      "prompt": "Prove Theorem 4: no positive rational number has a square equal to 2. Suppose that $m/n$ is such a number, in lowest form.",
+      "interaction": {
+        "type": "proof",
+        "goal": "\\text{No rational } m/n \\text{ has } (m/n)^2 = 2",
+        "lines": [
+          {
+            "math": "(m/n)^2 = 2, \\text{ with } m/n \\text{ in lowest form}",
+            "reason": null
+          },
+          {
+            "math": "m^2 = 2n^2",
+            "reason": "clear"
+          },
+          {
+            "math": "\\text{So } m^2 \\text{ is even}",
+            "reason": "times2"
+          },
+          {
+            "math": "\\text{So } m \\text{ is even}",
+            "reason": "thm-2-cor"
+          },
+          {
+            "math": "m = 2k",
+            "reason": "write-even"
+          },
+          {
+            "math": "m^2 = (2k)^2 = 4k^2 = 2n^2",
+            "reason": "put-in"
+          },
+          {
+            "math": "n^2 = 2k^2",
+            "reason": "cancel2"
+          },
+          {
+            "math": "\\text{So } n \\text{ is even}",
+            "reason": "thm-2-cor"
+          },
+          {
+            "math": "\\text{Both } m \\text{ and } n \\text{ are even, but } m/n \\text{ is in lowest form}",
+            "reason": "thm-3"
+          },
+          {
+            "math": "\\text{This is impossible}",
+            "reason": "contra"
+          }
+        ],
+        "tray": [
+          "thm-2-cor",
+          "thm-3",
+          "cross-mul",
+          "cancel-frac",
+          "clear",
+          "times2",
+          "write-even",
+          "put-in",
+          "cancel2",
+          "contra"
+        ],
+        "steps": [
+          {
+            "id": "clear",
+            "label": "multiply both sides by n²"
+          },
+          {
+            "id": "times2",
+            "label": "2 times an integer is even"
+          },
+          {
+            "id": "write-even",
+            "label": "write an even number as 2k"
+          },
+          {
+            "id": "put-in",
+            "label": "put in m = 2k"
+          },
+          {
+            "id": "cancel2",
+            "label": "cancel the 2 from both sides"
+          },
+          {
+            "id": "contra",
+            "label": "the supposition is false"
+          }
+        ],
+        "wrongReasonReplies": {
+          "thm-2-cor": "The corollary says: if a² is even, then a is even. Is there an even square in the line before?",
+          "thm-3": "Theorem 3 gives the lowest form, where m and n are not both even. Does this line compare m and n?",
+          "cross-mul": "The cross−multiplication rule tests if two fractions are equal. Does this line compare two fractions?",
+          "cancel-frac": "The cancellation rule removes a common factor in a fraction. Is there a fraction to cancel in this line?",
+          "clear": "This step multiplies both sides by n². Did the line before have n in a denominator?",
+          "times2": "This step says that 2 times an integer is even. Is there a number of the form 2 times an integer?",
+          "write-even": "This step writes an even number as 2k. Is there an even number in the line before?",
+          "put-in": "This step puts m = 2k into the equation. Did you already write m = 2k?",
+          "cancel2": "This step cancels the 2 from both sides of the equation. Is there a 2 on both sides?",
+          "contra": "That shows only m. Put m = 2k back into m² = 2n². What does this show about n?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "Both m and n are even. This is impossible for a fraction in lowest form. So no rational number has square 2."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.7.07",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Irrational numbers",
+      "prompt": "A number that is not rational is irrational. By Theorem 4, a positive number $a$ with $a^2 = 2$ is irrational.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "thm-4"
+        ]
+      }
+    },
+    {
+      "id": "1.7.08",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 1",
+      "title": "The next decimal of √3",
+      "prompt": "Find the largest number with 2 decimals whose square is less than 3. You know that $1.7^2 = 2.89$ and $1.8^2 = 3.24$.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "x =",
+        "answer": {
+          "value": 1.73,
+          "correctTitle": "Yes, 1.73.",
+          "correctWhy": "1.73² = 2.9929 is below 3. 1.74² = 3.0276 is above 3.",
+          "mistakes": [
+            {
+              "match": 1.74,
+              "reply": "1.74² = 3.0276 is bigger than 3. Take the largest number whose square is less than 3."
+            },
+            {
+              "match": 1.7,
+              "reply": "1.7² = 2.89 is below 3, but a number with 2 decimals comes nearer. Try 1.71, 1.72, 1.73."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Test 1.71, 1.72, 1.73 and so on.",
+        "1.73² = 2.9929 and 1.74² = 3.0276."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "1.73^2 = 2.9929",
+            "text": "2.9929 is less than 3."
+          },
+          {
+            "math": "1.74^2 = 3.0276",
+            "text": "3.0276 is more than 3. So the answer is 1.73."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "x =",
+        "answer": {
+          "value": 2.23,
+          "correctTitle": "Yes, 2.23.",
+          "correctWhy": "2.23² = 4.9729 is below 5. 2.24² = 5.0176 is above 5."
+        }
+      }
+    },
+    {
+      "id": "1.7.09",
+      "kind": "trap-summary",
+      "label": "LESSON 1.7 COMPLETE",
+      "title": "No fraction is the square root of 2.",
+      "prompt": "You saved this result:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: if you continue the decimals, you find √2 exactly.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Each decimal gives a rational number with a square a little below or above 2. Theorem 4 says no rational number has the square 2."
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "Every decimal is a rational number. By Theorem 4, none of them has the square 2. The decimals only come nearer."
+          }
+        },
+        "summary": [
+          "thm-4"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Division and inverses"
+    }
+  ]
+}
