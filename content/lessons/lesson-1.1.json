@@ -414,7 +414,7 @@
       },
       "twin": {
         "type": "number-input",
-        "expression": "d =",
+        "expression": "\\text{Well 40 m below, tower 70 m above: } d =",
         "answer": {
           "value": 110,
           "correctTitle": "Yes, 110.",

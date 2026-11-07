@@ -1,0 +1,629 @@
+{
+  "id": "1.8",
+  "title": "Division and inverses",
+  "book": {
+    "chapter": 1,
+    "sections": "§6"
+  },
+  "minutes": 14,
+  "goal": "Use a⁻¹, use \"if ab = 0, then a = 0 or b = 0\", and solve equations with fractions.",
+  "needs": [
+    "1.6"
+  ],
+  "rulesEarned": [
+    "inverse-exists",
+    "inverse-unique",
+    "zero-product",
+    "cross-mul-proved",
+    "cancel-mul"
+  ],
+  "generalHint": "Check the signs. Multiply both sides by the inverse. A denominator must not be 0.",
+  "screens": [
+    {
+      "id": "1.8.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Is √2 rational?",
+      "prompt": "Use Theorem 4 from lesson 1.7.",
+      "interaction": {
+        "type": "choice",
+        "question": "Is √2 a rational number?",
+        "options": [
+          {
+            "id": "no",
+            "label": "No, it is irrational"
+          },
+          {
+            "id": "yes",
+            "label": "Yes, it is a fraction",
+            "reply": "Theorem 4 says that no positive rational number has the square 2. Can √2 be a fraction?"
+          }
+        ],
+        "correct": "no",
+        "feedback": {
+          "correctTitle": "Correct. It is not rational.",
+          "correctWhy": "By Theorem 4, no fraction m/n has the square 2. So √2 is irrational."
+        }
+      },
+      "hints": [
+        "Think of Theorem 4."
+      ]
+    },
+    {
+      "id": "1.8.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Back to 1",
+      "prompt": "Find the number you multiply by 2/3 to get exactly 1. You can type a fraction.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\dfrac{2}{3} \\cdot x = 1,\\ x =",
+        "answer": {
+          "value": 1.5,
+          "correctTitle": "Yes, 3/2.",
+          "correctWhy": "(2/3)(3/2) = 6/6 = 1. The number 3/2 is 2/3 turned upside down.",
+          "mistakes": [
+            {
+              "match": 0.6666666666666666,
+              "reply": "That is the same number. Multiply 2/3 by it. Is the result 1?"
+            },
+            {
+              "match": 0.3333333333333333,
+              "reply": "Multiply (2/3)(1/3). Is the result 1?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Turn the fraction 2/3 upside down."
+      ],
+      "caption": "Type a number, then check."
+    },
+    {
+      "id": "1.8.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Turn it upside down",
+      "prompt": "Turn $m/n$ upside down. Then the product $(m/n)(n/m)$ is 1. Try 0: 0 times a number is always 0, never 1.",
+      "interaction": {
+        "type": "fraction-strips",
+        "mode": "invert",
+        "widget": {
+          "m": 2,
+          "n": 3
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "\\dfrac{2}{3} \\cdot \\dfrac{3}{2} =",
+          "answer": {
+            "value": 1,
+            "correctTitle": "Yes, 1.",
+            "correctWhy": "(2 · 3)/(3 · 2) = 6/6 = 1.",
+            "mistakes": [
+              {
+                "match": 0.5,
+                "reply": "That cancels the 3s but not the 2s. Multiply the tops, then the bottoms."
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "Multiply the tops, then the bottoms."
+      ],
+      "caption": "Turn the fraction, then check."
+    },
+    {
+      "id": "1.8.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "The inverse",
+      "prompt": "For a rational number $a \\ne 0$, the number $a^{-1}$ is the multiplicative inverse: $a a^{-1} = 1$. If $a = m/n$, then $a^{-1} = n/m$.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "inverse-exists"
+        ]
+      },
+      "note": {
+        "label": "WORDS MATTER",
+        "text": "a⁻¹ is the inverse of a, not \"a to the minus one\" yet. The number 0 has no inverse."
+      }
+    },
+    {
+      "id": "1.8.05",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The inverse is unique",
+      "prompt": "Prove: if $ab = 1$, then $b = a^{-1}$. Multiply both sides by $a^{-1}$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "ab = 1 \\Rightarrow b = a^{-1}",
+        "lines": [
+          {
+            "math": "\\va{a}\\vb{b} = 1",
+            "reason": null
+          },
+          {
+            "math": "a^{-1}(\\va{a}\\vb{b}) = a^{-1} \\cdot 1",
+            "reason": "mult-both"
+          },
+          {
+            "math": "(a^{-1}\\va{a})\\vb{b} = a^{-1}",
+            "reason": "assoc-mul"
+          },
+          {
+            "math": "1 \\cdot \\vb{b} = a^{-1}",
+            "reason": "inverse-exists"
+          },
+          {
+            "math": "\\vb{b} = a^{-1}",
+            "reason": "N6"
+          }
+        ],
+        "tray": [
+          "inverse-exists",
+          "assoc-mul",
+          "N6",
+          "comm-mul",
+          "distrib",
+          "mult-both"
+        ],
+        "steps": [
+          {
+            "id": "mult-both",
+            "label": "multiply both sides by a⁻¹"
+          }
+        ],
+        "wrongReasonReplies": {
+          "inverse-exists": "This rule says a · a⁻¹ = 1. Is there a product of a and a⁻¹ in the line before?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Did the brackets change?",
+          "N6": "N6 says 1a = a. Is there a 1 times a number to change?",
+          "comm-mul": "Commutativity changes the order of two factors. Did the order change in this line?",
+          "distrib": "Distributivity splits a(b + c). Is there a sum in brackets here?",
+          "mult-both": "This step multiplies both sides by the same number. Did this line multiply both sides?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "If two numbers multiply to 1, each is the inverse of the other. So the inverse is unique."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.8.06",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "A product of 0",
+      "prompt": "Prove: if $ab = 0$ and $a \\ne 0$, then $b = 0$. Multiply both sides by $a^{-1}$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "ab = 0 \\text{ and } a \\ne 0 \\Rightarrow b = 0",
+        "lines": [
+          {
+            "math": "\\va{a}\\vb{b} = 0 \\text{ and } \\va{a} \\ne 0",
+            "reason": null
+          },
+          {
+            "math": "a^{-1}(\\va{a}\\vb{b}) = a^{-1} \\cdot 0",
+            "reason": "mult-both"
+          },
+          {
+            "math": "(a^{-1}\\va{a})\\vb{b} = a^{-1} \\cdot 0",
+            "reason": "assoc-mul"
+          },
+          {
+            "math": "1 \\cdot \\vb{b} = a^{-1} \\cdot 0",
+            "reason": "inverse-exists"
+          },
+          {
+            "math": "\\vb{b} = a^{-1} \\cdot 0",
+            "reason": "N6"
+          },
+          {
+            "math": "\\vb{b} = 0",
+            "reason": "zero-mul"
+          }
+        ],
+        "tray": [
+          "inverse-exists",
+          "assoc-mul",
+          "N6",
+          "zero-mul",
+          "comm-mul",
+          "mult-both"
+        ],
+        "steps": [
+          {
+            "id": "mult-both",
+            "label": "multiply both sides by a⁻¹"
+          }
+        ],
+        "wrongReasonReplies": {
+          "inverse-exists": "This rule says a · a⁻¹ = 1. Is there a product of a and a⁻¹ in the line before?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Did the brackets change?",
+          "N6": "N6 says 1a = a. Is there a 1 times a number to change?",
+          "comm-mul": "Commutativity changes the order of two factors. Did the order change in this line?",
+          "distrib": "Distributivity splits a(b + c). Is there a sum in brackets here?",
+          "mult-both": "This step multiplies both sides by the same number. Did this line multiply both sides?",
+          "zero-mul": "This rule says 0a = 0. Is there a 0 times a number in the line before?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "If ab = 0, then a = 0 or b = 0. We showed: if a is not 0, then b is 0."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.8.07",
+      "kind": "practice",
+      "label": "USE IT",
+      "title": "Solve by factoring",
+      "prompt": "Use \"if ab = 0, then a = 0 or b = 0\" for the equation $x(x - 3) = 0$.",
+      "interaction": {
+        "type": "choice",
+        "question": "What are the solutions of $x(x - 3) = 0$?",
+        "options": [
+          {
+            "id": "both",
+            "label": "$x = 0$ or $x = 3$"
+          },
+          {
+            "id": "three",
+            "label": "$x = 3$ only",
+            "reply": "If x = 0, then x(x − 3) = 0 · (−3) = 0. Is x = 0 a solution too?"
+          },
+          {
+            "id": "zero",
+            "label": "$x = 0$ only",
+            "reply": "If x = 3, then x(x − 3) = 3 · 0 = 0. Is x = 3 a solution too?"
+          }
+        ],
+        "correct": "both",
+        "feedback": {
+          "correctTitle": "Yes, x = 0 or x = 3.",
+          "correctWhy": "A product is 0 only if one factor is 0. So x = 0 or x − 3 = 0, that is x = 3."
+        }
+      },
+      "hints": [
+        "A product is 0 if one factor is 0."
+      ]
+    },
+    {
+      "id": "1.8.08",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Quotients",
+      "prompt": "For rational numbers $a$ and $b \\ne 0$, we write $a/b$ for $b^{-1}a$.",
+      "interaction": {
+        "type": "choice",
+        "question": "What does $a/b$ mean?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$b^{-1}a$"
+          },
+          {
+            "id": "b",
+            "label": "$a^{-1}b$",
+            "reply": "In a/b, the letter b is below the line. Which letter has the −1?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, b⁻¹a.",
+          "correctWhy": "a/b is the number b⁻¹ times a. For example 3/4 = 4⁻¹ · 3."
+        }
+      }
+    },
+    {
+      "id": "1.8.09",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Cross−multiplication",
+      "prompt": "Lesson 1.6 assumed the cross−multiplication rule. Now prove it: if $a/b = c/d$, then $ad = bc$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "\\dfrac{a}{b} = \\dfrac{c}{d} \\Rightarrow ad = bc",
+        "lines": [
+          {
+            "math": "\\dfrac{\\va{a}}{\\vb{b}} = \\dfrac{c}{d}",
+            "reason": null
+          },
+          {
+            "math": "b^{-1}\\va{a} = d^{-1}c",
+            "reason": "def-frac"
+          },
+          {
+            "math": "db \\cdot b^{-1}\\va{a} = bd \\cdot d^{-1}c",
+            "reason": "mult-both"
+          },
+          {
+            "math": "d\\va{a} = \\vb{b}c",
+            "reason": "inverse-exists"
+          }
+        ],
+        "tray": [
+          "inverse-exists",
+          "assoc-mul",
+          "comm-mul",
+          "N6",
+          "def-frac",
+          "mult-both",
+          "cancel-mul"
+        ],
+        "steps": [
+          {
+            "id": "def-frac",
+            "label": "write the quotients with inverses"
+          },
+          {
+            "id": "mult-both",
+            "label": "multiply both sides by db"
+          }
+        ],
+        "wrongReasonReplies": {
+          "inverse-exists": "This rule says a · a⁻¹ = 1. Is there a number times its inverse in the line before?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Did the brackets change?",
+          "comm-mul": "Commutativity changes the order of factors. Did the order change?",
+          "N6": "N6 says 1a = a. Is there a 1 times a number to change?",
+          "def-frac": "This step writes a/b as b⁻¹a. Is there a quotient in the line before?",
+          "mult-both": "This step multiplies both sides by the same number. Did this line multiply both sides?",
+          "cancel-mul": "This law removes a common factor from both sides. Is there a common factor a ≠ 0 on both sides?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "bb⁻¹ = 1 and dd⁻¹ = 1. So da = bc, which is ad = bc."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.8.10",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "The cancellation law",
+      "prompt": "If $a \\ne 0$ and $ab = ac$, then $b = c$. Multiply both sides by $a^{-1}$. A denominator must not be 0.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "cancel-mul"
+        ]
+      },
+      "note": {
+        "label": "REMEMBER",
+        "text": "Fractions add like this: a/b + c/d = (ad + bc)/bd. The numbers b and d must not be 0."
+      }
+    },
+    {
+      "id": "1.8.11",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Solve by cross−multiplying",
+      "prompt": "Solve $3/(x + 2) = 4$. Cross−multiply: $3 = 4(x + 2)$. Find $x$. You can type a fraction.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "x =",
+        "answer": {
+          "value": -1.25,
+          "correctTitle": "Yes, −5/4.",
+          "correctWhy": "3 = 4x + 8, so 4x = −5 and x = −5/4. Check: 3/(−5/4 + 2) = 3/(3/4) = 4.",
+          "mistakes": [
+            {
+              "match": 0.25,
+              "reply": "Multiply 4 by both x and 2: 4(x + 2) = 4x + 8. What is 3 − 8?"
+            },
+            {
+              "match": 1.25,
+              "reply": "The sign is wrong. Check: if x = 5/4, then x + 2 = 13/4. Is 3 divided by 13/4 equal to 4?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Cross−multiply: 3 = 4(x + 2).",
+        "Expand: 3 = 4x + 8. Subtract 8 from both sides."
+      ],
+      "caption": "Type a number, then check."
+    },
+    {
+      "id": "1.8.12",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Speed, distance and time",
+      "prompt": "The formula is $d = st$. A cyclist goes 6 km in 3/4 hour. Find the speed in km per hour.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "s =",
+        "answer": {
+          "value": 8,
+          "correctTitle": "Yes, 8.",
+          "correctWhy": "s = d/t = 6/(3/4) = 6 · (4/3) = 8 km/h.",
+          "mistakes": [
+            {
+              "match": 4.5,
+              "reply": "That multiplies 6 by 3/4. The speed is distance divided by time: s = d/t."
+            },
+            {
+              "match": 0.125,
+              "reply": "That is t/d turned the wrong way. The speed is d/t. What is 6 divided by 3/4?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use s = d/t.",
+        "Dividing by 3/4 is the same as multiplying by 4/3."
+      ],
+      "caption": "Type a number, then check."
+    },
+    {
+      "id": "1.8.13",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 2",
+      "title": "Inverse and equation",
+      "prompt": "Solve both problems. You can type fractions.",
+      "interaction": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "expression": "\\left(-\\dfrac{4}{7}\\right)^{-1} =",
+            "answer": {
+              "value": -1.75,
+              "correctTitle": "Yes, −7/4.",
+              "correctWhy": "The inverse of −4/7 is −7/4, because (−4/7)(−7/4) = 28/28 = 1.",
+              "mistakes": [
+                {
+                  "match": 0.5714285714285714,
+                  "reply": "The product must be +1. What is (−4/7)(4/7)? Keep the minus sign."
+                }
+              ]
+            }
+          },
+          {
+            "expression": "\\dfrac{2x - 1}{3} = 5,\\ x =",
+            "answer": {
+              "value": 8,
+              "correctTitle": "Yes, 8.",
+              "correctWhy": "Cross−multiply: 2x − 1 = 15, so x = 8.",
+              "mistakes": [
+                {
+                  "match": 3,
+                  "reply": "Cross−multiply: 2x − 1 = 5 · 3. What is 5 · 3?"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "hints": [
+        "Turn the fraction upside down. Keep the sign.",
+        "Multiply both sides by 3."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(-\\tfrac{4}{7})(-\\tfrac{7}{4}) = 1",
+            "text": "The inverse keeps the minus sign."
+          },
+          {
+            "math": "2x - 1 = 15 \\Rightarrow x = 8",
+            "text": "Multiply both sides by 3, add 1, divide by 2."
+          }
+        ]
+      },
+      "twin": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "expression": "\\left(-\\dfrac{2}{5}\\right)^{-1} =",
+            "answer": {
+              "value": -2.5,
+              "correctTitle": "Yes, −5/2.",
+              "correctWhy": "(−2/5)(−5/2) = 10/10 = 1."
+            }
+          },
+          {
+            "expression": "\\dfrac{3x + 1}{2} = 5,\\ x =",
+            "answer": {
+              "value": 3,
+              "correctTitle": "Yes, 3.",
+              "correctWhy": "3x + 1 = 10, so x = 3."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "1.8.14",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 2",
+      "title": "Walk and cycle",
+      "prompt": "You walk at 3 km/h and cycle at 15 km/h. In 2 hours you go 18 km. Find the cycle time in hours.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "t =",
+        "answer": {
+          "value": 1,
+          "correctTitle": "Yes, 1.",
+          "correctWhy": "15t + 3(2 − t) = 18, so 12t = 12 and t = 1 hour.",
+          "mistakes": [
+            {
+              "match": 1.5,
+              "reply": "Check: cycling 1.5 hours is 22.5 km. That is more than 18 km. Use 15t + 3(2 − t) = 18."
+            },
+            {
+              "match": 2,
+              "reply": "That is the whole time. You walk part of the time too. Use 15t + 3(2 − t) = 18."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Let t be the cycle time. The walk time is 2 − t.",
+        "Distance: 15t + 3(2 − t) = 18."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "15t + 3(2 - t) = 18",
+            "text": "Cycle distance plus walk distance."
+          },
+          {
+            "math": "12t = 12 \\Rightarrow t = 1",
+            "text": "Expand, subtract 6, divide by 12."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "\\text{Walk 4 km/h, cycle 12 km/h, 3 h, 24 km. Cycle time } t =",
+        "answer": {
+          "value": 1.5,
+          "correctTitle": "Yes, 1.5.",
+          "correctWhy": "12t + 4(3 − t) = 24, so 8t = 12 and t = 1.5 hours."
+        }
+      }
+    },
+    {
+      "id": "1.8.15",
+      "kind": "trap-summary",
+      "label": "LESSON 1.8 COMPLETE",
+      "title": "Inverses explain division.",
+      "prompt": "You saved these rules:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: x² = 3x. Divide by x, so x = 3 is the only solution.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "If x = 0, you cannot divide by x. Move all terms to one side and factor."
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "x = 0 is also a solution. Write x² − 3x = 0, so x(x − 3) = 0. Then x = 0 or x = 3."
+          }
+        },
+        "summary": [
+          "inverse-exists",
+          "inverse-unique",
+          "zero-product",
+          "cross-mul-proved",
+          "cancel-mul"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Finish chapter 1"
+    }
+  ]
+}

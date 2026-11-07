@@ -399,6 +399,90 @@
         "1.7.07"
       ],
       "bankProblems": []
+    },
+    {
+      "id": "c1.5.12",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "exercises",
+      "topic": "Exercise 4: the inverse exists",
+      "lessonScreens": [
+        "1.8.03",
+        "1.8.04"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.6.01",
+      "chapter": 1,
+      "section": "§6",
+      "kind": "topic",
+      "topic": "Inverse a⁻¹; uniqueness; ab = 0",
+      "lessonScreens": [
+        "1.8.03",
+        "1.8.04",
+        "1.8.05",
+        "1.8.06",
+        "1.8.07"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.6.02",
+      "chapter": 1,
+      "section": "§6",
+      "kind": "topic",
+      "topic": "Notation a/b; cross-multiplication proved",
+      "lessonScreens": [
+        "1.8.08",
+        "1.8.09"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.6.03",
+      "chapter": 1,
+      "section": "§6",
+      "kind": "topic",
+      "topic": "Cancellation law; a/b + c/d = (ad + bc)/bd; denominators not 0",
+      "lessonScreens": [
+        "1.8.10"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.6.04",
+      "chapter": 1,
+      "section": "§6",
+      "kind": "topic",
+      "topic": "Solve with cross-multiplication",
+      "lessonScreens": [
+        "1.8.11"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.6.05",
+      "chapter": 1,
+      "section": "§6",
+      "kind": "topic",
+      "topic": "Formula d = st",
+      "lessonScreens": [
+        "1.8.12"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.6.06",
+      "chapter": 1,
+      "section": "§6",
+      "kind": "topic",
+      "topic": "Travel and mixture examples",
+      "lessonScreens": [
+        "1.8.14"
+      ],
+      "bankProblems": [],
+      "note": "Continues in lesson 2.1"
     }
   ]
 }

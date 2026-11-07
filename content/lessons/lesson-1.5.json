@@ -550,7 +550,7 @@
       "prompt": "Find the largest power of 2 that divides 48.",
       "interaction": {
         "type": "number-input",
-        "expression": "\\text{power} =",
+        "expression": "\\text{Largest power of 2 dividing 48} =",
         "answer": {
           "value": 16,
           "correctTitle": "Yes, 16.",
@@ -584,7 +584,7 @@
       },
       "twin": {
         "type": "number-input",
-        "expression": "\\text{power} =",
+        "expression": "\\text{Largest power of 2 dividing 40} =",
         "answer": {
           "value": 8,
           "correctTitle": "Yes, 8.",
