@@ -1,0 +1,695 @@
+{
+  "id": "1.5",
+  "title": "Even, odd and divisibility",
+  "book": {
+    "chapter": 1,
+    "sections": "§4"
+  },
+  "minutes": 10,
+  "goal": "Write even and odd numbers as 2n and 2n + 1, and prove Theorems 1 and 2.",
+  "needs": [
+    "1.4"
+  ],
+  "rulesEarned": [
+    "thm-1",
+    "thm-2",
+    "thm-2-cor",
+    "divides"
+  ],
+  "generalHint": "Write each number in the form 2n or 2n + 1. Then follow the steps of the proof.",
+  "next": {
+    "id": "1.6",
+    "title": "Fractions"
+  },
+  "screens": [
+    {
+      "id": "1.5.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Square of a sum",
+      "prompt": "Expand the square.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $(x + 2)^2$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$x^2 + 4x + 4$"
+          },
+          {
+            "id": "b",
+            "label": "$x^2 + 4$",
+            "reply": "The picture has two strips as well as the two squares. Each strip has an area of 2x."
+          },
+          {
+            "id": "c",
+            "label": "$x^2 + 2x + 4$",
+            "reply": "The middle term is 2 · x · 2. How many x does it have?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, x² + 4x + 4.",
+          "correctWhy": "(x + 2)² = x² + 2 · x · 2 + 2² = x² + 4x + 4."
+        }
+      },
+      "hints": [
+        "Use (a + b)² = a² + 2ab + b²."
+      ]
+    },
+    {
+      "id": "1.5.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Add two odd numbers",
+      "prompt": "Add each pair of odd numbers. Then look at the three answers. What do you see?",
+      "interaction": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "expression": "3 + 5 =",
+            "answer": {
+              "value": 8,
+              "correctTitle": "Yes, 8, 16 and 22.",
+              "correctWhy": "All three sums are even. We find out why in this lesson.",
+              "mistakes": [
+                {
+                  "match": 15,
+                  "reply": "That is 3 · 5. Add the two numbers."
+                }
+              ]
+            }
+          },
+          {
+            "expression": "7 + 9 =",
+            "answer": {
+              "value": 16,
+              "correctTitle": "Yes, 8, 16 and 22.",
+              "correctWhy": "All three sums are even. We find out why in this lesson."
+            }
+          },
+          {
+            "expression": "9 + 13 =",
+            "answer": {
+              "value": 22,
+              "correctTitle": "Yes, 8, 16 and 22.",
+              "correctWhy": "All three sums are even. We find out why in this lesson."
+            }
+          }
+        ]
+      },
+      "hints": [
+        "Add the two numbers in each pair."
+      ],
+      "caption": "Type the sums, then check."
+    },
+    {
+      "id": "1.5.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Even and odd blocks",
+      "prompt": "Drag the handle. An even number fills a block that is 2 squares high. An odd number has one square left over. Look at the block for 9.",
+      "interaction": {
+        "type": "area-model",
+        "mode": "width-2",
+        "widget": {
+          "n": 9,
+          "max": 6
+        },
+        "followUp": {
+          "type": "choice",
+          "question": "The block for 9 has one square left over. Is 9 even or odd?",
+          "options": [
+            {
+              "id": "odd",
+              "label": "Odd"
+            },
+            {
+              "id": "even",
+              "label": "Even",
+              "reply": "An even number fills the block with no square left over. Does 9 have a square left over?"
+            }
+          ],
+          "correct": "odd",
+          "feedback": {
+            "correctTitle": "Yes, 9 is odd.",
+            "correctWhy": "9 = 2 · 4 + 1. The block has 4 columns of 2 and 1 square left over."
+          }
+        }
+      },
+      "hints": [
+        "Look for a square that does not fit in a pair."
+      ],
+      "caption": "Drag the handle, then check."
+    },
+    {
+      "id": "1.5.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Even and odd",
+      "prompt": "An even number is a number of the form $2n$. An odd number is a number of the form $2n + 1$. Here $n$ is a natural number.",
+      "interaction": {
+        "type": "choice",
+        "question": "Which formula gives an odd number?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$2n$",
+            "reply": "2n has no square left over. It is even. Which formula has a square left over?"
+          },
+          {
+            "id": "b",
+            "label": "$2n + 1$"
+          },
+          {
+            "id": "c",
+            "label": "$2n + 2$",
+            "reply": "2n + 2 = 2(n + 1). It has no square left over. Which formula has one?"
+          }
+        ],
+        "correct": "b",
+        "feedback": {
+          "correctTitle": "Yes, 2n + 1.",
+          "correctWhy": "2n + 1 is a block of pairs plus 1 square. This is an odd number."
+        }
+      }
+    },
+    {
+      "id": "1.5.05",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Even plus odd",
+      "prompt": "Prove Theorem 1, one case: if $a$ is even and $b$ is odd, then $a + b$ is odd. Use $a = 2n$ and $b = 2k + 1$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "a + b \\text{ is odd}",
+        "lines": [
+          {
+            "math": "\\va{a} = 2n \\text{ and } \\vb{b} = 2k + 1",
+            "reason": null
+          },
+          {
+            "math": "\\va{a} + \\vb{b} = 2n + (2k + 1)",
+            "reason": "put-in"
+          },
+          {
+            "math": "= (2n + 2k) + 1",
+            "reason": "assoc-add"
+          },
+          {
+            "math": "= 2(n + k) + 1",
+            "reason": "distrib"
+          },
+          {
+            "math": "= 2m + 1, \\text{ with } m = n + k",
+            "reason": "name-m"
+          },
+          {
+            "math": "\\text{So } \\va{a} + \\vb{b} \\text{ is odd}",
+            "reason": "def-odd"
+          }
+        ],
+        "tray": [
+          "assoc-add",
+          "distrib",
+          "comm-add",
+          "N2",
+          "put-in",
+          "name-m",
+          "def-odd",
+          "same-n"
+        ],
+        "steps": [
+          {
+            "id": "put-in",
+            "label": "put in the values of a and b"
+          },
+          {
+            "id": "name-m",
+            "label": "call the sum in brackets m"
+          },
+          {
+            "id": "def-odd",
+            "label": "this has the form 2m + 1"
+          },
+          {
+            "id": "same-n",
+            "label": "use the same n for both numbers"
+          }
+        ],
+        "wrongReasonReplies": {
+          "assoc-add": "Associativity changes the brackets in a sum. Did this line change the brackets?",
+          "distrib": "Distributivity takes a common factor out of a sum, or multiplies a sum. Is there a common factor 2 to take out?",
+          "comm-add": "Commutativity changes the order of two terms. Did the order change in this line?",
+          "N2": "N2 turns a number plus its minus into 0. Is there a number and its minus here?",
+          "put-in": "This step writes the numbers in their 2n or 2n + 1 form. Did the line before have a and b only?",
+          "name-m": "This step gives a short name to an expression. Is there a new letter in this line?",
+          "def-odd": "This step reads the form 2m + 1 and says the number is odd. Is the line of the form 2m + 1?",
+          "same-n": "The two numbers can be different. Use 2n for one and 2k + 1 for the other."
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "a + b has the form 2m + 1. So the sum of an even and an odd number is odd."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.5.06",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Odd plus odd",
+      "prompt": "Lang leaves the other cases to the reader. Prove one: if $a$ and $b$ are odd, then $a + b$ is even. Use $a = 2n + 1$ and $b = 2k + 1$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "a + b \\text{ is even}",
+        "lines": [
+          {
+            "math": "\\va{a} = 2n + 1 \\text{ and } \\vb{b} = 2k + 1",
+            "reason": null
+          },
+          {
+            "math": "\\va{a} + \\vb{b} = (2n + 1) + (2k + 1)",
+            "reason": "put-in"
+          },
+          {
+            "math": "= 2n + 2k + (1 + 1)",
+            "reason": "comm-add"
+          },
+          {
+            "math": "= 2n + 2k + 2",
+            "reason": "add-ones"
+          },
+          {
+            "math": "= 2(n + k + 1)",
+            "reason": "distrib"
+          },
+          {
+            "math": "= 2m, \\text{ with } m = n + k + 1",
+            "reason": "name-m"
+          },
+          {
+            "math": "\\text{So } \\va{a} + \\vb{b} \\text{ is even}",
+            "reason": "def-even"
+          }
+        ],
+        "tray": [
+          "assoc-add",
+          "distrib",
+          "comm-add",
+          "N1",
+          "put-in",
+          "add-ones",
+          "name-m",
+          "def-even",
+          "same-n"
+        ],
+        "steps": [
+          {
+            "id": "put-in",
+            "label": "put in the values of a and b"
+          },
+          {
+            "id": "add-ones",
+            "label": "add 1 and 1"
+          },
+          {
+            "id": "name-m",
+            "label": "call the sum in brackets m"
+          },
+          {
+            "id": "def-even",
+            "label": "this has the form 2m"
+          },
+          {
+            "id": "same-n",
+            "label": "use the same n for both numbers"
+          }
+        ],
+        "wrongReasonReplies": {
+          "assoc-add": "Associativity changes the brackets in a sum. Did this line change the brackets?",
+          "distrib": "Distributivity takes a common factor out of a sum, or multiplies a sum. Is there a common factor 2 to take out?",
+          "comm-add": "Commutativity changes the order of two terms. Did the order change in this line?",
+          "N2": "N2 turns a number plus its minus into 0. Is there a number and its minus here?",
+          "put-in": "This step writes the numbers in their 2n or 2n + 1 form. Did the line before have a and b only?",
+          "name-m": "This step gives a short name to an expression. Is there a new letter in this line?",
+          "same-n": "The two numbers can be different. Use 2n for one and 2k + 1 for the other.",
+          "N1": "N1 removes a 0 that is added. Is there a 0 added to a number in this line?",
+          "add-ones": "This step adds the two 1s. Is there a 1 + 1 in the line before?",
+          "def-even": "This step reads the form 2m and says the number is even. Is the line of the form 2m?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "a + b has the form 2m. So the sum of two odd numbers is even."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.5.07",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The square of an odd number",
+      "prompt": "Prove Theorem 2: if $a$ is odd, then $a^2$ is odd. Use $a = 2n + 1$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "a^2 \\text{ is odd}",
+        "lines": [
+          {
+            "math": "\\va{a} = 2n + 1",
+            "reason": null
+          },
+          {
+            "math": "\\va{a}^2 = (2n + 1)^2",
+            "reason": "put-in"
+          },
+          {
+            "math": "= 4n^2 + 4n + 1",
+            "reason": "sq-sum"
+          },
+          {
+            "math": "= 2(2n^2 + 2n) + 1",
+            "reason": "distrib"
+          },
+          {
+            "math": "= 2k + 1, \\text{ with } k = 2n^2 + 2n",
+            "reason": "name-k"
+          },
+          {
+            "math": "\\text{So } \\va{a}^2 \\text{ is odd}",
+            "reason": "def-odd"
+          }
+        ],
+        "tray": [
+          "sq-sum",
+          "distrib",
+          "comm-add",
+          "N2",
+          "put-in",
+          "name-k",
+          "def-odd"
+        ],
+        "steps": [
+          {
+            "id": "put-in",
+            "label": "put in the value of a"
+          },
+          {
+            "id": "name-k",
+            "label": "call the sum in brackets k"
+          },
+          {
+            "id": "def-odd",
+            "label": "this has the form 2k + 1"
+          }
+        ],
+        "wrongReasonReplies": {
+          "sq-sum": "This is the formula for (a + b)². Is there a square of a sum in the line before?",
+          "distrib": "Distributivity takes a common factor out of a sum. Is there a common factor 2 to take out?",
+          "comm-add": "Commutativity changes the order of two terms. Did the order change?",
+          "N2": "N2 turns a number plus its minus into 0. Is there a number and its minus here?",
+          "put-in": "This step writes a in its 2n + 1 form. Is a still in the line before?",
+          "name-k": "This step gives a short name to an expression. Is there a new letter in this line?",
+          "def-odd": "This step reads the form 2k + 1 and says the number is odd. Is the line of the form 2k + 1?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "a² has the form 2k + 1. So the square of an odd number is odd."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.5.08",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "If a² is even",
+      "prompt": "Theorem 2 says: if $a$ is odd, then $a^2$ is odd. The corollary turns this around. Suppose $a^2$ is even.",
+      "interaction": {
+        "type": "choice",
+        "question": "Suppose $a^2$ is even. What is true for $a$?",
+        "options": [
+          {
+            "id": "even",
+            "label": "$a$ is even"
+          },
+          {
+            "id": "odd",
+            "label": "$a$ is odd",
+            "reply": "If a were odd, a² would be odd by Theorem 2. But a² is even. Which can a be?"
+          }
+        ],
+        "correct": "even",
+        "feedback": {
+          "correctTitle": "Yes, a is even.",
+          "correctWhy": "If a were odd, a² would be odd. So a cannot be odd. It must be even. This is the corollary."
+        }
+      },
+      "note": {
+        "label": "TWO ROWS",
+        "text": "If a is odd, then a² is odd. If a² is even, then a is not odd, so a is even."
+      },
+      "hints": [
+        "Use Theorem 2 about odd numbers."
+      ]
+    },
+    {
+      "id": "1.5.09",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "d divides n",
+      "prompt": "We say $d$ divides $n$ if $n = dk$ for an integer $k$. For example, 3 divides 15, because $15 = 3 \\cdot 5$.",
+      "interaction": {
+        "type": "choice",
+        "question": "What does \"3 divides 12\" mean?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$12 = 3k$ for an integer $k$"
+          },
+          {
+            "id": "b",
+            "label": "$3 = 12k$ for an integer $k$",
+            "reply": "\"d divides n\" means n = d × an integer. Write 12 as 3 × something."
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 12 = 3 · 4.",
+          "correctWhy": "3 divides 12 because 12 = 3 · 4, with the integer k = 4."
+        }
+      }
+    },
+    {
+      "id": "1.5.10",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 3",
+      "title": "Odd times odd",
+      "prompt": "Think about the form of each number.",
+      "interaction": {
+        "type": "choice",
+        "question": "Is $7 \\cdot 9$ odd or even?",
+        "options": [
+          {
+            "id": "odd",
+            "label": "Odd"
+          },
+          {
+            "id": "even",
+            "label": "Even",
+            "reply": "7 and 9 are both odd. Write 7 = 2n + 1 and 9 = 2k + 1, and multiply. Does the product have the form 2m?"
+          }
+        ],
+        "correct": "odd",
+        "feedback": {
+          "correctTitle": "Yes, it is odd.",
+          "correctWhy": "7 · 9 = 63 = 2 · 31 + 1. It has the form 2m + 1."
+        }
+      },
+      "hints": [
+        "Find the product, then write it as 2m + 1 or 2m."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "7 \\cdot 9 = 63",
+            "text": "Multiply the two numbers."
+          },
+          {
+            "math": "63 = 2 \\cdot 31 + 1",
+            "text": "63 has the form 2m + 1, so it is odd."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "Is $5 \\cdot 11$ odd or even?",
+        "options": [
+          {
+            "id": "odd",
+            "label": "Odd"
+          },
+          {
+            "id": "even",
+            "label": "Even",
+            "reply": "5 and 11 are both odd. Write the product as 55. Does 55 have the form 2m?"
+          }
+        ],
+        "correct": "odd",
+        "feedback": {
+          "correctTitle": "Yes, it is odd.",
+          "correctWhy": "5 · 11 = 55 = 2 · 27 + 1."
+        }
+      }
+    },
+    {
+      "id": "1.5.11",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 3",
+      "title": "Powers of 2",
+      "prompt": "Find the largest power of 2 that divides 48.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\text{power} =",
+        "answer": {
+          "value": 16,
+          "correctTitle": "Yes, 16.",
+          "correctWhy": "48 = 16 · 3. 32 does not divide 48, because 48 = 32 · 1.5.",
+          "mistakes": [
+            {
+              "match": 8,
+              "reply": "8 divides 48, but a larger power of 2 divides it too. 48 = 16 · 3. Is there a larger power?"
+            },
+            {
+              "match": 24,
+              "reply": "24 is not a power of 2. The powers of 2 are 2, 4, 8, 16, 32. Which is the largest that divides 48?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "List the powers of 2: 2, 4, 8, 16, 32.",
+        "Test the largest first: does 32 divide 48?"
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "48 = 2 \\cdot 24 = 4 \\cdot 12 = 8 \\cdot 6 = 16 \\cdot 3",
+            "text": "Divide by 2 again and again."
+          },
+          {
+            "text": "16 · 3 = 48. 3 is odd, so no more 2s."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "\\text{power} =",
+        "answer": {
+          "value": 8,
+          "correctTitle": "Yes, 8.",
+          "correctWhy": "40 = 8 · 5. 5 is odd, so no more 2s."
+        }
+      }
+    },
+    {
+      "id": "1.5.12",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 3",
+      "title": "Does 3 divide 51?",
+      "prompt": "Use the meaning of \"divides\".",
+      "interaction": {
+        "type": "choice",
+        "question": "Does 3 divide 51?",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Yes, $51 = 3 \\cdot 17$"
+          },
+          {
+            "id": "no",
+            "label": "No",
+            "reply": "Try to write 51 as 3 × an integer. Is 51 = 3 · 17?"
+          }
+        ],
+        "correct": "yes",
+        "feedback": {
+          "correctTitle": "Yes, 51 = 3 · 17.",
+          "correctWhy": "51 = 3 · 17, with the integer k = 17."
+        }
+      },
+      "hints": [
+        "Write 51 as 3 × an integer, if you can."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "51 = 3 \\cdot 17",
+            "text": "3 times 17 is 51."
+          },
+          {
+            "text": "So 3 divides 51."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "Does 4 divide 52?",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Yes, $52 = 4 \\cdot 13$"
+          },
+          {
+            "id": "no",
+            "label": "No",
+            "reply": "Try to write 52 as 4 × an integer. Is 52 = 4 · 13?"
+          }
+        ],
+        "correct": "yes",
+        "feedback": {
+          "correctTitle": "Yes, 52 = 4 · 13.",
+          "correctWhy": "52 = 4 · 13, with the integer k = 13."
+        }
+      }
+    },
+    {
+      "id": "1.5.13",
+      "kind": "trap-summary",
+      "label": "LESSON 1.5 COMPLETE",
+      "title": "Even and odd, proved.",
+      "prompt": "You saved these results:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: if a² is even, then a can be odd.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "If a is odd, then a² is odd by Theorem 2. Can a² be even and odd at the same time?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "If a² is even, a must be even. This is the corollary of Theorem 2."
+          }
+        },
+        "summary": [
+          "thm-1",
+          "thm-2",
+          "thm-2-cor",
+          "divides"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Fractions"
+    }
+  ]
+}

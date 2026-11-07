@@ -259,6 +259,48 @@
         "1.4.13"
       ],
       "bankProblems": []
+    },
+    {
+      "id": "c1.4.01",
+      "chapter": 1,
+      "section": "§4",
+      "kind": "topic",
+      "topic": "Odd and even; 2n, 2m − 1, 2n + 1",
+      "lessonScreens": [
+        "1.5.02",
+        "1.5.03",
+        "1.5.04"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.4.02",
+      "chapter": 1,
+      "section": "§4",
+      "kind": "topic",
+      "topic": "Theorem 1 (one case proved); Theorem 2; corollary",
+      "lessonScreens": [
+        "1.5.05",
+        "1.5.06",
+        "1.5.07",
+        "1.5.08",
+        "1.5.13"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.4.03",
+      "chapter": 1,
+      "section": "§4",
+      "kind": "topic",
+      "topic": "d divides n",
+      "lessonScreens": [
+        "1.5.09",
+        "1.5.10",
+        "1.5.11",
+        "1.5.12"
+      ],
+      "bankProblems": []
     }
   ]
 }
