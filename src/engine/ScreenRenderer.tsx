@@ -1,19 +1,40 @@
 import type { ReactNode } from "react";
-import type { Interaction, Rule, Screen } from "../../content/schema";
+import type { Interaction, ProofInteraction, Rule, Screen } from "../../content/schema";
 import {
   ChoiceChip,
   HintChip,
   NumberSlot,
   RuleCard,
-  TrapBox,
   type ChoiceState,
   type SlotState,
 } from "../components";
-import { Math, RichText } from "../math";
-import { answerSpec, type AnswerSpec, type Input } from "./answers";
+import { Math as Tex, RichText } from "../math";
+import {
+  Balance,
+  MirrorPicture,
+  NumberLine,
+  ProofStepper,
+  Stage,
+  Thermometer,
+  TrapSummary,
+  trayChips,
+} from "../widgets";
+import { fmt } from "../widgets/geometry";
+import type { Removed } from "../widgets/balanceLogic";
+import { answerSpec, type Input } from "./answers";
+import { parseNumber } from "./check";
 import styles from "./ScreenRenderer.module.css";
 
 export type Verdict = "idle" | "correct" | "wrong";
+
+/** State of the proof stepper, owned by the lesson player. */
+export interface ProofState {
+  active: number;
+  done: Record<number, string>;
+  pending: string | null;
+  wrong: boolean;
+  onPick: (chipId: string) => void;
+}
 
 interface ScreenRendererProps {
   screen: Screen;
@@ -28,58 +49,52 @@ interface ScreenRendererProps {
   locked: boolean;
   hintChip?: { onClick: () => void; open: boolean } | null;
   invalidMessage?: string | null;
+  /** Enter on a widget checks the answer. */
+  onEnter?: () => void;
   /** Trap-summary: the learner's True/False. */
   onTrap?: (choiceId: string) => void;
   trapNote?: ReactNode;
-}
-
-/** Widgets arrive in step 1C. Until then each one shows a named placeholder. */
-function WidgetPlaceholder({
-  name,
-  mode,
-  children,
-}: {
-  name: string;
-  mode?: string;
-  children?: ReactNode;
-}) {
-  return (
-    <div
-      className={styles.placeholder}
-      data-testid="widget-placeholder"
-      role="group"
-      aria-label={`${name} widget, not built yet`}
-    >
-      <p className={styles.phName}>
-        {name}
-        {mode ? ` · ${mode}` : ""}
-      </p>
-      <p className={styles.phNote}>Widget comes in step 1C.</p>
-      {children}
-    </div>
-  );
+  proof?: ProofState;
+  removed?: Removed;
+  onRemoved?: (r: Removed) => void;
 }
 
 const slotState = (verdict: Verdict): SlotState => (verdict === "idle" ? "default" : verdict);
 const chipState = (verdict: Verdict, selected: boolean, correct: boolean): ChoiceState =>
   verdict === "idle" || !selected ? "default" : correct ? "correct" : "wrong";
 
+/** Is the answer given by the widget itself, not by a number slot? */
+export function widgetGivesAnswer(i: Interaction): boolean {
+  return (
+    (i.type === "number-line" && (i.mode === "place" || i.mode === "hops") && !i.followUp) ||
+    i.type === "thermometer"
+  );
+}
+
 export function ScreenRenderer(props: ScreenRendererProps) {
   const { interaction: i, input, onInput, verdict, locked } = props;
   const spec = answerSpec(i);
+  const widgetAnswer = widgetGivesAnswer(i);
+  const ringValue = parseNumber(input.text[0] ?? "");
 
   const setText = (k: number, v: string) => {
     const text = [...input.text];
     text[k] = v;
     onInput({ ...input, text });
   };
+  const setNumber = (n: number) => setText(0, String(n));
+  const tone = verdict === "idle" ? "neutral" : verdict;
+
+  const hint = props.hintChip ? <HintChip {...props.hintChip} /> : null;
 
   const answerRow = (): ReactNode => {
     switch (spec.t) {
-      case "number":
+      case "number": {
+        if (widgetAnswer) return hint ? <div className={styles.row}>{hint}</div> : null;
+        const expression = spec.expression ?? (i.type === "balance" ? "x =" : undefined);
         return (
           <div className={styles.row}>
-            {spec.expression && <Math tex={spec.expression} className={styles.expr} />}
+            {expression && <Tex tex={expression} className={styles.expr} />}
             <NumberSlot
               label="Your answer"
               value={input.text[0] ?? ""}
@@ -88,22 +103,12 @@ export function ScreenRenderer(props: ScreenRendererProps) {
               disabled={locked}
               compact
             />
-            {props.hintChip && <HintChip {...props.hintChip} />}
+            {hint}
           </div>
         );
+      }
       case "thermometer":
-        return (
-          <div className={styles.row}>
-            <span className={styles.expr}>My guess</span>
-            <NumberSlot
-              label="Your guess"
-              value={input.text[0] ?? ""}
-              onChange={(v) => setText(0, v)}
-              disabled={locked}
-              compact
-            />
-          </div>
-        );
+        return null;
       case "multi":
         return (
           <div className={styles.parts}>
@@ -115,7 +120,7 @@ export function ScreenRenderer(props: ScreenRendererProps) {
                   </p>
                 )}
                 <div className={styles.row}>
-                  <Math tex={p.expression} className={styles.expr} />
+                  <Tex tex={p.expression} className={styles.expr} />
                   <NumberSlot
                     label={`Your answer, part ${k + 1}`}
                     value={input.text[k] ?? ""}
@@ -124,9 +129,7 @@ export function ScreenRenderer(props: ScreenRendererProps) {
                     disabled={locked}
                     compact
                   />
-                  {k === spec.parts.length - 1 && props.hintChip && (
-                    <HintChip {...props.hintChip} />
-                  )}
+                  {k === spec.parts.length - 1 && hint}
                 </div>
               </div>
             ))}
@@ -153,11 +156,11 @@ export function ScreenRenderer(props: ScreenRendererProps) {
                 </ChoiceChip>
               ))}
             </div>
-            {props.hintChip && <HintChip {...props.hintChip} />}
+            {hint}
           </div>
         );
       case "none":
-        return props.hintChip ? <HintChip {...props.hintChip} /> : null;
+        return hint ? <div className={styles.row}>{hint}</div> : null;
     }
   };
 
@@ -168,7 +171,7 @@ export function ScreenRenderer(props: ScreenRendererProps) {
       case "rule-card":
         return (
           <div className={styles.cards}>
-            {i.ruleIds.map((id) => {
+            {i.ruleIds.map((id, k) => {
               const r = props.rules.get(id);
               return r ? (
                 <RuleCard
@@ -177,8 +180,8 @@ export function ScreenRenderer(props: ScreenRendererProps) {
                   statement={r.statement}
                   spoken={r.spoken}
                   picture={
-                    i.picture ? (
-                      <WidgetPlaceholder name="Rule card picture" mode={i.picture} />
+                    i.picture === "mirror" && k === i.ruleIds.length - 1 ? (
+                      <MirrorPicture />
                     ) : undefined
                   }
                 />
@@ -186,58 +189,81 @@ export function ScreenRenderer(props: ScreenRendererProps) {
             })}
           </div>
         );
-      case "number-line":
-      case "area-model":
-      case "square-tiles":
-      case "fraction-strips":
+      case "number-line": {
+        if (i.mode === "zoom" || i.mode === "interval") return null; // Phase 3
         return (
-          <>
-            {"equation" in i && i.equation && <Math tex={i.equation} className={styles.equation} />}
-            <WidgetPlaceholder name={widgetName(i.type)} mode={i.mode} />
-            {i.type === "number-line" && i.answer && !i.followUp && (
-              <p className={styles.note}>
-                Type your answer for now. The number line arrives in step 1C.
-              </p>
-            )}
-          </>
+          <Stage
+            tone={tone}
+            readout={
+              i.mode === "place" && ringValue !== null ? `Ring at ${fmt(ringValue)}` : undefined
+            }
+          >
+            <NumberLine
+              mode={i.mode}
+              spec={i.widget}
+              value={ringValue}
+              onChange={setNumber}
+              onEnter={props.onEnter}
+              disabled={locked || verdict === "correct"}
+              state={verdict}
+              equation={i.equation}
+            />
+          </Stage>
         );
+      }
       case "thermometer":
-        return <WidgetPlaceholder name="Thermometer" mode={i.mode} />;
-      case "balance":
-        return <WidgetPlaceholder name="Balance" mode={i.mode} />;
-      case "proof":
         return (
-          <WidgetPlaceholder name="Proof stepper">
-            <Math tex={i.goal} className={styles.equation} />
-          </WidgetPlaceholder>
+          <div className={styles.bare}>
+            <Thermometer
+              spec={i.widget}
+              value={ringValue}
+              onChange={setNumber}
+              onEnter={props.onEnter}
+              revealed={verdict !== "idle"}
+              disabled={locked}
+            />
+          </div>
         );
-      case "elimination":
-        return <WidgetPlaceholder name="Elimination board" mode={i.mode} />;
+      case "balance":
+        return (
+          <Stage>
+            <Balance
+              mode="solve"
+              spec={i.widget as never}
+              removed={props.removed ?? { l: 0, r: 0 }}
+              onChange={(r) => props.onRemoved?.(r)}
+              disabled={locked}
+            />
+          </Stage>
+        );
+      case "proof":
+        return props.proof ? (
+          <ProofBlock proof={i} rules={props.rules} state={props.proof} disabled={locked} />
+        ) : null;
       case "trap-summary":
         return (
-          <>
-            <div className={styles.summary}>
-              {i.summary.map((id) => {
-                const r = props.rules.get(id);
-                return r ? (
-                  <div key={id} className={styles.summaryRow}>
-                    <span className={styles.ruleId}>{id}</span>
-                    <Math tex={r.statement} />
-                  </div>
-                ) : null;
-              })}
-            </div>
-            <TrapBox
-              question={i.trap.question ?? ""}
-              answer={input.choice === null ? null : input.choice === "true"}
-              correct={i.trap.correct === "true"}
-              onAnswer={(v) => props.onTrap?.(v ? "true" : "false")}
-            />
-            {props.trapNote}
-          </>
+          <TrapSummary
+            summary={i.summary}
+            rules={props.rules}
+            question={i.trap.question ?? ""}
+            answer={input.choice === null ? null : input.choice === "true"}
+            correct={i.trap.correct === "true"}
+            onAnswer={(v) => props.onTrap?.(v ? "true" : "false")}
+            note={props.trapNote}
+          />
         );
-      default:
+      case "number-input":
+      case "multi-number-input":
+      case "choice":
         return null;
+      default:
+        // Area model, square tiles, fraction strips (step 1D), elimination (phase 2).
+        return (
+          <div className={styles.placeholder} data-testid="widget-placeholder">
+            <p className={styles.phName}>{i.type}</p>
+            <p className={styles.phNote}>This widget is not built yet.</p>
+          </div>
+        );
     }
   };
 
@@ -254,15 +280,27 @@ export function ScreenRenderer(props: ScreenRendererProps) {
   );
 }
 
-function widgetName(type: Interaction["type"]): string {
+function ProofBlock({
+  proof,
+  rules,
+  state,
+  disabled,
+}: {
+  proof: ProofInteraction;
+  rules: Map<string, Rule>;
+  state: ProofState;
+  disabled: boolean;
+}) {
   return (
-    {
-      "number-line": "Number line",
-      "area-model": "Area model",
-      "square-tiles": "Square tiles",
-      "fraction-strips": "Fraction strips",
-    }[type as "number-line"] ?? type
+    <ProofStepper
+      proof={proof}
+      chips={trayChips(proof, rules)}
+      active={state.active}
+      done={state.done}
+      pending={state.pending}
+      wrong={state.wrong}
+      onPick={state.onPick}
+      disabled={disabled}
+    />
   );
 }
-
-export type { AnswerSpec };

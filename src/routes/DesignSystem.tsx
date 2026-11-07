@@ -15,6 +15,7 @@ import {
   TryBox,
 } from "../components";
 import { Math } from "../math";
+import { DesignWidgets } from "./DesignWidgets";
 import styles from "./DesignSystem.module.css";
 
 const COLORS: { token: string; role: string }[] = [
@@ -410,6 +411,10 @@ export function DesignSystem() {
           <LessonBar total={14} current={7} />
           <LessonBar total={14} current={14} />
         </div>
+      </Section>
+
+      <Section id="widgets" title="Widgets">
+        <DesignWidgets />
       </Section>
 
       <Section id="cards" title="Rule card, Try box, Trap box">

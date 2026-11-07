@@ -76,6 +76,7 @@ export function hasAnswer(spec: AnswerSpec, input: Input): boolean {
 /** The outcome of Check: what the sheet shows. */
 export type Outcome =
   | { kind: "correct"; title: string; body: string }
+  | { kind: "wrong-reason"; title: string; body: string }
   | { kind: "not-quite"; title: string; body: string }
   | { kind: "invalid"; body: string };
 

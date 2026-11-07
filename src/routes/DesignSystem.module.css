@@ -183,3 +183,25 @@
 .forceSlotFocus {
   border-color: var(--color-primary);
 }
+
+.widgetGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--spacing-4);
+}
+.note {
+  font-size: var(--text-small);
+  line-height: 24px;
+  color: var(--color-ink-soft);
+}
+.mini {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}

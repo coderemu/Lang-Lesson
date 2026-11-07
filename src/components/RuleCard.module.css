@@ -16,7 +16,7 @@
 }
 .statement {
   font-family: var(--font-math);
-  font-size: var(--text-math-xl);
+  font-size: 28px;
   line-height: 1.2;
 }
 .picture {

@@ -46,9 +46,9 @@ export function PlayerFrame({
           <p className={styles.label}>{label}</p>
           <h1 className={styles.title}>{title}</h1>
           {prompt && <p className={styles.prompt}>{prompt}</p>}
-          {aside}
         </div>
         <div className={styles.stage}>{children}</div>
+        {aside && <div className={styles.aside}>{aside}</div>}
       </div>
       <div className={styles.footer}>
         {drawer && <div className={styles.drawer}>{drawer}</div>}

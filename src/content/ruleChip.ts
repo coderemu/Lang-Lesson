@@ -36,3 +36,19 @@ export function ruleChipLabel(id: string): string {
   const word = first.charAt(0).toUpperCase() + first.slice(1);
   return word.length > 6 ? `${word.slice(0, 5)}.` : word;
 }
+
+const FULL: Record<string, string> = {
+  "comm-add": "Commutativity",
+  "comm-mul": "Commutativity",
+  "assoc-add": "Associativity",
+  "assoc-mul": "Associativity",
+  distrib: "Distributivity",
+  "distrib-right": "Distributivity",
+};
+
+/** The name on a reason chip of the proof stepper (frames S07–S09): "N2", "Commutativity". */
+export function reasonChipName(id: string, ruleName?: string): string {
+  if (FULL[id]) return FULL[id];
+  if (/^[A-Z]+\d*$/.test(id)) return id.replace(/^([A-Z]+)(\d)/, "$1 $2").replace(/^N (\d)/, "N$1");
+  return ruleName ?? ruleChipLabel(id);
+}

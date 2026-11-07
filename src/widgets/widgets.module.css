@@ -1,0 +1,382 @@
+/* Widgets. Geometry from FigCraft frames S01–S10; colours from tokens only. */
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-2);
+  padding: 28px 0 12px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+.readout {
+  text-align: center;
+  font-size: var(--text-caption);
+  line-height: 20px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-negative-text);
+}
+.stage[data-tone="correct"] .readout {
+  color: var(--color-correct-text);
+}
+.stage[data-tone="wrong"] .readout {
+  color: var(--color-incorrect-text);
+}
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin: 0;
+}
+
+/* Number line */
+.line,
+.thermo,
+.balance,
+.picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: none;
+  user-select: none;
+}
+.line[data-interactive="true"],
+.thermo[data-interactive="true"] {
+  cursor: pointer;
+}
+.line:focus-visible,
+.thermo:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
+}
+.axis {
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+.tick {
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+.tickLabel {
+  fill: var(--color-ink-soft);
+  font-family: var(--font-math);
+  font-size: 16px;
+  text-anchor: middle;
+}
+.tickLabel[data-zero="true"] {
+  fill: var(--color-ink);
+}
+.tickLabel[data-bold="true"] {
+  fill: var(--color-ink);
+  font-size: 17px;
+  font-weight: 700;
+}
+.ring,
+.guessRing {
+  fill: var(--color-paper);
+  stroke: var(--color-negative);
+  stroke-width: 4;
+  cursor: grab;
+}
+.dragHint {
+  fill: none;
+  stroke: var(--color-negative);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+.hop {
+  fill: none;
+  stroke: var(--color-negative);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.hopPlus {
+  fill: none;
+  stroke: var(--color-primary-bright);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.hopNumber {
+  fill: var(--color-negative-text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: var(--font-weight-semibold);
+  text-anchor: middle;
+}
+.startDot {
+  fill: var(--color-ink);
+}
+.dotA {
+  fill: var(--color-primary-bright);
+}
+.dotMinusA {
+  fill: var(--color-paper);
+  stroke: var(--color-negative);
+  stroke-width: 3;
+}
+.dotMinusAThin {
+  fill: var(--color-paper);
+  stroke: var(--color-primary-bright);
+  stroke-width: 2;
+}
+.mirrorAxis {
+  stroke: var(--color-rule);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+.mirrorArc {
+  fill: none;
+  stroke: var(--color-negative);
+  stroke-width: 3;
+}
+.mirrorArcDashed {
+  fill: none;
+  stroke: var(--color-negative);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+.pathLabel {
+  fill: var(--color-ink);
+  font-family: var(--font-math);
+  font-size: 16px;
+}
+.equation {
+  font-family: var(--font-math);
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+}
+.eqValue {
+  color: var(--color-ink);
+}
+.eqValue[data-moved="true"] {
+  color: var(--color-negative-text);
+}
+
+/* Thermometer */
+.zeroLine {
+  stroke: var(--color-line);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+.tube {
+  fill: var(--color-paper);
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+.mercury {
+  fill: var(--color-primary-bright);
+}
+.thermoLabel {
+  fill: var(--color-ink-soft);
+  font-family: var(--font-math);
+  font-size: 18px;
+}
+.thermoLabel[data-bold="true"] {
+  fill: var(--color-ink);
+  font-weight: 700;
+}
+.thermoLabel[data-zero="true"] {
+  fill: var(--color-ink);
+}
+.thermoNow {
+  fill: var(--color-ink-soft);
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+.guessStem {
+  stroke: var(--color-negative);
+  stroke-width: 3;
+}
+.guessLabel {
+  fill: var(--color-negative-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Balance */
+.base,
+.post {
+  fill: var(--color-ink-soft);
+}
+.beam,
+.pivot {
+  fill: var(--color-ink);
+}
+.hanger {
+  fill: none;
+  stroke: var(--color-ink-muted);
+  stroke-width: 1.5;
+}
+.pan {
+  fill: var(--color-ink-soft);
+}
+.xBlock {
+  fill: var(--color-primary-bright);
+}
+.xBlockText {
+  fill: #fff;
+  font-family: var(--font-math);
+  font-size: 26px;
+  font-style: italic;
+}
+.cube {
+  cursor: pointer;
+  outline: none;
+}
+.cube rect {
+  fill: var(--tint-negative);
+  stroke: var(--color-negative);
+  stroke-width: 2;
+}
+.cube:hover rect {
+  fill: var(--color-negative);
+  fill-opacity: 0.35;
+}
+.cube:focus-visible rect {
+  stroke: var(--color-primary);
+  stroke-width: 3;
+}
+.panLabel {
+  fill: var(--color-ink);
+  font-family: var(--font-math);
+  font-size: 18px;
+}
+.balanceReadout {
+  text-align: center;
+  font-size: var(--text-caption);
+  line-height: 20px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-negative-text);
+}
+
+/* Proof stepper */
+.proof {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+.proofList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-line);
+}
+.proofLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 49px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+.proofMath {
+  font-size: 19px;
+  line-height: 26px;
+  min-width: 0;
+}
+.proofReason {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+.given {
+  padding: 0 10px;
+  font-size: var(--text-caption);
+  line-height: 20px;
+  color: var(--color-ink-muted);
+}
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+.tray > button {
+  background: var(--color-paper);
+  border-color: var(--color-line);
+  border-width: 1.5px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-semibold);
+}
+.tray > button[aria-pressed="true"] {
+  border-color: var(--color-primary);
+}
+.stepChip {
+  color: var(--color-ink-soft) !important;
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-line) !important;
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-semibold);
+}
+.tray > .stepChip {
+  background: var(--color-paper) !important;
+}
+
+/* Trap summary */
+.summary {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+.summaryRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  min-height: 52px;
+  border-top: 1px solid var(--color-line);
+}
+.summaryRow:first-child {
+  border-top: 0;
+}
+.ruleId {
+  flex: 0 0 44px;
+  padding: 3px 0;
+  border-radius: var(--radius-sm);
+  background: var(--tint-rule);
+  color: var(--color-rule);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+.summaryMath {
+  font-size: 20px;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+/* Rule card picture */
+.pictureVar {
+  fill: var(--color-primary-bright);
+  font-family: var(--font-math);
+  font-size: 16px;
+  font-style: italic;
+  text-anchor: middle;
+}
+
+@media (min-width: 900px) {
+  .proofMath {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .proofLine {
+    min-height: 61px;
+  }
+  .stage {
+    padding-top: 36px;
+  }
+  .equation {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+
+/* Locked proof lines show an empty dashed slot (frame S08). */
+.proofLine[data-state="locked"] .proofReason span {
+  color: transparent;
+}

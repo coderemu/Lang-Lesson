@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -32,9 +32,10 @@ describe("lesson player", () => {
     const user = userEvent.setup();
     renderLesson("/lesson/1.2");
     await screen.findByText("Where is minus 3?");
-    const input = screen.getByLabelText("Your answer");
+    const slider = screen.getByRole("slider");
     expect(screen.getByTestId("primary")).toBeDisabled();
-    await user.type(input, "3");
+    slider.focus();
+    await user.keyboard("{ArrowRight}{ArrowRight}{ArrowRight}");
     await user.click(screen.getByTestId("primary"));
     expect(
       await screen.findByText(
@@ -42,7 +43,8 @@ describe("lesson player", () => {
       ),
     ).toBeInTheDocument();
     await user.click(screen.getByTestId("try-again"));
-    await user.type(screen.getByLabelText("Your answer"), "−3");
+    screen.getByRole("slider").focus();
+    await user.keyboard("{ArrowLeft}{ArrowLeft}{ArrowLeft}");
     await user.click(screen.getByTestId("primary"));
     expect(await screen.findByText("Yes, −3.")).toBeInTheDocument();
     await user.click(screen.getByTestId("continue"));
@@ -63,12 +65,13 @@ describe("lesson player", () => {
 
   it("rejects text, does not count an attempt, and keeps Check disabled without input", async () => {
     const user = userEvent.setup();
-    renderLesson("/lesson/1.2");
-    await screen.findByText("Where is minus 3?");
+    renderLesson("/lesson/1.2?screen=1.2.11");
+    await screen.findByLabelText("Your answer");
+    expect(screen.getByTestId("primary")).toBeDisabled();
     await user.type(screen.getByLabelText("Your answer"), "abc");
     await user.click(screen.getByTestId("primary"));
     expect(await screen.findByRole("alert")).toHaveTextContent("Enter a number");
-    expect(useProgress.getState().lessons["1.2"].attempts["1.2.01"]).toBeUndefined();
+    expect(useProgress.getState().lessons["1.2"].attempts["1.2.11"]).toBeUndefined();
   });
 
   it("opens hints one at a time and allows two at most", async () => {
@@ -134,14 +137,101 @@ describe("lesson player", () => {
   });
 });
 
+describe("widgets in the lesson player", () => {
+  it("proof: a wrong reason opens the hint-style sheet, then the proof completes", async () => {
+    const user = userEvent.setup();
+    renderLesson("/lesson/1.2?screen=1.2.07");
+    const tray = await screen.findByRole("group", { name: "Reasons" });
+    expect(screen.getByTestId("primary")).toBeDisabled();
+    await user.click(within(tray).getByRole("button", { name: "N2" }));
+    await user.click(screen.getByTestId("primary"));
+    const proof = lesson12.screens[6].interaction as unknown as {
+      wrongReasonReplies: Record<string, string>;
+      lines: { reason: string | null }[];
+      feedback: { correctTitle: string };
+    };
+    expect(await screen.findByText("Not N2.")).toBeInTheDocument();
+    expect(screen.getByText(proof.wrongReasonReplies["N2"])).toBeInTheDocument();
+    await user.click(screen.getByTestId("try-again"));
+    const labels: Record<string, string> = {
+      "add-both": "add −a to both sides",
+      N2: "N2",
+      N1: "N1",
+    };
+    for (const line of proof.lines.filter((l) => l.reason)) {
+      await user.click(
+        within(screen.getByRole("group", { name: "Reasons" })).getByRole("button", {
+          name: labels[line.reason as string],
+        }),
+      );
+      await user.click(screen.getByTestId("primary"));
+    }
+    expect(await screen.findByText(proof.feedback.correctTitle)).toBeInTheDocument();
+    await user.click(screen.getByTestId("continue"));
+    await screen.findByText("Minus of a sum");
+  });
+
+  it("thermometer: Check reveals the result sheet", async () => {
+    const user = userEvent.setup();
+    renderLesson("/lesson/1.2?screen=1.2.02");
+    const slider = await screen.findByRole("slider", { name: /Thermometer/ });
+    expect(screen.getByTestId("primary")).toBeDisabled();
+    slider.focus();
+    await user.keyboard("{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}");
+    await user.click(screen.getByTestId("primary"));
+    expect(await screen.findByTestId("continue")).toBeInTheDocument();
+    expect(screen.getByRole("status", { name: "Feedback" })).toHaveTextContent("−5");
+  });
+
+  it("hops: five hops to the left give the equation and the right answer", async () => {
+    const user = userEvent.setup();
+    renderLesson("/lesson/1.2?screen=1.2.03");
+    const slider = await screen.findByRole("slider");
+    expect(screen.getByTestId("hops-equation")).toHaveTextContent("?");
+    slider.focus();
+    await user.keyboard("{ArrowLeft}{ArrowLeft}{ArrowLeft}{ArrowLeft}{ArrowLeft}");
+    expect(screen.getByTestId("hops-equation")).toHaveTextContent("−2");
+    await user.click(screen.getByTestId("primary"));
+    expect(await screen.findByText("Yes, −2.")).toBeInTheDocument();
+  });
+
+  it("balance: remove three cubes from each pan, then answer x", async () => {
+    const user = userEvent.setup();
+    renderLesson("/lesson/1.2?screen=1.2.10");
+    await screen.findByTestId("balance-readout");
+    await user.click(screen.getAllByTestId("cube-left")[0]);
+    expect(screen.getByTestId("balance-readout")).toHaveTextContent("heavier");
+    for (let k = 0; k < 2; k++) await user.click(screen.getAllByTestId("cube-left")[0]);
+    for (let k = 0; k < 3; k++) await user.click(screen.getAllByTestId("cube-right")[0]);
+    expect(screen.getByTestId("balance-readout")).toHaveTextContent("Level");
+    await user.type(screen.getByLabelText("Your answer"), "2");
+    await user.click(screen.getByTestId("primary"));
+    expect(await screen.findByText("Yes, x = 2.")).toBeInTheDocument();
+  });
+
+  it("compare screen: a choice answer", async () => {
+    const user = userEvent.setup();
+    renderLesson("/lesson/1.2?screen=1.2.04");
+    await user.click(await screen.findByRole("button", { name: /No, they stop/ }));
+    await user.click(screen.getByTestId("primary"));
+    expect(await screen.findByTestId("try-again")).toBeInTheDocument();
+  });
+});
+
 describe("every screen of lesson 1.2 renders", () => {
   for (const sc of lesson12.screens) {
     it(`screen ${sc.id}`, async () => {
       renderLesson(`/lesson/1.2?screen=${sc.id}`);
       expect(await screen.findByRole("heading", { level: 1, name: sc.title })).toBeInTheDocument();
-      // Widgets that are not built yet show a named placeholder.
-      if (["proof", "balance", "thermometer"].includes(sc.interaction.type)) {
-        expect(screen.getAllByTestId("widget-placeholder").length).toBeGreaterThan(0);
+      expect(screen.queryByTestId("widget-placeholder")).toBeNull();
+      if (sc.interaction.type === "proof") {
+        expect(screen.getByRole("list", { name: /Proof/ })).toBeInTheDocument();
+      }
+      if (sc.interaction.type === "balance") {
+        expect(screen.getByRole("group", { name: /Balance/ })).toBeInTheDocument();
+      }
+      if (sc.interaction.type === "thermometer") {
+        expect(screen.getByRole("slider", { name: /Thermometer/ })).toBeInTheDocument();
       }
     });
   }

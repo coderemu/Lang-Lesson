@@ -23,6 +23,11 @@
   flex-direction: column;
   gap: 20px;
 }
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
 .label {
   font-family: var(--font-label);
   font-size: var(--text-caption);
@@ -78,9 +83,24 @@
   .content {
     display: grid;
     grid-template-columns: 440px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
     align-content: start;
-    gap: 72px;
+    column-gap: 72px;
+    row-gap: 16px;
     padding: 72px 120px 32px;
+  }
+  .text {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .aside {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+  .stage {
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
   .text {
     gap: var(--spacing-4);

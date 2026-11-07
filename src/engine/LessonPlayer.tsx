@@ -4,6 +4,9 @@ import type { Interaction, Lesson, Rule, Screen } from "../../content/schema";
 import { Button, FeedbackSheet, HintDrawer, LessonBar, TryBox } from "../components";
 import { hasLesson, loadLesson, loadRules } from "../content/load";
 import { Math as Tex, RichText } from "../math";
+import { activeLine, trayChips } from "../widgets";
+import type { Removed } from "../widgets/balanceLogic";
+import { checkProofLine } from "./check";
 import { requestPersistentStorage, useProgress } from "../store";
 import {
   answerSpec,
@@ -15,7 +18,7 @@ import {
   type Outcome,
 } from "./answers";
 import { PlayerFrame } from "./PlayerFrame";
-import { ScreenRenderer, type Verdict } from "./ScreenRenderer";
+import { ScreenRenderer, type ProofState, type Verdict } from "./ScreenRenderer";
 import { useActiveTime } from "./useActiveTime";
 import styles from "./LessonPlayer.module.css";
 
@@ -79,7 +82,21 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
   const [hintOpen, setHintOpen] = useState(false);
   const [invalid, setInvalid] = useState<string | null>(null);
   const [trapDone, setTrapDone] = useState(false);
+  const [removed, setRemoved] = useState<Removed>({ l: 0, r: 0 });
+  const [proofDone, setProofDone] = useState<Record<number, string>>({});
+  const [proofPending, setProofPending] = useState<string | null>(null);
+  const [proofWrong, setProofWrong] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
+  const focusFirst = () =>
+    window.setTimeout(
+      () =>
+        mainRef.current
+          ?.querySelector<HTMLElement>(
+            '[role="slider"], input:not([disabled]), button[aria-pressed]:not([disabled]), [role="group"] button:not([disabled]), [data-testid^="cube"]',
+          )
+          ?.focus(),
+      0,
+    );
 
   useEffect(() => {
     startLesson(lesson.id, total);
@@ -90,6 +107,10 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
   const spec = useMemo(() => answerSpec(interaction), [interaction]);
   const isTrap = interaction.type === "trap-summary";
   const hints = screen.hints ?? [];
+  const proofI = interaction.type === "proof" ? interaction : null;
+  const proofDoneSet = useMemo(() => new Set(Object.keys(proofDone).map(Number)), [proofDone]);
+  const proofActive = proofI ? activeLine(proofI, proofDoneSet) : 0;
+  const proofComplete = proofI ? proofActive >= proofI.lines.length : false;
 
   const resetScreen = useCallback(() => {
     setPhase("answering");
@@ -101,14 +122,15 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
     setHintOpen(false);
     setInvalid(null);
     setTrapDone(false);
+    setRemoved({ l: 0, r: 0 });
+    setProofDone({});
+    setProofPending(null);
+    setProofWrong(false);
   }, []);
 
   // New screen: move focus to the first field. (State is reset in `advance`.)
   useEffect(() => {
-    const t = window.setTimeout(
-      () => mainRef.current?.querySelector<HTMLElement>("input, button[aria-pressed]")?.focus(),
-      0,
-    );
+    const t = focusFirst();
     return () => window.clearTimeout(t);
   }, [idx]);
 
@@ -134,10 +156,45 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
     setOutcome(null);
     setInput(emptyInput());
     setHintOpen(false);
-    window.setTimeout(() => mainRef.current?.querySelector<HTMLElement>("input")?.focus(), 0);
+    setProofPending(null);
+    setProofWrong(false);
+    focusFirst();
+  };
+
+  const checkProof = () => {
+    if (!proofI || proofPending === null) return;
+    const expected = proofI.lines[proofActive].reason as string;
+    const result = checkProofLine(expected, proofPending, proofI.wrongReasonReplies);
+    recordAttempt(lesson.id, screen.id);
+    setHintOpen(false);
+    if (result.kind === "correct") {
+      const next = { ...proofDone, [proofActive]: proofPending };
+      setProofDone(next);
+      setProofPending(null);
+      setProofWrong(false);
+      if (activeLine(proofI, new Set(Object.keys(next).map(Number))) >= proofI.lines.length) {
+        setOutcome({
+          kind: "correct",
+          title: proofI.feedback.correctTitle,
+          body: proofI.feedback.correctWhy,
+        });
+        setPhase("feedback");
+      }
+      return;
+    }
+    const chip = trayChips(proofI, rules).find((c) => c.id === proofPending);
+    setProofWrong(true);
+    setWrongCount((n) => n + 1);
+    setOutcome({
+      kind: "wrong-reason",
+      title: `Not ${chip?.label ?? proofPending}.`,
+      body: result.kind === "mistake" ? result.reply : lesson.generalHint,
+    });
+    setPhase("feedback");
   };
 
   const check = () => {
+    if (proofI) return proofComplete ? advance() : checkProof();
     if (spec.t === "none") return advance();
     if (!hasAnswer(spec, input)) return;
     const result = evaluate(spec, input, lesson.generalHint);
@@ -199,6 +256,7 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
   let primaryLabel: string;
   if (isTrap)
     primaryLabel = screen.buttonLabel ?? (lesson.next ? `Next: ${lesson.next.title}` : "Finish");
+  else if (proofI) primaryLabel = screen.buttonLabel ?? "Check";
   else if (spec.t === "none") primaryLabel = screen.buttonLabel ?? (isLast ? "Finish" : "Continue");
   else primaryLabel = screen.buttonLabel ?? "Check";
 
@@ -206,7 +264,7 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
     <Button
       type="submit"
       variant="primary"
-      disabled={!isTrap && spec.t !== "none" && !canCheck}
+      disabled={proofI ? proofPending === null : !isTrap && spec.t !== "none" && !canCheck}
       data-testid="primary"
       style={phase === "answering" ? undefined : { visibility: "hidden" }}
       tabIndex={phase === "answering" ? 0 : -1}
@@ -224,8 +282,22 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
           kind="correct"
           title={outcome.title}
           actions={
-            <Button type="submit" variant="primary" data-testid="continue">
+            <Button type="submit" variant="primary" data-testid="continue" autoFocus>
               {isLast ? "Finish" : "Continue"}
+            </Button>
+          }
+        >
+          <RichText text={outcome.body} />
+        </FeedbackSheet>
+      );
+    } else if (outcome.kind === "wrong-reason") {
+      sheet = (
+        <FeedbackSheet
+          kind="wrong-reason"
+          title={outcome.title}
+          actions={
+            <Button type="submit" variant="primary" data-testid="try-again" autoFocus>
+              Try again
             </Button>
           }
         >
@@ -245,7 +317,7 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
                   Show me why
                 </Button>
               )}
-              <Button type="submit" variant="primary" data-testid="try-again">
+              <Button type="submit" variant="primary" data-testid="try-again" autoFocus>
                 Try again
               </Button>
             </>
@@ -284,6 +356,20 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
     setTrapDone(true);
     recordAttempt(lesson.id, screen.id);
   };
+
+  const proofState: ProofState | undefined = proofI
+    ? {
+        active: proofActive,
+        done: proofDone,
+        pending: proofPending,
+        wrong: proofWrong,
+        onPick: (chip) => {
+          if (phase !== "answering" || proofComplete) return;
+          setProofPending(chip);
+          setProofWrong(false);
+        },
+      }
+    : undefined;
 
   const showAside = !onTwin && (screen.tryTask || screen.note);
 
@@ -339,6 +425,10 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
             invalidMessage={invalid}
             onTrap={onTrap}
             trapNote={trapNote}
+            onEnter={onSubmit}
+            proof={proofState}
+            removed={removed}
+            onRemoved={setRemoved}
           />
         )}
       </div>

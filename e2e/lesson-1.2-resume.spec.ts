@@ -7,14 +7,20 @@ test("lesson 1.2: wrong answer, exact reply, correct answer, close and reopen at
   await page.goto("/lesson/1.2");
   await expect(page.getByRole("heading", { level: 1, name: "Where is minus 3?" })).toBeVisible();
 
-  await page.getByLabel("Your answer").fill("3");
+  await page.getByRole("slider").focus();
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
   await page.getByTestId("primary").click();
   await expect(
     page.getByText("That is plus 3. Minus numbers are on the other side of 0. Which side is that?"),
   ).toBeVisible();
 
   await page.getByTestId("try-again").click();
-  await page.getByLabel("Your answer").fill("-3");
+  await page.getByRole("slider").focus();
+  await page.keyboard.press("ArrowLeft");
+  await page.keyboard.press("ArrowLeft");
+  await page.keyboard.press("ArrowLeft");
   await page.getByTestId("primary").click();
   await expect(page.getByText("Yes, −3.")).toBeVisible();
   await page.getByTestId("continue").click();

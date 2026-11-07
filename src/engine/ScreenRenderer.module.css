@@ -68,13 +68,22 @@
   gap: var(--spacing-3);
 }
 .question {
-  font-size: var(--text-body);
-  line-height: 28px;
+  font-size: var(--text-small);
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
 }
 .chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-3);
+}
+.chips > * {
+  flex: 1 1 140px;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: var(--text-small);
+  line-height: 22px;
 }
 .cards {
   display: flex;
@@ -112,4 +121,8 @@
   font-size: var(--text-caption);
   line-height: 20px;
   color: var(--color-incorrect-text);
+}
+
+.bare {
+  padding: var(--spacing-2) 0;
 }
