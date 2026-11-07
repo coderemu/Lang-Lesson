@@ -301,6 +301,88 @@
         "1.5.12"
       ],
       "bankProblems": []
+    },
+    {
+      "id": "c1.5.01",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Rational numbers, n ≠ 0, finite decimals, points on the line",
+      "lessonScreens": [
+        "1.6.03",
+        "1.6.04"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.5.02",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Cross-multiplication rule; integers as m/1",
+      "lessonScreens": [
+        "1.6.04",
+        "1.6.05"
+      ],
+      "bankProblems": [],
+      "note": "Assumed here, proved in §6"
+    },
+    {
+      "id": "c1.5.03",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Cancellation rule; minus sign in a fraction; negative rationals",
+      "lessonScreens": [
+        "1.6.06"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.5.04",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Theorem 3, lowest form; not both numbers even",
+      "lessonScreens": [
+        "1.6.07"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.5.05",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Common denominator; addition; 0/n = 0; §2 rules stay true",
+      "lessonScreens": [
+        "1.6.08",
+        "1.6.09",
+        "1.6.10"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.5.06",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Multiplication; cancel first; powers (m/n)ᵏ",
+      "lessonScreens": [
+        "1.6.11"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.5.07",
+      "chapter": 1,
+      "section": "§5",
+      "kind": "topic",
+      "topic": "Half-life example",
+      "lessonScreens": [
+        "1.6.12"
+      ],
+      "bankProblems": []
     }
   ]
 }

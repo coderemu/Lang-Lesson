@@ -1,0 +1,725 @@
+{
+  "id": "1.6",
+  "title": "Fractions",
+  "book": {
+    "chapter": 1,
+    "sections": "§5"
+  },
+  "minutes": 12,
+  "goal": "Compare, simplify, add and multiply fractions, and know why a denominator cannot be 0.",
+  "needs": [
+    "1.5"
+  ],
+  "rulesEarned": [
+    "cross-mul",
+    "cancel-frac",
+    "thm-3",
+    "frac-ops",
+    "rules-rational"
+  ],
+  "generalHint": "Put both fractions on the same strip. Check the denominators first.",
+  "next": {
+    "id": "1.7",
+    "title": "Square root of 2 is not a fraction"
+  },
+  "screens": [
+    {
+      "id": "1.6.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Does 4 divide 15?",
+      "prompt": "Use the meaning of \"divides\".",
+      "interaction": {
+        "type": "choice",
+        "question": "Does 4 divide 15?",
+        "options": [
+          {
+            "id": "no",
+            "label": "No"
+          },
+          {
+            "id": "yes",
+            "label": "Yes",
+            "reply": "Write 15 as 4 × an integer. 4 · 3 = 12 and 4 · 4 = 16. Is there an integer k with 15 = 4k?"
+          }
+        ],
+        "correct": "no",
+        "feedback": {
+          "correctTitle": "Correct. 4 does not divide 15.",
+          "correctWhy": "4 · 3 = 12 and 4 · 4 = 16. No integer k gives 15 = 4k."
+        }
+      },
+      "hints": [
+        "Look for an integer k with 15 = 4k."
+      ]
+    },
+    {
+      "id": "1.6.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Two quarters or one half?",
+      "prompt": "A bar is cut into 4 equal pieces. You take 2 pieces. Is this more than 1/2 of the same bar? Guess before you look.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "same",
+            "label": "The same length"
+          },
+          {
+            "id": "more",
+            "label": "More",
+            "reply": "The bar has more pieces, but the pieces are smaller. Compare the shaded length, not the number of pieces."
+          },
+          {
+            "id": "less",
+            "label": "Less",
+            "reply": "2 pieces out of 4 is a lot of the bar. Compare it with 1 piece out of 2."
+          }
+        ],
+        "correct": "same",
+        "feedback": {
+          "correctTitle": "Good guess. It is the same length.",
+          "correctWhy": "2 pieces out of 4 make the same length as 1 piece out of 2."
+        }
+      },
+      "caption": "Pick one, then check."
+    },
+    {
+      "id": "1.6.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Cut the strip finer",
+      "prompt": "Cut each piece of the strip in two. The shaded length stays the same. After 2 cuts, find the number of shaded pieces.",
+      "interaction": {
+        "type": "fraction-strips",
+        "mode": "cut",
+        "widget": {
+          "num": 1,
+          "den": 2,
+          "max": 8
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "\\dfrac{1}{2} = \\dfrac{?}{8},\\ ? =",
+          "answer": {
+            "value": 4,
+            "correctTitle": "Yes, 4.",
+            "correctWhy": "After 2 cuts the strip has 8 pieces. 4 of them make the same shaded length as 1 of 2.",
+            "mistakes": [
+              {
+                "match": 1,
+                "reply": "That is the number before the cuts. Each cut doubles the number of shaded pieces too. How many now?"
+              },
+              {
+                "match": 2,
+                "reply": "That is the number after 1 cut. After 2 cuts, you have 8 pieces. How many are shaded?"
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "Each cut doubles the pieces and the shaded pieces."
+      ],
+      "caption": "Cut the strip 2 times, then check."
+    },
+    {
+      "id": "1.6.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Rational numbers",
+      "prompt": "A rational number is a quotient $m/n$, with integers $m$ and $n$ and $n \\ne 0$. A strip cut into 0 pieces has no pieces. A finite decimal is rational: $1.4 = 14/10$. Each integer $m$ is $m/1$.",
+      "interaction": {
+        "type": "choice",
+        "question": "Which one is not a rational number?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$3/1$",
+            "reply": "3/1 = 3. Each integer m is m/1. Which fraction has 0 below the line?"
+          },
+          {
+            "id": "b",
+            "label": "$0/5$",
+            "reply": "0/5 = 0. The top may be 0. Which fraction has 0 below the line?"
+          },
+          {
+            "id": "c",
+            "label": "$5/0$"
+          }
+        ],
+        "correct": "c",
+        "feedback": {
+          "correctTitle": "Yes, 5/0.",
+          "correctWhy": "The denominator cannot be 0. A strip cut into 0 pieces has no pieces."
+        }
+      }
+    },
+    {
+      "id": "1.6.05",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Cross−multiplication",
+      "prompt": "Two fractions are equal when their cross products are equal. Lang assumes this rule here. Lesson 1.8 proves it.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "cross-mul"
+        ]
+      },
+      "note": {
+        "label": "EXAMPLE",
+        "text": "1/2 = 2/4, because 1 · 4 = 2 · 2."
+      }
+    },
+    {
+      "id": "1.6.06",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Cancel and move a minus",
+      "prompt": "You can cancel a common factor $a \\ne 0$. A minus sign can move from the top to the bottom. Lang proves both with cross−multiplication.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "cancel-frac"
+        ]
+      },
+      "note": {
+        "label": "EXAMPLE",
+        "text": "10/15 = (2 · 5)/(3 · 5) = 2/3. 10 and 15 are both divisible by 5."
+      }
+    },
+    {
+      "id": "1.6.07",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The lowest form",
+      "prompt": "Prove Theorem 3: each positive rational number has a lowest form. Let $d$ be the greatest common divisor of $m$ and $n$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "m/n = r/s \\text{ in lowest form}",
+        "lines": [
+          {
+            "math": "\\text{Let } d \\text{ be the greatest common divisor of } m \\text{ and } n",
+            "reason": null
+          },
+          {
+            "math": "m = dr \\text{ and } n = ds",
+            "reason": "div"
+          },
+          {
+            "math": "\\dfrac{m}{n} = \\dfrac{dr}{ds}",
+            "reason": "put-in"
+          },
+          {
+            "math": "= \\dfrac{r}{s}",
+            "reason": "cancel-frac"
+          },
+          {
+            "math": "\\text{Suppose } e > 1 \\text{ divides } r \\text{ and } s",
+            "reason": "suppose"
+          },
+          {
+            "math": "r = ex \\text{ and } s = ey",
+            "reason": "div"
+          },
+          {
+            "math": "m = dex \\text{ and } n = dey",
+            "reason": "put-in"
+          },
+          {
+            "math": "\\text{So } de > d \\text{ divides } m \\text{ and } n",
+            "reason": "bigger"
+          },
+          {
+            "math": "\\text{This is impossible, so } e \\text{ does not exist}",
+            "reason": "greatest"
+          }
+        ],
+        "tray": [
+          "cancel-frac",
+          "cross-mul",
+          "thm-2-cor",
+          "div",
+          "put-in",
+          "suppose",
+          "bigger",
+          "greatest"
+        ],
+        "steps": [
+          {
+            "id": "div",
+            "label": "a divisor goes into both numbers"
+          },
+          {
+            "id": "put-in",
+            "label": "put in the values"
+          },
+          {
+            "id": "suppose",
+            "label": "suppose a common divisor e > 1"
+          },
+          {
+            "id": "bigger",
+            "label": "de is a bigger common divisor"
+          },
+          {
+            "id": "greatest",
+            "label": "d was the greatest, so this is impossible"
+          }
+        ],
+        "wrongReasonReplies": {
+          "cancel-frac": "The cancellation rule removes a common factor from the top and the bottom. Is there a common factor in the line before?",
+          "cross-mul": "The cross−multiplication rule tests if two fractions are equal. Does this line compare two fractions?",
+          "thm-2-cor": "This rule is about even numbers and squares. Is there a square here?",
+          "div": "This step says that a divisor goes into both numbers, so each number is that divisor times an integer. Is a divisor named in the line before?",
+          "put-in": "This step puts the values from the line before into the expression. Did you use m = dr and n = ds here?",
+          "suppose": "This step starts the argument by contradiction: suppose there is a common divisor e > 1. Is this the start of the argument?",
+          "bigger": "This step compares de with d. Does the line say that de is a common divisor of m and n?",
+          "greatest": "This step uses that d was the greatest common divisor. Is there a contradiction in the line before?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "The only common divisor of r and s is 1. So m/n = r/s is in lowest form."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "1.6.08",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Add on one strip",
+      "prompt": "Add $3/5 + 8/5$ on one strip. The pieces have the same size, so you add the numbers of pieces.",
+      "interaction": {
+        "type": "fraction-strips",
+        "mode": "add",
+        "widget": {
+          "n1": 3,
+          "d1": 5,
+          "n2": 8,
+          "d2": 5
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "\\dfrac{3}{5} + \\dfrac{8}{5} =",
+          "answer": {
+            "value": 2.2,
+            "correctTitle": "Yes, 11/5.",
+            "correctWhy": "3 pieces and 8 pieces of size 1/5 make 11 pieces of size 1/5.",
+            "mistakes": [
+              {
+                "match": 1.1,
+                "reply": "That adds the tops and the bottoms: 11/10. The pieces keep the size 1/5. How many pieces in all?"
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "Add the shaded pieces. The size of the pieces stays 1/5."
+      ],
+      "caption": "Tap the strip to add, then check."
+    },
+    {
+      "id": "1.6.09",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Add with a common denominator",
+      "prompt": "Now add $2/3 + 1/4$. The pieces have different sizes. Cut both strips into 12 pieces first.",
+      "interaction": {
+        "type": "fraction-strips",
+        "mode": "add",
+        "widget": {
+          "n1": 2,
+          "d1": 3,
+          "n2": 1,
+          "d2": 4
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "\\dfrac{2}{3} + \\dfrac{1}{4} =",
+          "answer": {
+            "value": 0.9166666666666666,
+            "correctTitle": "Yes, 11/12.",
+            "correctWhy": "8/12 + 3/12 = 11/12. The pieces have the same size, so you add the numbers of pieces.",
+            "mistakes": [
+              {
+                "match": 0.42857142857142855,
+                "reply": "You added the tops and the bottoms. Put both fractions on the strip. Is 3/7 longer than 2/3?"
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "Cut both strips into 12 pieces.",
+        "2/3 = 8/12 and 1/4 = 3/12."
+      ],
+      "caption": "Tap the strips, then check."
+    },
+    {
+      "id": "1.6.10",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Adding fractions",
+      "prompt": "To add fractions with different denominators, put them over a common denominator. The rules for adding integers stay true for rational numbers.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "frac-ops",
+          "rules-rational"
+        ]
+      },
+      "note": {
+        "label": "LANG ASSUMES",
+        "text": "The rules of addition and multiplication stay true for rational numbers. So the proofs from lesson 1.2 stay true."
+      }
+    },
+    {
+      "id": "1.6.11",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Multiplying fractions",
+      "prompt": "To multiply fractions, multiply the tops and multiply the bottoms. Cancel before you multiply. For powers, $(m/n)^k = m^k / n^k$.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $(2/3)^3$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$8/27$"
+          },
+          {
+            "id": "b",
+            "label": "$8/9$",
+            "reply": "You cubed only the 2. The rule is (m/n)ᵏ = mᵏ/nᵏ. What is 3³?"
+          },
+          {
+            "id": "c",
+            "label": "$6/9$",
+            "reply": "You multiplied 2 and 3 by 3. A power means repeated multiplication. What is 2 · 2 · 2?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 8/27.",
+          "correctWhy": "(2/3)³ = (2 · 2 · 2)/(3 · 3 · 3) = 8/27."
+        }
+      },
+      "hints": [
+        "Cube the top and cube the bottom."
+      ]
+    },
+    {
+      "id": "1.6.12",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "A substance that halves",
+      "prompt": "40 g of a substance halves every 6 minutes. Tap to halve it 3 times, for 18 minutes. Find the mass.",
+      "interaction": {
+        "type": "area-model",
+        "mode": "doubling-strip",
+        "widget": {
+          "start": 40,
+          "factor": 0.5,
+          "steps": 3,
+          "unit": "g"
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "\\dfrac{40}{2^3} =",
+          "answer": {
+            "value": 5,
+            "correctTitle": "Yes, 5.",
+            "correctWhy": "40 g halves 3 times: 20, 10, 5. This is 40/2³ = 5 g.",
+            "mistakes": [
+              {
+                "match": 10,
+                "reply": "That is the mass after 2 halvings. 18 minutes are 3 periods of 6 minutes. Halve once more."
+              },
+              {
+                "match": 13.333333333333334,
+                "reply": "That divides 40 by 3. The mass halves 3 times, so divide by 2³."
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "18 minutes are 3 periods of 6 minutes."
+      ],
+      "caption": "Halve 3 times, then check."
+    },
+    {
+      "id": "1.6.13",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 4",
+      "title": "Are they equal?",
+      "prompt": "Use cross−multiplication.",
+      "interaction": {
+        "type": "choice",
+        "question": "Is $6/8 = 9/12$?",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Yes, $72 = 72$"
+          },
+          {
+            "id": "no",
+            "label": "No, $48 \\ne 108$",
+            "reply": "Multiply across the diagonals: top−left by bottom−right, then bottom−left by top−right."
+          }
+        ],
+        "correct": "yes",
+        "feedback": {
+          "correctTitle": "Yes, 72 = 72.",
+          "correctWhy": "6 · 12 = 72 and 9 · 8 = 72. The cross products are equal."
+        }
+      },
+      "hints": [
+        "Multiply 6 · 12 and 9 · 8. Compare the two products."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "6 \\cdot 12 = 72",
+            "text": "Multiply the top of the first fraction by the bottom of the second."
+          },
+          {
+            "math": "9 \\cdot 8 = 72",
+            "text": "Multiply the top of the second fraction by the bottom of the first. 72 = 72."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "Is $4/6 = 10/15$?",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Yes, $60 = 60$"
+          },
+          {
+            "id": "no",
+            "label": "No, $24 \\ne 150$",
+            "reply": "Multiply across the diagonals: top−left by bottom−right, then bottom−left by top−right."
+          }
+        ],
+        "correct": "yes",
+        "feedback": {
+          "correctTitle": "Yes, 60 = 60.",
+          "correctWhy": "4 · 15 = 60 and 10 · 6 = 60. The cross products are equal."
+        }
+      }
+    },
+    {
+      "id": "1.6.14",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 4",
+      "title": "Lowest form",
+      "prompt": "Find the lowest form.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $18/24$ in lowest form?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$3/4$"
+          },
+          {
+            "id": "b",
+            "label": "$9/12$",
+            "reply": "9 and 12 are both divisible by 3. Divide both again."
+          },
+          {
+            "id": "c",
+            "label": "$6/8$",
+            "reply": "6 and 8 are both divisible by 2. Divide both again."
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 3/4.",
+          "correctWhy": "The greatest common divisor of 18 and 24 is 6. 18/24 = 3/4."
+        }
+      },
+      "hints": [
+        "Find the greatest number that divides both 18 and 24."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "18 = 6 \\cdot 3",
+            "text": "6 divides 18."
+          },
+          {
+            "math": "24 = 6 \\cdot 4",
+            "text": "6 divides 24. So 18/24 = 3/4."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "What is $20/30$ in lowest form?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$2/3$"
+          },
+          {
+            "id": "b",
+            "label": "$10/15$",
+            "reply": "10 and 15 are both divisible by 5. Divide both again."
+          },
+          {
+            "id": "c",
+            "label": "$4/6$",
+            "reply": "4 and 6 are both divisible by 2. Divide both again."
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 2/3.",
+          "correctWhy": "The greatest common divisor of 20 and 30 is 10. 20/30 = 2/3."
+        }
+      }
+    },
+    {
+      "id": "1.6.15",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 4",
+      "title": "Add fractions",
+      "prompt": "Find the sum. You can type a fraction, for example 5/6.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\dfrac{2}{3} + \\dfrac{1}{4} =",
+        "answer": {
+          "value": 0.9166666666666666,
+          "correctTitle": "Yes, 11/12.",
+          "correctWhy": "8/12 + 3/12 = 11/12.",
+          "mistakes": [
+            {
+              "match": 0.42857142857142855,
+              "reply": "You added the tops and the bottoms. Put both fractions on the strip. Is 3/7 longer than 2/3?"
+            },
+            {
+              "match": 0.25,
+              "reply": "That is only 1/4 on the 12−piece strip. Add the 8/12 for 2/3 too."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use the common denominator 12.",
+        "2/3 = 8/12 and 1/4 = 3/12."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "\\dfrac{2}{3} + \\dfrac{1}{4} = \\dfrac{8}{12} + \\dfrac{3}{12}",
+            "text": "Put both fractions over 12."
+          },
+          {
+            "math": "= \\dfrac{11}{12}",
+            "text": "Add the tops."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "\\dfrac{1}{2} + \\dfrac{1}{5} =",
+        "answer": {
+          "value": 0.7,
+          "correctTitle": "Yes, 7/10.",
+          "correctWhy": "5/10 + 2/10 = 7/10."
+        }
+      }
+    },
+    {
+      "id": "1.6.16",
+      "kind": "practice",
+      "label": "PRACTICE · 4 OF 4",
+      "title": "Multiply and cancel",
+      "prompt": "Find the product. Cancel first.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\dfrac{3}{4} \\cdot \\dfrac{8}{9} =",
+        "answer": {
+          "value": 0.6666666666666666,
+          "correctTitle": "Yes, 2/3.",
+          "correctWhy": "Cancel 4 and 8 to 1 and 2, and 3 and 9 to 1 and 3. Then 1 · 2 over 1 · 3 = 2/3.",
+          "mistakes": [
+            {
+              "match": 0.8461538461538461,
+              "reply": "You added the tops and the bottoms. To multiply, multiply the tops and multiply the bottoms. What is 3 · 8?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "4 divides 8. 3 divides 9. Cancel before you multiply."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "\\dfrac{3}{4} \\cdot \\dfrac{8}{9} = \\dfrac{3 \\cdot 8}{4 \\cdot 9}",
+            "text": "Multiply the tops and the bottoms."
+          },
+          {
+            "math": "= \\dfrac{24}{36} = \\dfrac{2}{3}",
+            "text": "24/36 cancels by 12 to 2/3."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "\\dfrac{5}{6} \\cdot \\dfrac{9}{10} =",
+        "answer": {
+          "value": 0.75,
+          "correctTitle": "Yes, 3/4.",
+          "correctWhy": "Cancel 5 and 10, and 6 and 9: 1 · 3 over 2 · 2 = 3/4."
+        }
+      }
+    },
+    {
+      "id": "1.6.17",
+      "kind": "trap-summary",
+      "label": "LESSON 1.6 COMPLETE",
+      "title": "Fractions, rules and proofs.",
+      "prompt": "You saved these rules:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: 1/2 + 1/3 = 2/5.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "You added the tops and the bottoms. Put both fractions on a strip. Is 2/5 longer than 1/2?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "1/2 + 1/3 = 3/6 + 2/6 = 5/6. You never add the bottoms."
+          }
+        },
+        "summary": [
+          "cross-mul",
+          "cancel-frac",
+          "thm-3",
+          "frac-ops"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Square root of 2 is not a fraction"
+    }
+  ]
+}
