@@ -166,6 +166,49 @@
         "b1.2.11",
         "b1.2.12"
       ]
+    },
+    {
+      "id": "c1.3.01",
+      "chapter": 1,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "Commutativity, associativity, N6; numbers to the front, (2a)(3b) = 6ab",
+      "lessonScreens": [
+        "1.3.03",
+        "1.3.04",
+        "1.3.14"
+      ],
+      "bankProblems": [],
+      "note": "Assumed"
+    },
+    {
+      "id": "c1.3.02",
+      "chapter": 1,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "Distributivity; the other side proved",
+      "lessonScreens": [
+        "1.3.03",
+        "1.3.04",
+        "1.3.05"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.3.03",
+      "chapter": 1,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "0a = 0, N7, N8 with proofs; N9, N10 left to the reader",
+      "lessonScreens": [
+        "1.3.06",
+        "1.3.07",
+        "1.3.08",
+        "1.3.09",
+        "1.3.10",
+        "1.3.11"
+      ],
+      "bankProblems": []
     }
   ]
 }

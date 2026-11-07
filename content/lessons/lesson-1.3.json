@@ -1,0 +1,765 @@
+{
+  "id": "1.3",
+  "title": "Minus times minus",
+  "book": {
+    "chapter": 1,
+    "sections": "§3"
+  },
+  "minutes": 12,
+  "goal": "See that (−1)(−1) = 1 follows from earlier rules. Nobody invented this rule.",
+  "needs": [
+    "1.2"
+  ],
+  "rulesEarned": [
+    "comm-mul",
+    "assoc-mul",
+    "N6",
+    "zero-mul",
+    "distrib",
+    "distrib-right",
+    "N7",
+    "N8",
+    "N9",
+    "N10"
+  ],
+  "generalHint": "Check the sign. Two minus signs give a plus sign. One minus sign gives a minus sign.",
+  "next": {
+    "id": "1.4",
+    "title": "Powers and three famous formulas"
+  },
+  "screens": [
+    {
+      "id": "1.3.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Minus of minus",
+      "prompt": "Find the value.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "-(-5) =",
+        "answer": {
+          "value": 5,
+          "correctTitle": "Yes, 5.",
+          "correctWhy": "N4: minus of minus gives the number back.",
+          "mistakes": [
+            {
+              "match": -5,
+              "reply": "That uses only one minus sign. There are two. What does N4 say about −(−a)?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use N4 from lesson 1.2."
+      ],
+      "caption": "Type a number, then check."
+    },
+    {
+      "id": "1.3.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Why minus times minus?",
+      "prompt": "Lang says: minus times minus is plus. Why is this true? Maybe a person invented the rule. Maybe it follows from other rules. Maybe you do not know yet. Keep your guess.",
+      "interaction": {
+        "type": "none"
+      },
+      "caption": "You will come back to this question."
+    },
+    {
+      "id": "1.3.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Turn it and split it",
+      "prompt": "Turn the 3 by 4 rectangle. Then drag the split to divide 3(4 + 2) into two parts.",
+      "interaction": {
+        "type": "area-model",
+        "mode": "distribute",
+        "widget": {
+          "a": 3,
+          "b": 4,
+          "c": 2,
+          "turn": 1
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "3 \\cdot 4 + 3 \\cdot 2 =",
+          "answer": {
+            "value": 18,
+            "correctTitle": "Yes, 18.",
+            "correctWhy": "The two parts, 12 and 6, make the whole area of 3(4 + 2).",
+            "mistakes": [
+              {
+                "match": 12,
+                "reply": "That is only the left part, 3 · 4. Add the right part, 3 · 2."
+              },
+              {
+                "match": 6,
+                "reply": "That is only the right part, 3 · 2. Add the left part, 3 · 4."
+              }
+            ]
+          }
+        }
+      },
+      "tryTask": "Drag the split to a new place. Does the whole area change?",
+      "hints": [
+        "Find each part first. Then add the two parts."
+      ],
+      "caption": "Turn the rectangle, drag the split, then check."
+    },
+    {
+      "id": "1.3.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Lang's rules for products",
+      "prompt": "Lang assumes these rules. They are true for all numbers a, b, c, also minus numbers and zero.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "comm-mul",
+          "assoc-mul",
+          "N6",
+          "distrib"
+        ]
+      },
+      "note": {
+        "label": "LANG ASSUMES",
+        "text": "Lang assumes distributivity on one side only. You prove the other side next."
+      }
+    },
+    {
+      "id": "1.3.05",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Distributivity on the other side",
+      "prompt": "Prove that $(b + c)a = ba + ca$. Assume distributivity on the left side and commutativity. Give the reason for each step.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(b + c)a = ba + ca",
+        "lines": [
+          {
+            "math": "(\\vb{b} + \\vc{c})\\va{a}",
+            "reason": null
+          },
+          {
+            "math": "= \\va{a}(\\vb{b} + \\vc{c})",
+            "reason": "comm-mul"
+          },
+          {
+            "math": "= \\va{a}\\vb{b} + \\va{a}\\vc{c}",
+            "reason": "distrib"
+          },
+          {
+            "math": "= \\vb{b}\\va{a} + \\vc{c}\\va{a}",
+            "reason": "comm-mul"
+          }
+        ],
+        "tray": [
+          "comm-mul",
+          "distrib",
+          "assoc-mul",
+          "N6",
+          "N2"
+        ],
+        "wrongReasonReplies": {
+          "comm-mul": "Commutativity changes the order of two factors. Did this line change the order of factors?",
+          "distrib": "Distributivity splits a(b + c) into ab + ac. Is there a sum in brackets to split in this line?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Does this line have three factors?",
+          "N6": "N6 is about 1a and 0a. Is there a 1 or a 0 in this line?",
+          "N2": "N2 is about a number and its minus. Is there a pair a and −a in this line?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "You used only commutativity and distributivity on one side. So distributivity is true on both sides."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.06",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Zero times a number",
+      "prompt": "Prove that $0a = 0$. Start with $0a + a$. Give the reason for each step.",
+      "interaction": {
+        "type": "proof",
+        "goal": "0a = 0",
+        "lines": [
+          {
+            "math": "0\\va{a} + \\va{a}",
+            "reason": null
+          },
+          {
+            "math": "= 0\\va{a} + 1\\va{a}",
+            "reason": "N6"
+          },
+          {
+            "math": "= (0 + 1)\\va{a}",
+            "reason": "distrib-right"
+          },
+          {
+            "math": "= 1\\va{a}",
+            "reason": "N1"
+          },
+          {
+            "math": "= \\va{a}",
+            "reason": "N6"
+          },
+          {
+            "math": "0\\va{a} + \\va{a} + (-\\va{a}) = \\va{a} + (-\\va{a})",
+            "reason": "add-both",
+            "reasonLabel": "add −a to both sides"
+          },
+          {
+            "math": "0\\va{a} + 0 = 0",
+            "reason": "N2"
+          },
+          {
+            "math": "0\\va{a} = 0",
+            "reason": "N1"
+          }
+        ],
+        "tray": [
+          "N1",
+          "N2",
+          "N6",
+          "distrib-right",
+          "add-both",
+          "assoc-mul",
+          "comm-add"
+        ],
+        "steps": [
+          {
+            "id": "add-both",
+            "label": "add −a to both sides"
+          }
+        ],
+        "wrongReasonReplies": {
+          "N1": "N1 removes a 0 that is added. Is there a 0 added to a number in this line?",
+          "N2": "N2 turns a number plus its minus into 0. Look for a and −a together.",
+          "N6": "N6 says 1a = a and 0a = 0. Is there a 1a or an a to change?",
+          "distrib-right": "This rule splits (b + c)a into ba + ca, or joins them. Is there a sum in brackets, or two products with the same factor a?",
+          "add-both": "This step adds a new term to both sides. Did this line add a term?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Is there a product of three factors here?",
+          "comm-add": "Commutativity of addition changes the order of two terms. Did the order change?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "You wrote 0a + a in two ways. Then you added −a to both sides. So 0a = 0."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.07",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Minus one times a",
+      "prompt": "Prove N7: $(-1)a = -a$. Show that $(-1)a$ and $a$ add to 0. Then use N3.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(-1)a = -a",
+        "lines": [
+          {
+            "math": "(-1)\\va{a} + \\va{a}",
+            "reason": null
+          },
+          {
+            "math": "= (-1)\\va{a} + 1\\va{a}",
+            "reason": "N6"
+          },
+          {
+            "math": "= (-1 + 1)\\va{a}",
+            "reason": "distrib-right"
+          },
+          {
+            "math": "= 0\\va{a}",
+            "reason": "N2"
+          },
+          {
+            "math": "= 0",
+            "reason": "zero-mul"
+          },
+          {
+            "math": "\\text{So } (-1)\\va{a} = -\\va{a}",
+            "reason": "N3"
+          }
+        ],
+        "tray": [
+          "N3",
+          "N2",
+          "N6",
+          "distrib-right",
+          "zero-mul",
+          "N5",
+          "assoc-mul"
+        ],
+        "wrongReasonReplies": {
+          "N3": "N3 says: if two numbers add to 0, each one is the minus of the other. Have you shown a sum of 0 yet?",
+          "N2": "N2 turns a number plus its minus into 0. Look for a number and its minus together.",
+          "N6": "N6 says 1a = a and 0a = 0. Is there a 1a or an a to change?",
+          "distrib-right": "This rule joins two products with the same factor a, or splits a sum. Which factor is the same here?",
+          "zero-mul": "This rule says 0a = 0. Is there a 0a in the line before?",
+          "N5": "N5 is about the minus of a sum. Is there a minus in front of a sum here?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Is there such a product here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "(−1)a and a add to 0. By N3, (−1)a is the minus of a."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.08",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Minus of a product",
+      "prompt": "Prove N8: $-(ab) = (-a)b$. Show that $ab$ and $(-a)b$ add to 0.",
+      "interaction": {
+        "type": "proof",
+        "goal": "-(ab) = (-a)b",
+        "lines": [
+          {
+            "math": "\\va{a}\\vb{b} + (-\\va{a})\\vb{b}",
+            "reason": null
+          },
+          {
+            "math": "= (\\va{a} + (-\\va{a}))\\vb{b}",
+            "reason": "distrib-right"
+          },
+          {
+            "math": "= 0\\vb{b}",
+            "reason": "N2"
+          },
+          {
+            "math": "= 0",
+            "reason": "zero-mul"
+          },
+          {
+            "math": "\\text{So } (-\\va{a})\\vb{b} = -(\\va{a}\\vb{b})",
+            "reason": "N3"
+          }
+        ],
+        "tray": [
+          "N3",
+          "N2",
+          "distrib-right",
+          "zero-mul",
+          "N6",
+          "comm-mul",
+          "N5"
+        ],
+        "wrongReasonReplies": {
+          "N3": "N3 says: if two numbers add to 0, each one is the minus of the other. Have you shown a sum of 0 yet?",
+          "N2": "N2 turns a number plus its minus into 0. Look for a and −a together.",
+          "distrib-right": "This rule joins two products with the same factor b into one. Which factor is the same here?",
+          "zero-mul": "This rule says 0b = 0. Is there a 0b in the line before?",
+          "N6": "N6 says 1a = a and 0a = 0. Is there a 1 or a 0 times a number to change?",
+          "comm-mul": "Commutativity changes the order of two factors. Did the order change?",
+          "N5": "N5 is about the minus of a sum. Is there a minus in front of a sum here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "ab and (−a)b add to 0. By N3, (−a)b is the minus of ab."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.09",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The other side",
+      "prompt": "Lang leaves N9 to the reader: $-(ab) = a(-b)$. Prove it. Use N8 and commutativity.",
+      "interaction": {
+        "type": "proof",
+        "goal": "-(ab) = a(-b)",
+        "lines": [
+          {
+            "math": "\\va{a}(-\\vb{b})",
+            "reason": null
+          },
+          {
+            "math": "= (-\\vb{b})\\va{a}",
+            "reason": "comm-mul"
+          },
+          {
+            "math": "= -(\\vb{b}\\va{a})",
+            "reason": "N8"
+          },
+          {
+            "math": "= -(\\va{a}\\vb{b})",
+            "reason": "comm-mul"
+          }
+        ],
+        "tray": [
+          "comm-mul",
+          "N8",
+          "N7",
+          "N4",
+          "distrib"
+        ],
+        "wrongReasonReplies": {
+          "comm-mul": "Commutativity changes the order of two factors. Did this line change the order?",
+          "N8": "N8 moves a minus sign from in front of a product to the first factor. Is there a minus in front of a product, or on the first factor?",
+          "N7": "N7 says (−1)a = −a. Is there a (−1) in this line?",
+          "N4": "N4 removes two minus signs in a row. Are there two minus signs in a row here?",
+          "distrib": "Distributivity splits a(b + c). Is there a sum in brackets here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "N9 follows from N8 and commutativity. Lang leaves this proof to the reader."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.10",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The result",
+      "prompt": "Now prove $(-1)(-1) = 1$. Give the reason for each step.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(-1)(-1) = 1",
+        "lines": [
+          {
+            "math": "(-1)(-1)",
+            "reason": null
+          },
+          {
+            "math": "= -(1(-1))",
+            "reason": "N8"
+          },
+          {
+            "math": "= -(-1)",
+            "reason": "N6"
+          },
+          {
+            "math": "= 1",
+            "reason": "N4"
+          }
+        ],
+        "tray": [
+          "N8",
+          "N6",
+          "N4",
+          "N7",
+          "distrib"
+        ],
+        "wrongReasonReplies": {
+          "N8": "N8 moves a minus sign from in front of a product to the first factor. Which line has the minus in front of a product?",
+          "N6": "N6 says 1a = a. Is there a 1 times a number in this line?",
+          "N4": "N4 removes two minus signs in a row. Are there two minus signs in a row here?",
+          "N7": "N7 says (−1)a = −a. Is there a (−1) times a number to change?",
+          "distrib": "Distributivity splits a(b + c). Is there a sum in brackets here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "N8, N6 and N4 give (−1)(−1) = 1. Nobody invented this rule. It follows from the other rules."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.11",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Minus times minus",
+      "prompt": "Prove N10, which Lang leaves to the reader: $(-a)(-b) = ab$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(-a)(-b) = ab",
+        "lines": [
+          {
+            "math": "(-\\va{a})(-\\vb{b})",
+            "reason": null
+          },
+          {
+            "math": "= -(\\va{a}(-\\vb{b}))",
+            "reason": "N8"
+          },
+          {
+            "math": "= -(-(\\va{a}\\vb{b}))",
+            "reason": "N9"
+          },
+          {
+            "math": "= \\va{a}\\vb{b}",
+            "reason": "N4"
+          }
+        ],
+        "tray": [
+          "N8",
+          "N9",
+          "N4",
+          "N7",
+          "comm-mul"
+        ],
+        "wrongReasonReplies": {
+          "N8": "N8 moves a minus sign from in front of a product to the first factor. Read N8 from right to left.",
+          "N9": "N9 moves a minus sign from in front of a product to the second factor. Which line has a minus on the second factor?",
+          "N4": "N4 removes two minus signs in a row. Are there two minus signs in a row here?",
+          "N7": "N7 says (−1)a = −a. Is there a (−1) times a number to change?",
+          "comm-mul": "Commutativity changes the order of two factors. Did the order change?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "N8, N9 and N4 give (−a)(−b) = ab. So the answer to the hook question is: the rule follows from other rules."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.12",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 3",
+      "title": "Find the products",
+      "prompt": "Find the products.",
+      "interaction": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "expression": "(-3)(4) =",
+            "answer": {
+              "value": -12,
+              "correctTitle": "Yes, −12.",
+              "correctWhy": "A minus number times a plus number is a minus number: 3 · 4 = 12.",
+              "mistakes": [
+                {
+                  "match": 12,
+                  "reply": "The sign is missing. N8 gives −(3 · 4). Which sign does the result have?"
+                }
+              ]
+            }
+          },
+          {
+            "expression": "(-2)(-5) =",
+            "answer": {
+              "value": 10,
+              "correctTitle": "Yes, 10.",
+              "correctWhy": "Two minus signs give a plus sign: (−2)(−5) = 2 · 5 = 10.",
+              "mistakes": [
+                {
+                  "match": -10,
+                  "reply": "There are two minus signs. What does the result screen show for (−1)(−1)?"
+                },
+                {
+                  "match": 7,
+                  "reply": "That is 5 + 2. Multiply the two numbers. What is 2 · 5?"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "hints": [
+        "Find the product of the numbers first. Then decide the sign.",
+        "Two minus signs give a plus sign."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(-3)(4) = -(3 \\cdot 4) = -12",
+            "text": "N8 moves the minus sign to the front."
+          },
+          {
+            "math": "(-2)(-5) = 2 \\cdot 5 = 10",
+            "text": "By N10, two minus signs give a plus sign."
+          }
+        ]
+      },
+      "twin": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "expression": "(-6)(2) =",
+            "answer": {
+              "value": -12,
+              "correctTitle": "Yes, −12.",
+              "correctWhy": "A minus number times a plus number is a minus number: 6 · 2 = 12."
+            }
+          },
+          {
+            "expression": "(-4)(-3) =",
+            "answer": {
+              "value": 12,
+              "correctTitle": "Yes, 12.",
+              "correctWhy": "Two minus signs give a plus sign: 4 · 3 = 12."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "1.3.13",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 3",
+      "title": "Multiply into brackets",
+      "prompt": "Find the product.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $-2(3a - 4b)$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$-6a + 8b$"
+          },
+          {
+            "id": "b",
+            "label": "$-6a - 8b$",
+            "reply": "The −2 also multiplies −4b. What is (−2)(−4)?"
+          },
+          {
+            "id": "c",
+            "label": "$6a - 8b$",
+            "reply": "The −2 also multiplies 3a. What is (−2)(3)?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, −6a + 8b.",
+          "correctWhy": "−2 · 3a = −6a. And (−2)(−4b) = 8b."
+        }
+      },
+      "hints": [
+        "Multiply −2 by each term in the brackets.",
+        "Two minus signs give a plus sign."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "-2(3a - 4b) = (-2)(3a) + (-2)(-4b)",
+            "text": "Distributivity: multiply each term."
+          },
+          {
+            "math": "= -6a + 8b",
+            "text": "(−2)(3a) = −6a and (−2)(−4b) = 8b."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "What is $-3(2a - 5b)$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$-6a + 15b$"
+          },
+          {
+            "id": "b",
+            "label": "$-6a - 15b$",
+            "reply": "The −3 also multiplies −5b. What is (−3)(−5)?"
+          },
+          {
+            "id": "c",
+            "label": "$6a - 15b$",
+            "reply": "The −3 also multiplies 2a. What is (−3)(2)?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, −6a + 15b.",
+          "correctWhy": "−3 · 2a = −6a. And (−3)(−5b) = 15b."
+        }
+      }
+    },
+    {
+      "id": "1.3.14",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 3",
+      "title": "Justify each step",
+      "prompt": "Justify each step of $(2a)(-3b)(5c) = -30abc$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(2a)(-3b)(5c) = -30abc",
+        "lines": [
+          {
+            "math": "(2\\va{a})(-3\\vb{b})(5\\vc{c})",
+            "reason": null
+          },
+          {
+            "math": "= (2 \\cdot (-3) \\cdot 5)(\\va{a}\\vb{b}\\vc{c})",
+            "reason": "comm-mul"
+          },
+          {
+            "math": "= (-(2 \\cdot 3) \\cdot 5)(\\va{a}\\vb{b}\\vc{c})",
+            "reason": "N9"
+          },
+          {
+            "math": "= -(6 \\cdot 5)(\\va{a}\\vb{b}\\vc{c})",
+            "reason": "N8"
+          },
+          {
+            "math": "= -30\\va{a}\\vb{b}\\vc{c}",
+            "reason": "arith",
+            "reasonLabel": "multiply 6 and 5"
+          }
+        ],
+        "tray": [
+          "comm-mul",
+          "N9",
+          "N8",
+          "N7",
+          "assoc-mul",
+          "arith"
+        ],
+        "steps": [
+          {
+            "id": "arith",
+            "label": "multiply 6 and 5"
+          }
+        ],
+        "wrongReasonReplies": {
+          "comm-mul": "Commutativity changes the order of factors. Did the numbers move to the front?",
+          "N9": "N9 moves a minus sign from in front of a product to the second factor. Which factor has the minus sign here?",
+          "N8": "N8 moves a minus sign from in front of a product to the first factor. Which factor has the minus sign here?",
+          "N7": "N7 says (−1)a = −a. Is there a (−1) times a number to change?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Did the brackets change in this line?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "The numbers move to the front. The minus signs move out by N9 and N8. Then 6 · 5 = 30."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.3.15",
+      "kind": "trap-summary",
+      "label": "LESSON 1.3 COMPLETE",
+      "title": "Minus times minus is plus.",
+      "prompt": "You saved these rules:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: (−3)² = −9.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "(−3)² means (−3)(−3). Two minus signs give a plus sign. What is the result?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "(−3)(−3) = 9. A minus number times itself is a plus number."
+          }
+        },
+        "summary": [
+          "N7",
+          "N8",
+          "N9",
+          "N10"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Powers and three famous formulas"
+    }
+  ]
+}

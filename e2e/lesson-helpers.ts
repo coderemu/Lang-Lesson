@@ -17,7 +17,14 @@ export type Screen = { id: string; title: string; interaction: Record<string, un
 export const lesson = lessonJson as unknown as { screens: Screen[]; rulesEarned: string[] };
 type Any = Record<string, any>;
 
-const FULL: Record<string, string> = { "comm-add": "Commutativity", "assoc-add": "Associativity" };
+const FULL: Record<string, string> = {
+  "comm-add": "Commutativity",
+  "assoc-add": "Associativity",
+  "comm-mul": "Commutativity",
+  "assoc-mul": "Associativity",
+  distrib: "Distributivity",
+  "distrib-right": "Distributivity",
+};
 export function chipLabel(id: string, steps: { id: string; label: string }[] = []): string {
   const step = steps.find((s) => s.id === id);
   if (step) return step.label;
@@ -89,6 +96,16 @@ export async function pressContinue(page: Page, kb: boolean) {
   else await cont.click();
 }
 
+/** Pick the correct option by position, because labels with math have no plain text. */
+async function chooseOption(page: Page, choice: Any, kb: boolean) {
+  const at = choice.options.findIndex((o: Any) => o.id === choice.correct);
+  await activate(
+    page,
+    page.getByRole("group", { name: "Choices" }).getByRole("button").nth(at),
+    kb,
+  );
+}
+
 async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: Any) => number) {
   switch (i.type) {
     case "area-model":
@@ -105,8 +122,7 @@ async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: A
       }
       if (i.followUp) {
         if (i.followUp.type === "choice") {
-          const correct = i.followUp.options.find((o: Any) => o.id === i.followUp.correct);
-          await activate(page, page.getByRole("button", { name: correct.label }), kb);
+          await chooseOption(page, i.followUp, kb);
         } else {
           await typeInto(
             page,
@@ -147,8 +163,7 @@ async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: A
       }
       return;
     case "choice": {
-      const correct = i.options.find((o: Any) => o.id === i.correct);
-      await activate(page, page.getByRole("button", { name: correct.label }), kb);
+      await chooseOption(page, i, kb);
       return;
     }
   }
@@ -159,7 +174,15 @@ export async function playScreen(page: Page, s: Screen, kb: boolean) {
   const i = s.interaction as Any;
   const valueOf = (a: Any) => a.value as number;
   const answerable =
-    ["thermometer", "balance", "number-input", "multi-number-input", "choice"].includes(i.type) ||
+    [
+      "thermometer",
+      "balance",
+      "number-input",
+      "multi-number-input",
+      "choice",
+      "proof",
+      "trap-summary",
+    ].includes(i.type) ||
     (["number-line", "area-model", "square-tiles", "fraction-strips"].includes(i.type) &&
       (i.answer || i.followUp));
   if (i.type === "rule-card" || i.type === "none" || !answerable) {
