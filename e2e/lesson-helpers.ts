@@ -22,8 +22,8 @@ const FULL: Record<string, string> = {
   "assoc-add": "Associativity",
   "comm-mul": "Commutativity",
   "assoc-mul": "Associativity",
-  distrib: "Distributivity",
-  "distrib-right": "Distributivity",
+  distrib: "Distributivity, left",
+  "distrib-right": "Distributivity, right",
 };
 export function chipLabel(id: string, steps: { id: string; label: string }[] = []): string {
   const step = steps.find((s) => s.id === id);

@@ -1,0 +1,769 @@
+{
+  "id": "1.4",
+  "title": "Powers and three famous formulas",
+  "book": {
+    "chapter": 1,
+    "sections": "§3"
+  },
+  "minutes": 12,
+  "goal": "Count factors to find N11 and N12, and see (a + b)² as a picture.",
+  "needs": [
+    "1.3"
+  ],
+  "rulesEarned": [
+    "N11",
+    "N12",
+    "pow-prod",
+    "sq-sum",
+    "sq-diff",
+    "diff-sq"
+  ],
+  "generalHint": "Check each term. Count the factors. A square has a middle term with a factor 2.",
+  "next": {
+    "id": "1.5",
+    "title": "Even, odd and divisibility"
+  },
+  "screens": [
+    {
+      "id": "1.4.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Minus times minus",
+      "prompt": "Find the value.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "(-1)(-1) =",
+        "answer": {
+          "value": 1,
+          "correctTitle": "Yes, 1.",
+          "correctWhy": "N8, N6 and N4 give (−1)(−1) = 1.",
+          "mistakes": [
+            {
+              "match": -1,
+              "reply": "There are two minus signs. What did you prove in lesson 1.3?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use the result of lesson 1.3."
+      ],
+      "caption": "Type a number, then check."
+    },
+    {
+      "id": "1.4.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "A town that doubles",
+      "prompt": "A town has 50,000 people. The population doubles every 15 years. Do not calculate. Guess the population after 45 years.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "a",
+            "label": "150,000",
+            "reply": "That adds 50,000 three times. Doubling multiplies the number by 2 each time. How many doublings are in 45 years?"
+          },
+          {
+            "id": "b",
+            "label": "400,000"
+          },
+          {
+            "id": "c",
+            "label": "2,250,000",
+            "reply": "That multiplies by 45. The population doubles every 15 years, not every year. How many 15−year periods are in 45 years?"
+          }
+        ],
+        "correct": "b",
+        "feedback": {
+          "correctTitle": "Good guess. It is 400,000.",
+          "correctWhy": "45 years have 3 periods of 15 years. 50,000 doubles 3 times: 400,000."
+        }
+      },
+      "caption": "Pick one, then check."
+    },
+    {
+      "id": "1.4.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Double three times",
+      "prompt": "Tap to double the population. Each step multiplies by 2. After 3 steps, find the population.",
+      "interaction": {
+        "type": "area-model",
+        "mode": "doubling-strip",
+        "widget": {
+          "start": 50000,
+          "factor": 2,
+          "steps": 3,
+          "unit": "people"
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "2^3 \\cdot 50\\,000 =",
+          "answer": {
+            "value": 400000,
+            "correctTitle": "Yes, 400,000.",
+            "correctWhy": "50,000 · 2 · 2 · 2 = 400,000. We write this as 2³ · 50,000.",
+            "mistakes": [
+              {
+                "match": 150000,
+                "reply": "That adds 3 · 50,000. Doubling multiplies by 2 each time. Try 50,000 · 2 · 2 · 2."
+              },
+              {
+                "match": 300000,
+                "reply": "That is 6 · 50,000. 2³ means 2 · 2 · 2, which is not 2 · 3. What is 2 · 2 · 2?"
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "Multiply 50,000 by 2. Then multiply the result by 2. Do this 3 times."
+      ],
+      "caption": "Double 3 times, then check."
+    },
+    {
+      "id": "1.4.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Powers",
+      "prompt": "$a^n$ means the product of $n$ factors $a$. Count the factors to see N11 and N12. Lang also writes $(ab)^n = a^n b^n$.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "N11",
+          "N12",
+          "pow-prod"
+        ]
+      },
+      "note": {
+        "label": "COUNT THE FACTORS",
+        "text": "a² · a³ = (aa)(aaa) = aaaaa = a⁵. The exponents add, 2 + 3 = 5."
+      }
+    },
+    {
+      "id": "1.4.05",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "A square with two strips",
+      "prompt": "Drag the split. The big square has side a + b. Find the total area of the four parts for a = 3 and b = 2.",
+      "interaction": {
+        "type": "square-tiles",
+        "mode": "expand",
+        "widget": {
+          "total": 5,
+          "a": 3
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "9 + 6 + 6 + 4 =",
+          "answer": {
+            "value": 25,
+            "correctTitle": "Yes, 25.",
+            "correctWhy": "The four parts add to 25. This is the area of the square with side 3 + 2 = 5.",
+            "mistakes": [
+              {
+                "match": 13,
+                "reply": "That adds only a² and b². The picture also has two strips. Add all four areas."
+              },
+              {
+                "match": 19,
+                "reply": "That adds only one strip. The picture has two strips of area 6. Add all four areas."
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "Add the four areas in the picture."
+      ],
+      "caption": "Drag the split, then check."
+    },
+    {
+      "id": "1.4.06",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The square of a sum",
+      "prompt": "Prove that $(a + b)^2 = a^2 + 2ab + b^2$. Use only the rules for products. Give the reason for each step.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(a + b)^2 = a^2 + 2ab + b^2",
+        "lines": [
+          {
+            "math": "(\\va{a} + \\vb{b})^2",
+            "reason": null
+          },
+          {
+            "math": "= (\\va{a} + \\vb{b})(\\va{a} + \\vb{b})",
+            "reason": "sq-def"
+          },
+          {
+            "math": "= \\va{a}(\\va{a} + \\vb{b}) + \\vb{b}(\\va{a} + \\vb{b})",
+            "reason": "distrib-right"
+          },
+          {
+            "math": "= \\va{a}\\va{a} + \\va{a}\\vb{b} + \\vb{b}\\va{a} + \\vb{b}\\vb{b}",
+            "reason": "distrib"
+          },
+          {
+            "math": "= \\va{a}^2 + \\va{a}\\vb{b} + \\va{a}\\vb{b} + \\vb{b}^2",
+            "reason": "comm-mul"
+          },
+          {
+            "math": "= \\va{a}^2 + 2\\va{a}\\vb{b} + \\vb{b}^2",
+            "reason": "combine"
+          }
+        ],
+        "tray": [
+          "distrib",
+          "distrib-right",
+          "comm-mul",
+          "N2",
+          "assoc-mul",
+          "sq-def",
+          "combine"
+        ],
+        "steps": [
+          {
+            "id": "sq-def",
+            "label": "write the square as a product"
+          },
+          {
+            "id": "combine",
+            "label": "add the equal terms"
+          }
+        ],
+        "wrongReasonReplies": {
+          "distrib": "Distributivity splits a(b + c) into ab + ac. Is there a sum in brackets to multiply from the left?",
+          "distrib-right": "This rule splits (b + c)a into ba + ca. Is there a sum in brackets to multiply from the right?",
+          "comm-mul": "Commutativity changes the order of two factors. Which product changed order in this line?",
+          "N2": "N2 turns a number plus its minus into 0. Is there a term and its minus here?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Is there such a product here?",
+          "sq-def": "This step writes a power as a product, or a product as a power. Is there a square to write out?",
+          "combine": "This step adds two equal terms into one term. Are there two equal terms in the line before?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "You used distributivity two times. The terms ab and ba are equal, so they make 2ab."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.4.07",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "The square of a difference",
+      "prompt": "Now prove $(a - b)^2 = a^2 - 2ab + b^2$. The steps are almost the same.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(a - b)^2 = a^2 - 2ab + b^2",
+        "lines": [
+          {
+            "math": "(\\va{a} - \\vb{b})^2",
+            "reason": null
+          },
+          {
+            "math": "= (\\va{a} - \\vb{b})(\\va{a} - \\vb{b})",
+            "reason": "sq-def"
+          },
+          {
+            "math": "= \\va{a}(\\va{a} - \\vb{b}) - \\vb{b}(\\va{a} - \\vb{b})",
+            "reason": "distrib-right"
+          },
+          {
+            "math": "= \\va{a}\\va{a} - \\va{a}\\vb{b} - \\vb{b}\\va{a} + \\vb{b}\\vb{b}",
+            "reason": "distrib"
+          },
+          {
+            "math": "= \\va{a}^2 - \\va{a}\\vb{b} - \\va{a}\\vb{b} + \\vb{b}^2",
+            "reason": "comm-mul"
+          },
+          {
+            "math": "= \\va{a}^2 - 2\\va{a}\\vb{b} + \\vb{b}^2",
+            "reason": "combine"
+          }
+        ],
+        "tray": [
+          "distrib",
+          "distrib-right",
+          "comm-mul",
+          "N2",
+          "assoc-mul",
+          "sq-def",
+          "combine"
+        ],
+        "steps": [
+          {
+            "id": "sq-def",
+            "label": "write the square as a product"
+          },
+          {
+            "id": "combine",
+            "label": "add the equal terms"
+          }
+        ],
+        "wrongReasonReplies": {
+          "distrib": "Distributivity splits a(b + c) into ab + ac. Is there a sum in brackets to multiply from the left?",
+          "distrib-right": "This rule splits (b + c)a into ba + ca. Is there a sum in brackets to multiply from the right?",
+          "comm-mul": "Commutativity changes the order of two factors. Which product changed order in this line?",
+          "N2": "N2 turns a number plus its minus into 0. Is there a term and its minus here?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Is there such a product here?",
+          "sq-def": "This step writes a power as a product, or a product as a power. Is there a square to write out?",
+          "combine": "This step adds two equal terms into one term. Are there two equal terms in the line before?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "The middle term is −2ab. The two minus signs in −ab − ab do not cancel."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.4.08",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "A sum times a difference",
+      "prompt": "Last, prove $(a + b)(a - b) = a^2 - b^2$. Find out why the middle terms cancel.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(a + b)(a - b) = a^2 - b^2",
+        "lines": [
+          {
+            "math": "(\\va{a} + \\vb{b})(\\va{a} - \\vb{b})",
+            "reason": null
+          },
+          {
+            "math": "= \\va{a}(\\va{a} - \\vb{b}) + \\vb{b}(\\va{a} - \\vb{b})",
+            "reason": "distrib-right"
+          },
+          {
+            "math": "= \\va{a}\\va{a} - \\va{a}\\vb{b} + \\vb{b}\\va{a} - \\vb{b}\\vb{b}",
+            "reason": "distrib"
+          },
+          {
+            "math": "= \\va{a}^2 - \\va{a}\\vb{b} + \\va{a}\\vb{b} - \\vb{b}^2",
+            "reason": "comm-mul"
+          },
+          {
+            "math": "= \\va{a}^2 - \\vb{b}^2",
+            "reason": "N2"
+          }
+        ],
+        "tray": [
+          "distrib",
+          "distrib-right",
+          "comm-mul",
+          "N2",
+          "assoc-mul",
+          "sq-def",
+          "combine"
+        ],
+        "steps": [
+          {
+            "id": "sq-def",
+            "label": "write the square as a product"
+          },
+          {
+            "id": "combine",
+            "label": "add the equal terms"
+          }
+        ],
+        "wrongReasonReplies": {
+          "distrib": "Distributivity splits a(b + c) into ab + ac. Is there a sum in brackets to multiply from the left?",
+          "distrib-right": "This rule splits (b + c)a into ba + ca. Is there a sum in brackets to multiply from the right?",
+          "comm-mul": "Commutativity changes the order of two factors. Which product changed order in this line?",
+          "N2": "N2 turns a number plus its minus into 0. Is there a term and its minus here?",
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Is there such a product here?",
+          "sq-def": "This step writes a power as a product, or a product as a power. Is there a square to write out?",
+          "combine": "This step adds two equal terms into one term. Are there two equal terms in the line before?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "The terms −ab and +ab add to 0 by N2. So only a² − b² is left."
+        }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.4.09",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 5",
+      "title": "Multiply powers",
+      "prompt": "Find the value.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "2^3 \\cdot 2^4 =",
+        "answer": {
+          "value": 128,
+          "correctTitle": "Yes, 128.",
+          "correctWhy": "2³ · 2⁴ = 2⁷, because 3 + 4 = 7 factors. 2⁷ = 128.",
+          "mistakes": [
+            {
+              "match": 4096,
+              "reply": "Count the 2s: three, then four more. What is the total?"
+            },
+            {
+              "match": 56,
+              "reply": "That is 8 · 7. Use N11: the exponents add. What is 2⁷?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Count the factors 2.",
+        "N11: add the exponents. Then find the value."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "2^3 \\cdot 2^4 = 2^{3+4}",
+            "text": "N11: the exponents add."
+          },
+          {
+            "math": "2^7 = 128",
+            "text": "2 · 2 · 2 · 2 · 2 · 2 · 2 = 128."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "3^2 \\cdot 3^4 =",
+        "answer": {
+          "value": 729,
+          "correctTitle": "Yes, 729.",
+          "correctWhy": "3² · 3⁴ = 3⁶ = 729."
+        }
+      }
+    },
+    {
+      "id": "1.4.10",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 5",
+      "title": "Square a sum",
+      "prompt": "Expand the square.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $(x + 4)^2$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$x^2 + 8x + 16$"
+          },
+          {
+            "id": "b",
+            "label": "$x^2 + 16$",
+            "reply": "You have the two squares. The picture also has two strips, each with an area of 4x."
+          },
+          {
+            "id": "c",
+            "label": "$x^2 + 4x + 16$",
+            "reply": "There are two strips, and each has an area of 4x. How many 4x are in the middle term?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, x² + 8x + 16.",
+          "correctWhy": "The middle term is 2 · x · 4 = 8x."
+        }
+      },
+      "hints": [
+        "Use (a + b)² = a² + 2ab + b² with a = x and b = 4."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(x + 4)^2 = x^2 + 2 \\cdot x \\cdot 4 + 4^2",
+            "text": "Use the formula for the square of a sum."
+          },
+          {
+            "math": "= x^2 + 8x + 16",
+            "text": "2 · x · 4 = 8x and 4² = 16."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "What is $(x + 5)^2$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$x^2 + 10x + 25$"
+          },
+          {
+            "id": "b",
+            "label": "$x^2 + 25$",
+            "reply": "You have the two squares. The picture also has two strips, each with an area of 5x."
+          },
+          {
+            "id": "c",
+            "label": "$x^2 + 5x + 25$",
+            "reply": "There are two strips, and each has an area of 5x. How many 5x are in the middle term?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, x² + 10x + 25.",
+          "correctWhy": "The middle term is 2 · x · 5 = 10x."
+        }
+      }
+    },
+    {
+      "id": "1.4.11",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 5",
+      "title": "Square a difference",
+      "prompt": "Expand the square.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $(2x - 3)^2$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$4x^2 - 12x + 9$"
+          },
+          {
+            "id": "b",
+            "label": "$4x^2 + 12x + 9$",
+            "reply": "The middle term is 2 · (2x) · (−3). What sign does this term have?"
+          },
+          {
+            "id": "c",
+            "label": "$2x^2 - 12x + 9$",
+            "reply": "The first term is (2x)². What is (2x)(2x)?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 4x² − 12x + 9.",
+          "correctWhy": "(2x)² = 4x², 2 · 2x · (−3) = −12x, and (−3)² = 9."
+        }
+      },
+      "hints": [
+        "Use (a − b)² = a² − 2ab + b² with a = 2x and b = 3.",
+        "The middle term is 2 · (2x) · 3 with a minus sign."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(2x - 3)^2 = (2x)^2 - 2 \\cdot 2x \\cdot 3 + 3^2",
+            "text": "Use the formula for the square of a difference."
+          },
+          {
+            "math": "= 4x^2 - 12x + 9",
+            "text": "(2x)² = 4x², 2 · 2x · 3 = 12x, 3² = 9."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "What is $(3x - 2)^2$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$9x^2 - 12x + 4$"
+          },
+          {
+            "id": "b",
+            "label": "$9x^2 + 12x + 4$",
+            "reply": "The middle term is 2 · (3x) · (−2). What sign does this term have?"
+          },
+          {
+            "id": "c",
+            "label": "$3x^2 - 12x + 4$",
+            "reply": "The first term is (3x)². What is (3x)(3x)?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 9x² − 12x + 4.",
+          "correctWhy": "(3x)² = 9x², 2 · 3x · (−2) = −12x, and (−2)² = 4."
+        }
+      }
+    },
+    {
+      "id": "1.4.12",
+      "kind": "practice",
+      "label": "PRACTICE · 4 OF 5",
+      "title": "Sum times difference",
+      "prompt": "Expand the product.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $(5 + y)(5 - y)$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$25 - y^2$"
+          },
+          {
+            "id": "b",
+            "label": "$25 + y^2$",
+            "reply": "The last term is y · (−y). What sign does it have?"
+          },
+          {
+            "id": "c",
+            "label": "$25 - 10y - y^2$",
+            "reply": "The middle terms 5(−y) and 5y cancel. What is −5y + 5y?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 25 − y².",
+          "correctWhy": "The middle terms cancel. 5² = 25 and y · (−y) = −y²."
+        }
+      },
+      "hints": [
+        "Use (a + b)(a − b) = a² − b² with a = 5 and b = y."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(5 + y)(5 - y) = 5^2 - y^2",
+            "text": "The middle terms cancel."
+          },
+          {
+            "math": "= 25 - y^2",
+            "text": "5² = 25."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "What is $(6 + y)(6 - y)$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$36 - y^2$"
+          },
+          {
+            "id": "b",
+            "label": "$36 + y^2$",
+            "reply": "The last term is y · (−y). What sign does it have?"
+          },
+          {
+            "id": "c",
+            "label": "$36 - 12y - y^2$",
+            "reply": "The middle terms 6(−y) and 6y cancel. What is −6y + 6y?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, 36 − y².",
+          "correctWhy": "The middle terms cancel. 6² = 36 and y · (−y) = −y²."
+        }
+      }
+    },
+    {
+      "id": "1.4.13",
+      "kind": "practice",
+      "label": "PRACTICE · 5 OF 5",
+      "title": "Three factors",
+      "prompt": "Expand $(x + 1)(x - 2)(x + 3)$. Multiply the first two factors first.",
+      "interaction": {
+        "type": "choice",
+        "question": "What is $(x + 1)(x - 2)(x + 3)$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$x^3 + 2x^2 - 5x - 6$"
+          },
+          {
+            "id": "b",
+            "label": "$x^3 + 4x^2 + x - 6$",
+            "reply": "Check (x + 1)(x − 2) first. The middle term is −2x + x. What is it?"
+          },
+          {
+            "id": "c",
+            "label": "$x^3 + 2x^2 - 5x + 6$",
+            "reply": "The last term is 1 · (−2) · 3. What sign does it have?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, x³ + 2x² − 5x − 6.",
+          "correctWhy": "(x + 1)(x − 2) = x² − x − 2. Then (x² − x − 2)(x + 3) = x³ + 2x² − 5x − 6."
+        }
+      },
+      "hints": [
+        "Multiply (x + 1)(x − 2) first.",
+        "(x + 1)(x − 2) = x² − x − 2. Now multiply this by (x + 3)."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(x + 1)(x - 2) = x^2 - x - 2",
+            "text": "Multiply the first two factors."
+          },
+          {
+            "math": "(x^2 - x - 2)(x + 3) = x^3 + 2x^2 - 5x - 6",
+            "text": "Multiply the result by x + 3."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "question": "What is $(x + 2)(x - 1)(x + 4)$?",
+        "options": [
+          {
+            "id": "a",
+            "label": "$x^3 + 5x^2 + 2x - 8$"
+          },
+          {
+            "id": "b",
+            "label": "$x^3 + 7x^2 + 2x - 8$",
+            "reply": "Check (x + 2)(x − 1) first. The middle term is −x + 2x. What is it?"
+          },
+          {
+            "id": "c",
+            "label": "$x^3 + 5x^2 + 2x + 8$",
+            "reply": "The last term is 2 · (−1) · 4. What sign does it have?"
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, x³ + 5x² + 2x − 8.",
+          "correctWhy": "(x + 2)(x − 1) = x² + x − 2. Then (x² + x − 2)(x + 4) = x³ + 5x² + 2x − 8."
+        }
+      }
+    },
+    {
+      "id": "1.4.14",
+      "kind": "trap-summary",
+      "label": "LESSON 1.4 COMPLETE",
+      "title": "Say the formulas aloud.",
+      "prompt": "Lang says: read the three formulas aloud and repeat them like a poem.",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: (a + b)² = a² + b².",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "The picture has two strips as well as the two squares. Each strip has an area of ab. What is the full sum?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "(a + b)² = a² + 2ab + b². The two strips give the middle term 2ab."
+          }
+        },
+        "summary": [
+          "N11",
+          "N12",
+          "sq-sum",
+          "sq-diff",
+          "diff-sq"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Even, odd and divisibility"
+    }
+  ]
+}

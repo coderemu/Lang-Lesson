@@ -209,6 +209,56 @@
         "1.3.11"
       ],
       "bankProblems": []
+    },
+    {
+      "id": "c1.3.04",
+      "chapter": 1,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "Powers, N11, N12, (ab)ⁿ = aⁿbⁿ",
+      "lessonScreens": [
+        "1.4.03",
+        "1.4.04"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.3.05",
+      "chapter": 1,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "Population that doubles",
+      "lessonScreens": [
+        "1.4.02",
+        "1.4.03"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.3.06",
+      "chapter": 1,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "The three formulas, with proofs; read aloud like a poem",
+      "lessonScreens": [
+        "1.4.05",
+        "1.4.06",
+        "1.4.07",
+        "1.4.08",
+        "1.4.14"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c1.3.07",
+      "chapter": 1,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "Expand a product of three factors",
+      "lessonScreens": [
+        "1.4.13"
+      ],
+      "bankProblems": []
     }
   ]
 }

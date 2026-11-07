@@ -42,8 +42,8 @@ const FULL: Record<string, string> = {
   "comm-mul": "Commutativity",
   "assoc-add": "Associativity",
   "assoc-mul": "Associativity",
-  distrib: "Distributivity",
-  "distrib-right": "Distributivity",
+  distrib: "Distributivity, left",
+  "distrib-right": "Distributivity, right",
 };
 
 /** The name on a reason chip of the proof stepper (frames S07–S09): "N2", "Commutativity". */
