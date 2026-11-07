@@ -1,0 +1,115 @@
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  min-height: 120px;
+  padding: var(--spacing-4);
+  background: var(--color-surface);
+  border: 1.5px dashed var(--color-line);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.phName {
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  color: var(--color-ink-soft);
+  text-transform: uppercase;
+}
+.phNote {
+  font-size: var(--text-caption);
+  line-height: 20px;
+  color: var(--color-ink-muted);
+}
+.note {
+  font-size: var(--text-caption);
+  line-height: 20px;
+  color: var(--color-ink-muted);
+}
+.equation {
+  font-size: var(--text-math);
+  text-align: center;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+.expr {
+  font-size: var(--text-math);
+  font-family: var(--font-math);
+}
+.parts {
+  display: flex;
+  flex-direction: column;
+}
+.part {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4) 0;
+  border-top: 1px solid var(--color-line);
+}
+.part:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.partPrompt {
+  font-size: var(--text-small);
+  line-height: 24px;
+  color: var(--color-ink-soft);
+}
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+.question {
+  font-size: var(--text-body);
+  line-height: 28px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+.summary {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+.summaryRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  min-height: 52px;
+  border-top: 1px solid var(--color-line);
+}
+.summaryRow:first-child {
+  border-top: 0;
+}
+.ruleId {
+  flex: 0 0 44px;
+  padding: 2px 0;
+  background: var(--tint-rule);
+  border-radius: var(--radius-sm);
+  color: var(--color-rule);
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  text-align: center;
+}
+.invalid {
+  font-size: var(--text-caption);
+  line-height: 20px;
+  color: var(--color-incorrect-text);
+}

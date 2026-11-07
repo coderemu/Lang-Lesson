@@ -1,0 +1,110 @@
+.filters {
+  display: flex;
+  gap: var(--spacing-2);
+  margin: 0 -24px;
+  padding: 0 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.chip {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chip[aria-pressed="true"] {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper);
+}
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+.id {
+  flex: 0 0 auto;
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--tint-rule);
+  color: var(--color-rule);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+.name {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  line-height: 22px;
+  font-weight: var(--font-weight-semibold);
+}
+.statement {
+  font-size: 20px;
+  line-height: 32px;
+  overflow-x: auto;
+}
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  margin-top: auto;
+}
+.status {
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-ink-soft);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+.status[data-status="proved"] {
+  background: var(--tint-progress);
+  color: var(--color-progress-text);
+}
+.status[data-status="left-to-reader"] {
+  background: var(--tint-hint);
+  color: var(--color-hint-text);
+}
+.where {
+  font-size: var(--text-caption);
+  line-height: 20px;
+  color: var(--color-ink-muted);
+}
+
+@media (min-width: 900px) {
+  .filters {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-4);
+    align-items: stretch;
+  }
+}

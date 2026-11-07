@@ -1,0 +1,26 @@
+.stretch {
+  align-self: flex-start;
+  padding: 2px 10px;
+  background: var(--tint-hint);
+  border-radius: var(--radius-sm);
+  color: var(--color-hint-text);
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+}
+.paper {
+  padding: var(--spacing-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  font-size: var(--text-small);
+  line-height: 24px;
+  color: var(--color-ink-soft);
+}
+.selfButtons {
+  display: flex;
+  gap: var(--spacing-3);
+}
+.selfButtons > * {
+  flex: 1;
+  width: auto !important;
+}

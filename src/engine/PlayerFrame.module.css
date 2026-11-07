@@ -1,0 +1,126 @@
+.frame {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--color-paper);
+}
+
+/* Mobile: content padding 36 24 0, gap 20 */
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  padding: 36px 24px 24px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.label {
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-primary);
+}
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: 36px;
+  font-weight: var(--font-weight-display);
+  letter-spacing: var(--tracking-tight);
+}
+.prompt {
+  font-size: var(--text-body);
+  line-height: 28px;
+  color: var(--color-ink-soft);
+}
+
+/* Action area: padding 16 24 40, gap 12 */
+.footer {
+  position: relative;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: 16px 24px 40px;
+}
+.caption {
+  font-size: var(--text-caption);
+  line-height: 20px;
+  color: var(--color-ink-muted);
+  text-align: center;
+}
+.primary > * {
+  width: 100%;
+}
+.sheet {
+  position: absolute;
+  z-index: 3;
+  inset: auto 0 0;
+}
+.drawer {
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 100%;
+  margin-bottom: var(--spacing-2);
+}
+
+@media (min-width: 900px) {
+  .content {
+    display: grid;
+    grid-template-columns: 440px minmax(0, 1fr);
+    align-content: start;
+    gap: 72px;
+    padding: 72px 120px 32px;
+  }
+  .text {
+    gap: var(--spacing-4);
+  }
+  .title {
+    font-size: var(--text-h1);
+    line-height: 48px;
+  }
+  .prompt {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .footer {
+    border-top: 1px solid var(--color-line);
+  }
+  .actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 120px 28px;
+  }
+  .caption {
+    text-align: left;
+  }
+  .primary {
+    margin-left: auto;
+  }
+  .primary > * {
+    width: 240px;
+  }
+  /* The feedback sheet becomes a panel above the action bar, aligned with the stage column. */
+  .sheet {
+    inset: auto 120px 100% calc(120px + 440px + 72px);
+    margin-bottom: var(--spacing-3);
+  }
+  .sheet > * {
+    border-radius: 24px;
+    padding-bottom: 24px;
+  }
+  .drawer {
+    inset: auto 120px 100% calc(120px + 440px + 72px);
+  }
+}
