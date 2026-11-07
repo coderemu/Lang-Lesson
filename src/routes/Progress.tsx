@@ -140,15 +140,15 @@ export function Progress() {
         <div className={styles.gChapter}>
           <section className={`${styles.card} ${styles.cardPad}`} aria-label="By chapter">
             <p className={styles.eyebrow}>By chapter</p>
-            <div>
+            <div className={styles.chapterRows}>
               {[1, 2, 3, 4].map((c) => {
                 const ls = lessonsOfChapter(c);
                 const done = ls.filter((l) => data.lessons[l.id]?.state === "complete").length;
                 return (
-                  <div key={c} className={styles.chapterRow}>
+                  <div key={c} className={styles.chapterRow} data-started={done > 0}>
                     <div className={styles.chapterLine}>
                       <span>
-                        <strong>{c}</strong> · {CHAPTER_TITLES[c]}
+                        {c} · {CHAPTER_TITLES[c]}
                       </span>
                       <span className={styles.meta}>
                         {done} of {ls.length} lessons

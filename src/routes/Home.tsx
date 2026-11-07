@@ -138,7 +138,7 @@ function ChapterList({
   const lessons = lessonsOfChapter(chapter);
   const done = lessons.filter((l) => data.lessons[l.id]?.state === "complete").length;
   return (
-    <section aria-label={`Chapter ${chapter}`} className={styles.col} style={{ gap: 12 }}>
+    <section aria-label={`Chapter ${chapter}`} className={styles.col} style={{ gap: 10 }}>
       <div className={styles.chapterHead}>
         <p className={styles.eyebrow}>
           Chapter {chapter} · {CHAPTER_TITLES[chapter]}

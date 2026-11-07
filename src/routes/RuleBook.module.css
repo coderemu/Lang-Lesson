@@ -8,12 +8,14 @@
 }
 .chip {
   flex: 0 0 auto;
-  min-height: 44px;
-  padding: 0 16px;
+  min-height: 44px; /* frame: 40; NFR-02 asks 44 */
+  padding: 10px 14px;
   border: 1.5px solid var(--color-line);
   border-radius: var(--radius-pill);
   background: var(--color-paper);
-  font-size: var(--text-small);
+  color: var(--color-ink-soft);
+  font-size: var(--text-caption);
+  line-height: 20px;
   font-weight: var(--font-weight-semibold);
   white-space: nowrap;
   cursor: pointer;
@@ -37,7 +39,7 @@
   gap: var(--spacing-2);
   padding: 16px;
   border: 1.5px solid var(--color-line);
-  border-radius: var(--radius-lg);
+  border-radius: 16px;
   background: var(--color-paper);
 }
 .head {
@@ -47,7 +49,7 @@
 }
 .id {
   flex: 0 0 auto;
-  padding: 2px 10px;
+  padding: 3px 8px;
   border-radius: var(--radius-sm);
   background: var(--tint-rule);
   color: var(--color-rule);
@@ -62,8 +64,8 @@
   font-weight: var(--font-weight-semibold);
 }
 .statement {
-  font-size: 20px;
-  line-height: 32px;
+  font-size: 21px;
+  line-height: 28px;
   overflow-x: auto;
 }
 .foot {
