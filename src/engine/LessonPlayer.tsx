@@ -409,6 +409,7 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
           />
         ) : (
           <ScreenRenderer
+            key={`${screen.id}-${onTwin}`}
             screen={screen}
             interaction={interaction}
             rules={rules}

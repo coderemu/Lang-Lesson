@@ -8,3 +8,6 @@ export { MirrorPicture } from "./MirrorPicture";
 export { TrapSummary } from "./TrapSummary";
 export { trayChips, activeLine } from "./proof";
 export type { ChipDef } from "./proof";
+export { AreaModel } from "./AreaModel";
+export { SquareTiles } from "./SquareTiles";
+export { FractionStrips } from "./FractionStrips";

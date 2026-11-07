@@ -380,3 +380,132 @@
 .proofLine[data-state="locked"] .proofReason span {
   color: transparent;
 }
+
+/* Area model, square tiles, fraction strips */
+.area {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: none;
+  user-select: none;
+}
+.area[data-interactive="true"] {
+  cursor: pointer;
+}
+.area:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
+}
+.partB,
+.tileStrip {
+  fill: var(--tint-rule);
+}
+.partC,
+.tileB {
+  fill: var(--tint-correct);
+}
+.tileA,
+.block {
+  fill: var(--tint-primary);
+}
+.oddSquare {
+  fill: var(--tint-negative);
+  stroke: var(--color-negative);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+.gridLine {
+  stroke: var(--color-paper);
+  stroke-width: 1.5;
+}
+.areaText {
+  fill: var(--color-ink);
+  font-family: var(--font-math);
+  font-size: 20px;
+  text-anchor: middle;
+}
+.areaLabel {
+  fill: var(--color-ink-soft);
+  font-family: var(--font-math);
+  font-size: 16px;
+}
+.areaLabel[data-dim="true"] {
+  fill: var(--color-ink-muted);
+}
+.sideA {
+  fill: var(--color-var-a);
+  font-family: var(--font-math);
+  font-size: 18px;
+  font-style: italic;
+}
+.sideB,
+.sideC {
+  font-family: var(--font-math);
+  font-size: 18px;
+  font-style: italic;
+  text-anchor: middle;
+}
+.sideB {
+  fill: var(--color-var-b);
+}
+.sideC {
+  fill: var(--color-var-c);
+}
+.handle {
+  fill: var(--color-paper);
+  stroke: var(--color-negative);
+  stroke-width: 4;
+  cursor: grab;
+}
+.equationSmall {
+  font-family: var(--font-math);
+  font-size: 22px;
+  line-height: 32px;
+  text-align: center;
+}
+.unit {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--color-ink-soft);
+}
+.mini {
+  align-self: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1.5px dashed var(--color-negative);
+  border-radius: var(--radius-pill);
+  background: var(--tint-negative);
+  color: var(--color-negative-text);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+.mini:disabled {
+  border-color: var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-ink-muted);
+  cursor: not-allowed;
+}
+.stripBase {
+  fill: var(--color-paper);
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+.stripShade {
+  fill: var(--color-primary-bright);
+}
+.stripSum {
+  fill: var(--color-correct);
+}
+.stripLine {
+  stroke: var(--color-ink);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.stripLabel {
+  fill: var(--color-ink);
+  font-family: var(--font-math);
+  font-size: 18px;
+}

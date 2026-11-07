@@ -2,7 +2,10 @@ import { useState } from "react";
 import type { ProofInteraction, Rule } from "../../content/schema";
 import { Math as Tex } from "../math";
 import {
+  AreaModel,
   Balance,
+  FractionStrips,
+  SquareTiles,
   MirrorPicture,
   NumberLine,
   ProofStepper,
@@ -57,6 +60,14 @@ export function DesignWidgets() {
   const [revealed, setRevealed] = useState(false);
   const [removed, setRemoved] = useState<Removed>({ l: 0, r: 0 });
   const [trap, setTrap] = useState<boolean | null>(null);
+  const [split, setSplit] = useState<number | null>(null);
+  const [width, setWidth] = useState<number | null>(null);
+  const [dbl, setDbl] = useState<number | null>(null);
+  const [half, setHalf] = useState<number | null>(null);
+  const [tilesA, setTilesA] = useState<number | null>(null);
+  const [cut, setCut] = useState<number | null>(null);
+  const [add, setAdd] = useState<number | null>(null);
+  const [inv, setInv] = useState<number | null>(null);
   const [live, setLive] = useState<{ done: Record<number, string>; pending: string | null }>({
     done: {},
     pending: null,
@@ -234,6 +245,81 @@ export function DesignWidgets() {
           >
             Reset
           </button>
+        </Spec>
+        <Spec name="Area model · distribute · live (with turn)">
+          <Stage>
+            <AreaModel
+              mode="distribute"
+              spec={{ a: 3, b: 4, c: 2, turn: 1 }}
+              value={split}
+              onChange={setSplit}
+            />
+          </Stage>
+        </Spec>
+        <Spec name="Area model · width-2 · live (odd and even)">
+          <Stage>
+            <AreaModel mode="width-2" spec={{ n: 7, max: 6 }} value={width} onChange={setWidth} />
+          </Stage>
+        </Spec>
+        <Spec name="Area model · doubling-strip · live">
+          <Stage>
+            <AreaModel
+              mode="doubling-strip"
+              spec={{ start: 50000, factor: 2, steps: 3 }}
+              value={dbl}
+              onChange={setDbl}
+            />
+          </Stage>
+        </Spec>
+        <Spec name="Area model · doubling-strip · halving">
+          <Stage>
+            <AreaModel
+              mode="doubling-strip"
+              spec={{ start: 40, factor: 0.5, steps: 3, unit: "g" }}
+              value={half}
+              onChange={setHalf}
+            />
+          </Stage>
+        </Spec>
+        <Spec name="Square tiles · expand · live">
+          <Stage>
+            <SquareTiles
+              mode="expand"
+              spec={{ total: 5, a: 3 }}
+              value={tilesA}
+              onChange={setTilesA}
+            />
+          </Stage>
+        </Spec>
+        <Spec name="Fraction strips · cut · live">
+          <Stage>
+            <FractionStrips
+              mode="cut"
+              spec={{ num: 1, den: 2, max: 16 }}
+              value={cut}
+              onChange={setCut}
+            />
+          </Stage>
+        </Spec>
+        <Spec name="Fraction strips · add · live">
+          <Stage>
+            <FractionStrips
+              mode="add"
+              spec={{ n1: 2, d1: 3, n2: 1, d2: 4 }}
+              value={add}
+              onChange={setAdd}
+            />
+          </Stage>
+        </Spec>
+        <Spec name="Fraction strips · add · same denominator (sum over 1)">
+          <Stage>
+            <FractionStrips mode="add" spec={{ n1: 3, d1: 5, n2: 8, d2: 5 }} value={1} />
+          </Stage>
+        </Spec>
+        <Spec name="Fraction strips · invert · live">
+          <Stage>
+            <FractionStrips mode="invert" spec={{ m: 2, n: 3 }} value={inv} onChange={setInv} />
+          </Stage>
         </Spec>
         <Spec name="Trap summary · live">
           <TrapSummary

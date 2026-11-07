@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import type { Interaction, ProofInteraction, Rule, Screen } from "../../content/schema";
 import {
   ChoiceChip,
@@ -10,7 +10,10 @@ import {
 } from "../components";
 import { Math as Tex, RichText } from "../math";
 import {
+  AreaModel,
   Balance,
+  FractionStrips,
+  SquareTiles,
   MirrorPicture,
   NumberLine,
   ProofStepper,
@@ -252,6 +255,20 @@ export function ScreenRenderer(props: ScreenRendererProps) {
             note={props.trapNote}
           />
         );
+      case "area-model":
+      case "square-tiles":
+      case "fraction-strips": {
+        const supported =
+          i.type === "area-model" ||
+          (i.type === "square-tiles" && i.mode === "expand") ||
+          (i.type === "fraction-strips" && i.mode !== "mediant");
+        if (!supported) return null;
+        return (
+          <Stage>
+            <ExploreWidget interaction={i} onEnter={props.onEnter} disabled={locked} />
+          </Stage>
+        );
+      }
       case "number-input":
       case "multi-number-input":
       case "choice":
@@ -303,4 +320,21 @@ function ProofBlock({
       disabled={disabled}
     />
   );
+}
+
+/** Explore widgets keep their own position. It is not an answer. */
+function ExploreWidget({
+  interaction: i,
+  onEnter,
+  disabled,
+}: {
+  interaction: Extract<Interaction, { type: "area-model" | "square-tiles" | "fraction-strips" }>;
+  onEnter?: () => void;
+  disabled: boolean;
+}) {
+  const [value, setValue] = useState<number | null>(null);
+  const common = { value, onChange: setValue, onEnter, disabled };
+  if (i.type === "area-model") return <AreaModel mode={i.mode} spec={i.widget} {...common} />;
+  if (i.type === "square-tiles") return <SquareTiles mode="expand" spec={i.widget} {...common} />;
+  return <FractionStrips mode={i.mode as "cut" | "add" | "invert"} spec={i.widget} {...common} />;
 }
