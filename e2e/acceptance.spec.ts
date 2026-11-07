@@ -58,6 +58,7 @@ test.describe("coverage screen (criterion 6)", () => {
 /** Criterion 8: /design-system shows every widget and every mode. */
 test("design system shows every widget mode (criterion 8)", async ({ page }) => {
   await page.goto("/design-system");
+  await expect(page.locator("#widgets")).toBeVisible();
   const names = await page.locator("#widgets p").allTextContents();
   const expected = [
     "Number line · place · live",

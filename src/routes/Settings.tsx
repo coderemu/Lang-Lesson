@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../components";
-import pkg from "../../package.json";
 import {
   backupFileName,
   dataOf,
@@ -171,7 +170,7 @@ export function Settings() {
 
       <section className={`${app.card} ${app.cardPad}`} aria-label="About">
         <p className={app.eyebrow}>About</p>
-        <p className={styles.help}>Lang Lessons · version {pkg.version}</p>
+        <p className={styles.help}>Lang Lessons · version {__APP_VERSION__}</p>
         <Link to="/design-system" className={app.link}>
           Design system
         </Link>

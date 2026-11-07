@@ -1,8 +1,8 @@
 # Phase 1 · Chapter 1: acceptance
 
-Step 1E, tested against SRD §9.1 and §9.2. Hosting criteria are "pending 1F". Commands: `npm run build`, `npm run test`, `npm run lint`, `npm run validate:content` and `npm run e2e` (two Playwright projects: mobile 390 × 844 and desktop 1440 × 900).
+Steps 1E and 1F, tested against SRD §9.1 and §9.2. The last checks need your deploy (public URL). Commands: `npm run build`, `npm run test`, `npm run lint`, `npm run validate:content` and `npm run e2e` (two Playwright projects: mobile 390 × 844 and desktop 1440 × 900).
 
-**Result: every criterion that does not need the host passes. Open items: criterion 9.1.11 and the hosting items of §9.2 (pending 1F), and the findings in "Differences and decisions" below.**
+**Result: every criterion that can be tested before the deploy passes. Open items: criterion 9.1.11 and "live at its public URL" (they need your deploy), and the findings in "Differences and decisions" below.**
 
 ## SRD §9.1: every phase
 
@@ -18,7 +18,7 @@ Step 1E, tested against SRD §9.1 and §9.2. Hosting criteria are "pending 1F". 
 | 8 | `/design-system` shows every new widget mode | Pass | `acceptance.spec.ts` checks the 19 widget entries (number line ×4 modes, thermometer, balance, proof stepper, area model ×3 modes, square tiles, fraction strips ×3 modes, trap summary, mirror picture). Screenshots: `design-system-widgets-390.png`, `-1440.png`. |
 | 9 | `build`, `test`, `e2e` and `validate:content` pass with no errors | Pass | See "Final run" at the end of this file. |
 | 10 | Screenshots at 390 and 1440 px are saved | Pass | `qa/phase-1/1E/` (22 screens at both sizes, made by `npm run qa:1e`), and `1A`–`1D`. |
-| 11 | The hosted app shows the new chapter after deploy; old progress is still there | Pending 1F | Needs the host. |
+| 11 | The hosted app shows the new chapter after deploy; old progress is still there | Partly. The rest needs your deploy | Before the deploy: `e2e/pwa.spec.ts` ("a new build shows the update toast, and progress survives the update") builds a second version, shows "New version ready. Reload.", reloads, and the progress and the saved lesson position are unchanged. After your deploy I open the live URL and check Home. |
 
 ## SRD §9.2: extra for Phase 1
 
@@ -26,8 +26,11 @@ Step 1E, tested against SRD §9.1 and §9.2. Hosting criteria are "pending 1F". 
 | --- | --- | --- |
 | Lesson 1.2 matches its FigCraft frames (S01–S14, D2, D4) | Partly checked | `qa/phase-1/1C/diff.md`. S01, S02, S03, S07 and S10 were measured with `get_node`. The other frames were compared by eye. The differences are listed there (for example Check stays disabled until there is an answer, and the frame texts that are not in the lesson JSON). |
 | Home, Progress and Rule book match H01–H03 and DH1–DH3 | Pass, with listed differences | `qa/phase-1/1B/diff.md` (values measured with `get_node`, fixed in `3a2468e`). |
-| The app is live at its public URL, installs on a phone, works offline | Pending 1F | |
-| A backup made on one browser restores on another browser | Partly | Unit test: backup, reset, restore gives the same data; a bad file changes nothing (`src/store/store.test.ts`). The test in a second browser context is part of 1F. |
+| The app is live at its public URL | Pending: needs your deploy | Steps in `docs/DEPLOY.md` §2. |
+| The app installs on a phone | Pass in the browser. Phone test is yours | `e2e/pwa.spec.ts` ("manifest and icons make the app installable"): manifest fields, icons 192, 512 and maskable 512 load as PNG, and Chrome reports no installability errors (`Page.getInstallabilityErrors`). |
+| The app works offline | Pass | `e2e/pwa.spec.ts` ("offline: …"): after one load, with the network off, Home, lesson 1.2 (two screens), bank 1.2 (one answer), lesson 1.6 and bank 1.8 (never opened before) work from the precache of 97 files. |
+| Every route opens directly by URL | Pass | `e2e/pwa.spec.ts` ("every route opens directly by URL") on the production build: status 200 and a heading for 9 paths. `public/_redirects` sends other paths to `index.html` on the host. |
+| A backup made on one browser restores on another browser | Pass | `e2e/pwa.spec.ts` ("a backup made in one browser context restores in a fresh context"): the downloaded file restores the same state in a new browser context. Unit tests: round trip and bad files (`src/store/store.test.ts`). |
 | `/design-system` shows every token and component state | Pass | `/design-system` (1A tokens and components, 1C and 1D widgets); the widgets are asserted in criterion 8. |
 
 ## Accessibility (WCAG 2.2 AA, axe)
@@ -47,7 +50,7 @@ Step 1E, tested against SRD §9.1 and §9.2. Hosting criteria are "pending 1F". 
 
 ## Bundle size (NFR-06)
 
-First-load JavaScript is **230 KB gzip** (limit 300 KB). Each lesson is its own chunk of about 4 KB gzip, the rules about 3 KB. KaTeX is not loaded lazily yet (DECISIONS #5 asks for lazy loading): it is in the first chunk, and the budget still holds. Offline mode and install are step 1F.
+In step 1E first-load JavaScript was **230 KB gzip** (limit 300 KB); step 1F lowered it to 153 KB (see below). Each lesson is its own chunk of about 4 KB gzip, the rules about 3 KB. KaTeX is not loaded lazily yet (DECISIONS #5 asks for lazy loading): it is in the first chunk, and the budget still holds. Offline mode and install are tested in step 1F.
 
 ## Differences and decisions (for you)
 
@@ -57,14 +60,25 @@ First-load JavaScript is **230 KB gzip** (limit 300 KB). Each lesson is its own 
 4. **Bank mistake replies.** Only bank 1.2 has mistake replies. The design doc gives none for the other banks.
 5. **Theorem 1** (table: one case proved, three left to the reader): lesson 1.5 proves two cases. The rule book says "Left to reader".
 
+## Step 1F: PWA, offline and first deploy
+
+- **Build:** `vite-plugin-pwa` with a prompt update, manifest (name "Lang Lessons", short name "Lang", theme #1565C0, white background, standalone, start URL and scope from `base`), icons `public/icons/` (made by `npm run icons`), `public/_redirects`, and `npm run deploy` (Wrangler; no token in the repository).
+- **Precache:** 97 files (about 1.8 MB): the app shell, all 8 lesson chunks, 8 bank chunks, rules and coverage, the woff2 fonts and the icons. The KaTeX ttf and woff files are left out.
+- **Settings → About** shows the version (package version, git hash).
+- **First-load size:** each screen except Home is now its own chunk. First-load JavaScript is **153 KB gzip** (was 230 KB).
+- **Lighthouse (mobile, Home, production build):** performance **92**, accessibility **100**, best practices **100** (`qa/phase-1/1F/lighthouse-home-mobile.json`). Lighthouse 12 has no PWA category; installability is checked in the browser test above.
+- **Repository:** `git ls-files | grep -i pdf` is empty. `docs/source/` is ignored.
+
 ## Final run
 
 | Command | Result |
 | --- | --- |
 | `npm run build` | passes (type check and build) |
-| `npm run test` | 212 tests pass; engine coverage 94% statements, 96% lines (threshold 90%) |
+| `npm run test` | 215 tests pass; engine coverage 94% statements, 96% lines (threshold 90%) |
 | `npm run lint` | passes (ESLint and Prettier) |
 | `npm run validate:content` | OK: 8 lessons, 8 banks, 57 coverage rows, 66 rules |
 | `npm run e2e` | 825 passed, 0 failed. 747 are skipped on purpose: the mistake-reply spec and the axe spec run in the mobile project only (the replies and the accessibility checks do not depend on the width) |
 
 One earlier run had a single failure: the keyboard-only test of lesson 1.3 pressed Enter in the 120 ms before the player moved focus to the first control of a new screen. The test now waits for focus to settle; the next full run was clean.
+
+`npm run e2e:preview` (production build, 5 tests): passes.

@@ -3,7 +3,7 @@ import { defineConfig } from "@playwright/test";
 /** Acceptance tests run at 390 × 844 (mobile) and 1440 × 900 (desktop). The qa-*.spec.ts files only make screenshots: run them with playwright.qa.config.ts. */
 export default defineConfig({
   testDir: "e2e",
-  testIgnore: /qa-.*\.spec\.ts/,
+  testIgnore: /(qa-.*|pwa)\.spec\.ts/,
   reporter: "list",
   use: { baseURL: "http://localhost:5173" },
   projects: [

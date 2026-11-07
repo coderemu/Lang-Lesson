@@ -27,6 +27,7 @@ test("bank 1.4: close at problem 5, open again at problem 5", async ({ page }) =
   }
   await expect(page.getByRole("heading", { level: 1, name: "Problem 5" })).toBeVisible();
   await page.getByRole("button", { name: "Close lesson" }).click();
+  await expect(page).toHaveURL("/practice/1.4"); // the overview is its own chunk: wait for it before the reload
   await page.reload();
   await expect(page.getByRole("link", { name: "Continue practice" })).toBeVisible();
   await page.getByRole("link", { name: "Continue practice" }).click();

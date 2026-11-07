@@ -10,6 +10,7 @@ The default host is **Cloudflare Pages**: free, HTTPS, fast in India and everywh
 - `public/_redirects` with `/* /index.html 200`, so links such as `/lesson/1.2` work when you open them directly.
 - `npm run deploy` (optional): builds and uploads with Wrangler, for a deploy without GitHub.
 - A version number in Settings → About, so you can see which version is live.
+- App icons in `public/icons/`. To draw them again, run `npm run icons`.
 
 ## 2. One-time setup (you do this)
 
