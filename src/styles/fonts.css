@@ -1,0 +1,6 @@
+/* Only the weights of DESIGN-SYSTEM §2 are loaded. */
+@import "@fontsource-variable/bricolage-grotesque/wght.css";
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/stix-two-text/wght.css";
+@import "@fontsource-variable/stix-two-text/wght-italic.css";
+@import "@fontsource/ibm-plex-mono/400.css";

@@ -1,0 +1,12 @@
+dist
+node_modules
+qa
+docs
+content
+design
+prompts
+.claude
+*.md
+package-lock.json
+playwright-report
+test-results

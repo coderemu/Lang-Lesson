@@ -1,0 +1,228 @@
+{
+  "_note": "Read-only map of the FigCraft design file. Node ids are stable unless someone deletes and rebuilds a frame; if an id does not resolve, find the frame by name with node.find.",
+  "file": "/Users/emu/Documents/Learning/Lang Chapter Build/Basic Mathematics Lang.figcraft",
+  "page": {
+    "id": 2,
+    "name": "Screens"
+  },
+  "variableCollection": "Lang Visuals",
+  "components": {
+    "Status bar": 29
+  },
+  "viewports": {
+    "mobile": [
+      390,
+      844
+    ],
+    "desktop": [
+      1440,
+      900
+    ]
+  },
+  "noFrame": {
+    "/coverage": "Follow DESIGN-SYSTEM §6.4; reuse the card and row styles of H02/DH2.",
+    "/settings": "Follow DESIGN-SYSTEM §6.4; reuse the card and row styles of H02/DH2.",
+    "/practice/:id": "Same frame as the lesson player; use S11–S13 for states.",
+    "/design-system": "Build from DESIGN-SYSTEM §1–§5 and the FigCraft variables."
+  },
+  "frames": [
+    {
+      "key": "H01",
+      "name": "H01 Home",
+      "id": 1059,
+      "viewport": "mobile",
+      "route": "/",
+      "screen": null,
+      "shows": "Home tab"
+    },
+    {
+      "key": "H02",
+      "name": "H02 Progress",
+      "id": 1189,
+      "viewport": "mobile",
+      "route": "/progress",
+      "screen": null,
+      "shows": "Progress tab"
+    },
+    {
+      "key": "H03",
+      "name": "H03 Rule book",
+      "id": 1445,
+      "viewport": "mobile",
+      "route": "/rules",
+      "screen": null,
+      "shows": "Rule book tab"
+    },
+    {
+      "key": "S01",
+      "name": "S01 Recall",
+      "id": 39,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.01",
+      "shows": "Number line, place"
+    },
+    {
+      "key": "S02",
+      "name": "S02 Hook · M1",
+      "id": 92,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.02",
+      "shows": "Thermometer, guess"
+    },
+    {
+      "key": "S03",
+      "name": "S03 Explore · M2",
+      "id": 161,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.03",
+      "shows": "Number line, hops + Try box"
+    },
+    {
+      "key": "S04",
+      "name": "S04 Explore · compare paths",
+      "id": 225,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.04",
+      "shows": "Number line, compare + choice"
+    },
+    {
+      "key": "S05",
+      "name": "S05 Name it · M3",
+      "id": 306,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.05",
+      "shows": "Rule card, mirror picture + WORDS MATTER note"
+    },
+    {
+      "key": "S06",
+      "name": "S06 Name it · double minus",
+      "id": 374,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.06",
+      "shows": "Number line, mirror + number slot + Hint chip"
+    },
+    {
+      "key": "S07",
+      "name": "S07 Prove it · M4",
+      "id": 439,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.07",
+      "shows": "Proof stepper, active slot"
+    },
+    {
+      "key": "S08",
+      "name": "S08 Prove it · N5 part-way",
+      "id": 520,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.08",
+      "shows": "Proof stepper, part-way, locked lines"
+    },
+    {
+      "key": "S09",
+      "name": "S09 Prove it · wrong reason",
+      "id": 609,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.09",
+      "shows": "Proof stepper, wrong reason chip + reply sheet (hint style)"
+    },
+    {
+      "key": "S10",
+      "name": "S10 Name it · balance",
+      "id": 701,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.10",
+      "shows": "Balance, solve + number slot"
+    },
+    {
+      "key": "S11",
+      "name": "S11 Practice · correct",
+      "id": 782,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.11",
+      "shows": "Number slot correct + correct sheet"
+    },
+    {
+      "key": "S12",
+      "name": "S12 Practice · M5",
+      "id": 847,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.12",
+      "shows": "Number slot wrong + not-quite sheet, two buttons"
+    },
+    {
+      "key": "S13",
+      "name": "S13 Practice · hint open",
+      "id": 914,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.13",
+      "shows": "Two number slots + hint drawer open"
+    },
+    {
+      "key": "S14",
+      "name": "S14 Summary · M6",
+      "id": 985,
+      "viewport": "mobile",
+      "route": "/lesson/1.2",
+      "screen": "1.2.14",
+      "shows": "Summary rows + trap box"
+    },
+    {
+      "key": "D2",
+      "name": "D2 Explore · desktop",
+      "id": 1331,
+      "viewport": "desktop",
+      "route": "/lesson/1.2",
+      "screen": "1.2.03",
+      "shows": "Desktop lesson frame, Explore"
+    },
+    {
+      "key": "D4",
+      "name": "D4 Prove it · desktop",
+      "id": 1387,
+      "viewport": "desktop",
+      "route": "/lesson/1.2",
+      "screen": "1.2.07",
+      "shows": "Desktop lesson frame, Prove it"
+    },
+    {
+      "key": "DH1",
+      "name": "DH1 Home · desktop",
+      "id": 1580,
+      "viewport": "desktop",
+      "route": "/",
+      "screen": null,
+      "shows": "Sidebar + Home"
+    },
+    {
+      "key": "DH2",
+      "name": "DH2 Progress · desktop",
+      "id": 1686,
+      "viewport": "desktop",
+      "route": "/progress",
+      "screen": null,
+      "shows": "Sidebar + Progress"
+    },
+    {
+      "key": "DH3",
+      "name": "DH3 Rule book · desktop",
+      "id": 1870,
+      "viewport": "desktop",
+      "route": "/rules",
+      "screen": null,
+      "shows": "Sidebar + Rule book"
+    }
+  ]
+}

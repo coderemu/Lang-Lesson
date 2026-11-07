@@ -1,0 +1,368 @@
+{
+  "id": "1.2",
+  "title": "Undo moves: add minus numbers",
+  "book": { "chapter": 1, "sections": "§1–2" },
+  "minutes": 13,
+  "pilot": true,
+  "goal": "Add minus numbers on the line, use N1–N5, and give the reasons in a short proof.",
+  "needs": ["1.1"],
+  "rulesEarned": ["comm-add", "assoc-add", "N1", "N2", "N3", "N4", "N5", "pos-sum", "neg-sum", "solve-sum"],
+  "generalHint": "Put the start number on the line. A plus number moves to the right. A minus number moves to the left.",
+  "next": { "id": "1.3", "title": "Minus times minus" },
+  "screens": [
+    {
+      "id": "1.2.01",
+      "designRef": "S01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Where is minus 3?",
+      "prompt": "Drag the ring to $-3$.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": { "min": -5, "max": 5, "ringStart": 0 },
+        "answer": {
+          "value": -3,
+          "correctTitle": "Yes, −3.",
+          "correctWhy": "Minus 3 is 3 units to the left of 0.",
+          "mistakes": [
+            { "match": 3, "reply": "That is plus 3. Minus numbers are on the other side of 0. Which side is that?" }
+          ]
+        }
+      },
+      "hints": ["Minus numbers are on the left of 0."],
+      "caption": "Drag the orange ring, then check."
+    },
+    {
+      "id": "1.2.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "It is 10° outside. Tonight the temperature decreases by 15°.",
+      "prompt": "Do not calculate yet. Guess where the temperature stops.",
+      "designRef": "S02",
+      "interaction": {
+        "type": "thermometer",
+        "mode": "guess",
+        "widget": { "min": -10, "max": 15, "start": 10, "change": -15 },
+        "result": -5,
+        "guessFeedback": {
+          "sameSide": { "correctTitle": "Good guess. It is −5°.", "correctWhy": "The first 10° take the temperature to 0°. The last 5° take it below zero." },
+          "otherSide": { "correctTitle": "It is −5°.", "correctWhy": "The temperature decreases by more than 10°, so it goes past 0°. 10 − 15 = −5." }
+        }
+      },
+      "caption": "Drag the orange ring, then check.",
+      "buttonLabel": "Check my guess"
+    },
+    {
+      "id": "1.2.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Adding a minus number",
+      "prompt": "Start at 3. To add $-5$, make 5 hops to the left. Drag the ring 5 hops.",
+      "designRef": "S03, D2",
+      "interaction": {
+        "type": "number-line",
+        "mode": "hops",
+        "widget": { "min": -5, "max": 5, "start": 3, "add": -5, "ringStart": 3 },
+        "equation": "3 + (-5) = ?",
+        "answer": {
+          "value": -2,
+          "correctTitle": "Yes, −2.",
+          "correctWhy": "Start at 3 and make 5 hops to the left. You pass 0 after 3 hops, then go 2 more.",
+          "mistakes": [
+            { "match": 8, "reply": "That is 3 + 5. Adding −5 means a move to the left. Try the hops again." },
+            { "match": 2, "reply": "You stopped at plus 2. Count the hops again: the fifth hop goes past 0." }
+          ]
+        }
+      },
+      "tryTask": "Now start at −3 and add +3. Where do you land? Why?",
+      "hints": ["A minus number moves to the left.", "Count the hops: 3, 2, 1, 0, −1, …"],
+      "showMe": { "steps": [ { "math": "3 \\to 2 \\to 1 \\to 0 \\to -1 \\to -2", "text": "Make one hop to the left for each unit of 5." }, { "math": "3 + (-5) = -2", "text": "The ring stops at −2." } ] },
+      "twin": {
+        "type": "number-line",
+        "mode": "hops",
+        "widget": { "min": -5, "max": 5, "start": 2, "add": -4, "ringStart": 2 },
+        "equation": "2 + (-4) = ?",
+        "answer": { "value": -2, "correctTitle": "Yes, −2.", "correctWhy": "4 hops to the left of 2 is −2." }
+      },
+      "caption": "Make all 5 hops, then check."
+    },
+    {
+      "id": "1.2.04",
+      "designRef": "S04",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Order does not change the sum",
+      "prompt": "Look at the two paths. $3 + 5$ and $5 + 3$ use different hops. Lang assumes two rules about this. He also writes $a - b$ for $a + (-b)$.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "compare",
+        "widget": { "min": -2, "max": 10, "paths": [ { "start": 3, "adds": [5] }, { "start": 5, "adds": [3] } ] },
+        "followUp": {
+          "type": "choice",
+          "question": "Does $(-2 + 5) + 4$ stop at the same point as $-2 + (5 + 4)$?",
+          "options": [
+            { "id": "yes", "label": "Yes, both stop at 7" },
+            { "id": "no", "label": "No, they stop at different points", "reply": "Calculate the two: (−2 + 5) + 4 = 3 + 4, and −2 + (5 + 4) = −2 + 9. Compare the results." }
+          ],
+          "correct": "yes",
+          "feedback": { "correctTitle": "Yes, both are 7.", "correctWhy": "The grouping does not change the sum. This is associativity. Lang assumes it, with commutativity." }
+        }
+      },
+      "hints": ["Calculate the brackets first on each side."]
+    },
+    {
+      "id": "1.2.05",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Every number has an undo",
+      "prompt": "Make 3 hops right, then 3 hops left. You return to 0. Lang writes this as a rule.",
+      "designRef": "S05",
+      "interaction": { "type": "rule-card", "ruleIds": ["N1", "N2"], "picture": "mirror" },
+      "note": { "label": "WORDS MATTER", "text": "Say −a as “minus a”, not “negative a”. If a = −3, then −a = 3, which is positive." }
+    },
+    {
+      "id": "1.2.06",
+      "designRef": "S06",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Two mirrors bring you back",
+      "prompt": "Minus moves a number to its mirror point across 0. Do this two times, and you are back at the start. This is N4: $-(-a) = a$.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "mirror",
+        "widget": { "min": -5, "max": 5, "mirrorOf": 4 },
+        "followUp": {
+          "type": "number-input",
+          "expression": "-(-4) =",
+          "answer": {
+            "value": 4,
+            "correctTitle": "Yes, 4.",
+            "correctWhy": "The first minus gives −4. The second minus mirrors −4 back to 4.",
+            "mistakes": [ { "match": -4, "reply": "That is one mirror. There are two minus signs. Mirror −4 again." } ]
+          }
+        }
+      },
+      "hints": ["Mirror 4 across 0. Then mirror the result again."]
+    },
+    {
+      "id": "1.2.07",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Each number has one undo",
+      "prompt": "If $a + b = 0$, then $b$ must be $-a$. Lang calls this N3. Give the reason for each step.",
+      "designRef": "S07, D4",
+      "interaction": {
+        "type": "proof",
+        "goal": "\\va{a} + \\vb{b} = 0 \\Rightarrow \\vb{b} = -\\va{a}",
+        "lines": [
+          { "math": "\\va{a} + \\vb{b} = 0", "reason": null },
+          { "math": "-\\va{a} + \\va{a} + \\vb{b} = -\\va{a} + 0", "reason": "add-both", "reasonLabel": "add −a to both sides" },
+          { "math": "0 + \\vb{b} = -\\va{a} + 0", "reason": "N2" },
+          { "math": "\\vb{b} = -\\va{a}", "reason": "N1" }
+        ],
+        "steps": [ { "id": "add-both", "label": "add −a to both sides" } ],
+        "tray": ["N1", "N2", "comm-add", "assoc-add", "add-both"],
+        "wrongReasonReplies": {
+          "comm-add": "Commutativity changes the order of two terms. What changed in this line?",
+          "assoc-add": "Associativity changes the brackets. What changed in this line?",
+          "N1": "N1 removes a 0 that is added. Is there a 0 to remove in this line?",
+          "N2": "N2 changes a + (−a) into 0. Look for a number next to its minus.",
+          "add-both": "This step adds a new term to both sides. Did this line add a term?"
+        },
+        "feedback": { "correctTitle": "Proved.", "correctWhy": "You used only N1, N2 and one move that keeps the balance. So the undo of a number is unique." }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.2.08",
+      "designRef": "S08",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Minus of a sum",
+      "prompt": "Prove N5: $-(a + b) = -a - b$. Show that $-a - b$ undoes $a + b$. Then use N3.",
+      "interaction": {
+        "type": "proof",
+        "goal": "-(\\va{a} + \\vb{b}) = -\\va{a} - \\vb{b}",
+        "lines": [
+          { "math": "(\\va{a} + \\vb{b}) + (-\\va{a} - \\vb{b})", "reason": null },
+          { "math": "= \\va{a} + \\vb{b} - \\va{a} - \\vb{b}", "reason": "assoc-add" },
+          { "math": "= \\va{a} - \\va{a} + \\vb{b} - \\vb{b}", "reason": "comm-add" },
+          { "math": "= 0 + 0", "reason": "N2" },
+          { "math": "= 0", "reason": "N1" },
+          { "math": "\\text{So } -\\va{a} - \\vb{b} = -(\\va{a} + \\vb{b})", "reason": "N3" }
+        ],
+        "tray": ["N1", "N2", "N3", "N4", "comm-add", "assoc-add"],
+        "wrongReasonReplies": {
+          "comm-add": "Commutativity changes the order of terms. Did the order change, or only the brackets?",
+          "assoc-add": "Associativity changes the brackets. Did the brackets change, or the order?",
+          "N3": "N3 is the last step: a sum is 0, so one term is minus the other. Is the sum 0 yet?",
+          "N4": "N4 removes two minus signs. Is there −(−a) in this line?"
+        },
+        "feedback": { "correctTitle": "Proved.", "correctWhy": "The sum is 0, so N3 gives −a − b = −(a + b). Lang uses this proof." }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.2.09",
+      "designRef": "S09",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Two minus numbers make a minus sum",
+      "prompt": "Lang assumes that a sum of positive integers is positive. Use this to prove: if $a$ and $b$ are negative, then $a + b$ is negative.",
+      "interaction": {
+        "type": "proof",
+        "goal": "\\va{a}, \\vb{b} < 0 \\Rightarrow \\va{a} + \\vb{b} < 0",
+        "lines": [
+          { "math": "\\va{a} = -n,\\ \\vb{b} = -m, \\text{ with } n, m > 0", "reason": null },
+          { "math": "\\va{a} + \\vb{b} = -n - m", "reason": "substitute", "reasonLabel": "put in −n and −m" },
+          { "math": "= -(n + m)", "reason": "N5" },
+          { "math": "n + m > 0", "reason": "pos-sum" },
+          { "math": "\\text{So } \\va{a} + \\vb{b} \\text{ is negative}", "reason": "minus-positive", "reasonLabel": "minus a positive number is negative" }
+        ],
+        "steps": [
+          { "id": "substitute", "label": "put in −n and −m" },
+          { "id": "minus-positive", "label": "minus a positive number is negative" }
+        ],
+        "tray": ["N4", "N5", "pos-sum", "comm-add", "substitute", "minus-positive"],
+        "wrongReasonReplies": {
+          "N4": "N4 removes two minus signs. This line has a minus in front of a sum.",
+          "N5": "N5 changes −(a + b) into −a − b. Read this line from right to left.",
+          "pos-sum": "This rule is about a sum of positive numbers. Which numbers here are positive?",
+          "comm-add": "The order of the terms did not change."
+        },
+        "feedback": { "correctTitle": "Proved.", "correctWhy": "You proved a new rule from one rule that Lang assumes and one that you proved." }
+      },
+      "caption": "Tap a rule to fill the orange slot."
+    },
+    {
+      "id": "1.2.10",
+      "designRef": "S10",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Keep the balance",
+      "prompt": "If $a + b = c$, then $a = c - b$. Add $-b$ to both sides. Remove 3 cubes from each pan to find $x$.",
+      "interaction": {
+        "type": "balance",
+        "mode": "solve",
+        "widget": { "left": { "x": 1, "units": 3 }, "right": { "x": 0, "units": 5 } },
+        "answer": {
+          "value": 2,
+          "correctTitle": "Yes, x = 2.",
+          "correctWhy": "x + 3 = 5, so x = 5 − 3 = 2. The balance stays level because you removed 3 from both pans.",
+          "mistakes": [ { "match": 8, "reply": "That is 5 + 3. To keep the balance, remove 3 from both pans. Do not add." } ]
+        }
+      },
+      "hints": ["Remove the same number of cubes from each pan."]
+    },
+    {
+      "id": "1.2.11",
+      "designRef": "S11",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 3",
+      "title": "Your turn",
+      "prompt": "Calculate.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "7 + (-9) =",
+        "answer": {
+          "value": -2,
+          "correctTitle": "Yes, −2.",
+          "correctWhy": "9 hops to the left of 7: 7 hops take you to 0, then 2 more.",
+          "mistakes": [
+            { "match": 16, "reply": "That is 7 + 9. A minus number moves to the left. Which direction did you hop?" },
+            { "match": 2, "reply": "The size is correct, but the sign is not. You go past 0. Which side of 0 do you stop on?" }
+          ]
+        }
+      },
+      "hints": ["Go to 0 first. How many hops are left?"],
+      "twin": { "type": "number-input", "expression": "4 + (-6) =", "answer": { "value": -2, "correctTitle": "Yes, −2.", "correctWhy": "4 hops take you to 0, then 2 more to the left." } }
+    },
+    {
+      "id": "1.2.12",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 3",
+      "title": "Your turn",
+      "prompt": "Be careful when you take minus of a sum with minus signs inside.",
+      "designRef": "S12",
+      "interaction": {
+        "type": "number-input",
+        "expression": "-(-6 + 8) =",
+        "answer": {
+          "value": -2,
+          "correctTitle": "Yes, −2.",
+          "correctWhy": "−6 + 8 = 2, and minus 2 is −2. With N5: 6 − 8 = −2.",
+          "mistakes": [
+            { "match": 2, "reply": "−6 + 8 is 2. That is correct. A minus sign is still outside the brackets. What is minus 2?" },
+            { "match": -14, "reply": "The outer minus changes every sign inside. What are −(−6) and −(8)?" },
+            { "match": 14, "reply": "Calculate inside the brackets first: −6 + 8. Then apply the outer minus." }
+          ]
+        }
+      },
+      "hints": ["Calculate inside the brackets first.", "Then apply the minus outside: minus 2 is −2."],
+      "showMe": { "steps": [ { "math": "-6 + 8 = 2", "text": "Calculate inside the brackets." }, { "math": "-(2) = -2", "text": "Apply the outer minus." }, { "math": "-(-6) - 8 = 6 - 8 = -2", "text": "N5 gives the same result." } ] },
+      "twin": { "type": "number-input", "expression": "-(-3 + 7) =", "answer": { "value": -4, "correctTitle": "Yes, −4.", "correctWhy": "−3 + 7 = 4, and minus 4 is −4." } }
+    },
+    {
+      "id": "1.2.13",
+      "designRef": "S13",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 3",
+      "title": "Solve",
+      "prompt": "Find the missing number in each problem.",
+      "interaction": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "prompt": "Solve for $y$.",
+            "expression": "-3 - y = 4, \\quad y =",
+            "answer": {
+              "value": -7,
+              "correctTitle": "Yes, y = −7.",
+              "correctWhy": "Check: −3 − (−7) = −3 + 7 = 4.",
+              "mistakes": [
+                { "match": 7, "reply": "Do a check: −3 − 7 = −10, not 4. Which y makes −3 − y equal to 4?" },
+                { "match": 1, "reply": "Do a check: −3 − 1 = −4, not 4. Add 3 to both sides first: −y = 7." }
+              ]
+            }
+          },
+          {
+            "prompt": "An account shows −20. After a deposit, the account shows 35. Find the deposit.",
+            "expression": "-20 + d = 35, \\quad d =",
+            "answer": {
+              "value": 55,
+              "correctTitle": "Yes, 55.",
+              "correctWhy": "d = 35 − (−20) = 35 + 20 = 55.",
+              "mistakes": [ { "match": 15, "reply": "That is 35 − 20. The account starts below 0. How far is it from −20 to 35?" } ]
+            }
+          }
+        ]
+      },
+      "hints": ["Use the rule from the balance: if a + b = c, then a = c − b."]
+    },
+    {
+      "id": "1.2.14",
+      "kind": "trap-summary",
+      "label": "LESSON 1.2 COMPLETE",
+      "title": "You can undo any number.",
+      "prompt": "You use these rules in all later chapters:",
+      "designRef": "S14",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: −a is always a negative number.",
+          "options": [
+            { "id": "true", "label": "True", "reply": "Put in a = −3. Then −a = −(−3) = 3, which is positive." },
+            { "id": "false", "label": "False" }
+          ],
+          "correct": "false",
+          "feedback": { "correctTitle": "Correct. It is false.", "correctWhy": "If a is negative, then −a is positive. This is why Lang says “minus a”." }
+        },
+        "summary": ["N2", "N4", "N5"]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Minus times minus"
+    }
+  ]
+}

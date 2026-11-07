@@ -1,0 +1,105 @@
+/* Lang Visuals: design tokens. Source: FigCraft file "Basic Mathematics Lang", variable collection "Lang Visuals".
+   This is the only file that may hold raw colour values. */
+
+:root {
+  /* Ink and paper */
+  --color-ink: #111111;
+  --color-ink-soft: #444444;
+  --color-ink-muted: #767676; /* 14px minimum */
+  --color-line: #dddddd;
+  --color-grid: #eef1f6;
+  --color-surface: #f6f7f9;
+  --color-paper: #ffffff;
+
+  /* Brand anchor */
+  --color-primary: #1565c0; /* buttons, focus, links */
+
+  /* Meaning colours (palette "Lang Visuals") */
+  --color-primary-bright: #448aff; /* plus direction, variable a */
+  --color-correct: #009688; /* correct, variable c */
+  --color-progress: #8bc34a; /* progress, mastery */
+  --color-hint: #ffc107; /* hints */
+  --color-negative: #ff9800; /* minus direction, drag handles */
+  --color-incorrect: #f44336; /* not quite */
+  --color-rule: #ad1457; /* Lang's rules, definitions, variable b */
+
+  /* Variables */
+  --color-var-a: var(--color-primary-bright);
+  --color-var-b: var(--color-rule);
+  --color-var-c: var(--color-correct);
+
+  /* Text colours on tints (AA contrast) */
+  --color-correct-text: #00695c;
+  --color-incorrect-text: #c62828;
+  --color-hint-text: #7a5a00;
+  --color-negative-text: #c26a00;
+  --color-progress-text: #4e7d1e;
+
+  /* Solid tints (use where color-mix is not available, e.g. SVG fills) */
+  --tint-rule: #f3dee7;
+  --tint-correct: #dbf0ee;
+  --tint-primary: #dce8ff;
+  --tint-negative: #fff3e0;
+  --tint-incorrect: #fdecea;
+  --tint-hint: #fff6da;
+  --tint-progress: #edf6e3;
+
+  /* Type */
+  --font-display: "Bricolage Grotesque Variable", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-math: "STIX Two Text Variable", "STIX Two Text", "Times New Roman", serif;
+  --font-label: "IBM Plex Mono", ui-monospace, monospace;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-display: 800;
+
+  --text-caption: 14px;
+  --text-small: 16px;
+  --text-body: 18px;
+  --text-math: 24px;
+  --text-h3: 24px;
+  --text-h2: 32px;
+  --text-math-xl: 36px;
+  --text-h1: 44px;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-label: 0.08em;
+
+  --leading-tight: 1.1;
+  --leading-body: 1.55;
+
+  /* Space (4px base) */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  /* Radius */
+  --radius-sm: 6px; /* chips */
+  --radius-md: 12px; /* cards, inputs */
+  --radius-lg: 20px; /* panels, widget stages, sheets */
+  --radius-pill: 999px; /* buttons */
+
+  /* Opacity */
+  --opacity-tint: 12%;
+  --opacity-muted: 40%;
+
+  /* Containers and breakpoints */
+  --container-reading: 640px;
+  --container-lesson: 960px;
+  --breakpoint-mobile: 390px;
+  --breakpoint-desktop: 1440px;
+
+  /* Motion */
+  --motion-hop: 240ms; /* per unit on the number line */
+  --motion-sheet: 180ms; /* feedback sheet slide up */
+  --motion-quick: 120ms; /* reduced-motion fade, chip states */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

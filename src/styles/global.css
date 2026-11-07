@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 28px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Variables keep their colour in the whole course (see \va, \vb, \vc). */
+.var-a {
+  color: var(--color-var-a);
+}
+.var-b {
+  color: var(--color-var-b);
+}
+.var-c {
+  color: var(--color-var-c);
+}
+
+/* KaTeX uses STIX Two Text, as in the frames. */
+.katex {
+  font: normal 1em var(--font-math);
+}
+.katex .mathnormal,
+.katex .mathit {
+  font-family: var(--font-math);
+  font-style: italic;
+}
+.katex .mathbf {
+  font-family: var(--font-math);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 120ms !important;
+    transition-duration: 120ms !important;
+    scroll-behavior: auto !important;
+  }
+}

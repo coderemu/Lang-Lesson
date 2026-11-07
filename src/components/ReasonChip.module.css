@@ -1,0 +1,53 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  background: var(--tint-rule);
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--color-rule);
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  cursor: pointer;
+}
+.chip[data-state="placed"] {
+  cursor: default;
+}
+.chip[data-state="wrong"] {
+  border-color: var(--color-incorrect);
+  color: var(--color-incorrect-text);
+  background: var(--tint-incorrect);
+}
+.chip:disabled {
+  background: var(--color-surface);
+  color: var(--color-ink-muted);
+  cursor: not-allowed;
+}
+
+.slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 2px dashed var(--color-line);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  color: var(--color-ink-muted);
+}
+.slot[data-state="active"] {
+  border-color: var(--color-negative);
+  color: var(--color-negative-text);
+  background: var(--tint-negative);
+}
+.slot[data-state="filled"] {
+  border-style: solid;
+  border-color: transparent;
+  padding: 0;
+  background: transparent;
+}

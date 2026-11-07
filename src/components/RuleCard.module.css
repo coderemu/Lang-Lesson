@@ -1,0 +1,36 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: 24px;
+  background: var(--color-paper);
+  border: 2px solid var(--color-rule);
+  border-radius: var(--radius-md);
+}
+.label {
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-rule);
+}
+.statement {
+  font-family: var(--font-math);
+  font-size: var(--text-math-xl);
+  line-height: 1.2;
+}
+.picture {
+  display: flex;
+  justify-content: center;
+}
+.spoken {
+  font-size: var(--text-small);
+  line-height: 24px;
+  color: var(--color-ink-soft);
+}
+
+@media (min-width: 900px) {
+  .card {
+    padding: 32px;
+  }
+}

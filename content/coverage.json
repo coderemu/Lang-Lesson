@@ -1,0 +1,16 @@
+{
+  "_note": "Starter file. It holds the rows of Lang Ch 1 §1–§2 that point to lesson 1.2 and bank 1.2. Phase 1 adds all other Chapter 1 rows from docs/lesson-design/coverage-map.md; Phases 2–4 add their chapters.",
+  "rows": [
+    { "id": "c1.1.03", "chapter": 1, "section": "§1", "kind": "topic", "topic": "Addition as a move to the right; N1", "lessonScreens": ["1.2.03", "1.2.05"], "bankProblems": [] },
+    { "id": "c1.1.04", "chapter": 1, "section": "§1", "kind": "topic", "topic": "Addition of a negative number; 10 − 15 = −5", "lessonScreens": ["1.2.02", "1.2.03"], "bankProblems": [] },
+    { "id": "c1.1.05", "chapter": 1, "section": "§1", "kind": "topic", "topic": "N2, a and −a on opposite sides of 0", "lessonScreens": ["1.2.05"], "bankProblems": [], "note": "Assumed" },
+    { "id": "c1.1.06", "chapter": 1, "section": "§1", "kind": "topic", "topic": "Remark: “minus a”, not “negative a”", "lessonScreens": ["1.2.05", "1.2.14"], "bankProblems": [] },
+    { "id": "c1.2.01", "chapter": 1, "section": "§2", "kind": "topic", "topic": "Commutativity and associativity of addition; the notation a − b", "lessonScreens": ["1.2.04"], "bankProblems": [], "note": "Assumed" },
+    { "id": "c1.2.02", "chapter": 1, "section": "§2", "kind": "topic", "topic": "N3, N4, N5 with proofs", "lessonScreens": ["1.2.06", "1.2.07", "1.2.08"], "bankProblems": [] },
+    { "id": "c1.2.03", "chapter": 1, "section": "§2", "kind": "topic", "topic": "A sum of positive integers is positive; a sum of negative integers is negative", "lessonScreens": ["1.2.09"], "bankProblems": [], "note": "First assumed, second proved" },
+    { "id": "c1.2.04", "chapter": 1, "section": "§2", "kind": "topic", "topic": "a + b = c gives a = c − b", "lessonScreens": ["1.2.10"], "bankProblems": [] },
+    { "id": "c1.2.05", "chapter": 1, "section": "§2", "kind": "exercises", "topic": "Exercises 1–13: justify identities with the rules", "lessonScreens": [], "bankProblems": ["b1.2.01", "b1.2.02", "b1.2.03", "b1.2.04", "b1.2.05"] },
+    { "id": "c1.2.06", "chapter": 1, "section": "§2", "kind": "exercises", "topic": "Exercises 14–21: solve for x", "lessonScreens": ["1.2.13"], "bankProblems": ["b1.2.06", "b1.2.07", "b1.2.08", "b1.2.09", "b1.2.10"] },
+    { "id": "c1.2.07", "chapter": 1, "section": "§2", "kind": "exercises", "topic": "Exercises 22–23: cancellation law for addition", "lessonScreens": [], "bankProblems": ["b1.2.11", "b1.2.12"] }
+  ]
+}

@@ -1,0 +1,43 @@
+.try {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  padding: 14px 16px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+.tryLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-primary);
+}
+.tryText {
+  font-size: var(--text-small);
+  line-height: 24px;
+}
+
+.trap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: 16px;
+  background: var(--tint-hint);
+  border-radius: var(--radius-md);
+}
+.trapLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-caption);
+  line-height: 20px;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-hint-text);
+}
+.trapText {
+  font-size: var(--text-body);
+  line-height: 28px;
+}
+.chips {
+  display: flex;
+  gap: var(--spacing-3);
+}

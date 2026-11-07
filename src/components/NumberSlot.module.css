@@ -1,0 +1,38 @@
+.slot {
+  width: 96px;
+  height: 64px;
+  padding: 0 8px;
+  text-align: center;
+  background: var(--color-paper);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  font-family: var(--font-math);
+  font-size: 32px;
+  line-height: 1;
+}
+.compact {
+  width: 76px;
+  height: 60px;
+  font-size: 30px;
+}
+.slot:focus,
+.slot:focus-visible {
+  border-color: var(--color-primary);
+  outline: none;
+}
+.slot:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.slot[data-state="wrong"] {
+  border-color: var(--color-incorrect);
+  background: var(--tint-incorrect);
+}
+.slot[data-state="correct"] {
+  border-color: var(--color-correct);
+  background: var(--tint-correct);
+}
+.slot:disabled {
+  background: var(--color-surface);
+  color: var(--color-ink-muted);
+}

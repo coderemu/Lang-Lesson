@@ -1,0 +1,74 @@
+.sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: 24px 24px 40px;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 20px rgb(0 0 0 / 10%);
+  animation: slide-up var(--motion-sheet) var(--ease-out);
+}
+.sheet[data-kind="correct"] {
+  background: var(--tint-correct);
+}
+.sheet[data-kind="not-quite"] {
+  background: var(--tint-incorrect);
+}
+.sheet[data-kind="wrong-reason"] {
+  background: var(--tint-hint);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+.title {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+}
+.sheet[data-kind="correct"] .title {
+  color: var(--color-correct-text);
+}
+.sheet[data-kind="not-quite"] .title {
+  color: var(--color-incorrect-text);
+}
+.sheet[data-kind="wrong-reason"] .title {
+  color: var(--color-hint-text);
+}
+
+.body {
+  font-size: var(--text-small);
+  line-height: 24px;
+  color: var(--color-ink);
+}
+.actions {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-2);
+}
+.actions > * {
+  flex: 1;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Frame S12: two equal pill buttons. The secondary one uses the brand colour. */
+.actions button {
+  padding: 14px 12px;
+  white-space: nowrap;
+}
+.actions button[data-variant="secondary"] {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}

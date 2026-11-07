@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figcraft-app__screenshot",
+      "mcp__figcraft-app__get_node",
+      "mcp__figcraft-app__inspect_document",
+      "mcp__figcraft-app__list_commands"
+    ],
+    "deny": [
+      "mcp__figcraft-app__batch",
+      "mcp__figcraft-app__create_node",
+      "mcp__figcraft-app__set_properties",
+      "mcp__figcraft-app__save_file",
+      "mcp__figcraft-app__open_file",
+      "mcp__figcraft-app__undo",
+      "mcp__figcraft-app__redo",
+      "mcp__figcraft-app__type_text",
+      "mcp__figcraft-app__key",
+      "mcp__figcraft-app__pointer",
+      "mcp__figcraft-app__select",
+      "mcp__figcraft-app__export"
+    ]
+  }
+}
