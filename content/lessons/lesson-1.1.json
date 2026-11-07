@@ -1,0 +1,459 @@
+{
+  "id": "1.1",
+  "title": "Numbers on a line",
+  "book": {
+    "chapter": 1,
+    "sections": "§1"
+  },
+  "minutes": 8,
+  "goal": "Put an integer on the line, and say −n as \"minus n\".",
+  "needs": [],
+  "rulesEarned": [],
+  "generalHint": "Look at the line again. Minus numbers are on the left of 0, and plus numbers are on the right.",
+  "next": {
+    "id": "1.2",
+    "title": "Undo moves: add minus numbers"
+  },
+  "screens": [
+    {
+      "id": "1.1.01",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Two below zero",
+      "prompt": "A ruler starts at 0. Drag the ring to \"2 below zero\".",
+      "interaction": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": 0
+        },
+        "answer": {
+          "value": -2,
+          "correctTitle": "Yes, −2.",
+          "correctWhy": "Two below zero is 2 units to the left of 0. We write it as −2.",
+          "mistakes": [
+            {
+              "match": 2,
+              "reply": "That is 2 above zero. A number below zero is on the other side of 0. Which side is that?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Numbers below zero are on the left of 0."
+      ],
+      "caption": "Drag the orange ring, then check."
+    },
+    {
+      "id": "1.1.02",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "The line turns upright",
+      "prompt": "The line now stands up. It is a thermometer. It is 3° outside. The temperature falls by 8°. Guess where it stops.",
+      "interaction": {
+        "type": "thermometer",
+        "mode": "guess",
+        "widget": {
+          "min": -10,
+          "max": 15,
+          "start": 3,
+          "change": -8
+        },
+        "result": -5,
+        "guessFeedback": {
+          "sameSide": {
+            "correctTitle": "Good guess. It is −5°.",
+            "correctWhy": "The first 3° take the temperature to 0°. The last 5° take it below zero."
+          },
+          "otherSide": {
+            "correctTitle": "It is −5°.",
+            "correctWhy": "The temperature falls by more than 3°, so it goes past 0°. 3 − 8 = −5."
+          }
+        }
+      },
+      "caption": "Drag the orange ring, then check.",
+      "buttonLabel": "Check my guess"
+    },
+    {
+      "id": "1.1.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "The line becomes a timeline",
+      "prompt": "Now the line lies down again. It is a timeline. Each step is 100 years. In Lang's convention, the year −500 is 500 BC. Drag the ring to the year −500.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": 0
+        },
+        "answer": {
+          "value": -5,
+          "correctTitle": "Yes, −500.",
+          "correctWhy": "Step 5 to the left of 0 is 500 years before the year 0. This is 500 BC.",
+          "mistakes": [
+            {
+              "match": 5,
+              "reply": "That is the year 500 AD. Years before 0 are on the other side. Which side is that?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Years before 0 are on the left of 0.",
+        "Each step is 100 years. Make 5 steps."
+      ],
+      "caption": "Each step is 100 years."
+    },
+    {
+      "id": "1.1.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Naming the numbers",
+      "prompt": "The numbers 0, 1, 2, 3, ... are the natural numbers. The point 0 is the origin. Numbers to its left, such as −1, −2, ..., are the negative integers. All of them together are the integers.",
+      "interaction": {
+        "type": "choice",
+        "question": "Which number is an integer but is not a natural number?",
+        "options": [
+          {
+            "id": "zero",
+            "label": "0",
+            "reply": "0 is a natural number here. Lang counts 0, 1, 2, ... as the natural numbers. Which number is left of 0?"
+          },
+          {
+            "id": "seven",
+            "label": "7",
+            "reply": "7 is a natural number. A natural number is on the right of 0, or is 0. Which number is on the left?"
+          },
+          {
+            "id": "minus3",
+            "label": "−3"
+          }
+        ],
+        "correct": "minus3",
+        "feedback": {
+          "correctTitle": "Yes, −3.",
+          "correctWhy": "−3 is left of the origin, so it is an integer but not a natural number."
+        }
+      }
+    },
+    {
+      "id": "1.1.05",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 5",
+      "title": "Put −4 on the line",
+      "prompt": "Put −4 on the number line.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": 0
+        },
+        "answer": {
+          "value": -4,
+          "correctTitle": "Yes, −4.",
+          "correctWhy": "−4 is 4 units to the left of 0.",
+          "mistakes": [
+            {
+              "match": 4,
+              "reply": "Minus numbers are on the other side of 0. Which side is that?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Minus numbers are on the left of 0.",
+        "Count 4 units to the left of 0."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "text": "Start at 0. Move 4 units to the left."
+          },
+          {
+            "math": "-4",
+            "text": "The ring stops at −4."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": 0
+        },
+        "answer": {
+          "value": -2,
+          "correctTitle": "Yes, −2.",
+          "correctWhy": "−2 is 2 units to the left of 0."
+        }
+      },
+      "caption": "Drag the orange ring, then check."
+    },
+    {
+      "id": "1.1.06",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 5",
+      "title": "Put 0 on the line",
+      "prompt": "Put 0 on the number line. This point is the origin.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": 2
+        },
+        "answer": {
+          "value": 0,
+          "correctTitle": "Yes, 0.",
+          "correctWhy": "0 is the origin. It is not left or right of itself.",
+          "mistakes": [
+            {
+              "match": 2,
+              "reply": "That is 2 units to the right of the origin. Where is the origin?"
+            },
+            {
+              "match": -2,
+              "reply": "That is 2 units to the left of the origin. Where is the origin?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "The origin is the point where the ruler starts."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "text": "The origin is the start of the ruler."
+          },
+          {
+            "math": "0",
+            "text": "Move the ring to 0."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": -3
+        },
+        "answer": {
+          "value": 0,
+          "correctTitle": "Yes, 0.",
+          "correctWhy": "0 is the origin, where the ruler starts."
+        }
+      },
+      "caption": "Drag the orange ring, then check."
+    },
+    {
+      "id": "1.1.07",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 5",
+      "title": "Put 3 on the line",
+      "prompt": "Put 3 on the number line.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": 0
+        },
+        "answer": {
+          "value": 3,
+          "correctTitle": "Yes, 3.",
+          "correctWhy": "3 is 3 units to the right of 0.",
+          "mistakes": [
+            {
+              "match": -3,
+              "reply": "That is 3 units to the left. Plus numbers are on the other side of 0. Which side is that?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Positive numbers are on the right of 0."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "text": "Start at 0. Move 3 units to the right."
+          },
+          {
+            "math": "3",
+            "text": "The ring stops at 3."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-line",
+        "mode": "place",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "ringStart": 0
+        },
+        "answer": {
+          "value": 4,
+          "correctTitle": "Yes, 4.",
+          "correctWhy": "4 is 4 units to the right of 0."
+        }
+      },
+      "caption": "Drag the orange ring, then check."
+    },
+    {
+      "id": "1.1.08",
+      "kind": "practice",
+      "label": "PRACTICE · 4 OF 5",
+      "title": "Which is farther from 0?",
+      "prompt": "Which number is farther from 0: −7 or 5?",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "m7",
+            "label": "−7"
+          },
+          {
+            "id": "p5",
+            "label": "5",
+            "reply": "5 is 5 units from 0. Count the units from 0 to −7. Which number is farther?"
+          }
+        ],
+        "correct": "m7",
+        "feedback": {
+          "correctTitle": "Yes, −7.",
+          "correctWhy": "−7 is 7 units from 0. 5 is only 5 units from 0."
+        }
+      },
+      "hints": [
+        "Count the units from 0 to each number.",
+        "A minus sign does not change the distance."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "text": "−7 is 7 units to the left of 0."
+          },
+          {
+            "text": "5 is 5 units to the right of 0. 7 is more than 5."
+          }
+        ]
+      },
+      "twin": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "m9",
+            "label": "−9"
+          },
+          {
+            "id": "p6",
+            "label": "6",
+            "reply": "6 is 6 units from 0. Count the units from 0 to −9. Which number is farther?"
+          }
+        ],
+        "correct": "m9",
+        "feedback": {
+          "correctTitle": "Yes, −9.",
+          "correctWhy": "−9 is 9 units from 0. 6 is only 6 units from 0."
+        }
+      }
+    },
+    {
+      "id": "1.1.09",
+      "kind": "practice",
+      "label": "PRACTICE · 5 OF 5",
+      "title": "The cave and the hill",
+      "prompt": "A cave is 30 m below sea level. A hill is 45 m above sea level. Find the distance between them in metres.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "d =",
+        "answer": {
+          "value": 75,
+          "correctTitle": "Yes, 75.",
+          "correctWhy": "The cave is 30 m below 0 and the hill is 45 m above 0. 30 + 45 = 75.",
+          "mistakes": [
+            {
+              "match": 15,
+              "reply": "That is 45 − 30. The cave and the hill are on two sides of 0. Add the two distances."
+            },
+            {
+              "match": -75,
+              "reply": "A distance is not a minus number. What is the distance in metres?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Draw sea level as 0 on a vertical line.",
+        "The two places are on two sides of 0. Add the distances."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "30 + 45 = 75",
+            "text": "The cave is 30 m below 0. The hill is 45 m above 0."
+          },
+          {
+            "text": "The distance is the sum: 75 m."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "d =",
+        "answer": {
+          "value": 110,
+          "correctTitle": "Yes, 110.",
+          "correctWhy": "The well is 40 m below 0 and the tower is 70 m above 0. 40 + 70 = 110."
+        }
+      }
+    },
+    {
+      "id": "1.1.10",
+      "kind": "trap-summary",
+      "label": "LESSON 1.1 COMPLETE",
+      "title": "You can find any integer.",
+      "prompt": "You use the line in every later lesson:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: −7 is larger than −2, because 7 is larger than 2.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "−7 has the larger digit. Find −7 on the line. A point farther to the left is smaller."
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "On the line, −7 is to the left of −2. A point farther to the left is smaller."
+          }
+        },
+        "summary": []
+      },
+      "caption": "Lesson 1.1 is complete.",
+      "buttonLabel": "Next: Undo moves: add minus numbers"
+    }
+  ]
+}

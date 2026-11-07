@@ -26,8 +26,15 @@ export function chipLabel(id: string, steps: { id: string; label: string }[] = [
   return (rulesJson.rules.find((r) => r.id === id)?.name ?? id) as string;
 }
 
-export const openScreen = async (page: Page, id: string) => {
-  await page.goto(`/lesson/1.2?screen=${id}`);
+export function loadLesson(id: string): { screens: Screen[]; rulesEarned: string[] } {
+  return read(`../content/lessons/lesson-${id}.json`) as {
+    screens: Screen[];
+    rulesEarned: string[];
+  };
+}
+
+export const openScreen = async (page: Page, id: string, lessonId = "1.2") => {
+  await page.goto(`/lesson/${lessonId}?screen=${id}`);
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 };
 
@@ -84,7 +91,18 @@ export async function pressContinue(page: Page, kb: boolean) {
 
 async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: Any) => number) {
   switch (i.type) {
+    case "area-model":
+    case "square-tiles":
+    case "fraction-strips":
+      if (i.followUp || i.answer) {
+        await answerInteraction(page, { ...i, type: "number-line", mode: "explore" }, kb, valueOf);
+      }
+      return;
     case "number-line": {
+      if (!i.followUp && i.mode === "explore") {
+        await typeInto(page, page.getByLabel("Your answer"), String(valueOf(i.answer)), kb);
+        return;
+      }
       if (i.followUp) {
         if (i.followUp.type === "choice") {
           const correct = i.followUp.options.find((o: Any) => o.id === i.followUp.correct);
@@ -140,7 +158,11 @@ async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: A
 export async function playScreen(page: Page, s: Screen, kb: boolean) {
   const i = s.interaction as Any;
   const valueOf = (a: Any) => a.value as number;
-  if (i.type === "rule-card") {
+  const answerable =
+    ["thermometer", "balance", "number-input", "multi-number-input", "choice"].includes(i.type) ||
+    (["number-line", "area-model", "square-tiles", "fraction-strips"].includes(i.type) &&
+      (i.answer || i.followUp));
+  if (i.type === "rule-card" || i.type === "none" || !answerable) {
     await activate(page, primary(page), kb);
     return;
   }

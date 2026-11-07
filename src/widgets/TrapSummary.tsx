@@ -27,17 +27,19 @@ export function TrapSummary({
 }: TrapSummaryProps) {
   return (
     <>
-      <div className={styles.summary} role="list" aria-label="Rules you earned">
-        {summary.map((id) => {
-          const r = rules.get(id);
-          return r ? (
-            <div key={id} className={styles.summaryRow} role="listitem">
-              <span className={styles.ruleId}>{ruleChipLabel(id)}</span>
-              <Tex tex={r.statement} className={styles.summaryMath} />
-            </div>
-          ) : null;
-        })}
-      </div>
+      {summary.length > 0 && (
+        <div className={styles.summary} role="list" aria-label="Rules you earned">
+          {summary.map((id) => {
+            const r = rules.get(id);
+            return r ? (
+              <div key={id} className={styles.summaryRow} role="listitem">
+                <span className={styles.ruleId}>{ruleChipLabel(id)}</span>
+                <Tex tex={r.statement} className={styles.summaryMath} />
+              </div>
+            ) : null;
+          })}
+        </div>
+      )}
       <TrapBox question={question} answer={answer} correct={correct} onAnswer={onAnswer} />
       {note}
     </>
