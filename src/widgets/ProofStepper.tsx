@@ -64,6 +64,7 @@ export function ProofStepper({
               key={i}
               className={styles.proofLine}
               data-state={isGiven ? "given" : locked ? "locked" : isActive ? "active" : "done"}
+              aria-disabled={locked || undefined}
               initial={false}
               animate={{ opacity: locked ? 0.45 : 1 }}
               transition={{ duration: reduce ? 0.12 : 0.18 }}

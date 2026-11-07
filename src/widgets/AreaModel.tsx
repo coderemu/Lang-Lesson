@@ -329,7 +329,8 @@ function Doubling({
   const d = doubling(start, factor, k);
   const interactive = !disabled && Boolean(onChange);
   const key = useSlider(0, steps, k, onChange, onEnter, interactive);
-  const boxW = Math.min(76, (W - 24 - steps * 14) / (steps + 1));
+  const GAP = 26;
+  const boxW = Math.min(76, (W - 24 - steps * GAP) / (steps + 1));
   const y = 26;
   const grow = factor >= 1;
   const description = `After ${k} ${factor >= 1 ? "doublings" : "halvings"}: ${fmtNumber(d.value).replace(/\\,/g, ",")}${unit ? ` ${unit}` : ""}.`;
@@ -354,14 +355,14 @@ function Doubling({
         data-interactive={interactive}
       >
         {Array.from({ length: steps + 1 }, (_, i) => {
-          const x = 12 + i * (boxW + 14);
+          const x = 12 + i * (boxW + GAP);
           const done = i <= k;
           const v = start * Math.pow(factor, i);
           const h = grow ? 30 + (i / steps) * 40 : 70 - (i / steps) * 40;
           return (
             <g key={i}>
               {i > 0 && (
-                <text x={x - 7} y={y + 52} className={styles.areaLabel} textAnchor="middle">
+                <text x={x - GAP / 2} y={y + 52} className={styles.areaLabel} textAnchor="middle">
                   {grow ? "×2" : "÷2"}
                 </text>
               )}

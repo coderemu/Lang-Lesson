@@ -244,7 +244,6 @@
           "assoc-mul": "Associativity changes the brackets in a product of three factors. Did the brackets change?",
           "N6": "N6 says 1a = a. Is there a 1 times a number to change?",
           "comm-mul": "Commutativity changes the order of two factors. Did the order change in this line?",
-          "distrib": "Distributivity splits a(b + c). Is there a sum in brackets here?",
           "mult-both": "This step multiplies both sides by the same number. Did this line multiply both sides?",
           "zero-mul": "This rule says 0a = 0. Is there a 0 times a number in the line before?"
         },

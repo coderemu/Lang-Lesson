@@ -388,6 +388,9 @@ for (const f of readdirSync(join(ROOT, "content/lessons")).filter((f) => f.endsW
       for (const l of i.lines)
         if (l.reason && !i.tray.includes(l.reason))
           fail(file, `${s.id}: reason "${l.reason}" is not in the tray`);
+      for (const chip of Object.keys(i.wrongReasonReplies ?? {}))
+        if (!i.tray.includes(chip))
+          fail(file, `${s.id}: wrongReasonReplies has "${chip}", which is not in the tray`);
     }
     // Rule 5
     const numberCheck = (

@@ -49,6 +49,9 @@ export function PracticePlayer() {
   return <Problem key={`${id}/${n}`} bank={bank} n={Number(n)} />;
 }
 
+const FOCUS_FIRST =
+  'input:not([disabled]), button[aria-pressed]:not([disabled]), [data-testid="show-solution"]';
+
 type Phase = "answering" | "feedback" | "solution";
 
 function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
@@ -78,7 +81,7 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
     setBankPosition(bank.lesson, index);
     void requestPersistentStorage();
     const t = window.setTimeout(
-      () => stageRef.current?.querySelector<HTMLElement>("input")?.focus(),
+      () => stageRef.current?.querySelector<HTMLElement>(FOCUS_FIRST)?.focus(),
       0,
     );
     return () => window.clearTimeout(t);
@@ -112,7 +115,7 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
     setOutcome(null);
     setInput(emptyInput());
     setHintOpen(false);
-    window.setTimeout(() => stageRef.current?.querySelector<HTMLElement>("input")?.focus(), 0);
+    window.setTimeout(() => stageRef.current?.querySelector<HTMLElement>(FOCUS_FIRST)?.focus(), 0);
   };
 
   const mark = (state: "correct" | "not-yet") => {
@@ -312,7 +315,7 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
           kind="correct"
           title="Correct."
           actions={
-            <Button type="submit" variant="primary" data-testid="continue">
+            <Button type="submit" variant="primary" data-testid="continue" autoFocus>
               {nextProblem ? "Next problem" : "Finish"}
             </Button>
           }
@@ -337,7 +340,7 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
                   Show me why
                 </Button>
               )}
-              <Button type="submit" variant="primary" data-testid="try-again">
+              <Button type="submit" variant="primary" data-testid="try-again" autoFocus>
                 Try again
               </Button>
             </>
@@ -351,10 +354,17 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
   if (phase === "solution") {
     sheet = (
       <FeedbackSheet
+        key="solution"
         kind="not-quite"
         title="Here is the solution."
         actions={
-          <Button type="submit" variant="primary" data-testid="continue">
+          <Button
+            key="solution-continue"
+            type="submit"
+            variant="primary"
+            data-testid="continue"
+            autoFocus
+          >
             {nextProblem ? "Next problem" : "Finish"}
           </Button>
         }

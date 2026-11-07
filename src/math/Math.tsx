@@ -2,6 +2,7 @@ import katex from "katex";
 import "katex/dist/katex.min.css";
 import { useMemo } from "react";
 import { katexOptions } from "./macros";
+import { spokenTex } from "./spoken";
 
 interface MathProps {
   tex: string;
@@ -17,5 +18,13 @@ export function Math({ tex, display = false, className }: MathProps) {
     [tex, display],
   );
   const Tag = display ? "div" : "span";
-  return <Tag className={className} dangerouslySetInnerHTML={{ __html: html }} />;
+  // The reading in words is the accessible name. The rendered math is a picture for screen readers.
+  return (
+    <Tag
+      className={className}
+      role="img"
+      aria-label={spokenTex(tex)}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 }

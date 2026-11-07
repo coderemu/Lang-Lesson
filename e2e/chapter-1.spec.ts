@@ -30,3 +30,11 @@ for (const id of ids) {
     await play(page, id, false);
   });
 }
+
+/** Criterion 3: lessons 1.1, 1.3 and 1.7 with the keyboard only (Tab, arrows, typing, Enter). Lesson 1.2 has its own keyboard spec. */
+for (const id of ["1.1", "1.3", "1.7"]) {
+  test(`lesson ${id}: keyboard-only path from the first to the last screen`, async ({ page }) => {
+    test.setTimeout(90_000);
+    await play(page, id, true);
+  });
+}

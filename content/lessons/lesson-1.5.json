@@ -330,7 +330,6 @@
           "assoc-add": "Associativity changes the brackets in a sum. Did this line change the brackets?",
           "distrib": "Distributivity takes a common factor out of a sum, or multiplies a sum. Is there a common factor 2 to take out?",
           "comm-add": "Commutativity changes the order of two terms. Did the order change in this line?",
-          "N2": "N2 turns a number plus its minus into 0. Is there a number and its minus here?",
           "put-in": "This step writes the numbers in their 2n or 2n + 1 form. Did the line before have a and b only?",
           "name-m": "This step gives a short name to an expression. Is there a new letter in this line?",
           "same-n": "The two numbers can be different. Use 2n for one and 2k + 1 for the other.",

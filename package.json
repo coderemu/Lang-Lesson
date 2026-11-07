@@ -10,9 +10,12 @@
     "test": "vitest run",
     "lint": "eslint . && prettier --check .",
     "e2e": "playwright test",
-    "qa:1a": "playwright test e2e/qa-1a.spec.ts",
+    "qa:1a": "playwright test -c playwright.qa.config.ts e2e/qa-1a.spec.ts",
     "validate:content": "tsx scripts/validate-content.ts",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "qa:1b": "playwright test -c playwright.qa.config.ts e2e/qa-1b.spec.ts",
+    "qa:1c": "playwright test -c playwright.qa.config.ts e2e/qa-1c.spec.ts",
+    "qa:1e": "playwright test -c playwright.qa.config.ts e2e/qa-1e.spec.ts"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
@@ -29,6 +32,7 @@
     "zustand": "^5.1.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.65.0",
     "@testing-library/jest-dom": "^7.0.1",

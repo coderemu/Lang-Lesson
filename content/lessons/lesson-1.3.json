@@ -714,7 +714,8 @@
           "N9": "N9 moves a minus sign from in front of a product to the second factor. Which factor has the minus sign here?",
           "N8": "N8 moves a minus sign from in front of a product to the first factor. Which factor has the minus sign here?",
           "N7": "N7 says (−1)a = −a. Is there a (−1) times a number to change?",
-          "assoc-mul": "Associativity changes the brackets in a product of three factors. Did the brackets change in this line?"
+          "assoc-mul": "Associativity changes the brackets in a product of three factors. Did the brackets change in this line?",
+          "arith": "This step multiplies two plain numbers. Is there a product of two numbers to calculate in the line before?"
         },
         "feedback": {
           "correctTitle": "Proved.",

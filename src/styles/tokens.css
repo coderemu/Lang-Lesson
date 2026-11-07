@@ -5,7 +5,7 @@
   /* Ink and paper */
   --color-ink: #111111;
   --color-ink-soft: #444444;
-  --color-ink-muted: #767676; /* 14px minimum */
+  --color-ink-muted: #666666; /* 14px minimum. Design value #767676 fails AA on tints (1E) */
   --color-line: #dddddd;
   --color-grid: #eef1f6;
   --color-surface: #f6f7f9;
@@ -32,8 +32,8 @@
   --color-correct-text: #00695c;
   --color-incorrect-text: #c62828;
   --color-hint-text: #7a5a00;
-  --color-negative-text: #c26a00;
-  --color-progress-text: #4e7d1e;
+  --color-negative-text: #a65a00; /* design value #c26a00 fails AA (1E) */
+  --color-progress-text: #49751b; /* design value #4e7d1e fails AA (1E) */
 
   /* Solid tints (use where color-mix is not available, e.g. SVG fills) */
   --tint-rule: #f3dee7;
