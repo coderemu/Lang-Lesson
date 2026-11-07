@@ -10,7 +10,7 @@ Screenshots: `qa/phase-1/1A/` (`home`, `progress`, `rules`, `design-system` at 3
 | DH1 | Main padding | 48 64, gap 28, title 40/44. | Matches |
 | S12 | Not-quite sheet | The frame has no icon. DESIGN-SYSTEM §4 and NFR-03 ask for an icon, so the app shows the "!" badge. | Not fixed on purpose (NFR-03) |
 | S12 | Sheet buttons | Frame: "Show me why" is a blue outline, "Try again" is a blue fill, equal width. DESIGN-SYSTEM says the secondary button has an ink border. The app follows the frame inside the sheet. | Fixed |
-| S11 | Correct sheet | Frame has no icon and a blue Continue button (DESIGN-SYSTEM: ink). The app keeps the icon (NFR-03); the demo uses the blue button. The ink "Continue" variant stays in the button set. Decide in 1B which one the player uses. | Open question |
+| S11 | Correct sheet | Frame has no icon and a blue Continue button (DESIGN-SYSTEM: ink). The app keeps the icon (NFR-03); the demo uses the blue button. The ink "Continue" variant stays in the button set. Decide in 1B which one the player uses. | Decided: blue (DECISIONS.md #9) |
 | S11, S12 | Number slot | Frame fills the slot with the tint in the correct and wrong states. | Fixed |
 | S13 | Hint drawer | Frame label "HINT 1/1" looks like Inter caps, DESIGN-SYSTEM says mono. The app uses mono (the token spec). Frame shows "1/1" for a one-hint screen. | Not fixed (spec wins on font); 1/1 works |
 | S13 | Drawer position | The drawer floats over the second slot and the action area. The component has the right look; its position comes from the lesson player (1B). | Pending 1B |
