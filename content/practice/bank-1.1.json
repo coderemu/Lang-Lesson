@@ -1,0 +1,112 @@
+{
+  "lesson": "1.1",
+  "title": "Bank 1.1",
+  "note": "Lang §1 has no exercises. These problems follow the text.",
+  "problems": [
+    {
+      "id": "b1.1.01",
+      "n": 1,
+      "prompt": "Put −6, −1, 0 and 4 on a number line.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Line drawing",
+      "solution": [
+        "Draw a line and mark 0.",
+        "Put −1 and −6 to the left of 0, 1 unit and 6 units away.",
+        "Put 4 to the right of 0, 4 units away."
+      ],
+      "langType": "§1 text"
+    },
+    {
+      "id": "b1.1.02",
+      "n": 2,
+      "prompt": "The temperature is −3°. It increases by 8°. Find the new temperature in degrees.",
+      "answer": {
+        "type": "number",
+        "value": 5
+      },
+      "answerText": "5°",
+      "solution": [
+        "Start at −3. Move 8 units up.",
+        "−3 + 8 = 5."
+      ],
+      "langType": "§1 thermometer",
+      "hints": [
+        "Move up on the thermometer."
+      ],
+      "verify": "-3 + 8"
+    },
+    {
+      "id": "b1.1.03",
+      "n": 3,
+      "prompt": "Write the year 250 BC as an integer, with Lang's convention.",
+      "answer": {
+        "type": "number",
+        "value": -250
+      },
+      "answerText": "−250",
+      "solution": [
+        "Years before 0 are minus numbers.",
+        "250 BC is −250."
+      ],
+      "langType": "§1 years",
+      "verify": "-250"
+    },
+    {
+      "id": "b1.1.04",
+      "n": 4,
+      "prompt": "Which number is farther from 0: −9 or 6?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−9",
+          "6"
+        ],
+        "correct": 0
+      },
+      "answerText": "−9",
+      "solution": [
+        "−9 is 9 units from 0.",
+        "6 is 6 units from 0. 9 is more than 6."
+      ],
+      "langType": "§1 text"
+    },
+    {
+      "id": "b1.1.05",
+      "n": 5,
+      "prompt": "Write the additive inverse of 7 and of −12.",
+      "answer": {
+        "type": "numbers",
+        "values": [
+          -7,
+          12
+        ],
+        "ordered": true
+      },
+      "answerText": "−7 and 12",
+      "solution": [
+        "The inverse of a is −a.",
+        "The inverse of 7 is −7. The inverse of −12 is 12."
+      ],
+      "langType": "§1 N2",
+      "hints": [
+        "Type two numbers: the first for 7 and the second for −12."
+      ]
+    },
+    {
+      "id": "b1.1.06",
+      "n": 6,
+      "prompt": "Give two integers that are not natural numbers.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "For example −1 and −5",
+      "solution": [
+        "A natural number is 0, 1, 2, ...",
+        "Any integer to the left of 0 is not a natural number."
+      ],
+      "langType": "§1 definitions"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "lesson": "1.5",
+  "title": "Bank 1.5",
+  "problems": [
+    {
+      "id": "b1.5.01",
+      "n": 1,
+      "prompt": "Prove: if $a$ and $b$ are even, $a + b$ is even.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "2n + 2k = 2(n + k)",
+      "solution": [
+        "Write a = 2n and b = 2k.",
+        "a + b = 2n + 2k = 2(n + k).",
+        "This has the form 2m, so it is even."
+      ],
+      "langType": "§4 ex. 1"
+    },
+    {
+      "id": "b1.5.02",
+      "n": 2,
+      "prompt": "Prove: if $a$ is odd and $b$ is even, $a + b$ is odd.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "(2n + 1) + 2k = 2(n + k) + 1",
+      "solution": [
+        "Write a = 2n + 1 and b = 2k.",
+        "a + b = 2n + 1 + 2k = 2(n + k) + 1.",
+        "This has the form 2m + 1, so it is odd."
+      ],
+      "langType": "§4 ex. 1"
+    },
+    {
+      "id": "b1.5.03",
+      "n": 3,
+      "prompt": "Prove: an even number times any positive integer is even.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "2n · b = 2(nb)",
+      "solution": [
+        "Write the even number as 2n.",
+        "2n · b = 2(nb).",
+        "This has the form 2m, so it is even."
+      ],
+      "langType": "§4 ex. 2"
+    },
+    {
+      "id": "b1.5.04",
+      "n": 4,
+      "prompt": "Prove: if $a$ is odd, $a^3$ is odd.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "a² is odd (Theorem 2), and odd × odd is odd",
+      "solution": [
+        "a³ = a² · a.",
+        "a² is odd by Theorem 2.",
+        "Odd times odd is odd (ex. 7), so a³ is odd."
+      ],
+      "langType": "§4 ex. 4"
+    },
+    {
+      "id": "b1.5.05",
+      "n": 5,
+      "prompt": "Prove: if $n$ is odd, $(-1)^n = -1$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "n = 2k + 1; (−1)²ᵏ = 1",
+      "solution": [
+        "Write n = 2k + 1.",
+        "(−1)ⁿ = (−1)²ᵏ · (−1).",
+        "(−1)²ᵏ = ((−1)²)ᵏ = 1, so (−1)ⁿ = −1."
+      ],
+      "langType": "§4 ex. 6"
+    },
+    {
+      "id": "b1.5.06",
+      "n": 6,
+      "prompt": "Find the largest power of 2 that divides 40.",
+      "answer": {
+        "type": "number",
+        "value": 8
+      },
+      "answerText": "8",
+      "solution": [
+        "40 = 8 · 5.",
+        "5 is odd, so no more 2s."
+      ],
+      "langType": "§4 ex. 8–15",
+      "hints": [
+        "Divide by 2 again and again."
+      ],
+      "verify": "2^3"
+    },
+    {
+      "id": "b1.5.07",
+      "n": 7,
+      "prompt": "Find the largest power of 2 that divides 72.",
+      "answer": {
+        "type": "number",
+        "value": 8
+      },
+      "answerText": "8",
+      "solution": [
+        "72 = 8 · 9.",
+        "9 is odd, so no more 2s."
+      ],
+      "langType": "§4 ex. 8–15",
+      "hints": [
+        "Divide by 2 again and again."
+      ],
+      "verify": "2^3"
+    },
+    {
+      "id": "b1.5.08",
+      "n": 8,
+      "prompt": "Find the largest power of 2 that divides 96.",
+      "answer": {
+        "type": "number",
+        "value": 32
+      },
+      "answerText": "32",
+      "solution": [
+        "96 = 32 · 3.",
+        "3 is odd, so no more 2s."
+      ],
+      "langType": "§4 ex. 8–15",
+      "hints": [
+        "Divide by 2 again and again."
+      ],
+      "verify": "2^5"
+    },
+    {
+      "id": "b1.5.09",
+      "n": 9,
+      "prompt": "Find the largest power of 3 that divides 54.",
+      "answer": {
+        "type": "number",
+        "value": 27
+      },
+      "answerText": "27",
+      "solution": [
+        "54 = 27 · 2.",
+        "2 is not divisible by 3."
+      ],
+      "langType": "§4 ex. 16–23",
+      "hints": [
+        "Divide by 3 again and again."
+      ],
+      "verify": "3^3"
+    },
+    {
+      "id": "b1.5.10",
+      "n": 10,
+      "prompt": "Find the largest power of 3 that divides 81.",
+      "answer": {
+        "type": "number",
+        "value": 81
+      },
+      "answerText": "81",
+      "solution": [
+        "81 = 81 · 1.",
+        "81 = 3⁴, so 81 divides itself."
+      ],
+      "langType": "§4 ex. 16–23",
+      "hints": [
+        "Divide by 3 again and again."
+      ],
+      "verify": "3^4"
+    },
+    {
+      "id": "b1.5.11",
+      "n": 11,
+      "prompt": "Find the largest power of 3 that divides 75.",
+      "answer": {
+        "type": "number",
+        "value": 3
+      },
+      "answerText": "3",
+      "solution": [
+        "75 = 3 · 25.",
+        "25 is not divisible by 3."
+      ],
+      "langType": "§4 ex. 16–23",
+      "hints": [
+        "Divide by 3 again and again."
+      ],
+      "verify": "3^1"
+    },
+    {
+      "id": "b1.5.12",
+      "n": 12,
+      "prompt": "$17 \\equiv 2$ and $8 \\equiv 3$ (mod 5). Check that $17 + 8 \\equiv 2 + 3$ and $17 \\cdot 8 \\equiv 2 \\cdot 3$ (mod 5).",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "25 − 5 = 20 and 136 − 6 = 130, both divisible by 5",
+      "solution": [
+        "17 + 8 = 25 and 2 + 3 = 5. 25 − 5 = 20, divisible by 5.",
+        "17 · 8 = 136 and 2 · 3 = 6. 136 − 6 = 130, divisible by 5."
+      ],
+      "langType": "§4 ex. 24–25",
+      "stretch": true
+    },
+    {
+      "id": "b1.5.13",
+      "n": 13,
+      "prompt": "Prove: if $n^2$ is divisible by 3, then $n$ is divisible by 3. Use $3k$, $3k + 1$, $3k + 2$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Square each form",
+      "solution": [
+        "If n = 3k + 1, then n² = 9k² + 6k + 1 = 3(3k² + 2k) + 1. This is not divisible by 3.",
+        "If n = 3k + 2, then n² = 9k² + 12k + 4 = 3(3k² + 4k + 1) + 1. This is not divisible by 3.",
+        "So n must have the form 3k."
+      ],
+      "langType": "§4 ex. 26"
+    }
+  ]
+}

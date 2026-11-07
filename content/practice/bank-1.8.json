@@ -1,0 +1,217 @@
+{
+  "lesson": "1.8",
+  "title": "Bank 1.8",
+  "problems": [
+    {
+      "id": "b1.8.01",
+      "n": 1,
+      "prompt": "Solve $(3x - 2)/(x + 4) = 2$.",
+      "answer": {
+        "type": "number",
+        "value": 10
+      },
+      "answerText": "10",
+      "solution": [
+        "Cross−multiply: 3x − 2 = 2(x + 4).",
+        "3x − 2 = 2x + 8, so x = 10."
+      ],
+      "langType": "§6 ex. 1",
+      "hints": [
+        "Cross−multiply."
+      ],
+      "verify": "10"
+    },
+    {
+      "id": "b1.8.02",
+      "n": 2,
+      "prompt": "Solve $(1 - 3x)/(2x + 1) = -2$.",
+      "answer": {
+        "type": "number",
+        "value": -3
+      },
+      "answerText": "−3",
+      "solution": [
+        "Cross−multiply: 1 − 3x = −2(2x + 1).",
+        "1 − 3x = −4x − 2, so x = −3."
+      ],
+      "langType": "§6 ex. 1",
+      "hints": [
+        "Cross−multiply."
+      ],
+      "verify": "-3"
+    },
+    {
+      "id": "b1.8.03",
+      "n": 3,
+      "prompt": "Solve $x/(x - 2) = 3/4$.",
+      "answer": {
+        "type": "number",
+        "value": -6
+      },
+      "answerText": "−6",
+      "solution": [
+        "Cross−multiply: 4x = 3(x − 2).",
+        "4x = 3x − 6, so x = −6."
+      ],
+      "langType": "§6 ex. 1",
+      "hints": [
+        "Cross−multiply."
+      ],
+      "verify": "-6"
+    },
+    {
+      "id": "b1.8.04",
+      "n": 4,
+      "prompt": "Prove $\\dfrac{1}{x - 2y} + \\dfrac{1}{x + 2y} = \\dfrac{2x}{x^2 - 4y^2}$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Common denominator",
+      "solution": [
+        "The common denominator is (x − 2y)(x + 2y).",
+        "The top is (x + 2y) + (x − 2y) = 2x.",
+        "The bottom is x² − 4y²."
+      ],
+      "langType": "§6 ex. 2–3"
+    },
+    {
+      "id": "b1.8.05",
+      "n": 5,
+      "prompt": "Prove $\\dfrac{x^3 + 8}{x + 2} = x^2 - 2x + 4$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Cross−multiply",
+      "solution": [
+        "Cross−multiply: x³ + 8 = (x² − 2x + 4)(x + 2).",
+        "Expand the right side: x³ + 2x² − 2x² − 4x + 4x + 8 = x³ + 8."
+      ],
+      "langType": "§6 ex. 5"
+    },
+    {
+      "id": "b1.8.06",
+      "n": 6,
+      "prompt": "Prove $\\dfrac{x^5 - 1}{x - 1} = x^4 + x^3 + x^2 + x + 1$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Cross−multiply and cancel",
+      "solution": [
+        "Cross−multiply: x⁵ − 1 = (x⁴ + x³ + x² + x + 1)(x − 1).",
+        "Expand: the middle terms cancel in pairs.",
+        "The result is x⁵ − 1."
+      ],
+      "langType": "§6 ex. 2"
+    },
+    {
+      "id": "b1.8.07",
+      "n": 7,
+      "prompt": "A cyclist goes 9 km at 12 km/h. Find the time in hours.",
+      "answer": {
+        "type": "number",
+        "value": 0.75
+      },
+      "answerText": "3/4 hour",
+      "solution": [
+        "t = d/s = 9/12.",
+        "9/12 = 3/4."
+      ],
+      "langType": "§6 ex. 6",
+      "hints": [
+        "Use d = st."
+      ],
+      "verify": "9/12"
+    },
+    {
+      "id": "b1.8.08",
+      "n": 8,
+      "prompt": "A solid has mass 8 kg and volume 2/5 m³. Find its density in kg/m³ ($m = vd$).",
+      "answer": {
+        "type": "number",
+        "value": 20
+      },
+      "answerText": "20 kg/m³",
+      "solution": [
+        "d = m/v = 8/(2/5).",
+        "8 · (5/2) = 20."
+      ],
+      "langType": "§6 ex. 7",
+      "hints": [
+        "Use m = vd."
+      ],
+      "verify": "8/(2/5)"
+    },
+    {
+      "id": "b1.8.09",
+      "n": 9,
+      "prompt": "Use $C = (5/9)(F - 32)$. Find $C$ when $F = 77$. Find $F$ when $C = 20$.",
+      "answer": {
+        "type": "numbers",
+        "values": [
+          25,
+          68
+        ],
+        "ordered": true
+      },
+      "answerText": "25; 68",
+      "solution": [
+        "F = 77: C = (5/9)(45) = 25.",
+        "C = 20: F − 32 = 36, so F = 68."
+      ],
+      "langType": "§6 ex. 8–9",
+      "hints": [
+        "Type two numbers: C first, then F."
+      ]
+    },
+    {
+      "id": "b1.8.10",
+      "n": 10,
+      "prompt": "Use $E = IR$. Find $R$ when $E = 12$ and $I = 4$.",
+      "answer": {
+        "type": "number",
+        "value": 3
+      },
+      "answerText": "3",
+      "solution": [
+        "R = E/I = 12/4.",
+        "R = 3."
+      ],
+      "langType": "§6 ex. 10",
+      "verify": "12/4"
+    },
+    {
+      "id": "b1.8.11",
+      "n": 11,
+      "prompt": "20 L of a solution is 30% acid. How much water must you add to get 12% acid?",
+      "answer": {
+        "type": "number",
+        "value": 30
+      },
+      "answerText": "30 L",
+      "solution": [
+        "The acid is 0.3 · 20 = 6 L.",
+        "The new total is 6/0.12 = 50 L.",
+        "Add 50 − 20 = 30 L of water."
+      ],
+      "langType": "§6 ex. 11, 14",
+      "verify": "6/0.12 - 20"
+    },
+    {
+      "id": "b1.8.12",
+      "n": 12,
+      "prompt": "A car drives 360 km in 5 hours. It goes 90 km/h on the highway and 40 km/h in towns. Find the highway time in hours.",
+      "answer": {
+        "type": "number",
+        "value": 3.2
+      },
+      "answerText": "3.2 hours",
+      "solution": [
+        "Let h be the highway time. The town time is 5 − h.",
+        "90h + 40(5 − h) = 360, so 50h = 160.",
+        "h = 3.2."
+      ],
+      "langType": "§6 ex. 12, 16",
+      "verify": "(360 - 200)/50"
+    }
+  ]
+}

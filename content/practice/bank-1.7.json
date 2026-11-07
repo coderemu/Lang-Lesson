@@ -1,0 +1,122 @@
+{
+  "lesson": "1.7",
+  "title": "Bank 1.7",
+  "problems": [
+    {
+      "id": "b1.7.01",
+      "n": 1,
+      "prompt": "Prove that no positive rational number $a$ has $a^3 = 2$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Follow Theorem 4 with cubes",
+      "solution": [
+        "Suppose a = m/n in lowest form, so m³ = 2n³.",
+        "Then m³ is even, so m is even. Write m = 2k.",
+        "8k³ = 2n³, so n³ = 4k³ is even, so n is even. Both are even: impossible."
+      ],
+      "langType": "§5 ex. 8"
+    },
+    {
+      "id": "b1.7.02",
+      "n": 2,
+      "prompt": "Prove that no positive rational number $a$ has $a^4 = 2$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Follow Theorem 4",
+      "solution": [
+        "Suppose a = m/n in lowest form, so m⁴ = 2n⁴.",
+        "Then m is even. Write m = 2k.",
+        "16k⁴ = 2n⁴, so n⁴ = 8k⁴ is even, so n is even. Both are even: impossible."
+      ],
+      "langType": "§5 ex. 9"
+    },
+    {
+      "id": "b1.7.03",
+      "n": 3,
+      "prompt": "Prove that no positive rational number $a$ has $a^2 = 3$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Use Bank 1.5, problem 13",
+      "solution": [
+        "Suppose a = m/n in lowest form, so m² = 3n².",
+        "Then m² is divisible by 3, so m is divisible by 3 (Bank 1.5, problem 13). Write m = 3k.",
+        "9k² = 3n², so n² = 3k², and n is divisible by 3. Both are divisible by 3: impossible."
+      ],
+      "langType": "§5 ex. 10"
+    },
+    {
+      "id": "b1.7.04",
+      "n": 4,
+      "prompt": "Find a decimal whose square is near 2 to 3 decimals, then to 4 decimals.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "1.414 (1.999396); 1.4142 (1.99996164)",
+      "solution": [
+        "Test 1.411, 1.412, 1.413, 1.414.",
+        "1.414² = 1.999396.",
+        "Test the fourth decimal: 1.4142² = 1.99996164."
+      ],
+      "langType": "§5 ex. 11"
+    },
+    {
+      "id": "b1.7.05",
+      "n": 5,
+      "prompt": "Find a decimal whose square is near 3 to 2 decimals.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "1.73 (2.9929)",
+      "solution": [
+        "1.73² = 2.9929.",
+        "1.74² = 3.0276 is too big."
+      ],
+      "langType": "§5 ex. 12"
+    },
+    {
+      "id": "b1.7.06",
+      "n": 6,
+      "prompt": "Find a decimal whose square is near 5 to 3 decimals.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "2.236 (4.999696)",
+      "solution": [
+        "2.236² = 4.999696.",
+        "2.237² = 5.004169 is too big."
+      ],
+      "langType": "§5 ex. 13"
+    },
+    {
+      "id": "b1.7.07",
+      "n": 7,
+      "prompt": "Find a decimal whose cube is near 2 to 2 decimals.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "1.26 (2.000376)",
+      "solution": [
+        "1.26³ = 2.000376.",
+        "1.25³ = 1.953125 is too small."
+      ],
+      "langType": "§5 ex. 14"
+    },
+    {
+      "id": "b1.7.08",
+      "n": 8,
+      "prompt": "Find a decimal whose cube is near 3 to 2 decimals.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "1.44 (2.985984)",
+      "solution": [
+        "1.44³ = 2.985984.",
+        "1.45³ = 3.048625 is too big."
+      ],
+      "langType": "§5 ex. 15"
+    }
+  ]
+}

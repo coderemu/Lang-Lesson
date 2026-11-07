@@ -1,0 +1,174 @@
+{
+  "lesson": "1.4",
+  "title": "Bank 1.4",
+  "problems": [
+    {
+      "id": "b1.4.01",
+      "n": 1,
+      "prompt": "Write $4a^3b(9a^2)(2ab^4)$ as $2^m 3^n a^r b^s$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "2³3²a⁶b⁵",
+      "solution": [
+        "4 · 9 · 2 = 72 = 2³ · 3².",
+        "a³ · a² · a = a⁶ and b · b⁴ = b⁵."
+      ],
+      "langType": "§3 ex. 1"
+    },
+    {
+      "id": "b1.4.02",
+      "n": 2,
+      "prompt": "Write $27a^2b(6ab^3)^2$ as $2^m 3^n a^r b^s$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "2²3⁵a⁴b⁷",
+      "solution": [
+        "(6ab³)² = 36a²b⁶.",
+        "27 · 36 = 972 = 2² · 3⁵.",
+        "a² · a² = a⁴ and b · b⁶ = b⁷."
+      ],
+      "langType": "§3 ex. 1"
+    },
+    {
+      "id": "b1.4.03",
+      "n": 3,
+      "prompt": "Expand $(x + 2)^3$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "x³ + 6x² + 12x + 8",
+      "solution": [
+        "(x + 2)³ = (x + 2)(x + 2)².",
+        "(x + 2)² = x² + 4x + 4.",
+        "Multiply: x³ + 6x² + 12x + 8."
+      ],
+      "langType": "§3 ex. 2"
+    },
+    {
+      "id": "b1.4.04",
+      "n": 4,
+      "prompt": "Expand $(x - 1)^4$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "x⁴ − 4x³ + 6x² − 4x + 1",
+      "solution": [
+        "(x − 1)² = x² − 2x + 1.",
+        "Square it: x⁴ − 4x³ + 6x² − 4x + 1."
+      ],
+      "langType": "§3 ex. 3"
+    },
+    {
+      "id": "b1.4.05",
+      "n": 5,
+      "prompt": "Expand $(3 - 2x)^2$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "9 − 12x + 4x²",
+      "solution": [
+        "Use (a − b)² = a² − 2ab + b².",
+        "9 − 2 · 3 · 2x + 4x² = 9 − 12x + 4x²."
+      ],
+      "langType": "§3 ex. 4–7"
+    },
+    {
+      "id": "b1.4.06",
+      "n": 6,
+      "prompt": "Expand $(x^2 + 3)(x^2 - 3)$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "x⁴ − 9",
+      "solution": [
+        "Use (a + b)(a − b) = a² − b².",
+        "(x²)² − 3² = x⁴ − 9."
+      ],
+      "langType": "§3 ex. 8–19"
+    },
+    {
+      "id": "b1.4.07",
+      "n": 7,
+      "prompt": "Expand $(2x + 3)(x - 4)$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "2x² − 5x − 12",
+      "solution": [
+        "2x · x = 2x² and 2x · (−4) = −8x.",
+        "3 · x = 3x and 3 · (−4) = −12.",
+        "−8x + 3x = −5x."
+      ],
+      "langType": "§3 ex. 8–19"
+    },
+    {
+      "id": "b1.4.08",
+      "n": 8,
+      "prompt": "Expand $(x - 3)^2(2 + x)$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "x³ − 4x² − 3x + 18",
+      "solution": [
+        "(x − 3)² = x² − 6x + 9.",
+        "Multiply by (x + 2): x³ + 2x² − 6x² − 12x + 9x + 18.",
+        "= x³ − 4x² − 3x + 18."
+      ],
+      "langType": "§3 ex. 20–29"
+    },
+    {
+      "id": "b1.4.09",
+      "n": 9,
+      "prompt": "Expand $(1 + 2x)(1 - 2x)(3 - x)$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "4x³ − 12x² − x + 3",
+      "solution": [
+        "(1 + 2x)(1 − 2x) = 1 − 4x².",
+        "(1 − 4x²)(3 − x) = 3 − x − 12x² + 4x³."
+      ],
+      "langType": "§3 ex. 20–29"
+    },
+    {
+      "id": "b1.4.10",
+      "n": 10,
+      "prompt": "A town had 40,000 people in 1950. The population doubles every 20 years. Find the population in 2010.",
+      "answer": {
+        "type": "number",
+        "value": 320000
+      },
+      "answerText": "320,000",
+      "solution": [
+        "2010 − 1950 = 60 years. This is 3 periods of 20 years.",
+        "40,000 · 2³ = 320,000."
+      ],
+      "langType": "§3 ex. 30–31",
+      "hints": [
+        "Count the number of doublings."
+      ],
+      "verify": "40000*2^3"
+    },
+    {
+      "id": "b1.4.11",
+      "n": 11,
+      "prompt": "A town had 30,000 people in 1900. The population triples every 50 years. Find the population in 2050.",
+      "answer": {
+        "type": "number",
+        "value": 810000
+      },
+      "answerText": "810,000",
+      "solution": [
+        "2050 − 1900 = 150 years. This is 3 periods of 50 years.",
+        "30,000 · 3³ = 810,000."
+      ],
+      "langType": "§3 ex. 32–33",
+      "hints": [
+        "Count the number of triplings."
+      ],
+      "verify": "30000*3^3"
+    }
+  ]
+}
