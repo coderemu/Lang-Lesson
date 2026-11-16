@@ -1,0 +1,198 @@
+{
+  "lesson": "2.1",
+  "title": "Bank 2.1",
+  "problems": [
+    {
+      "id": "b2.1.01",
+      "n": 1,
+      "prompt": "Solve $x - y = 1$, $x + y = 7$.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 4.0,
+          "y": 3.0
+        }
+      },
+      "answerText": "x = 4, y = 3",
+      "solution": [
+        "Add the rows: 2x = 8, so x = 4.",
+        "Then y = 7 − 4 = 3."
+      ],
+      "langType": "§1 ex. 1–8",
+      "hints": [
+        "Make one letter have the same number in both rows. Then add or subtract."
+      ]
+    },
+    {
+      "id": "b2.1.02",
+      "n": 2,
+      "prompt": "Solve $3x + 2y = 7$, $x - y = 4$.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 3.0,
+          "y": -1.0
+        }
+      },
+      "answerText": "x = 3, y = −1",
+      "solution": [
+        "Multiply row 2 by 2: 2x − 2y = 8.",
+        "Add row 1: 5x = 15, so x = 3.",
+        "Then y = 3 − 4 = −1."
+      ],
+      "langType": "§1 ex. 1–8",
+      "hints": [
+        "Make one letter have the same number in both rows. Then add or subtract."
+      ]
+    },
+    {
+      "id": "b2.1.03",
+      "n": 3,
+      "prompt": "Solve $-2x + 5y = 1$, $x - 3y = -1$.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 2.0,
+          "y": 1.0
+        }
+      },
+      "answerText": "x = 2, y = 1",
+      "solution": [
+        "Multiply row 2 by 2: 2x − 6y = −2.",
+        "Add row 1: −y = −1, so y = 1.",
+        "Then x = 3 · 1 − 1 = 2."
+      ],
+      "langType": "§1 ex. 1–8",
+      "hints": [
+        "Make one letter have the same number in both rows. Then add or subtract."
+      ]
+    },
+    {
+      "id": "b2.1.04",
+      "n": 4,
+      "prompt": "Solve $4x + 3y = 0$, $x - 2y = 0$.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      "answerText": "x = 0, y = 0",
+      "solution": [
+        "Multiply row 2 by 4: 4x − 8y = 0.",
+        "Subtract from row 1: 11y = 0, so y = 0.",
+        "Then x = 2y = 0."
+      ],
+      "langType": "§1 ex. 5–6",
+      "hints": [
+        "Make one letter have the same number in both rows. Then add or subtract."
+      ]
+    },
+    {
+      "id": "b2.1.05",
+      "n": 5,
+      "prompt": "Solve $5x - 2y = 3$, $2x + y = 3$.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 1.0,
+          "y": 1.0
+        }
+      },
+      "answerText": "x = 1, y = 1",
+      "solution": [
+        "Multiply row 2 by 2: 4x + 2y = 6.",
+        "Add row 1: 9x = 9, so x = 1.",
+        "Then y = 3 − 2 = 1."
+      ],
+      "langType": "§1 ex. 1–8",
+      "hints": [
+        "Make one letter have the same number in both rows. Then add or subtract."
+      ]
+    },
+    {
+      "id": "b2.1.06",
+      "n": 6,
+      "prompt": "Does $3x - y = 2$, $6x - 2y = 5$ have a solution?",
+      "answer": {
+        "type": "none"
+      },
+      "answerText": "No. Double the first: 6x − 2y = 4",
+      "solution": [
+        "Double row 1: 6x − 2y = 4.",
+        "Row 2 says 6x − 2y = 5.",
+        "One number cannot be 4 and 5, so there is no solution."
+      ],
+      "langType": "§1 text",
+      "hints": [
+        "Double the first equation. Compare it with the second."
+      ]
+    },
+    {
+      "id": "b2.1.07",
+      "n": 7,
+      "prompt": "Do Bank 1.8 problem 12 again with two unknowns. Let $x$ be the highway hours and $y$ the town hours: $x + y = 5$, $90x + 40y = 360$.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 3.2,
+          "y": 1.8
+        }
+      },
+      "answerText": "x = 3.2, y = 1.8",
+      "solution": [
+        "Multiply row 1 by 40: 40x + 40y = 200.",
+        "Subtract from row 2: 50x = 160, so x = 3.2.",
+        "Then y = 5 − 3.2 = 1.8."
+      ],
+      "langType": "§1 text, end",
+      "hints": [
+        "Multiply row 1 by 40. Then subtract."
+      ]
+    },
+    {
+      "id": "b2.1.08",
+      "n": 8,
+      "prompt": "A show sells 300 tickets at \\$10 and \\$4. The total is \\$1,860. Let $x$ be the number of 10-dollar tickets and $y$ the number of 4-dollar tickets. Find $x$ and $y$.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 110.0,
+          "y": 190.0
+        }
+      },
+      "answerText": "110 at \\$10, 190 at \\$4",
+      "solution": [
+        "The tickets: x + y = 300. The money: 10x + 4y = 1860.",
+        "Multiply row 1 by 4: 4x + 4y = 1200.",
+        "Subtract from the money row: 6x = 660, so x = 110.",
+        "Then y = 300 − 110 = 190."
+      ],
+      "langType": "Ch 1 §6 ex. 13",
+      "hints": [
+        "Write one equation for the tickets and one for the money."
+      ]
+    },
+    {
+      "id": "b2.1.09",
+      "n": 9,
+      "prompt": "A boat travels 120 km in 8 hours in total. It goes 20 km/h with the current and 10 km/h against it. Find the time with the current, in hours.",
+      "answer": {
+        "type": "number",
+        "value": 4.0
+      },
+      "answerText": "4 hours",
+      "solution": [
+        "Let t be the time with the current. The time against it is 8 − t.",
+        "Distance: 20t + 10(8 − t) = 120.",
+        "10t + 80 = 120, so t = 4."
+      ],
+      "langType": "Ch 1 §6 ex. 16",
+      "hints": [
+        "Let t be the time with the current. The time against it is 8 − t."
+      ],
+      "verify": "(120 - 10*8)/(20 - 10)"
+    }
+  ]
+}

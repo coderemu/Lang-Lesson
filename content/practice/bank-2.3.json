@@ -1,0 +1,100 @@
+{
+  "lesson": "2.3",
+  "title": "Bank 2.3",
+  "problems": [
+    {
+      "id": "b2.3.01",
+      "n": 1,
+      "prompt": "Solve $ax + by = 2$, $cx + dy = 5$ for $x$ and $y$, with $ad - bc \\ne 0$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "x = (2d − 5b)/(ad − bc), y = (5a − 2c)/(ad − bc)",
+      "solution": [
+        "Multiply row 1 by d and row 2 by b. Subtract: (ad − bc)x = 2d − 5b.",
+        "Multiply row 1 by c and row 2 by a. Subtract: (ad − bc)y = 5a − 2c.",
+        "Divide both results by ad − bc."
+      ],
+      "langType": "§1 ex. 9",
+      "hints": [
+        "Use the proof of this lesson with u = 2 and v = 5."
+      ]
+    },
+    {
+      "id": "b2.3.02",
+      "n": 2,
+      "prompt": "Find $ad - bc$ for $4x - y = 3$, $2x + 3y = 1$. Then solve.",
+      "answer": {
+        "type": "pair",
+        "values": {
+          "x": 0.7142857142857143,
+          "y": -0.14285714285714285
+        }
+      },
+      "answerText": "14; x = 5/7, y = −1/7",
+      "solution": [
+        "ad − bc = 4 · 3 − (−1) · 2 = 14.",
+        "x = (3 · 3 − (−1) · 1)/14 = 10/14 = 5/7.",
+        "y = (4 · 1 − 2 · 3)/14 = −2/14 = −1/7."
+      ],
+      "langType": "§1 ex. 9",
+      "hints": [
+        "Here a = 4, b = −1, c = 2, d = 3, u = 3, v = 1."
+      ]
+    },
+    {
+      "id": "b2.3.03",
+      "n": 3,
+      "prompt": "Find $ad - bc$ for $6x - 4y = 1$, $3x - 2y = 2$. Is there a solution?",
+      "answer": {
+        "type": "none"
+      },
+      "answerText": "0; no solution",
+      "solution": [
+        "ad − bc = 6 · (−2) − (−4) · 3 = −12 + 12 = 0.",
+        "Double row 2: 6x − 4y = 4. Row 1 says 6x − 4y = 1.",
+        "One number cannot be 1 and 4, so there is no solution."
+      ],
+      "langType": "§1 text",
+      "hints": [
+        "Find ad − bc first. If it is 0, compare the rows."
+      ]
+    },
+    {
+      "id": "b2.3.04",
+      "n": 4,
+      "prompt": "Show that $2x + 3y = 0$, $5x - y = 0$ has only the solution $(0, 0)$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "ad − bc = −17 ≠ 0",
+      "solution": [
+        "ad − bc = 2 · (−1) − 3 · 5 = −17. It is not 0.",
+        "With u = v = 0, the formulas give x = 0 and y = 0.",
+        "So (0, 0) is the only solution."
+      ],
+      "langType": "§1 ex. 10",
+      "hints": [
+        "Find ad − bc. Use the formulas with u = v = 0."
+      ]
+    },
+    {
+      "id": "b2.3.05",
+      "n": 5,
+      "prompt": "Put the general solution into $ax + by = u$. Show that the equation is true.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "(a(ud − bv) + b(av − cu))/(ad − bc) = u",
+      "solution": [
+        "ax + by = (a(ud − bv) + b(av − cu))/(ad − bc).",
+        "Multiply out: (adu − abv + abv − bcu)/(ad − bc).",
+        "The terms −abv and +abv cancel. What is left is u(ad − bc)/(ad − bc) = u."
+      ],
+      "langType": "§1 ex. 11",
+      "hints": [
+        "Multiply out the brackets on top."
+      ]
+    }
+  ]
+}

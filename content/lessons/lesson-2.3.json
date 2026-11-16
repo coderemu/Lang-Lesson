@@ -1,0 +1,453 @@
+{
+  "id": "2.3",
+  "title": "The general system",
+  "book": {
+    "chapter": 2,
+    "sections": "§1, exercises 9–11"
+  },
+  "minutes": 10,
+  "goal": "Solve ax + by = u, cx + dy = v with letters, and use ad − bc ≠ 0 as the condition for one solution.",
+  "needs": [
+    "2.1"
+  ],
+  "rulesEarned": [
+    "general-system"
+  ],
+  "generalHint": "Look at the proof on screen 4. Subtract the two products: ad − bc. The order on top matters.",
+  "screens": [
+    {
+      "id": "2.3.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Solve a system",
+      "prompt": "Solve the system from lesson 2.1. You can type fractions.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "2x + y = 1",
+          "3x - 2y = 4"
+        ],
+        "answer": {
+          "values": {
+            "x": 0.8571428571428571,
+            "y": -0.7142857142857143
+          },
+          "correctTitle": "Yes, x = 6/7 and y = −5/7.",
+          "correctWhy": "2 · row 1 plus row 2 gives 7x = 6. Then y = 1 − 12/7 = −5/7."
+        },
+        "mistakes": [
+          {
+            "match": "x=5/7;y=-3/7",
+            "reply": "The balance tips. Do the same operation to both sides. Multiply the right side of row 1 by 2 as well."
+          }
+        ]
+      },
+      "hints": [
+        "Multiply row 1 by 2. Then add row 2."
+      ]
+    },
+    {
+      "id": "2.3.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "A test for no solution",
+      "prompt": "In lesson 2.1, one system had no solution. Guess a test on the four numbers $a$, $b$, $c$, $d$. The test shows this before you solve. Write the system as $ax + by = u$ and $cx + dy = v$.",
+      "interaction": {
+        "type": "choice",
+        "question": "Which test shows that a system has no solution?",
+        "options": [
+          {
+            "id": "plus",
+            "label": "$ad + bc = 0$",
+            "reply": "For x + 2y = 3 and 2x + 4y = 5, ad + bc = 8. This system has no solution. Does the test work?"
+          },
+          {
+            "id": "minus",
+            "label": "$ad - bc = 0$"
+          },
+          {
+            "id": "sum",
+            "label": "$a + d = b + c$",
+            "reply": "For x + 2y = 3 and 2x + 4y = 5, a + d = 5 and b + c = 4. This system has no solution. Does the test work?"
+          }
+        ],
+        "correct": "minus",
+        "feedback": {
+          "correctTitle": "Yes, ad − bc = 0.",
+          "correctWhy": "For x + 2y = 3 and 2x + 4y = 5: 1 · 4 − 2 · 2 = 0. You prove the test in this lesson."
+        }
+      },
+      "hints": [
+        "Try each test on x + 2y = 3 and 2x + 4y = 5."
+      ],
+      "caption": "Choose a test, then check."
+    },
+    {
+      "id": "2.3.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Find ad − bc",
+      "prompt": "Find $ad - bc$ for the two systems of lesson 2.1. Compare the two results.",
+      "interaction": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "prompt": "$2x + y = 1$ and $3x - 2y = 4$",
+            "expression": "ad - bc =",
+            "answer": {
+              "value": -7.0,
+              "correctTitle": "Yes, −7.",
+              "correctWhy": "2 · (−2) − 1 · 3 = −7. This system has one solution.",
+              "mistakes": [
+                {
+                  "match": -1.0,
+                  "reply": "Look at step 4. Subtract the two products: ad − bc."
+                },
+                {
+                  "match": 7.0,
+                  "reply": "Check the signs. Here d = −2. What is 2 · (−2)?"
+                }
+              ]
+            }
+          },
+          {
+            "prompt": "$x + 2y = 3$ and $2x + 4y = 5$",
+            "expression": "ad - bc =",
+            "answer": {
+              "value": 0.0,
+              "correctTitle": "Yes, 0.",
+              "correctWhy": "1 · 4 − 2 · 2 = 0. This system has no solution.",
+              "mistakes": [
+                {
+                  "match": 8.0,
+                  "reply": "Look at step 4. Subtract the two products: ad − bc."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "hints": [
+        "Use a, b on the first row and c, d on the second row. Then find ad, then bc.",
+        "For the first system: a = 2, b = 1, c = 3, d = −2."
+      ],
+      "caption": "Type two numbers, then check."
+    },
+    {
+      "id": "2.3.04",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Solve with letters",
+      "prompt": "Prove: from $ax + by = u$ and $cx + dy = v$ follows $(ad - bc)x = ud - bv$. Multiply by $d$ and $b$. Subtract. Then do the same for $y$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "(ad - bc)x = ud - bv",
+        "lines": [
+          {
+            "math": "ax + by = u,\\quad cx + dy = v",
+            "reason": null
+          },
+          {
+            "math": "adx + bdy = ud",
+            "reason": "mult-d"
+          },
+          {
+            "math": "bcx + bdy = bv",
+            "reason": "mult-b"
+          },
+          {
+            "math": "(ad - bc)x = ud - bv",
+            "reason": "subtract"
+          },
+          {
+            "math": "(ad - bc)y = av - cu",
+            "reason": "same-y"
+          }
+        ],
+        "tray": [
+          "mult-d",
+          "mult-b",
+          "subtract",
+          "same-y",
+          "zero-product",
+          "inverse-unique"
+        ],
+        "steps": [
+          {
+            "id": "mult-d",
+            "label": "multiply the first equation by d"
+          },
+          {
+            "id": "mult-b",
+            "label": "multiply the second equation by b"
+          },
+          {
+            "id": "subtract",
+            "label": "subtract the second line from the first"
+          },
+          {
+            "id": "same-y",
+            "label": "repeat with a and c for y"
+          }
+        ],
+        "wrongReasonReplies": {
+          "mult-d": "This step multiplies the first equation by d. Did a line multiply by d here?",
+          "mult-b": "This step multiplies the second equation by b. Did a line multiply by b here?",
+          "subtract": "This step subtracts one line from the other. Did two lines combine here?",
+          "same-y": "This step repeats the method for y. Is the line a result for y?",
+          "zero-product": "This rule says: if ab = 0, then a = 0 or b = 0. Is there a product equal to 0 here?",
+          "inverse-unique": "This rule says: if ab = 1, then b = a⁻¹. Is there a product equal to 1 here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "If ad − bc is not 0, divide by it. Then x = (ud − bv)/(ad − bc) and y = (av − cu)/(ad − bc)."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "2.3.05",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "The general solution",
+      "prompt": "If $ad - bc \\ne 0$, then $x = (ud - bv)/(ad - bc)$ and $y = (av - cu)/(ad - bc)$. Lang leaves the proof to the reader (exercise 11).",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "general-system"
+        ]
+      },
+      "note": {
+        "label": "WORDS MATTER",
+        "text": "The letters a, b, c, d, u, v are given numbers. The unknowns are x and y."
+      }
+    },
+    {
+      "id": "2.3.06",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Put the answer back",
+      "prompt": "Put $x$ and $y$ back into $ax + by = u$. Show that it is true. The same steps work for $cx + dy = v$ (exercise 11).",
+      "interaction": {
+        "type": "proof",
+        "goal": "ax + by = u",
+        "lines": [
+          {
+            "math": "x = \\dfrac{ud - bv}{ad - bc},\\quad y = \\dfrac{av - cu}{ad - bc}",
+            "reason": null
+          },
+          {
+            "math": "ax + by = \\dfrac{a(ud - bv) + b(av - cu)}{ad - bc}",
+            "reason": "put-in"
+          },
+          {
+            "math": "= \\dfrac{adu - abv + abv - bcu}{ad - bc}",
+            "reason": "distrib"
+          },
+          {
+            "math": "= \\dfrac{adu - bcu}{ad - bc}",
+            "reason": "N2"
+          },
+          {
+            "math": "= \\dfrac{u(ad - bc)}{ad - bc}",
+            "reason": "factor-u"
+          },
+          {
+            "math": "= u",
+            "reason": "cancel-factor"
+          }
+        ],
+        "tray": [
+          "put-in",
+          "distrib",
+          "N2",
+          "factor-u",
+          "cancel-factor",
+          "zero-product",
+          "inverse-unique"
+        ],
+        "steps": [
+          {
+            "id": "put-in",
+            "label": "put x and y into the equation"
+          },
+          {
+            "id": "factor-u",
+            "label": "take out the factor u"
+          },
+          {
+            "id": "cancel-factor",
+            "label": "cancel ad − bc, which is not 0"
+          }
+        ],
+        "wrongReasonReplies": {
+          "put-in": "This step puts the values of x and y into the equation. Did a line do that here?",
+          "distrib": "Distributivity multiplies out a(b + c). Are there brackets to multiply out?",
+          "N2": "N2 says a + (−a) = 0. Do two terms cancel here?",
+          "factor-u": "This step takes out the common factor u. Do both terms have the factor u?",
+          "cancel-factor": "This step cancels one factor on top and bottom. Is the same factor on top and bottom?",
+          "zero-product": "This rule says: if ab = 0, then a = 0 or b = 0. Is there a product equal to 0 here?",
+          "inverse-unique": "This rule says: if ab = 1, then b = a⁻¹. Is there a product equal to 1 here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "The pair x, y makes the first equation true. The same steps make the second equation true."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "2.3.07",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Zero on the right",
+      "prompt": "If $u = v = 0$ and $ad - bc \\ne 0$, the only solution is $x = 0$, $y = 0$ (exercise 10). Read $ad - bc$ on the board. Then give the solution.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "general",
+        "equations": [
+          "3x + 2y = 0",
+          "x - 4y = 0"
+        ],
+        "answer": {
+          "values": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "correctTitle": "Yes, x = 0 and y = 0.",
+          "correctWhy": "ad − bc = 3 · (−4) − 2 · 1 = −14. It is not 0, so the only solution is x = 0, y = 0."
+        },
+        "mistakes": [
+          {
+            "match": "none",
+            "reply": "ad − bc = −14, which is not 0. So the system has one solution. Put x = 0 and y = 0 into both rows."
+          },
+          {
+            "match": "many",
+            "reply": "ad − bc = −14, which is not 0. So the system has exactly one solution."
+          }
+        ]
+      },
+      "hints": [
+        "Read ad − bc on the board. Is it 0?",
+        "Put x = 0 and y = 0 into both rows."
+      ],
+      "caption": "Type x and y."
+    },
+    {
+      "id": "2.3.08",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 1",
+      "title": "Use the formula",
+      "prompt": "Solve $5x + 2y = 1$, $3x + y = 2$ with the formula. Find $ad - bc$ first.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "general",
+        "equations": [
+          "5x + 2y = 1",
+          "3x + y = 2"
+        ],
+        "answer": {
+          "values": {
+            "x": 3.0,
+            "y": -7.0
+          },
+          "correctTitle": "Yes, x = 3 and y = −7.",
+          "correctWhy": "ad − bc = 5 · 1 − 2 · 3 = −1. Then x = (1 − 4)/(−1) = 3 and y = (10 − 3)/(−1) = −7."
+        },
+        "mistakes": [
+          {
+            "match": "x=-3/11;y=7/11",
+            "reply": "Look at step 4. Subtract the two products: ad − bc."
+          },
+          {
+            "match": "x=-3;y=-7",
+            "reply": "The order on top changes the sign. Repeat step 4 and compare."
+          }
+        ]
+      },
+      "hints": [
+        "Here a = 5, b = 2, c = 3, d = 1, u = 1, v = 2.",
+        "x = (ud − bv)/(ad − bc) = (1 − 4)/(−1)."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "ad - bc = 5 \\cdot 1 - 2 \\cdot 3 = -1",
+            "text": "Find ad − bc."
+          },
+          {
+            "math": "x = \\dfrac{ud - bv}{ad - bc} = \\dfrac{1 - 4}{-1} = 3",
+            "text": "Put in the numbers for x."
+          },
+          {
+            "math": "y = \\dfrac{av - cu}{ad - bc} = \\dfrac{10 - 3}{-1} = -7",
+            "text": "Put in the numbers for y."
+          }
+        ]
+      },
+      "twin": {
+        "type": "elimination",
+        "mode": "general",
+        "equations": [
+          "2x + 3y = 8",
+          "x + 2y = 5"
+        ],
+        "answer": {
+          "values": {
+            "x": 1.0,
+            "y": 2.0
+          },
+          "correctTitle": "Yes, x = 1 and y = 2.",
+          "correctWhy": "ad − bc = 2 · 2 − 3 · 1 = 1. Then x = (16 − 15)/1 = 1 and y = (10 − 8)/1 = 2."
+        }
+      }
+    },
+    {
+      "id": "2.3.09",
+      "kind": "name-it",
+      "label": "NOTE",
+      "title": "Used again later",
+      "prompt": "Lang uses $ad - bc$ again in his chapter on determinants. You do not need that chapter now.",
+      "interaction": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "2.3.10",
+      "kind": "trap-summary",
+      "label": "LESSON 2.3 COMPLETE",
+      "title": "ad − bc decides.",
+      "prompt": "You saved this rule:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: if ad − bc = 0, the system never has a solution.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Double the first equation of x + y = 1 and 2x + 2y = 2. Is it the same as the second equation?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "The system x + y = 1 and 2x + 2y = 2 has ad − bc = 0 and many solutions. The second equation is the first equation doubled."
+          }
+        },
+        "summary": [
+          "general-system"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Finish chapter 2"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ type Problem = { id: string; n: number; prompt: string; answer: any; stretch?: b
 type Bank = { lesson: string; problems: Problem[] };
 const dir = new URL("../content/practice/", import.meta.url);
 const banks: Bank[] = readdirSync(dir)
-  .filter((f) => /^bank-1\.\d\.json$/.test(f))
+  .filter((f) => /^bank-[12]\.\d\.json$/.test(f))
   .sort()
   .map((f) => JSON.parse(readFileSync(new URL(f, dir), "utf8")));
 
@@ -31,6 +31,15 @@ async function solve(page: Page, p: Problem, kb: boolean) {
     await activate(
       page,
       page.getByRole("group", { name: "Choices" }).getByRole("button").nth(a.correct),
+      kb,
+    );
+  } else if (a.type === "pair" || a.type === "triple") {
+    for (const [v, n] of Object.entries(a.values))
+      await typeInto(page, page.getByLabel(`Answer for ${v}`, { exact: true }), String(n), kb);
+  } else if (a.type === "none") {
+    await activate(
+      page,
+      page.getByRole("group", { name: "Choices" }).getByRole("button").nth(1),
       kb,
     );
   } else throw new Error(`unsupported answer type ${a.type}`);
@@ -73,6 +82,29 @@ test("bank 1.1: keyboard only (number, numbers, choice and self-check problems)"
     banks.find((b) => b.lesson === "1.1")!,
     true,
   );
+});
+
+test("bank 2.1: keyboard only (pair, no solution and number problems)", async ({ page }) => {
+  test.setTimeout(120_000);
+  await playBank(
+    page,
+    banks.find((b) => b.lesson === "2.1")!,
+    true,
+  );
+});
+
+test("pair bank: a swapped answer is not quite, the right answer is correct", async ({ page }) => {
+  test.skip(test.info().project.name !== "mobile");
+  await page.goto("/practice/2.1/1");
+  await typeInto(page, page.getByLabel("Answer for x", { exact: true }), "3", false);
+  await typeInto(page, page.getByLabel("Answer for y", { exact: true }), "4", false);
+  await checkButton(page).click();
+  await expect(feedback(page)).toContainText("Not quite.");
+  await page.getByTestId("try-again").click();
+  await typeInto(page, page.getByLabel("Answer for x", { exact: true }), "4", false);
+  await typeInto(page, page.getByLabel("Answer for y", { exact: true }), "3", false);
+  await checkButton(page).click();
+  await expect(feedback(page)).toContainText("Correct.");
 });
 
 test("a wrong answer gives the exact reply, and Show me why comes after two wrong answers", async ({

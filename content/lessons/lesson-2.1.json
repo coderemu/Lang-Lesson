@@ -1,0 +1,442 @@
+{
+  "id": "2.1",
+  "title": "Two equations, two unknowns",
+  "book": {
+    "chapter": 2,
+    "sections": "§1"
+  },
+  "minutes": 12,
+  "goal": "Solve two linear equations by elimination, and identify a system with no solution.",
+  "needs": [
+    "1.8"
+  ],
+  "rulesEarned": [
+    "elimination"
+  ],
+  "generalHint": "Put your numbers into both equations. Both equations must be true.",
+  "next": {
+    "id": "2.2",
+    "title": "Three equations, three unknowns"
+  },
+  "screens": [
+    {
+      "id": "2.1.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Solve one equation",
+      "prompt": "Solve for $x$. You need this skill in lesson 2.1.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\dfrac{2x - 1}{3} = 5,\\ x =",
+        "answer": {
+          "value": 8.0,
+          "correctTitle": "Yes, 8.",
+          "correctWhy": "Multiply both sides by 3: 2x − 1 = 15. Then 2x = 16 and x = 8.",
+          "mistakes": [
+            {
+              "match": 3.0,
+              "reply": "Multiply both sides by 3: 2x − 1 = 5 · 3. What is 5 · 3?"
+            },
+            {
+              "match": 7.0,
+              "reply": "Put x = 7 into the equation. Is (2 · 7 − 1)/3 equal to 5?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Multiply both sides by 3."
+      ]
+    },
+    {
+      "id": "2.1.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Count the tickets",
+      "prompt": "A show sells 120 tickets. An adult ticket costs 8 dollars. A child ticket costs 5 dollars. The total is 780 dollars. Guess the number of adult tickets.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\text{Adult tickets} =",
+        "answer": {
+          "value": 60.0,
+          "correctTitle": "Yes, 60.",
+          "correctWhy": "60 adult tickets cost 480 dollars. 60 child tickets cost 300 dollars. The total is 780 dollars.",
+          "mistakes": [
+            {
+              "match": 120.0,
+              "reply": "That is all the tickets. Some tickets are child tickets. Find the total cost for your guess."
+            },
+            {
+              "match": 65.0,
+              "reply": "Check the total: 65 · 8 + 55 · 5 = 795. Is that 780?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Try a number. Find 8a + 5(120 − a) for your guess a.",
+        "Change a until the total is 780."
+      ],
+      "caption": "Type a guess, then check."
+    },
+    {
+      "id": "2.1.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Add the two equations",
+      "prompt": "Add the two equations. The $y$ terms cancel, so $2x = 14$. Then find $x$ and $y$.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "x + y = 10",
+          "x - y = 4"
+        ],
+        "balance": true,
+        "answer": {
+          "values": {
+            "x": 7.0,
+            "y": 3.0
+          },
+          "correctTitle": "Yes, x = 7 and y = 3.",
+          "correctWhy": "Row 3 says 2x = 14, so x = 7. Then y = 10 − 7 = 3. Both equations are true."
+        },
+        "mistakes": [
+          {
+            "match": "x=14;y=-4",
+            "reply": "Row 3 says 2x = 14. Divide both sides by 2. Then find y."
+          },
+          {
+            "match": "x=5;y=5",
+            "reply": "Put x = 5 and y = 5 into x − y = 4. Is it true? Both equations must be true."
+          }
+        ]
+      },
+      "tryTask": "Tap row 1 and row 2. Then tap Add rows.",
+      "hints": [
+        "Add the left sides and add the right sides. The y terms are y and −y."
+      ],
+      "caption": "Add the rows, then type x and y."
+    },
+    {
+      "id": "2.1.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Elimination",
+      "prompt": "Multiply the equations so that one letter has the same number in both. Then add or subtract the equations. One letter is gone.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "elimination"
+        ]
+      },
+      "note": {
+        "label": "WORDS MATTER",
+        "text": "Do the same operation to both sides of an equation. Then the balance stays level."
+      }
+    },
+    {
+      "id": "2.1.05",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Multiply, then add",
+      "prompt": "Multiply the first equation by 2 and add the rows. Then $x = 6/7$. Find $y$ in the same way.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "2x + y = 1",
+          "3x - 2y = 4"
+        ],
+        "answer": {
+          "values": {
+            "x": 0.8571428571428571,
+            "y": -0.7142857142857143
+          },
+          "correctTitle": "Yes, x = 6/7 and y = −5/7.",
+          "correctWhy": "2 · row 1 is 4x + 2y = 2. Add row 2: 7x = 6. Then y = 1 − 12/7 = −5/7."
+        },
+        "mistakes": [
+          {
+            "match": "x=5/7;y=-3/7",
+            "reply": "The balance tips. Do the same operation to both sides. Multiply the right side of row 1 by 2 as well."
+          },
+          {
+            "match": "x=-2;y=5",
+            "reply": "Subtract a minus number: −(−2y) = +2y. Use N4."
+          }
+        ]
+      },
+      "tryTask": "Tap row 1. Type 2 in the × box. Tap Multiply row. Then add the new row to row 2.",
+      "hints": [
+        "Row 1 times 2 gives 4x + 2y = 2.",
+        "Add row 2. The y terms are 2y and −2y."
+      ],
+      "caption": "Type fractions like 6/7."
+    },
+    {
+      "id": "2.1.06",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "No solution",
+      "prompt": "A system can have no solution. Double $x + 2y = 3$ to get $2x + 4y = 6$. Compare it with $2x + 4y = 5$. Use the board.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "x + 2y = 3",
+          "2x + 4y = 5"
+        ],
+        "answer": {
+          "values": "none",
+          "correctTitle": "Yes, no solution.",
+          "correctWhy": "Double row 1: 2x + 4y = 6. Row 2 says 2x + 4y = 5. One number cannot be 5 and 6."
+        },
+        "mistakes": [
+          {
+            "match": "many",
+            "reply": "Subtract the doubled row 1 from row 2. The result is 0 = −1. That is never true."
+          },
+          {
+            "match": "x=1;y=1",
+            "reply": "Put x = 1 and y = 1 into row 2. Is 2 + 4 equal to 5?"
+          }
+        ]
+      },
+      "tryTask": "Double row 1. Then subtract it from row 2. Read the new row.",
+      "hints": [
+        "Row 2 minus the doubled row 1 gives 0 = −1."
+      ],
+      "caption": "Tap No solution, or type x and y."
+    },
+    {
+      "id": "2.1.07",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 3",
+      "title": "Add and solve",
+      "prompt": "Solve the system. Use the board if you want.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "x + y = 10",
+          "x - y = 4"
+        ],
+        "answer": {
+          "values": {
+            "x": 7.0,
+            "y": 3.0
+          },
+          "correctTitle": "Yes, x = 7 and y = 3.",
+          "correctWhy": "Add the rows: 2x = 14, so x = 7. Then y = 3."
+        },
+        "mistakes": [
+          {
+            "match": "x=7;y=-3",
+            "reply": "x = 7 is correct. Put x = 7 into x + y = 10. What is y?"
+          },
+          {
+            "match": "x=3;y=7",
+            "reply": "Put x = 3 and y = 7 into x − y = 4. Is it true? Check the order."
+          }
+        ]
+      },
+      "hints": [
+        "The y terms are y and −y. Add the rows.",
+        "Row 3 is 2x = 14."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(x + y) + (x - y) = 10 + 4 \\Rightarrow 2x = 14",
+            "text": "Add the two rows."
+          },
+          {
+            "math": "x = 7,\\ y = 10 - 7 = 3",
+            "text": "Divide by 2. Then put x into row 1."
+          }
+        ]
+      },
+      "twin": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "x + y = 9",
+          "x - y = 1"
+        ],
+        "answer": {
+          "values": {
+            "x": 5.0,
+            "y": 4.0
+          },
+          "correctTitle": "Yes, x = 5 and y = 4.",
+          "correctWhy": "2x = 10, so x = 5. Then y = 4."
+        }
+      }
+    },
+    {
+      "id": "2.1.08",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 3",
+      "title": "Ticket problem",
+      "prompt": "A show sells 120 tickets. Adult tickets cost 8 dollars and child tickets cost 5 dollars. The total is 780 dollars. Let $x$ be the adult tickets and $y$ the child tickets.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "x + y = 120",
+          "8x + 5y = 780"
+        ],
+        "answer": {
+          "values": {
+            "x": 60.0,
+            "y": 60.0
+          },
+          "correctTitle": "Yes, x = 60 and y = 60.",
+          "correctWhy": "Multiply row 1 by 5: 5x + 5y = 600. Subtract from row 2: 3x = 180. So x = 60 and y = 60."
+        },
+        "mistakes": [
+          {
+            "match": "x=70;y=50",
+            "reply": "The tickets add to 120. But 8 · 70 + 5 · 50 = 810. Is the total 780?"
+          }
+        ]
+      },
+      "hints": [
+        "Multiply row 1 by 5. Then the y terms are equal.",
+        "Subtract row 1 from row 2."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "5x + 5y = 600",
+            "text": "Multiply row 1 by 5."
+          },
+          {
+            "math": "(8x + 5y) - (5x + 5y) = 780 - 600 \\Rightarrow 3x = 180",
+            "text": "Subtract. The y terms cancel."
+          },
+          {
+            "math": "x = 60,\\ y = 120 - 60 = 60",
+            "text": "Divide by 3. Then put x into row 1."
+          }
+        ]
+      },
+      "twin": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "x + y = 100",
+          "9x + 4y = 600"
+        ],
+        "answer": {
+          "values": {
+            "x": 40.0,
+            "y": 60.0
+          },
+          "correctTitle": "Yes, x = 40 and y = 60.",
+          "correctWhy": "4 · row 1 is 4x + 4y = 400. Subtract: 5x = 200, so x = 40."
+        }
+      }
+    },
+    {
+      "id": "2.1.09",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 3",
+      "title": "Check both equations",
+      "prompt": "Solve the system. Then check the answer in both equations.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "2x + 3y = 12",
+          "x - y = 1"
+        ],
+        "answer": {
+          "values": {
+            "x": 3.0,
+            "y": 2.0
+          },
+          "correctTitle": "Yes, x = 3 and y = 2.",
+          "correctWhy": "Multiply row 2 by 3: 3x − 3y = 3. Add row 1: 5x = 15. So x = 3 and y = 2."
+        },
+        "mistakes": [
+          {
+            "match": "x=2;y=3",
+            "reply": "Put x = 2 and y = 3 into x − y = 1. Is it true? Check the order."
+          }
+        ]
+      },
+      "hints": [
+        "Multiply row 2 by 3. Then the y terms are 3y and −3y.",
+        "Add the rows."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "3x - 3y = 3",
+            "text": "Multiply row 2 by 3."
+          },
+          {
+            "math": "(2x + 3y) + (3x - 3y) = 12 + 3 \\Rightarrow 5x = 15",
+            "text": "Add. The y terms cancel."
+          },
+          {
+            "math": "x = 3,\\ y = x - 1 = 2",
+            "text": "Divide by 5. Then use row 2."
+          }
+        ]
+      },
+      "twin": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "3x + 2y = 16",
+          "x - y = 2"
+        ],
+        "answer": {
+          "values": {
+            "x": 4.0,
+            "y": 2.0
+          },
+          "correctTitle": "Yes, x = 4 and y = 2.",
+          "correctWhy": "Multiply row 2 by 2 and add: 5x = 20, so x = 4. Then y = 2."
+        }
+      }
+    },
+    {
+      "id": "2.1.10",
+      "kind": "trap-summary",
+      "label": "LESSON 2.1 COMPLETE",
+      "title": "Elimination solves two unknowns.",
+      "prompt": "You saved this rule:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: two linear equations always have exactly one solution.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Double the first equation of x + 2y = 3 and 2x + 4y = 5. Compare it with the second equation. Is there a solution?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "The system x + 2y = 3 and 2x + 4y = 5 has no solution. Doubling row 1 gives 2x + 4y = 6."
+          }
+        },
+        "summary": [
+          "elimination"
+        ]
+      },
+      "caption": "Saved to your rule book."
+    }
+  ]
+}

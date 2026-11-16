@@ -2,10 +2,10 @@ import { expect, test, type Page } from "@playwright/test";
 import { loadLesson, playScreen } from "./lesson-helpers";
 import { readdirSync } from "node:fs";
 
-/** Play every Chapter 1 lesson that exists from the first to the last screen with correct answers. */
+/** Play every lesson of Chapters 1 and 2 from the first to the last screen with correct answers. */
 const ids = readdirSync(new URL("../content/lessons", import.meta.url))
   .map((f) => /^lesson-(\d\.\d)\.json$/.exec(f)?.[1])
-  .filter((id): id is string => Boolean(id && id.startsWith("1.")))
+  .filter((id): id is string => Boolean(id && /^[12]\./.test(id)))
   .filter((id) => id !== "1.2")
   .sort();
 
@@ -31,8 +31,8 @@ for (const id of ids) {
   });
 }
 
-/** Criterion 3: lessons 1.1, 1.3 and 1.7 with the keyboard only (Tab, arrows, typing, Enter). Lesson 1.2 has its own keyboard spec. */
-for (const id of ["1.1", "1.3", "1.7"]) {
+/** Criterion 3: lessons 1.1, 1.3, 1.7, 2.1 and 2.3 with the keyboard only (Tab, arrows, typing, Enter). Lesson 1.2 has its own keyboard spec. */
+for (const id of ["1.1", "1.3", "1.7", "2.1", "2.3"]) {
   test(`lesson ${id}: keyboard-only path from the first to the last screen`, async ({ page }) => {
     test.setTimeout(90_000);
     await play(page, id, true);

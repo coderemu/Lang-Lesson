@@ -165,7 +165,6 @@ export function ScreenRenderer(props: ScreenRendererProps) {
         );
       case "system": {
         const vars = systemVars(spec.i);
-        const many = spec.i.mode === "general" || spec.i.answer.values === "many";
         const toggle = (id: "none" | "many") =>
           onInput({ ...input, choice: input.choice === id ? null : id });
         const chip = (id: "none" | "many", label: string) => (
@@ -202,7 +201,7 @@ export function ScreenRenderer(props: ScreenRendererProps) {
             </div>
             <div className={styles.chips} role="group" aria-label="Special cases">
               {chip("none", "No solution")}
-              {many && chip("many", "Many solutions")}
+              {chip("many", "Many solutions")}
             </div>
           </div>
         );

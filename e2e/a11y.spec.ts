@@ -19,7 +19,7 @@ async function audit(page: Page, name: string) {
 
 test.describe("axe", () => {
   test.skip(({ viewport }) => (viewport?.width ?? 0) > 900, "mobile only");
-  test.beforeEach(async ({ page }) => seed(page, completedState()));
+  test.beforeEach(async ({ page }) => seed(page, completedState(new Date(), [1, 2])));
 
   for (const [name, path] of [
     ["Home", "/"],
@@ -31,6 +31,9 @@ test.describe("axe", () => {
     ["Bank problem: number", "/practice/1.1/2"],
     ["Bank problem: choice", "/practice/1.1/4"],
     ["Bank problem: self-check", "/practice/1.3/3"],
+    ["Bank problem: pair", "/practice/2.1/1"],
+    ["Bank problem: triple", "/practice/2.2/1"],
+    ["Bank problem: no solution", "/practice/2.1/6"],
     ["Design system", "/design-system"],
   ] as const) {
     test(name, async ({ page }) => {
@@ -60,6 +63,12 @@ test.describe("axe", () => {
     ["fraction strips add", "1.6", "1.6.09"],
     ["fraction strips invert", "1.8", "1.8.03"],
     ["choice", "1.5", "1.5.04"],
+    ["elimination two unknowns + balances", "2.1", "2.1.03"],
+    ["elimination no solution", "2.1", "2.1.06"],
+    ["elimination three unknowns", "2.2", "2.2.04"],
+    ["multi number input (ad - bc)", "2.3", "2.3.03"],
+    ["proof with letters", "2.3", "2.3.04"],
+    ["elimination general", "2.3", "2.3.08"],
   ];
   for (const [name, lesson, id] of screens) {
     test(`lesson screen: ${name}`, async ({ page }) => {

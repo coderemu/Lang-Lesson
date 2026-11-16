@@ -1,0 +1,356 @@
+{
+  "id": "2.2",
+  "title": "Three equations, three unknowns",
+  "book": {
+    "chapter": 2,
+    "sections": "§2"
+  },
+  "minutes": 10,
+  "goal": "Remove one letter at a time until one equation with one unknown stays.",
+  "needs": [
+    "2.1"
+  ],
+  "rulesEarned": [
+    "elim-three"
+  ],
+  "generalHint": "Remove the same letter from two pairs of equations. Then solve the two-unknown system. Check all three equations.",
+  "next": {
+    "id": "2.3",
+    "title": "The general system"
+  },
+  "screens": [
+    {
+      "id": "2.2.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Two unknowns again",
+      "prompt": "Solve the system. You use this method three times in this lesson.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "two-unknowns",
+        "equations": [
+          "x + y = 5",
+          "x - y = 1"
+        ],
+        "answer": {
+          "values": {
+            "x": 3.0,
+            "y": 2.0
+          },
+          "correctTitle": "Yes, x = 3 and y = 2.",
+          "correctWhy": "Add the rows: 2x = 6, so x = 3. Then y = 2."
+        },
+        "mistakes": [
+          {
+            "match": "x=6;y=-1",
+            "reply": "Row 3 says 2x = 6. Divide both sides by 2. Then find y."
+          }
+        ]
+      },
+      "hints": [
+        "Add the two rows."
+      ]
+    },
+    {
+      "id": "2.2.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Three numbers",
+      "prompt": "Three numbers $x$, $y$ and $z$ have the sum 6. Two more clues: $x - y + z = 2$ and $2x + y - z = 1$. Guess the numbers.",
+      "interaction": {
+        "type": "multi-number-input",
+        "parts": [
+          {
+            "expression": "x =",
+            "answer": {
+              "value": 1.0,
+              "correctTitle": "Yes, 1.",
+              "correctWhy": "1 + 2 + 3 = 6."
+            }
+          },
+          {
+            "expression": "y =",
+            "answer": {
+              "value": 2.0,
+              "correctTitle": "Yes, 2.",
+              "correctWhy": "1 − 2 + 3 = 2."
+            }
+          },
+          {
+            "expression": "z =",
+            "answer": {
+              "value": 3.0,
+              "correctTitle": "Yes, 3.",
+              "correctWhy": "2 + 2 − 3 = 1. All three clues are true."
+            }
+          }
+        ]
+      },
+      "hints": [
+        "Try small whole numbers. Check all three clues.",
+        "The numbers are 1, 2 and 3. Which one is x?"
+      ],
+      "caption": "Type three guesses, then check."
+    },
+    {
+      "id": "2.2.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Remove x and z",
+      "prompt": "Subtract row 2 from row 1. The $x$ and $z$ terms cancel, so $2y = 4$. Find $y$.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "three-unknowns",
+        "equations": [
+          "x + y + z = 6",
+          "x - y + z = 2",
+          "2x + y - z = 1"
+        ],
+        "answer": {
+          "values": {
+            "y": 2.0
+          },
+          "correctTitle": "Yes, y = 2.",
+          "correctWhy": "Row 4 says 2y = 4. Divide both sides by 2."
+        },
+        "mistakes": [
+          {
+            "match": "y=4",
+            "reply": "Row 4 says 2y = 4. Divide both sides by 2."
+          }
+        ]
+      },
+      "tryTask": "Tap row 1 and row 2. Then tap Subtract rows.",
+      "hints": [
+        "Row 1 minus row 2: the x terms and the z terms are equal."
+      ],
+      "caption": "Subtract the rows, then type y."
+    },
+    {
+      "id": "2.2.04",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Find x and z",
+      "prompt": "Add row 1 and row 3 to get $3x + 2y = 7$. Put in $y = 2$. Then find $x$ and $z$.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "three-unknowns",
+        "equations": [
+          "x + y + z = 6",
+          "x - y + z = 2",
+          "2x + y - z = 1"
+        ],
+        "answer": {
+          "values": {
+            "x": 1.0,
+            "y": 2.0,
+            "z": 3.0
+          },
+          "correctTitle": "Yes, x = 1, y = 2 and z = 3.",
+          "correctWhy": "Row 1 plus row 3: 3x + 2y = 7. With y = 2, x = 1. Then z = 6 − 1 − 2 = 3."
+        },
+        "mistakes": [
+          {
+            "match": "x=3;y=2;z=1",
+            "reply": "Check the order. Put x = 3, y = 2 and z = 1 into row 3. Is 2 · 3 + 2 − 1 equal to 1? Check all three equations."
+          }
+        ]
+      },
+      "tryTask": "Tap row 1 and row 3. Then tap Add rows.",
+      "hints": [
+        "Row 1 plus row 3: the z terms cancel.",
+        "Put y = 2 into 3x + 2y = 7."
+      ],
+      "caption": "Type x, y and z."
+    },
+    {
+      "id": "2.2.05",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "One letter at a time",
+      "prompt": "Remove the same letter from two pairs of equations. Then solve the two-unknown system. Check all three equations.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "elim-three"
+        ]
+      },
+      "note": {
+        "label": "WORDS MATTER",
+        "text": "A pair is two of the three equations. Make two pairs. Remove the same letter from each pair."
+      }
+    },
+    {
+      "id": "2.2.06",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 2",
+      "title": "Two easy pairs",
+      "prompt": "Solve the system of three equations.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "three-unknowns",
+        "equations": [
+          "x + y + z = 9",
+          "x - y = 1",
+          "y - z = 1"
+        ],
+        "answer": {
+          "values": {
+            "x": 4.0,
+            "y": 3.0,
+            "z": 2.0
+          },
+          "correctTitle": "Yes, x = 4, y = 3, z = 2.",
+          "correctWhy": "Write x = y + 1 and z = y − 1. Then x + y + z = 3y = 9, so y = 3. So x = 4 and z = 2."
+        },
+        "mistakes": [
+          {
+            "match": "x=2;y=3;z=4",
+            "reply": "Put x = 2 and y = 3 into x − y = 1. Is it true? Check the order."
+          }
+        ]
+      },
+      "hints": [
+        "Rows 2 and 3 link x and z to y.",
+        "Put x = y + 1 and z = y − 1 into row 1."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x = y + 1,\\ z = y - 1",
+            "text": "Use rows 2 and 3."
+          },
+          {
+            "math": "(y + 1) + y + (y - 1) = 9 \\Rightarrow 3y = 9",
+            "text": "Put them into row 1."
+          },
+          {
+            "math": "y = 3,\\ x = 4,\\ z = 2",
+            "text": "Divide by 3. Then find x and z."
+          }
+        ]
+      },
+      "twin": {
+        "type": "elimination",
+        "mode": "three-unknowns",
+        "equations": [
+          "x + y + z = 12",
+          "x - y = 1",
+          "y - z = 1"
+        ],
+        "answer": {
+          "values": {
+            "x": 5.0,
+            "y": 4.0,
+            "z": 3.0
+          },
+          "correctTitle": "Yes, x = 5, y = 4 and z = 3.",
+          "correctWhy": "3y = 12, so y = 4. Then x = 5 and z = 3."
+        }
+      }
+    },
+    {
+      "id": "2.2.07",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 2",
+      "title": "Remove the fraction",
+      "prompt": "Solve the system. First, multiply the first equation by 2 to remove the fraction.",
+      "interaction": {
+        "type": "elimination",
+        "mode": "three-unknowns",
+        "equations": [
+          "\\tfrac{1}{2}x + y = 2",
+          "x - y + z = 1",
+          "x + z = 3"
+        ],
+        "answer": {
+          "values": {
+            "x": 0.0,
+            "y": 2.0,
+            "z": 3.0
+          },
+          "correctTitle": "Yes, x = 0, y = 2, z = 3.",
+          "correctWhy": "2 · row 1: x + 2y = 4. Subtract row 3 from row 2: −y = −2, so y = 2. Then x = 0 and z = 3."
+        },
+        "mistakes": [
+          {
+            "match": "x=0;y=1;z=3",
+            "reply": "Multiply the full equation by 2. Then all coefficients are integers."
+          }
+        ]
+      },
+      "hints": [
+        "Multiply row 1 by 2. Then no fraction is left.",
+        "Row 2 minus row 3 removes x and z."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x + 2y = 4",
+            "text": "Multiply row 1 by 2. Multiply both sides."
+          },
+          {
+            "math": "(x - y + z) - (x + z) = 1 - 3 \\Rightarrow -y = -2",
+            "text": "Subtract row 3 from row 2."
+          },
+          {
+            "math": "y = 2,\\ x = 0,\\ z = 3",
+            "text": "Put y = 2 into x + 2y = 4. Then use row 3."
+          }
+        ]
+      },
+      "twin": {
+        "type": "elimination",
+        "mode": "three-unknowns",
+        "equations": [
+          "\\tfrac{1}{3}x + y = 3",
+          "x - y + z = 2",
+          "x + z = 4"
+        ],
+        "answer": {
+          "values": {
+            "x": 3.0,
+            "y": 2.0,
+            "z": 1.0
+          },
+          "correctTitle": "Yes, x = 3, y = 2 and z = 1.",
+          "correctWhy": "3 · row 1: x + 3y = 9. Row 2 minus row 3 gives −y = −2, so y = 2."
+        }
+      }
+    },
+    {
+      "id": "2.2.08",
+      "kind": "trap-summary",
+      "label": "LESSON 2.2 COMPLETE",
+      "title": "One letter, two pairs.",
+      "prompt": "You saved this rule:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: remove x from one pair and y from the other pair. Then you can solve the two new equations.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Each result still has two unknowns. Remove the same letter from both pairs."
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "Each new equation still has two unknowns. Remove the same letter from both pairs."
+          }
+        },
+        "summary": [
+          "elim-three"
+        ]
+      },
+      "caption": "Saved to your rule book."
+    }
+  ]
+}

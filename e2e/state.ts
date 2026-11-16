@@ -7,13 +7,14 @@ const files = (dir: string, re: RegExp) =>
     .filter((f) => re.test(f))
     .sort();
 
-/** The store of a learner who finished every lesson and bank of Chapter 1. */
-export function completedState(today = new Date()) {
+/** The store of a learner who finished every lesson and bank of the given chapters (default: Chapter 1). */
+export function completedState(today = new Date(), chapters: number[] = [1]) {
+  const only = new RegExp(`^(?:lesson|bank)-[${chapters.join("")}]\\.\\d\\.json$`);
   const p = (n: number) => String(n).padStart(2, "0");
   const key = (d: Date) => `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
   const lessons: Record<string, unknown> = {};
   const rules: Record<string, string> = {};
-  for (const f of files("lessons", /^lesson-1\.\d\.json$/)) {
+  for (const f of files("lessons", only)) {
     const l = read(`../content/lessons/${f}`);
     lessons[l.id] = {
       state: "complete",
@@ -26,7 +27,7 @@ export function completedState(today = new Date()) {
     for (const r of l.rulesEarned) rules[r] = key(today);
   }
   const banks: Record<string, unknown> = {};
-  for (const f of files("practice", /^bank-1\.\d\.json$/)) {
+  for (const f of files("practice", only)) {
     const b = read(`../content/practice/${f}`);
     banks[b.lesson] = {
       position: 0,

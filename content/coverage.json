@@ -787,6 +787,151 @@
         "b1.8.12"
       ],
       "note": "Bank 1.8 and Bank 2.1"
+    },
+    {
+      "id": "c2.1.01",
+      "chapter": 2,
+      "section": "§1",
+      "kind": "topic",
+      "topic": "Elimination of one unknown, then the other",
+      "lessonScreens": [
+        "2.1.03",
+        "2.1.04",
+        "2.1.05"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c2.1.02",
+      "chapter": 2,
+      "section": "§1",
+      "kind": "topic",
+      "topic": "Systems with no solution",
+      "lessonScreens": [
+        "2.1.06"
+      ],
+      "bankProblems": [
+        "b2.1.06"
+      ]
+    },
+    {
+      "id": "c2.1.03",
+      "chapter": 2,
+      "section": "§1",
+      "kind": "topic",
+      "topic": "A solution “usually” exists; the exact condition",
+      "lessonScreens": [
+        "2.3.02",
+        "2.3.03",
+        "2.3.04",
+        "2.3.05"
+      ],
+      "bankProblems": [],
+      "note": "From exercises 9–10"
+    },
+    {
+      "id": "c2.1.04",
+      "chapter": 2,
+      "section": "§1",
+      "kind": "topic",
+      "topic": "Travel example with two unknowns",
+      "lessonScreens": [],
+      "bankProblems": [
+        "b2.1.09"
+      ]
+    },
+    {
+      "id": "c2.1.05",
+      "chapter": 2,
+      "section": "§1",
+      "kind": "exercises",
+      "topic": "Exercises 1–8: solve systems",
+      "lessonScreens": [
+        "2.1.07",
+        "2.1.08",
+        "2.1.09"
+      ],
+      "bankProblems": [
+        "b2.1.01",
+        "b2.1.02",
+        "b2.1.03",
+        "b2.1.04",
+        "b2.1.05"
+      ]
+    },
+    {
+      "id": "c2.1.06",
+      "chapter": 2,
+      "section": "§1",
+      "kind": "exercises",
+      "topic": "Exercises 9–11: the general system, ad − bc ≠ 0",
+      "lessonScreens": [
+        "2.3.06",
+        "2.3.07",
+        "2.3.08"
+      ],
+      "bankProblems": [
+        "b2.3.01",
+        "b2.3.02",
+        "b2.3.03",
+        "b2.3.04",
+        "b2.3.05"
+      ]
+    },
+    {
+      "id": "c2.2.01",
+      "chapter": 2,
+      "section": "§2",
+      "kind": "topic",
+      "topic": "Three unknowns, one letter at a time",
+      "lessonScreens": [
+        "2.2.02",
+        "2.2.03",
+        "2.2.04",
+        "2.2.05",
+        "2.2.08"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c2.2.02",
+      "chapter": 2,
+      "section": "§2",
+      "kind": "exercises",
+      "topic": "Exercises 1–8: solve systems",
+      "lessonScreens": [
+        "2.2.06"
+      ],
+      "bankProblems": [
+        "b2.2.01",
+        "b2.2.02",
+        "b2.2.03",
+        "b2.2.04"
+      ]
+    },
+    {
+      "id": "c2.2.03",
+      "chapter": 2,
+      "section": "§2",
+      "kind": "exercises",
+      "topic": "Exercises 9–12: systems with fractions",
+      "lessonScreens": [
+        "2.2.07"
+      ],
+      "bankProblems": [
+        "b2.2.05",
+        "b2.2.06"
+      ]
+    },
+    {
+      "id": "c2.1.07",
+      "chapter": 2,
+      "section": "§1",
+      "kind": "skip",
+      "topic": "Simultaneous equations as intersecting lines",
+      "lessonScreens": [],
+      "bankProblems": [],
+      "note": "Lang refers to coordinates, a later chapter"
     }
   ]
 }

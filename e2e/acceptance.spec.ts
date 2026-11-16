@@ -3,37 +3,50 @@ import { readFileSync } from "node:fs";
 import { completedState, seed } from "./state";
 
 const read = (path: string) => JSON.parse(readFileSync(new URL(path, import.meta.url), "utf8"));
-const coverage = read("../content/coverage.json").rows.filter(
-  (r: { chapter: number }) => r.chapter === 1,
-);
+const allRows = read("../content/coverage.json").rows as { chapter: number; kind: string }[];
+const rowsOf = (c: number) => allRows.filter((r) => r.chapter === c);
+const countable = (c: number) => rowsOf(c).filter((r) => r.kind !== "skip").length;
 
 /** Criterion 6: the Coverage screen shows every row of the Chapter 1 map. Each row links to an existing screen or problem. */
 test.describe("coverage screen (criterion 6)", () => {
-  test("after everything is done, every Chapter 1 row is covered and the total is full", async ({
-    page,
-  }) => {
-    await seed(page, completedState());
+  for (const chapter of [1, 2]) {
+    test(`after everything is done, every Chapter ${chapter} row is covered and the total is full`, async ({
+      page,
+    }) => {
+      await seed(page, completedState(new Date(), [1, 2]));
+      await page.goto("/coverage");
+      const rows = page.locator(
+        `section[aria-label="Chapter ${chapter}"] [data-testid="coverage-row"]`,
+      );
+      await expect(rows).toHaveCount(rowsOf(chapter).length);
+      await expect(
+        page.locator(
+          `section[aria-label="Chapter ${chapter}"] [data-testid="coverage-row"][data-status="covered"]`,
+        ),
+      ).toHaveCount(countable(chapter));
+      await expect(page.getByTestId(`total-${chapter}`)).toHaveText(
+        `Chapter ${chapter}: ${countable(chapter)} of ${countable(chapter)} covered`,
+      );
+      for (const c of [3, 4])
+        await expect(page.getByTestId(`total-${c}`)).toContainText(`Coming in phase ${c}`);
+    });
+  }
+
+  test("the Chapter 2 skip row shows the later-chapter note", async ({ page }) => {
     await page.goto("/coverage");
-    await expect(page.getByTestId("coverage-row")).toHaveCount(coverage.length);
-    await expect(page.locator('[data-testid="coverage-row"][data-status="covered"]')).toHaveCount(
-      coverage.length,
-    );
-    await expect(page.getByTestId("total-1")).toHaveText(
-      `Chapter 1: ${coverage.length} of ${coverage.length} covered`,
-    );
-    for (const c of [2, 3, 4])
-      await expect(page.getByTestId(`total-${c}`)).toContainText(`Coming in phase ${c}`);
+    const skip = page.locator('[data-testid="coverage-row"][data-status="skip"]');
+    await expect(skip).toHaveCount(rowsOf(2).filter((r) => r.kind === "skip").length);
+    await expect(skip.first()).toContainText("Later chapter in Lang");
   });
 
   test("with no progress, no row is covered", async ({ page }) => {
     await page.goto("/coverage");
-    await expect(page.getByTestId("coverage-row")).toHaveCount(coverage.length);
+    await expect(page.getByTestId("coverage-row")).toHaveCount(allRows.length);
     await expect(page.locator('[data-testid="coverage-row"][data-status="covered"]')).toHaveCount(
       0,
     );
-    await expect(page.getByTestId("total-1")).toHaveText(
-      `Chapter 1: 0 of ${coverage.length} covered`,
-    );
+    await expect(page.getByTestId("total-1")).toHaveText(`Chapter 1: 0 of ${countable(1)} covered`);
+    await expect(page.getByTestId("total-2")).toHaveText(`Chapter 2: 0 of ${countable(2)} covered`);
   });
 
   test("every link of every row opens an existing lesson screen or bank problem", async ({
@@ -46,7 +59,7 @@ test.describe("coverage screen (criterion 6)", () => {
     const hrefs = await page
       .locator('[data-testid="coverage-row"] a')
       .evaluateAll((as) => [...new Set(as.map((a) => a.getAttribute("href") as string))]);
-    expect(hrefs.length).toBeGreaterThan(80);
+    expect(hrefs.length).toBeGreaterThan(100);
     for (const href of hrefs) {
       await page.goto(href);
       await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
@@ -79,6 +92,9 @@ test("design system shows every widget mode (criterion 8)", async ({ page }) => 
     "Fraction strips · cut · live",
     "Fraction strips · add · live",
     "Fraction strips · invert · live",
+    "Elimination board · two-unknowns · live (with balances)",
+    "Elimination board · three-unknowns · live",
+    "Elimination board · general · live (ad − bc readout)",
     "Trap summary · live",
   ];
   for (const e of expected) expect(names, e).toContain(e);

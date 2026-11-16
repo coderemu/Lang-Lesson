@@ -149,6 +149,20 @@ async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: A
       await typeInto(page, page.getByLabel("Your answer"), String(valueOf(i.answer)), kb);
       return;
     }
+    case "elimination": {
+      const values = i.answer.values;
+      if (values === "none" || values === "many") {
+        await activate(
+          page,
+          page.getByRole("button", { name: values === "none" ? "No solution" : "Many solutions" }),
+          kb,
+        );
+        return;
+      }
+      for (const [v, n] of Object.entries(values))
+        await typeInto(page, page.getByLabel(`Answer for ${v}`, { exact: true }), String(n), kb);
+      return;
+    }
     case "number-input":
       await typeInto(page, page.getByLabel("Your answer"), String(valueOf(i.answer)), kb);
       return;
@@ -179,6 +193,7 @@ export async function playScreen(page: Page, s: Screen, kb: boolean) {
     [
       "thermometer",
       "balance",
+      "elimination",
       "number-input",
       "multi-number-input",
       "choice",
@@ -315,6 +330,23 @@ export function mistakeCases(lessonId: string): { cases: MistakeCase[]; unreacha
       }
     }
     if (i.type === "choice") followUp(i);
+    if (i.type === "elimination") {
+      for (const m of i.mistakes ?? []) {
+        add(`answer ${m.match}`, m.reply, async (page) => {
+          if (m.match === "none" || m.match === "many") {
+            await page
+              .getByRole("button", { name: m.match === "none" ? "No solution" : "Many solutions" })
+              .click();
+          } else {
+            for (const part of (m.match as string).split(";")) {
+              const [v, n] = part.split("=");
+              await typeInto(page, page.getByLabel(`Answer for ${v}`, { exact: true }), n, false);
+            }
+          }
+          await pressCheck(page, false);
+        });
+      }
+    }
     if (i.type === "trap-summary") {
       for (const o of i.trap.options.filter((o: Any) => o.reply)) {
         add(
