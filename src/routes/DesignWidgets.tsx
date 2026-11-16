@@ -4,6 +4,7 @@ import { Math as Tex } from "../math";
 import {
   AreaModel,
   Balance,
+  EliminationBoard,
   FractionStrips,
   SquareTiles,
   MirrorPicture,
@@ -319,6 +320,24 @@ export function DesignWidgets() {
         <Spec name="Fraction strips · invert · live">
           <Stage>
             <FractionStrips mode="invert" spec={{ m: 2, n: 3 }} value={inv} onChange={setInv} />
+          </Stage>
+        </Spec>
+        <Spec name="Elimination board · two-unknowns · live (with balances)">
+          <Stage>
+            <EliminationBoard mode="two-unknowns" equations={["x + y = 10", "x - y = 4"]} balance />
+          </Stage>
+        </Spec>
+        <Spec name="Elimination board · three-unknowns · live">
+          <Stage>
+            <EliminationBoard
+              mode="three-unknowns"
+              equations={["x + y + z = 6", "x - y + z = 2", "2x + y - z = 1"]}
+            />
+          </Stage>
+        </Spec>
+        <Spec name="Elimination board · general · live (ad − bc readout)">
+          <Stage>
+            <EliminationBoard mode="general" equations={["x + 2y = 3", "2x + 4y = 5"]} />
           </Stage>
         </Spec>
         <Spec name="Trap summary · live">

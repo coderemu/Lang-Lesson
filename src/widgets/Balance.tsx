@@ -9,6 +9,7 @@ import {
   type BalanceSpec,
   type Removed,
 } from "./balanceLogic";
+import { describeRow, formatQ, q, qIsZero, type Row, type Variable } from "./eliminationLogic";
 import styles from "./widgets.module.css";
 
 export interface BalanceProps {
@@ -169,5 +170,69 @@ export function Balance({ spec, removed, onChange, disabled }: BalanceProps) {
         {describeBalance(spec, removed)}
       </span>
     </figure>
+  );
+}
+
+/** One side of an equation as coloured SVG text: "2x − y". */
+function SideText({ row, vars }: { row: Row; vars: Variable[] }) {
+  const shown = vars.filter((v) => !qIsZero(row.coef[v]));
+  if (shown.length === 0) return <>0</>;
+  return (
+    <>
+      {shown.map((v, k) => {
+        const c = row.coef[v];
+        const abs = q(Math.abs(c.n), c.d);
+        const num = abs.n === 1 && abs.d === 1 ? "" : formatQ(abs);
+        const sign = k === 0 ? (c.n < 0 ? "−" : "") : c.n < 0 ? " − " : " + ";
+        return (
+          <tspan key={v}>
+            {sign}
+            {num}
+            <tspan fontStyle="italic" className={styles.varText} data-var={v}>
+              {v}
+            </tspan>
+          </tspan>
+        );
+      })}
+    </>
+  );
+}
+
+/**
+ * Balance, mode `system`: one level balance for each equation (Chapter 2).
+ * Every row made by the elimination board keeps both pans equal, so the beam stays level.
+ */
+export function BalanceSystem({ rows }: { rows: { row: Row; vars: Variable[] }[] }) {
+  return (
+    <div className={styles.balancePair} data-testid="balance-system">
+      {rows.map(({ row, vars }) => (
+        <figure key={row.label} className={styles.balanceMini}>
+          <svg
+            viewBox="0 0 342 112"
+            className={styles.balance}
+            role="img"
+            aria-label={`Balance for row ${row.label}: ${describeRow(row, vars)}. Both pans are equal.`}
+          >
+            <polygon points="149,106 193,106 171,86" className={styles.base} />
+            <rect x={168} y={28} width={6} height={60} className={styles.post} />
+            <rect x={31} y={25} width={280} height={6} rx={3} className={styles.beam} />
+            <circle cx={171} cy={28} r={6} className={styles.pivot} />
+            <polygon points="81,28 33,76 129,76" className={styles.hanger} />
+            <polygon points="261,28 213,76 309,76" className={styles.hanger} />
+            <rect x={29} y={76} width={104} height={7} rx={3.5} className={styles.pan} />
+            <rect x={209} y={76} width={104} height={7} rx={3.5} className={styles.pan} />
+            <text x={81} y={66} textAnchor="middle" className={styles.panLabel}>
+              <SideText row={row} vars={vars} />
+            </text>
+            <text x={261} y={66} textAnchor="middle" className={styles.panLabel}>
+              {formatQ(row.rhs)}
+            </text>
+          </svg>
+          <figcaption className={styles.balanceCaption}>
+            Row {row.label}: both pans equal
+          </figcaption>
+        </figure>
+      ))}
+    </div>
   );
 }

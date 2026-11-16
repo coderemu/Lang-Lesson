@@ -10,7 +10,7 @@ import { evaluate } from "mathjs";
 import { z } from "zod";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../..");
-const CURRENT_PHASE = 1;
+const CURRENT_PHASE = 2;
 
 /* ───────── zod schemas (mirror content/schema.ts) ───────── */
 
@@ -145,6 +145,7 @@ const interaction = z.discriminatedUnion("type", [
       type: z.literal("elimination"),
       mode: z.enum(["two-unknowns", "three-unknowns", "general"]),
       equations: z.array(z.string()),
+      balance: z.boolean().optional(),
       answer: z
         .object({
           values: z.union([z.record(z.string(), z.number()), z.literal("none"), z.literal("many")]),
@@ -424,8 +425,19 @@ for (const f of readdirSync(join(ROOT, "content/lessons")).filter((f) => f.endsW
       }
       if (x.type === "elimination") {
         const keys = (x.mistakes ?? []).map((m) => m.match);
-        if (typeof x.answer.values === "object" && keys.includes(JSON.stringify(x.answer.values)))
+        const v = x.answer.values;
+        if (v === "none" || v === "many") {
+          if (keys.includes(v))
+            fail(file, `${where}: the correct answer is also a mistake match (rule 5)`);
+        } else if (
+          keys.includes(
+            Object.entries(v)
+              .map(([k, n]) => `${k}=${n}`)
+              .join(";"),
+          )
+        ) {
           fail(file, `${where}: the correct answer is also a mistake match (rule 5)`);
+        }
       }
     };
     visit(i, s.id);

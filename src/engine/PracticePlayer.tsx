@@ -11,7 +11,7 @@ import {
   NumberSlot,
 } from "../components";
 import { loadBank } from "../content/load";
-import { RichText } from "../math";
+import { Math as Tex, RichText } from "../math";
 import { requestPersistentStorage, useProgress } from "../store";
 import {
   emptyInput,
@@ -151,17 +151,28 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
   };
 
   const isSelf = answer.type === "self-check";
-  const isNone = answer.type === "none";
-  const supported = ["number", "numbers", "choice", "self-check", "none"].includes(answer.type);
+  const supported = [
+    "number",
+    "numbers",
+    "choice",
+    "self-check",
+    "pair",
+    "triple",
+    "none",
+  ].includes(answer.type);
+  const unknowns =
+    answer.type === "pair" ? ["x", "y"] : answer.type === "triple" ? ["x", "y", "z"] : [];
 
   const hasInput =
     answer.type === "number"
       ? (input.text[0] ?? "").trim() !== ""
       : answer.type === "numbers"
         ? answer.values.every((_, k) => (input.text[k] ?? "").trim() !== "")
-        : answer.type === "choice"
+        : answer.type === "choice" || answer.type === "none"
           ? input.choice !== null
-          : true;
+          : answer.type === "pair" || answer.type === "triple"
+            ? unknowns.every((_, k) => (input.text[k] ?? "").trim() !== "")
+            : true;
 
   const toggleHint = () => {
     if (!hintOpen) {
@@ -224,17 +235,46 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
         </div>
       );
     }
-    if (answer.type === "choice") {
+    if (unknowns.length > 0) {
+      return (
+        <div className={ruleStyles.row}>
+          {unknowns.map((v, k) => (
+            <span key={v} className={ruleStyles.row}>
+              <Tex tex={`${v} =`} className={ruleStyles.expr} />
+              <NumberSlot
+                label={`Answer for ${v}`}
+                value={input.text[k] ?? ""}
+                onChange={(t) => {
+                  const text = [...input.text];
+                  text[k] = t;
+                  setInput({ ...input, text });
+                }}
+                state={verdict === "idle" ? "default" : verdict}
+                disabled={phase !== "answering"}
+                compact
+              />
+            </span>
+          ))}
+          {hints.length > 0 && phase === "answering" && (
+            <HintChip onClick={toggleHint} open={hintOpen} />
+          )}
+        </div>
+      );
+    }
+    if (answer.type === "choice" || answer.type === "none") {
+      const options =
+        answer.type === "none" ? ["There is a solution", "No solution"] : answer.options;
+      const correct = answer.type === "none" ? 1 : answer.correct;
       return (
         <div className={ruleStyles.chips} role="group" aria-label="Choices">
-          {answer.options.map((o, k) => (
+          {options.map((o, k) => (
             <ChoiceChip
               key={k}
               selected={input.choice === String(k)}
               state={
                 verdict === "idle" || input.choice !== String(k)
                   ? "default"
-                  : k === answer.correct
+                  : k === correct
                     ? "correct"
                     : "wrong"
               }
@@ -286,7 +326,7 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
         Show solution
       </Button>
     );
-  } else if (!supported || isNone) {
+  } else if (!supported) {
     primary = (
       <Button type="submit" variant="primary">
         Continue

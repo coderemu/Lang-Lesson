@@ -204,6 +204,7 @@ export interface EliminationInteraction {
   type: "elimination";
   mode: "two-unknowns" | "three-unknowns" | "general";
   equations: string[];        // TeX rows
+  balance?: boolean;          // show the linked balances (Balance mode "system")
   answer: { values: Record<string, number> | "none" | "many" } & Feedback;
   mistakes?: Mistake<string>[];
 }
@@ -225,7 +226,7 @@ export type PracticeAnswer =
   | { type: "set"; values: string[] }                              // solutions; TeX values like "1+\\sqrt{5}"
   | { type: "interval"; value: string }                            // e.g. "(-2, 1/2)", "(-inf,3) U (7,inf)"
   | { type: "choice"; options: string[]; correct: number }
-  | { type: "none" }                                               // "no solution"
+  | { type: "none" }                                               // "Is there a solution?" Chips: yes / no solution
   | { type: "self-check" };                                        // proofs and drawings
 
 export interface PracticeProblem {

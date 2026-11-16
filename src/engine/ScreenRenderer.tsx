@@ -12,6 +12,7 @@ import { Math as Tex, RichText } from "../math";
 import {
   AreaModel,
   Balance,
+  EliminationBoard,
   FractionStrips,
   SquareTiles,
   MirrorPicture,
@@ -24,7 +25,7 @@ import {
 } from "../widgets";
 import { fmt } from "../widgets/geometry";
 import type { Removed } from "../widgets/balanceLogic";
-import { answerSpec, type Input } from "./answers";
+import { answerSpec, systemVars, type Input } from "./answers";
 import { parseNumber } from "./check";
 import styles from "./ScreenRenderer.module.css";
 
@@ -162,6 +163,50 @@ export function ScreenRenderer(props: ScreenRendererProps) {
             {hint}
           </div>
         );
+      case "system": {
+        const vars = systemVars(spec.i);
+        const many = spec.i.mode === "general" || spec.i.answer.values === "many";
+        const toggle = (id: "none" | "many") =>
+          onInput({ ...input, choice: input.choice === id ? null : id });
+        const chip = (id: "none" | "many", label: string) => (
+          <ChoiceChip
+            selected={input.choice === id}
+            state={chipState(verdict, input.choice === id, spec.i.answer.values === id)}
+            disabled={locked}
+            onClick={() => toggle(id)}
+          >
+            {label}
+          </ChoiceChip>
+        );
+        return (
+          <div className={styles.parts}>
+            <div className={styles.row}>
+              {vars.map((v, k) => (
+                <span key={v} className={styles.row}>
+                  <Tex tex={`${v} =`} className={styles.expr} />
+                  <NumberSlot
+                    label={`Answer for ${v}`}
+                    value={input.text[k] ?? ""}
+                    onChange={(t) => {
+                      const text = [...input.text];
+                      text[k] = t;
+                      onInput({ ...input, text, choice: null });
+                    }}
+                    state={slotState(verdict)}
+                    disabled={locked}
+                    compact
+                  />
+                </span>
+              ))}
+              {hint}
+            </div>
+            <div className={styles.chips} role="group" aria-label="Special cases">
+              {chip("none", "No solution")}
+              {many && chip("many", "Many solutions")}
+            </div>
+          </div>
+        );
+      }
       case "none":
         return hint ? <div className={styles.row}>{hint}</div> : null;
     }
@@ -269,18 +314,21 @@ export function ScreenRenderer(props: ScreenRendererProps) {
           </Stage>
         );
       }
+      case "elimination":
+        return (
+          <Stage>
+            <EliminationBoard
+              mode={i.mode}
+              equations={i.equations}
+              balance={i.balance}
+              disabled={locked}
+            />
+          </Stage>
+        );
       case "number-input":
       case "multi-number-input":
       case "choice":
         return null;
-      default:
-        // Area model, square tiles, fraction strips (step 1D), elimination (phase 2).
-        return (
-          <div className={styles.placeholder} data-testid="widget-placeholder">
-            <p className={styles.phName}>{i.type}</p>
-            <p className={styles.phNote}>This widget is not built yet.</p>
-          </div>
-        );
     }
   };
 

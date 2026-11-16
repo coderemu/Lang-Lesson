@@ -1,5 +1,6 @@
 import type {
   ChoiceInteraction,
+  EliminationInteraction,
   Feedback,
   Interaction,
   NumberAnswer,
@@ -10,6 +11,7 @@ import {
   checkMultiNumber,
   checkNumber,
   checkPractice,
+  checkSystem,
   parseNumber,
   type CheckResult,
 } from "./check";
@@ -28,7 +30,14 @@ export type AnswerSpec =
   | { t: "number"; answer: NumberAnswer; expression?: string }
   | { t: "multi"; parts: { prompt?: string; expression: string; answer: NumberAnswer }[] }
   | { t: "choice"; choice: ChoiceInteraction }
-  | { t: "thermometer"; result: number; sameSide: Feedback; otherSide: Feedback };
+  | { t: "thermometer"; result: number; sameSide: Feedback; otherSide: Feedback }
+  | { t: "system"; i: EliminationInteraction };
+
+/** The letters a system screen asks for. */
+export function systemVars(i: EliminationInteraction): string[] {
+  if (typeof i.answer.values === "object") return Object.keys(i.answer.values);
+  return i.mode === "three-unknowns" ? ["x", "y", "z"] : ["x", "y"];
+}
 
 export function answerSpec(i: Interaction): AnswerSpec {
   switch (i.type) {
@@ -53,6 +62,8 @@ export function answerSpec(i: Interaction): AnswerSpec {
       return i.answer ? { t: "number", answer: i.answer } : { t: "none" };
     case "balance":
       return { t: "number", answer: i.answer };
+    case "elimination":
+      return { t: "system", i };
     default:
       return { t: "none" };
   }
@@ -70,6 +81,11 @@ export function hasAnswer(spec: AnswerSpec, input: Input): boolean {
       return spec.parts.every((_, k) => (input.text[k] ?? "").trim() !== "");
     case "choice":
       return input.choice !== null;
+    case "system":
+      return (
+        input.choice !== null ||
+        systemVars(spec.i).every((_, k) => (input.text[k] ?? "").trim() !== "")
+      );
   }
 }
 
@@ -81,6 +97,7 @@ export type Outcome =
   | { kind: "invalid"; body: string };
 
 export const NOT_QUITE = "Not quite.";
+export const INVALID_SYSTEM = "Enter a number for each letter, for example 3, −3 or 6/7.";
 export const INVALID_NUMBER = "Enter a number, for example 3, −3 or 1/2.";
 
 const wrong = (result: CheckResult, generalHint: string): Outcome => {
@@ -125,6 +142,14 @@ export function evaluate(spec: AnswerSpec, input: Input, generalHint: string): O
           }
         : wrong(r, generalHint);
     }
+    case "system": {
+      const a = spec.i.answer;
+      const r = checkSystem(a.values, { text: input.text, chosen: input.choice }, spec.i.mistakes);
+      if (r.kind === "correct")
+        return { kind: "correct", title: a.correctTitle, body: a.correctWhy };
+      if (r.kind === "invalid") return { kind: "invalid", body: INVALID_SYSTEM };
+      return wrong(r, generalHint);
+    }
     case "thermometer": {
       const guess = parseNumber(input.text[0] ?? "");
       if (guess === null) return { kind: "invalid", body: INVALID_NUMBER };
@@ -155,6 +180,9 @@ export function evaluatePractice(answer: PracticeAnswer, input: Input): Practice
   const choice = input.choice === null ? null : Number(input.choice);
   const r = checkPractice(answer, { text: input.text, choice, mark: input.mark });
   if (r.kind === "correct") return { kind: "correct", body: "" };
-  if (r.kind === "invalid") return { kind: "invalid", body: INVALID_NUMBER };
+  if (r.kind === "invalid") {
+    const system = answer.type === "pair" || answer.type === "triple";
+    return { kind: "invalid", body: system ? INVALID_SYSTEM : INVALID_NUMBER };
+  }
   return { kind: "not-quite", body: r.kind === "mistake" ? r.reply : BANK_GENERAL_HINT };
 }

@@ -9,6 +9,9 @@ import {
   checkNumber,
   checkNumbers,
   checkPractice,
+  checkSystem,
+  checkTuple,
+  parseTuple,
   checkProofLine,
   checkSelfCheck,
   parseNumber,
@@ -105,11 +108,68 @@ describe("other checkers", () => {
       checkPractice({ type: "choice", options: ["a", "b"], correct: 1 }, { choice: 0 }).kind,
     ).toBe("unknown");
     expect(checkPractice({ type: "self-check" }, { mark: "got-it" }).kind).toBe("correct");
-    expect(checkPractice({ type: "none" }, {}).kind).toBe("correct");
+    expect(checkPractice({ type: "none" }, { choice: 1 }).kind).toBe("correct");
     expect(
       checkPractice({ type: "numbers", values: [1], ordered: true }, { text: ["1"] }).kind,
     ).toBe("correct");
     expect(checkPractice({ type: "set", values: ["1"] }, { text: ["1"] }).kind).toBe("unknown");
+  });
+});
+
+describe("systems of equations: pair, triple, none", () => {
+  it("parseTuple reads every form", () => {
+    expect(parseTuple("(4, 3)", ["x", "y"])).toEqual([4, 3]);
+    expect(parseTuple("4, 3", ["x", "y"])).toEqual([4, 3]);
+    expect(parseTuple("x = 4, y = 3", ["x", "y"])).toEqual([4, 3]);
+    expect(parseTuple("y = 3; x = 4", ["x", "y"])).toEqual([4, 3]);
+    expect(parseTuple("x=6/7, y=-5/7", ["x", "y"])).toEqual([6 / 7, -5 / 7]);
+    expect(parseTuple("(1, 2, 3)", ["x", "y", "z"])).toEqual([1, 2, 3]);
+    expect(parseTuple("4", ["x", "y"])).toBeNull();
+    expect(parseTuple("x = 4, z = 3", ["x", "y"])).toBeNull();
+    expect(parseTuple("x = 4, 3", ["x", "y"])).toBeNull();
+  });
+  it("checkTuple (pair and triple), separate slots or one slot", () => {
+    expect(checkTuple({ x: 4, y: 3 }, ["4", "3"]).kind).toBe("correct");
+    expect(checkTuple({ x: 4, y: 3 }, ["(4, 3)"]).kind).toBe("correct");
+    expect(checkTuple({ x: 6 / 7, y: -5 / 7 }, ["6/7", "−5/7"]).kind).toBe("correct");
+    expect(checkTuple({ x: 4, y: 3 }, ["3", "4"]).kind).toBe("unknown");
+    expect(checkTuple({ x: 4, y: 3 }, ["4", ""]).kind).toBe("invalid");
+    expect(checkTuple({ x: 1, y: 2, z: 3 }, ["1", "2", "3"]).kind).toBe("correct");
+    expect(checkTuple({ x: 1, y: 2, z: 3 }, ["1", "2", "4"]).kind).toBe("unknown");
+    expect(checkTuple({ x: 1, y: 2, z: 3 }, ["1", "2"]).kind).toBe("invalid");
+  });
+  it("checkSystem: solution, none, many and mistake replies", () => {
+    const mistakes = [
+      { match: "x=3;y=2", reply: "sign" },
+      { match: "none", reply: "There is a solution." },
+    ];
+    const one = { x: 7, y: 3 };
+    expect(checkSystem(one, { text: ["7", "3"], chosen: null }).kind).toBe("correct");
+    expect(checkSystem(one, { text: ["3", "2"], chosen: null }, mistakes)).toEqual({
+      kind: "mistake",
+      reply: "sign",
+    });
+    expect(checkSystem(one, { text: [], chosen: "none" }, mistakes)).toEqual({
+      kind: "mistake",
+      reply: "There is a solution.",
+    });
+    expect(checkSystem(one, { text: [], chosen: "many" }).kind).toBe("unknown");
+    expect(checkSystem("none", { text: [], chosen: "none" }).kind).toBe("correct");
+    expect(checkSystem("none", { text: ["1", "2"], chosen: null }).kind).toBe("unknown");
+    expect(checkSystem("many", { text: [], chosen: "many" }).kind).toBe("correct");
+    expect(checkSystem("many", { text: [], chosen: "none" }).kind).toBe("unknown");
+    expect(checkSystem(one, { text: ["7", ""], chosen: null }).kind).toBe("invalid");
+  });
+  it("checkPractice: pair, triple and none", () => {
+    const pair = { type: "pair", values: { x: 4, y: 3 } } as const;
+    expect(checkPractice(pair, { text: ["4", "3"] }).kind).toBe("correct");
+    expect(checkPractice(pair, { text: ["4", "2"] }).kind).toBe("unknown");
+    expect(checkPractice(pair, { text: ["4"] }).kind).toBe("invalid");
+    const triple = { type: "triple", values: { x: 1, y: 2, z: 3 } } as const;
+    expect(checkPractice(triple, { text: ["1", "2", "3"] }).kind).toBe("correct");
+    expect(checkPractice({ type: "none" }, { choice: 1 }).kind).toBe("correct");
+    expect(checkPractice({ type: "none" }, { choice: 0 }).kind).toBe("unknown");
+    expect(checkPractice({ type: "none" }, {}).kind).toBe("invalid");
   });
 });
 

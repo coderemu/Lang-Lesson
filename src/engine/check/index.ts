@@ -89,6 +89,100 @@ export function checkSelfCheck(mark: "got-it" | "not-yet" | null): CheckResult {
   return mark === "got-it" ? CORRECT : UNKNOWN;
 }
 
+/* ───────── Systems of equations (Chapter 2) ───────── */
+
+/**
+ * Read an answer for two or three unknowns. Accepts "(4, 3)", "4, 3", "x = 4, y = 3" and "x=6/7; y=-5/7".
+ * Returns the values in the order of `vars`, or null when the text is not a complete answer.
+ */
+export function parseTuple(text: string, vars: string[]): number[] | null {
+  const t = text.replace(/[()[\]{}]/g, "").trim();
+  if (t === "") return null;
+  const parts = t.split(/[;,]/).map((p) => p.trim());
+  if (parts.length !== vars.length) return null;
+  if (parts.every((p) => p.includes("="))) {
+    const byName = new Map<string, number>();
+    for (const p of parts) {
+      const [name, value] = p.split("=").map((x) => x.trim());
+      const n = parseNumber(value ?? "");
+      if (!vars.includes(name) || n === null) return null;
+      byName.set(name, n);
+    }
+    return vars.every((v) => byName.has(v)) ? vars.map((v) => byName.get(v) as number) : null;
+  }
+  if (parts.some((p) => p.includes("="))) return null;
+  const nums = parts.map(parseNumber);
+  return nums.every((n) => n !== null) ? (nums as number[]) : null;
+}
+
+/** The learner's values: one slot per unknown, or one slot that holds the whole answer. */
+function readTuple(inputs: string[], vars: string[]): number[] | null {
+  const filled = inputs.filter((s) => (s ?? "").trim() !== "");
+  if (filled.length === 1 && vars.length > 1) return parseTuple(filled[0], vars);
+  if (inputs.length < vars.length) return null;
+  const nums = vars.map((_, k) => parseNumber(inputs[k] ?? ""));
+  return nums.every((n) => n !== null) ? (nums as number[]) : null;
+}
+
+const sameTuple = (a: number[], b: number[]) => a.every((n, k) => sameNumber(n, b[k]));
+
+/** `pair` and `triple`: compare the tuple with the answer. */
+export function checkTuple(answer: Record<string, number>, inputs: string[]): CheckResult {
+  const vars = Object.keys(answer);
+  const got = readTuple(inputs, vars);
+  if (got === null) return INVALID;
+  return sameTuple(
+    got,
+    vars.map((v) => answer[v]),
+  )
+    ? CORRECT
+    : UNKNOWN;
+}
+
+/**
+ * Elimination screens. `values` is the solution, "none" (no solution) or "many" (many solutions).
+ * `chosen` is "none" or "many" when the learner tapped that chip. Mistake matches are "x=1;y=2", "none" or "many".
+ */
+export function checkSystem(
+  values: Record<string, number> | "none" | "many",
+  input: { text: string[]; chosen: string | null },
+  mistakes: Mistake<string>[] = [],
+): CheckResult {
+  const vars = typeof values === "object" ? Object.keys(values) : [];
+  const reply = (r: CheckResult): CheckResult => r;
+  const hit = (predicate: (m: Mistake<string>) => boolean): CheckResult => {
+    const m = mistakes.find(predicate);
+    return m ? { kind: "mistake", reply: m.reply } : UNKNOWN;
+  };
+  if (input.chosen === "none" || input.chosen === "many") {
+    if (values === input.chosen) return CORRECT;
+    return hit((m) => m.match === input.chosen);
+  }
+  const tupleVars = vars.length ? vars : ["x", "y"];
+  const got = readTuple(input.text, tupleVars);
+  if (got === null) return INVALID;
+  if (typeof values === "object") {
+    if (
+      sameTuple(
+        got,
+        vars.map((v) => values[v]),
+      )
+    )
+      return CORRECT;
+  }
+  return reply(
+    hit((m) => {
+      const want = parseMatchTuple(m.match, tupleVars);
+      return want !== null && sameTuple(got, want);
+    }),
+  );
+}
+
+function parseMatchTuple(match: string, vars: string[]): number[] | null {
+  if (match === "none" || match === "many") return null;
+  return parseTuple(match.replace(/;/g, ","), vars);
+}
+
 /** Screens with no answer. */
 export function checkNone(): CheckResult {
   return CORRECT;
@@ -111,10 +205,17 @@ export function checkPractice(
     }
     case "self-check":
       return checkSelfCheck(input.mark ?? null);
-    case "none":
-      return checkNone();
+    case "pair":
+      return checkTuple(answer.values, input.text ?? []);
+    case "triple":
+      return checkTuple(answer.values, input.text ?? []);
+    case "none": {
+      // "Is there a solution?" Choice 1 is "No solution".
+      if (input.choice == null) return INVALID;
+      return input.choice === 1 ? CORRECT : UNKNOWN;
+    }
     default:
-      // pair, triple, expression, set, interval: later phases.
+      // expression, set, interval: later phases.
       return UNKNOWN;
   }
 }
