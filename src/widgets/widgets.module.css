@@ -670,3 +670,8 @@
   font-size: var(--text-small);
   color: var(--color-ink-soft);
 }
+.elimVisual {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}

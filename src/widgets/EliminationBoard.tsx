@@ -164,16 +164,18 @@ export function EliminationBoard({ mode, equations, balance, disabled }: Elimina
               className={styles.elimRow}
               aria-pressed={picked.includes(i)}
               disabled={disabled}
-              aria-label={`Row ${row.label}: ${describeRow(row, vars)}`}
               onClick={() => toggle(i)}
               data-testid={`row-${i + 1}`}
             >
-              <span className={styles.elimTag}>R{row.label}</span>
-              <RowView
-                row={row}
-                vars={vars}
-                fresh={i === lastIndex && i >= start.length && !reduce}
-              />
+              <span className="sr-only">{`Row ${row.label}: ${describeRow(row, vars)}`}</span>
+              <span className={styles.elimVisual} aria-hidden="true">
+                <span className={styles.elimTag}>R{row.label}</span>
+                <RowView
+                  row={row}
+                  vars={vars}
+                  fresh={i === lastIndex && i >= start.length && !reduce}
+                />
+              </span>
             </button>
           </motion.li>
         ))}

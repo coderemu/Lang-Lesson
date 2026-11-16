@@ -58,3 +58,22 @@ describe("rule book of Chapter 1 against the Assumed or proved table", () => {
     expect(new Set(chapter1.map((r) => r.lesson))).toEqual(new Set(["1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8"]));
   });
 });
+
+describe("rule book of Chapter 2 against the Assumed or proved table", () => {
+  const ch2Lessons = Object.values(
+    import.meta.glob<{ default: Lesson }>("../../content/lessons/lesson-2.*.json", { eager: true }),
+  ).map((m) => m.default);
+  it("the general solution is left to the reader (exercise 11) and the methods are shown", () => {
+    const status = (id: string) => rules.find((r) => r.id === id)?.status;
+    expect(status("general-system")).toBe("left-to-reader");
+    expect(status("elimination")).toBe("shown");
+    expect(status("elim-three")).toBe("shown");
+  });
+  it("each Chapter 2 lesson earns exactly the rules of rules.json for that lesson", () => {
+    expect(ch2Lessons).toHaveLength(3);
+    for (const l of ch2Lessons) {
+      const own = rules.filter((r) => r.lesson === l.id).map((r) => r.id);
+      expect([...l.rulesEarned].sort(), `lesson ${l.id}`).toEqual(own.sort());
+    }
+  });
+});

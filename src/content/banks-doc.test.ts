@@ -4,16 +4,16 @@ import { describe, expect, it } from "vitest";
 import type { PracticeBank } from "../../content/schema";
 
 /**
- * Criterion 5: each Chapter 1 bank holds every problem of practice-banks.md, with the same answer text and Lang type.
+ * Criterion 5: each bank of Chapters 1 and 2 holds every problem of practice-banks.md, with the same answer text and Lang type.
  */
 const doc = readFileSync(join(process.cwd(), "docs/lesson-design/practice-banks.md"), "utf8");
 const banks = Object.values(
-  import.meta.glob<{ default: PracticeBank }>("../../content/practice/bank-1.*.json", { eager: true }),
+  import.meta.glob<{ default: PracticeBank }>("../../content/practice/bank-[12].*.json", { eager: true }),
 ).map((m) => m.default);
 
 const norm = (s: string) =>
   s
-    .replace(/\*/g, "")
+    .replace(/[*\\]/g, "")
     .replace(/[−–-]/g, "-")
     .replace(/\s+/g, " ")
     .replace(/[“”"]/g, "")
