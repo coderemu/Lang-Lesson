@@ -932,6 +932,372 @@
       "lessonScreens": [],
       "bankProblems": [],
       "note": "Lang refers to coordinates, a later chapter"
+    },
+    {
+      "id": "c3.1.01",
+      "chapter": 3,
+      "section": "§1",
+      "kind": "topic",
+      "topic": "Real numbers as points and decimals; rules of addition and multiplication; inverses",
+      "lessonScreens": [
+        "3.1.03",
+        "3.1.04"
+      ],
+      "bankProblems": [],
+      "note": "Assumed"
+    },
+    {
+      "id": "c3.1.02",
+      "chapter": 3,
+      "section": "§1",
+      "kind": "topic",
+      "topic": "Earlier proofs stay true for real numbers",
+      "lessonScreens": [
+        "3.1.04",
+        "3.1.06"
+      ],
+      "bankProblems": [
+        "b3.1.03",
+        "b3.1.04"
+      ]
+    },
+    {
+      "id": "c3.1.03",
+      "chapter": 3,
+      "section": "§1, ex. 1",
+      "kind": "exercises",
+      "topic": "Exercise 1: the E/I system",
+      "lessonScreens": [
+        "3.1.05"
+      ],
+      "bankProblems": [
+        "b3.1.01",
+        "b3.1.02"
+      ]
+    },
+    {
+      "id": "c3.2.01",
+      "chapter": 3,
+      "section": "§2",
+      "kind": "topic",
+      "topic": "POS 1, POS 2; 1 is positive",
+      "lessonScreens": [
+        "3.2.04"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c3.2.02",
+      "chapter": 3,
+      "section": "§2",
+      "kind": "topic",
+      "topic": "Sign rules for products and inverses",
+      "lessonScreens": [
+        "3.2.04"
+      ],
+      "bankProblems": [
+        "b3.2.01",
+        "b3.2.02"
+      ],
+      "note": "Exercises 1–3"
+    },
+    {
+      "id": "c3.2.03",
+      "chapter": 3,
+      "section": "§2",
+      "kind": "topic",
+      "topic": "Square roots exist; exactly two; the √ convention",
+      "lessonScreens": [
+        "3.2.02",
+        "3.2.03",
+        "3.2.05",
+        "3.2.06",
+        "3.2.08",
+        "3.2.09"
+      ],
+      "bankProblems": [
+        "b3.2.03",
+        "b3.2.04"
+      ]
+    },
+    {
+      "id": "c3.2.04",
+      "chapter": 3,
+      "section": "§2",
+      "kind": "topic",
+      "topic": "Absolute value",
+      "lessonScreens": [
+        "3.2.07"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c3.2.05",
+      "chapter": 3,
+      "section": "§2",
+      "kind": "topic",
+      "topic": "Rationalise the denominator and numerator; Lang’s view on usefulness",
+      "lessonScreens": [
+        "3.3.03",
+        "3.3.04",
+        "3.3.05"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c3.2.06",
+      "chapter": 3,
+      "section": "§2, ex. 4–11",
+      "kind": "exercises",
+      "topic": "Exercises 4–11: identities and inverses with roots",
+      "lessonScreens": [
+        "3.3.03"
+      ],
+      "bankProblems": [
+        "b3.3.03",
+        "b3.3.04"
+      ]
+    },
+    {
+      "id": "c3.2.07",
+      "chapter": 3,
+      "section": "§2, ex. 12, 15, 16",
+      "kind": "exercises",
+      "topic": "Exercises 12, 15, 16: rationalise",
+      "lessonScreens": [
+        "3.3.09",
+        "3.3.10"
+      ],
+      "bankProblems": [
+        "b3.3.01",
+        "b3.3.02",
+        "b3.3.05"
+      ]
+    },
+    {
+      "id": "c3.2.08",
+      "chapter": 3,
+      "section": "§2, ex. 13–14, 20",
+      "kind": "exercises",
+      "topic": "Exercises 13–14, 20: absolute value",
+      "lessonScreens": [
+        "3.2.10"
+      ],
+      "bankProblems": [
+        "b3.2.05",
+        "b3.2.06",
+        "b3.2.07",
+        "b3.2.08",
+        "b3.2.09"
+      ]
+    },
+    {
+      "id": "c3.2.09",
+      "chapter": 3,
+      "section": "§2, ex. 17–19",
+      "kind": "exercises",
+      "topic": "Exercises 17–19: equations with roots",
+      "lessonScreens": [
+        "3.3.06",
+        "3.3.07",
+        "3.3.08",
+        "3.3.11"
+      ],
+      "bankProblems": [
+        "b3.3.06",
+        "b3.3.07",
+        "b3.3.08",
+        "b3.3.09"
+      ]
+    },
+    {
+      "id": "c3.3.01",
+      "chapter": 3,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "n-th roots; Theorem 1",
+      "lessonScreens": [
+        "3.4.04"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c3.3.02",
+      "chapter": 3,
+      "section": "§3",
+      "kind": "topic",
+      "topic": "POW 1–3; a⁰ = 1; negative and fractional powers",
+      "lessonScreens": [
+        "3.4.02",
+        "3.4.03",
+        "3.4.05",
+        "3.4.06",
+        "3.4.07"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c3.3.03",
+      "chapter": 3,
+      "section": "§3, ex. 1–9",
+      "kind": "exercises",
+      "topic": "Exercises 1–9",
+      "lessonScreens": [
+        "3.4.08"
+      ],
+      "bankProblems": [
+        "b3.4.01",
+        "b3.4.02",
+        "b3.4.03",
+        "b3.4.04",
+        "b3.4.05",
+        "b3.4.06",
+        "b3.4.07",
+        "b3.4.08"
+      ]
+    },
+    {
+      "id": "c3.4.01",
+      "chapter": 3,
+      "section": "§4",
+      "kind": "topic",
+      "topic": "The order >, ≥; IN 1–IN 3 with proofs",
+      "lessonScreens": [
+        "3.5.02",
+        "3.5.03",
+        "3.5.04",
+        "3.5.05"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c3.4.02",
+      "chapter": 3,
+      "section": "§4",
+      "kind": "topic",
+      "topic": "Solve an inequality by cases",
+      "lessonScreens": [
+        "3.5.09"
+      ],
+      "bankProblems": [
+        "b3.5.05",
+        "b3.5.06"
+      ]
+    },
+    {
+      "id": "c3.4.03",
+      "chapter": 3,
+      "section": "§4",
+      "kind": "topic",
+      "topic": "Open, closed, half-open and infinite intervals",
+      "lessonScreens": [
+        "3.5.06"
+      ],
+      "bankProblems": [
+        "b3.5.07"
+      ]
+    },
+    {
+      "id": "c3.4.04",
+      "chapter": 3,
+      "section": "§4, ex. 1",
+      "kind": "exercises",
+      "topic": "Exercise 1: prove IN 3",
+      "lessonScreens": [
+        "3.5.04"
+      ],
+      "bankProblems": [
+        "b3.5.01"
+      ]
+    },
+    {
+      "id": "c3.4.05",
+      "chapter": 3,
+      "section": "§4, ex. 2–8",
+      "kind": "exercises",
+      "topic": "Exercises 2–8: more rules",
+      "lessonScreens": [
+        "3.6.03",
+        "3.6.04",
+        "3.6.05",
+        "3.6.06",
+        "3.6.07",
+        "3.6.08",
+        "3.6.09"
+      ],
+      "bankProblems": [
+        "b3.6.01",
+        "b3.6.02",
+        "b3.6.03",
+        "b3.6.04",
+        "b3.6.05",
+        "b3.6.09"
+      ]
+    },
+    {
+      "id": "c3.4.06",
+      "chapter": 3,
+      "section": "§4, ex. 9–24",
+      "kind": "exercises",
+      "topic": "Exercises 9–24: solve inequalities",
+      "lessonScreens": [
+        "3.5.07",
+        "3.5.08",
+        "3.5.09"
+      ],
+      "bankProblems": [
+        "b3.5.02",
+        "b3.5.03",
+        "b3.5.04",
+        "b3.5.05",
+        "b3.5.06"
+      ]
+    },
+    {
+      "id": "c3.4.07",
+      "chapter": 3,
+      "section": "§4, ex. 25–32",
+      "kind": "exercises",
+      "topic": "Exercises 25–32: x² < k, x² > k",
+      "lessonScreens": [
+        "3.6.10",
+        "3.6.11"
+      ],
+      "bankProblems": [
+        "b3.6.06",
+        "b3.6.07",
+        "b3.6.08"
+      ]
+    },
+    {
+      "id": "c3.3.04",
+      "chapter": 3,
+      "section": "§3",
+      "kind": "skip",
+      "topic": "Irrational exponents, such as 2 to the power √2",
+      "lessonScreens": [],
+      "bankProblems": [],
+      "note": "Lang postpones them to a later course"
+    },
+    {
+      "id": "c3.3.05",
+      "chapter": 3,
+      "section": "§3",
+      "kind": "skip",
+      "topic": "Why each real number exists (completeness)",
+      "lessonScreens": [],
+      "bankProblems": [],
+      "note": "Lang assumes existence and postpones the proof"
+    },
+    {
+      "id": "c3.4.08",
+      "chapter": 3,
+      "section": "§4",
+      "kind": "skip",
+      "topic": "A formal proof that aⁿ < bⁿ for all n",
+      "lessonScreens": [],
+      "bankProblems": [],
+      "note": "Lang refers to induction, a later chapter"
     }
   ]
 }

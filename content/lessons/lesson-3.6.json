@@ -1,0 +1,536 @@
+{
+  "id": "3.6",
+  "title": "More rules for inequalities",
+  "book": {
+    "chapter": 3,
+    "sections": "§4, ex. 2–8, 25–32"
+  },
+  "minutes": 12,
+  "goal": "Prove the inequality rules that Lang leaves to the reader, and solve x² < k and x² > k.",
+  "needs": [
+    "3.5"
+  ],
+  "rulesEarned": [
+    "ineq-rules"
+  ],
+  "generalHint": "Go back to IN 1, IN 2 and IN 3. Check which rule fits each line. For x² < k, try a negative x.",
+  "screens": [
+    {
+      "id": "3.6.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Solve an inequality",
+      "prompt": "Solve the inequality. Type the answer, for example $x > 3$.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "interval",
+        "answer": {
+          "correctTitle": "Yes, x > −2.",
+          "correctWhy": "−2x < 4. Divide by −2 and turn the sign around: x > −2.",
+          "value": "x > -2",
+          "mistakes": [
+            {
+              "match": "x < -2",
+              "reply": "You divided by −2. Look at the mirror screen. What happens to the inequality sign?"
+            }
+          ]
+        },
+        "expression": "−2x + 1 < 5 gives"
+      },
+      "hints": [
+        "Divide by $-2$. Turn the sign around."
+      ]
+    },
+    {
+      "id": "3.6.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "A product of negative numbers",
+      "prompt": "You know that $2 < 3$ and $4 < 5$, so $2 \\cdot 4 < 3 \\cdot 5$. Also $-3 < -2$ and $-5 < -4$. Guess: is $(-3)(-5) < (-2)(-4)$?",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "y",
+            "label": "Yes",
+            "reply": "Calculate: (−3)(−5) = 15 and (−2)(−4) = 8. Which is larger?"
+          },
+          {
+            "id": "n",
+            "label": "No"
+          }
+        ],
+        "correct": "n",
+        "feedback": {
+          "correctTitle": "No, it is false.",
+          "correctWhy": "(−3)(−5) = 15 and (−2)(−4) = 8. So 15 > 8. The order turns around."
+        },
+        "question": "Is $(-3)(-5) < (-2)(-4)$?"
+      },
+      "hints": [
+        "Find the two products."
+      ]
+    },
+    {
+      "id": "3.6.03",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Add a number",
+      "prompt": "Lang leaves this to the reader. Prove: if $a < b$, then $a + c < b + c$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "a + c < b + c",
+        "lines": [
+          {
+            "math": "a < b",
+            "reason": null
+          },
+          {
+            "math": "b - a > 0",
+            "reason": "def-lt"
+          },
+          {
+            "math": "(b + c) - (a + c) = b - a",
+            "reason": "simplify"
+          },
+          {
+            "math": "(b + c) - (a + c) > 0",
+            "reason": "replace"
+          },
+          {
+            "math": "a + c < b + c",
+            "reason": "def-lt-back"
+          }
+        ],
+        "tray": [
+          "def-lt",
+          "simplify",
+          "replace",
+          "def-lt-back",
+          "IN2",
+          "IN3"
+        ],
+        "steps": [
+          {
+            "id": "def-lt",
+            "label": "definition of <"
+          },
+          {
+            "id": "simplify",
+            "label": "the terms c cancel"
+          },
+          {
+            "id": "replace",
+            "label": "replace by the number b − a"
+          },
+          {
+            "id": "def-lt-back",
+            "label": "definition of <, read backwards"
+          }
+        ],
+        "wrongReasonReplies": {
+          "def-lt": "This step uses the meaning: a < b means b − a > 0. Did a line change a comparison into a difference?",
+          "simplify": "This step cancels terms. Which line has c and −c together?",
+          "replace": "This step replaces a number by an equal number. Which line has the same number in two forms?",
+          "def-lt-back": "This step reads the meaning backwards: a positive difference gives a comparison.",
+          "IN2": "IN 2 multiplies by a positive number. Is there a multiplication in this step?",
+          "IN3": "IN 3 multiplies by a negative number. Is there a multiplication in this step?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "Adding c to both numbers does not change the difference b − a. So the order stays."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "3.6.04",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Multiply two inequalities",
+      "prompt": "Lang leaves this to the reader. Prove: if $0 < a < b$, $c < d$ and $c > 0$, then $ac < bd$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "ac < bd",
+        "lines": [
+          {
+            "math": "0 < a < b,\\ 0 < c < d",
+            "reason": null
+          },
+          {
+            "math": "ac < bc",
+            "reason": "IN2"
+          },
+          {
+            "math": "bc < bd",
+            "reason": "IN2"
+          },
+          {
+            "math": "ac < bd",
+            "reason": "IN1"
+          }
+        ],
+        "tray": [
+          "IN2",
+          "IN1",
+          "IN3",
+          "POS1",
+          "POS2"
+        ],
+        "steps": [],
+        "wrongReasonReplies": {
+          "IN2": "IN 2 multiplies both sides by a positive number. Which line multiplies by a positive number?",
+          "IN1": "IN 1 chains two inequalities. Which line joins two lines from before?",
+          "IN3": "IN 3 multiplies by a negative number. Is a negative number in this step?",
+          "POS1": "POS 1 says that products and sums of positive numbers are positive. Is that the question here?",
+          "POS2": "POS 2 gives three cases for one number. Is there a case split here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "First multiply a < b by c. Then multiply c < d by b. The two results chain to ac < bd."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "3.6.05",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Two negative pairs",
+      "prompt": "This answers the hook. Prove: if $a < b < 0$ and $c < d < 0$, then $ac > bd$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "ac > bd",
+        "lines": [
+          {
+            "math": "a < b < 0,\\ c < d < 0",
+            "reason": null
+          },
+          {
+            "math": "ac > bc",
+            "reason": "IN3"
+          },
+          {
+            "math": "bc > bd",
+            "reason": "IN3"
+          },
+          {
+            "math": "ac > bd",
+            "reason": "IN1"
+          }
+        ],
+        "tray": [
+          "IN3",
+          "IN1",
+          "IN2",
+          "POS1",
+          "POS2"
+        ],
+        "steps": [],
+        "wrongReasonReplies": {
+          "IN3": "IN 3 multiplies both sides by a negative number. Which line does that?",
+          "IN1": "IN 1 chains two inequalities. Which line joins two lines from before?",
+          "IN2": "IN 2 multiplies by a positive number. Are the numbers positive here?",
+          "POS1": "POS 1 says that products and sums of positive numbers are positive. Are the numbers positive here?",
+          "POS2": "POS 2 gives three cases for one number. Is there a case split here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "Both c and b are negative, so each multiplication turns the sign around. Hook: (−3)(−5) = 15 > 8 = (−2)(−4)."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "3.6.06",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Invert an inequality",
+      "prompt": "Prove: if $0 < x < y$, then $\\dfrac{1}{y} < \\dfrac{1}{x}$. Multiply the two sides by $\\dfrac{1}{xy}$, which is positive.",
+      "interaction": {
+        "type": "proof",
+        "goal": "\\dfrac{1}{y} < \\dfrac{1}{x}",
+        "lines": [
+          {
+            "math": "0 < x < y",
+            "reason": null
+          },
+          {
+            "math": "xy > 0",
+            "reason": "POS1"
+          },
+          {
+            "math": "\\dfrac{1}{xy} > 0",
+            "reason": "sign-rules"
+          },
+          {
+            "math": "x \\cdot \\dfrac{1}{xy} < y \\cdot \\dfrac{1}{xy}",
+            "reason": "IN2"
+          },
+          {
+            "math": "\\dfrac{1}{y} < \\dfrac{1}{x}",
+            "reason": "cancel-frac"
+          }
+        ],
+        "tray": [
+          "POS1",
+          "sign-rules",
+          "IN2",
+          "cancel-frac",
+          "IN3",
+          "IN1"
+        ],
+        "steps": [],
+        "wrongReasonReplies": {
+          "POS1": "POS 1 says that a product of positive numbers is positive. Which line shows a product of positive numbers?",
+          "sign-rules": "The sign rules tell the sign of an inverse. Which line says that an inverse is positive?",
+          "IN2": "IN 2 multiplies both sides by a positive number. Which line does that?",
+          "cancel-frac": "This rule cancels a common factor in a fraction. Which line cancels x or y?",
+          "IN3": "IN 3 multiplies by a negative number. Is the number negative here?",
+          "IN1": "IN 1 chains two inequalities. Is there a chain here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "Multiplying x < y by the positive number 1/(xy) keeps the sign. The fractions then simplify to 1/y < 1/x."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "3.6.07",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Cross-multiplication",
+      "prompt": "If $b > 0$ and $d > 0$, then $\\dfrac{a}{b} < \\dfrac{c}{d}$ if and only if $ad < bc$.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "y",
+            "label": "Yes",
+            "reply": "Compare 3 · 7 and 4 · 5. Is 21 < 20?"
+          },
+          {
+            "id": "n",
+            "label": "No, $\\dfrac{3}{4}$ is larger"
+          }
+        ],
+        "correct": "n",
+        "feedback": {
+          "correctTitle": "No, 3/4 is larger.",
+          "correctWhy": "3 · 7 = 21 and 4 · 5 = 20. Since 21 > 20, we have 3/4 > 5/7."
+        },
+        "question": "Use the rule. Is $\\dfrac{3}{4} < \\dfrac{5}{7}$?"
+      },
+      "hints": [
+        "Compare $ad$ and $bc$."
+      ]
+    },
+    {
+      "id": "3.6.08",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Squares inside squares",
+      "prompt": "If $0 < a < b$, a square of side $a$ fits inside a square of side $b$. So $a^2 < b^2$. Then $a^3 < b^3$. Move the side $a$.",
+      "interaction": {
+        "type": "square-tiles",
+        "mode": "compare",
+        "widget": {
+          "b": 5,
+          "a": 3
+        },
+        "followUp": {
+          "type": "choice",
+          "options": [
+            {
+              "id": "a",
+              "label": "$a^2 < b^2$"
+            },
+            {
+              "id": "b",
+              "label": "$a^2 > b^2$",
+              "reply": "Look at the picture: the small square fits inside the big square. Which has more area?"
+            }
+          ],
+          "correct": "a",
+          "feedback": {
+            "correctTitle": "Yes, a² < b².",
+            "correctWhy": "The small square fits inside the big square, so its area is smaller."
+          },
+          "question": "If $0 < a < b$, which is true?"
+        }
+      },
+      "note": {
+        "label": "LANG'S NOTE",
+        "text": "A full proof of aⁿ < bⁿ for all n needs induction, a later chapter. Then a^(1/n) < b^(1/n)."
+      },
+      "caption": "Choose an answer, then check."
+    },
+    {
+      "id": "3.6.09",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Between two fractions",
+      "prompt": "If $b, d > 0$ and $\\dfrac{a}{b} < \\dfrac{c}{d}$, then $\\dfrac{a+c}{b+d}$ is between them. Example: $\\dfrac{1}{3} < \\dfrac{2}{5} < \\dfrac{1}{2}$. Add the tops and the bottoms.",
+      "interaction": {
+        "type": "fraction-strips",
+        "mode": "mediant",
+        "widget": {
+          "a": 1,
+          "b": 3,
+          "c": 1,
+          "d": 2
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "\\dfrac{1+1}{3+2} =",
+          "answer": {
+            "value": 0.4,
+            "correctTitle": "Yes, 2/5.",
+            "correctWhy": "(1 + 1)/(3 + 2) = 2/5. It lies between 1/3 and 1/2.",
+            "mistakes": [
+              {
+                "match": 0.8333333333333334,
+                "reply": "That adds the fractions. Here add the tops, then add the bottoms: (1+1)/(3+2)."
+              }
+            ]
+          }
+        }
+      },
+      "caption": "Press the button. Then type the number."
+    },
+    {
+      "id": "3.6.10",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 2",
+      "title": "Solve x² < 4",
+      "prompt": "Solve the inequality. Type the answer, for example $-1 < x < 1$.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "interval",
+        "answer": {
+          "correctTitle": "Yes, −2 < x < 2.",
+          "correctWhy": "The numbers whose square is less than 4 lie between −2 and 2.",
+          "value": "-2 < x < 2",
+          "mistakes": [
+            {
+              "match": "x < 2",
+              "reply": "Try x = −5. Is (−5)² < 4? Find the left end too."
+            }
+          ]
+        },
+        "expression": "x^2 < 4 gives"
+      },
+      "hints": [
+        "Both 2 and −2 have the square 4.",
+        "Try $x = 0$ and $x = 3$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 = 4 \\text{ at } x = 2 \\text{ and } x = -2",
+            "text": "The two ends have a square of 4."
+          },
+          {
+            "math": "-2 < x < 2",
+            "text": "Numbers between the ends have a smaller square."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "interval",
+        "answer": {
+          "correctTitle": "Yes, −4 < x < 4.",
+          "correctWhy": "The numbers whose square is less than 16 lie between −4 and 4.",
+          "value": "-4 < x < 4"
+        },
+        "expression": "x^2 < 16 gives"
+      }
+    },
+    {
+      "id": "3.6.11",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 2",
+      "title": "Solve x² > 3",
+      "prompt": "Solve the inequality. Type the answer, for example $x > 1$ or $x < -1$. Use sqrt(3) for the root.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "interval",
+        "answer": {
+          "correctTitle": "Yes, x > √3 or x < −√3.",
+          "correctWhy": "The numbers whose square is more than 3 lie outside the ends −√3 and √3.",
+          "value": "x > sqrt(3) or x < -sqrt(3)",
+          "mistakes": [
+            {
+              "match": "x > sqrt(3)",
+              "reply": "Try x = −2. Is (−2)² > 3? Find the other part too."
+            }
+          ]
+        },
+        "expression": "x^2 > 3 gives"
+      },
+      "hints": [
+        "The ends are $\\sqrt{3}$ and $-\\sqrt{3}$.",
+        "Try $x = 0$ and $x = 5$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 = 3 \\text{ at } x = \\pm\\sqrt{3}",
+            "text": "The two ends have a square of 3."
+          },
+          {
+            "math": "x > \\sqrt{3} \\text{ or } x < -\\sqrt{3}",
+            "text": "Numbers outside the ends have a larger square."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "interval",
+        "answer": {
+          "correctTitle": "Yes, x > √7 or x < −√7.",
+          "correctWhy": "The numbers whose square is more than 7 lie outside the ends −√7 and √7.",
+          "value": "x > sqrt(7) or x < -sqrt(7)"
+        },
+        "expression": "x^2 > 7 gives"
+      }
+    },
+    {
+      "id": "3.6.12",
+      "kind": "trap-summary",
+      "label": "LESSON 3.6 COMPLETE",
+      "title": "Squares need positive numbers.",
+      "prompt": "You saved this rule:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: if $a < b$, then $a^2 < b^2$.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Try a = −3 and b = 1. What are a² and b²?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "For a = −3 and b = 1: −3 < 1, but 9 > 1. The rule needs 0 < a."
+          }
+        },
+        "summary": [
+          "ineq-rules"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Finish chapter 3"
+    }
+  ]
+}

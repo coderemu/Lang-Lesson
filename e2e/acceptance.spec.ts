@@ -9,11 +9,11 @@ const countable = (c: number) => rowsOf(c).filter((r) => r.kind !== "skip").leng
 
 /** Criterion 6: the Coverage screen shows every row of the Chapter 1 map. Each row links to an existing screen or problem. */
 test.describe("coverage screen (criterion 6)", () => {
-  for (const chapter of [1, 2]) {
+  for (const chapter of [1, 2, 3]) {
     test(`after everything is done, every Chapter ${chapter} row is covered and the total is full`, async ({
       page,
     }) => {
-      await seed(page, completedState(new Date(), [1, 2]));
+      await seed(page, completedState(new Date(), [1, 2, 3]));
       await page.goto("/coverage");
       const rows = page.locator(
         `section[aria-label="Chapter ${chapter}"] [data-testid="coverage-row"]`,
@@ -27,15 +27,16 @@ test.describe("coverage screen (criterion 6)", () => {
       await expect(page.getByTestId(`total-${chapter}`)).toHaveText(
         `Chapter ${chapter}: ${countable(chapter)} of ${countable(chapter)} covered`,
       );
-      for (const c of [3, 4])
-        await expect(page.getByTestId(`total-${c}`)).toContainText(`Coming in phase ${c}`);
+      await expect(page.getByTestId("total-4")).toContainText("Coming in phase 4");
     });
   }
 
-  test("the Chapter 2 skip row shows the later-chapter note", async ({ page }) => {
+  test("the skip rows of Chapters 2 and 3 show the later-chapter note", async ({ page }) => {
     await page.goto("/coverage");
     const skip = page.locator('[data-testid="coverage-row"][data-status="skip"]');
-    await expect(skip).toHaveCount(rowsOf(2).filter((r) => r.kind === "skip").length);
+    await expect(skip).toHaveCount(
+      [...rowsOf(2), ...rowsOf(3)].filter((r) => r.kind === "skip").length,
+    );
     await expect(skip.first()).toContainText("Later chapter in Lang");
   });
 
@@ -47,6 +48,7 @@ test.describe("coverage screen (criterion 6)", () => {
     );
     await expect(page.getByTestId("total-1")).toHaveText(`Chapter 1: 0 of ${countable(1)} covered`);
     await expect(page.getByTestId("total-2")).toHaveText(`Chapter 2: 0 of ${countable(2)} covered`);
+    await expect(page.getByTestId("total-3")).toHaveText(`Chapter 3: 0 of ${countable(3)} covered`);
   });
 
   test("every link of every row opens an existing lesson screen or bank problem", async ({
@@ -95,6 +97,13 @@ test("design system shows every widget mode (criterion 8)", async ({ page }) => 
     "Elimination board · two-unknowns · live (with balances)",
     "Elimination board · three-unknowns · live",
     "Elimination board · general · live (ad − bc readout)",
+    "Number line · zoom · live (decimal search for √2)",
+    "Number line · interval · one part (drag the orange handles)",
+    "Number line · interval · two parts",
+    "E/I table · live",
+    "E/I table · wrong cells marked",
+    "Fraction strips · mediant · live",
+    "Square tiles · compare · live",
     "Trap summary · live",
   ];
   for (const e of expected) expect(names, e).toContain(e);

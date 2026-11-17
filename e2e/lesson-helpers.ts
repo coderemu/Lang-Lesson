@@ -29,7 +29,7 @@ export function chipLabel(id: string, steps: { id: string; label: string }[] = [
   const step = steps.find((s) => s.id === id);
   if (step) return step.label;
   if (FULL[id]) return FULL[id];
-  if (/^[A-Z]+\d*$/.test(id)) return id;
+  if (/^[A-Z]+\d*$/.test(id)) return id.replace(/^([A-Z]+)(\d)/, "$1 $2").replace(/^N (\d)/, "N$1");
   return (rulesJson.rules.find((r) => r.id === id)?.name ?? id) as string;
 }
 
@@ -106,6 +106,12 @@ async function chooseOption(page: Page, choice: Any, kb: boolean) {
   );
 }
 
+/** The text a learner types for a text-input answer. */
+export function textOf(i: Any): string {
+  const a = i.answer;
+  return i.checker === "set" ? (a.values as string[]).join(", ") : (a.value as string);
+}
+
 async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: Any) => number) {
   switch (i.type) {
     case "area-model":
@@ -123,6 +129,8 @@ async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: A
       if (i.followUp) {
         if (i.followUp.type === "choice") {
           await chooseOption(page, i.followUp, kb);
+        } else if (i.followUp.type === "text-input") {
+          await typeInto(page, page.getByLabel("Your answer"), textOf(i.followUp), kb);
         } else {
           await typeInto(
             page,
@@ -166,6 +174,19 @@ async function answerInteraction(page: Page, i: Any, kb: boolean, valueOf: (a: A
     case "number-input":
       await typeInto(page, page.getByLabel("Your answer"), String(valueOf(i.answer)), kb);
       return;
+    case "text-input":
+      await typeInto(page, page.getByLabel("Your answer"), textOf(i), kb);
+      return;
+    case "ei-table": {
+      // Cells start empty; one tap gives E, two taps give I.
+      const key = "EIIEEEEI";
+      for (const [k, letter] of [...key].entries()) {
+        const id = `ei-${k < 4 ? "add" : "mul"}-${Math.floor((k % 4) / 2)}${k % 2}`;
+        await activate(page, page.getByTestId(id), kb);
+        if (letter === "I") await activate(page, page.getByTestId(id), kb);
+      }
+      return;
+    }
     case "multi-number-input":
       for (const [k, p] of i.parts.entries()) {
         await typeInto(
@@ -199,6 +220,8 @@ export async function playScreen(page: Page, s: Screen, kb: boolean) {
       "choice",
       "proof",
       "trap-summary",
+      "text-input",
+      "ei-table",
     ].includes(i.type) ||
     (["number-line", "area-model", "square-tiles", "fraction-strips"].includes(i.type) &&
       (i.answer || i.followUp));
@@ -271,7 +294,7 @@ export function mistakeCases(lessonId: string): { cases: MistakeCase[]; unreacha
       run: MistakeCase["run"],
       where: MistakeCase["where"] = "sheet",
     ) => cases.push({ screen: s.id as string, label, reply, where, run });
-    const typed = (value: number) => async (page: Page) => {
+    const typed = (value: number | string) => async (page: Page) => {
       await typeInto(page, page.getByLabel("Your answer"), String(value), false);
       await pressCheck(page, false);
     };
@@ -308,6 +331,16 @@ export function mistakeCases(lessonId: string): { cases: MistakeCase[]; unreacha
     } else if (widgetTypes.includes(i.type) && i.followUp) followUp(i.followUp);
     else if (widgetTypes.includes(i.type) && i.answer) {
       for (const m of i.answer.mistakes ?? []) add(`answer ${m.match}`, m.reply, typed(m.match));
+    }
+    if (i.type === "text-input") {
+      for (const m of i.answer.mistakes ?? []) add(`answer ${m.match}`, m.reply, typed(m.match));
+    }
+    if (i.type === "ei-table") {
+      add("wrong cells", i.wrongReply, async (page) => {
+        for (const id of ["add", "mul"])
+          for (const c of ["00", "01", "10", "11"]) await page.getByTestId(`ei-${id}-${c}`).click();
+        await pressCheck(page, false);
+      });
     }
     if (i.type === "number-input" || i.type === "balance") {
       for (const m of i.answer.mistakes ?? []) add(`answer ${m.match}`, m.reply, typed(m.match));

@@ -1,4 +1,5 @@
 import { useMath } from "./useMath";
+import { loadMath, mathLoaded } from "./check/expr";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import type { PracticeBank, PracticeProblem } from "../../content/schema";
@@ -130,11 +131,14 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
     );
   };
 
-  const mathReady = useMath(
-    answer.type === "expression" || answer.type === "set" || answer.type === "interval",
-  );
+  const needsMath =
+    answer.type === "expression" || answer.type === "set" || answer.type === "interval";
+  useMath(needsMath);
   const check = () => {
-    if (!mathReady) return;
+    if (needsMath && !mathLoaded()) {
+      void loadMath().then(check);
+      return;
+    }
     const result = evaluatePractice(answer, input);
     if (result.kind === "invalid") {
       setInvalid(result.body);

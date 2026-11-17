@@ -145,3 +145,24 @@ describe("checkPractice with the new types", () => {
       true,
     ));
 });
+
+describe("root in denominator", () => {
+  const a = { value: "sqrt(5)+2", variables: [], noRootDenominator: true };
+  it("accepts a clean answer", () => expect(ok(checkExpression(a, "√5 + 2"))).toBe(true));
+  it("rejects an equal value with a root below", () =>
+    expect(checkExpression(a, "1/(sqrt(5)-2)").kind).toBe("mistake"));
+  it("accepts a number below", () =>
+    expect(
+      ok(
+        checkExpression(
+          { value: "(3-sqrt(2))/7", variables: [], noRootDenominator: true },
+          "(3 − √2)/7",
+        ),
+      ),
+    ).toBe(true));
+  it("uses the reply of the answer", () =>
+    expect(checkExpression({ ...a, formReply: "Remove the root." }, "1/(sqrt(5)-2)")).toEqual({
+      kind: "mistake",
+      reply: "Remove the root.",
+    }));
+});

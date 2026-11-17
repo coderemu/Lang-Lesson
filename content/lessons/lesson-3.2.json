@@ -1,0 +1,510 @@
+{
+  "id": "3.2",
+  "title": "Positive numbers and square roots",
+  "book": {
+    "chapter": 3,
+    "sections": "§2"
+  },
+  "minutes": 12,
+  "goal": "Use POS 1 and POS 2, find both square roots, and use |x|.",
+  "needs": [
+    "3.1"
+  ],
+  "rulesEarned": [
+    "POS1",
+    "POS2",
+    "one-positive",
+    "sign-rules",
+    "sqrt-exists",
+    "two-roots",
+    "abs"
+  ],
+  "generalHint": "Look at the mirror screen. The square of a number and the square of its mirror number are equal.",
+  "screens": [
+    {
+      "id": "3.2.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Use the formula",
+      "prompt": "Find the value.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "(\\sqrt{2} + 1)(\\sqrt{2} - 1) =",
+        "answer": {
+          "value": 1,
+          "correctTitle": "Yes, 1.",
+          "correctWhy": "(√2)² − 1² = 2 − 1 = 1.",
+          "mistakes": [
+            {
+              "match": 3,
+              "reply": "Use the formula a² − b². What is (√2)² − 1²?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use $(a+b)(a-b) = a^2 - b^2$."
+      ]
+    },
+    {
+      "id": "3.2.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "How many solutions?",
+      "prompt": "Look at the equation $x^2 = 9$. Guess how many numbers $x$ solve it.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "one",
+            "label": "One",
+            "reply": "Try 3 · 3 and (−3)(−3). What do you find?"
+          },
+          {
+            "id": "two",
+            "label": "Two"
+          },
+          {
+            "id": "three",
+            "label": "Three",
+            "reply": "Try some numbers. How many of them have a square of 9?"
+          }
+        ],
+        "correct": "two",
+        "feedback": {
+          "correctTitle": "Yes, two numbers.",
+          "correctWhy": "3 · 3 = 9 and (−3)(−3) = 9. No other number has a square of 9."
+        },
+        "question": "How many numbers have a square of 9?"
+      },
+      "hints": [
+        "Try 3 and −3."
+      ]
+    },
+    {
+      "id": "3.2.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Mirror points",
+      "prompt": "The number 3 and the number −3 are mirror points across 0. Find the square of −3.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "mirror",
+        "widget": {
+          "min": -5,
+          "max": 5,
+          "mirrorOf": 3
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "(-3)^2 =",
+          "answer": {
+            "value": 9,
+            "correctTitle": "Yes, 9.",
+            "correctWhy": "(−3)(−3) = 3 · 3 = 9. Mirror points have the same square.",
+            "mistakes": [
+              {
+                "match": -9,
+                "reply": "A product of two minus numbers is positive. What is (−3)(−3)?"
+              }
+            ]
+          }
+        }
+      },
+      "caption": "Type the square, then check."
+    },
+    {
+      "id": "3.2.04",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "1 is positive",
+      "prompt": "POS 1: a sum and a product of positive numbers are positive. POS 2: for each $a$, exactly one is true: $a > 0$, $a = 0$ or $-a > 0$. Prove: $1 > 0$. Suppose that $-1 > 0$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "1 > 0",
+        "lines": [
+          {
+            "math": "-1 > 0",
+            "reason": null
+          },
+          {
+            "math": "(-1)(-1) > 0",
+            "reason": "POS1"
+          },
+          {
+            "math": "1 > 0",
+            "reason": "N10"
+          },
+          {
+            "math": "\\text{both } 1 > 0 \\text{ and } -1 > 0\\text{: not allowed}",
+            "reason": "POS2"
+          },
+          {
+            "math": "1 > 0",
+            "reason": "conclude"
+          }
+        ],
+        "tray": [
+          "POS1",
+          "N10",
+          "POS2",
+          "conclude",
+          "N7",
+          "distrib"
+        ],
+        "steps": [
+          {
+            "id": "conclude",
+            "label": "so −1 is not positive, and 1 is"
+          }
+        ],
+        "wrongReasonReplies": {
+          "POS1": "POS 1 says that a product of positive numbers is positive. Which line is a product of two positive numbers?",
+          "N10": "N10 says that minus times minus is plus. Which line has a product of two minus numbers?",
+          "POS2": "POS 2 says that only one of the three cases is true. Which line has two cases at the same time?",
+          "conclude": "This step gives the result. Is the result already clear from the line before?",
+          "N7": "N7 says that (−1)a = −a. Is there a product with −1 and a letter in this step?",
+          "distrib": "Distributivity splits a(b + c). Is there a sum in brackets here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "If −1 were positive, then 1 would also be positive, and POS 2 does not allow it. So 1 is positive."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "3.2.05",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Exactly two square roots",
+      "prompt": "Prove: if $x^2 = b^2$, then $x = b$ or $x = -b$. Move $b^2$ to the left. Then factor.",
+      "interaction": {
+        "type": "proof",
+        "goal": "x = b \\text{ or } x = -b",
+        "lines": [
+          {
+            "math": "x^2 = \\vb{b}^2",
+            "reason": null
+          },
+          {
+            "math": "x^2 - \\vb{b}^2 = 0",
+            "reason": "sub-b2"
+          },
+          {
+            "math": "(x + \\vb{b})(x - \\vb{b}) = 0",
+            "reason": "diff-sq"
+          },
+          {
+            "math": "x + \\vb{b} = 0 \\text{ or } x - \\vb{b} = 0",
+            "reason": "zero-product"
+          },
+          {
+            "math": "x = -\\vb{b} \\text{ or } x = \\vb{b}",
+            "reason": "solve-each"
+          }
+        ],
+        "tray": [
+          "sub-b2",
+          "diff-sq",
+          "zero-product",
+          "solve-each",
+          "sq-sum",
+          "cancel-mul"
+        ],
+        "steps": [
+          {
+            "id": "sub-b2",
+            "label": "subtract b² from both sides"
+          },
+          {
+            "id": "solve-each",
+            "label": "solve each equation"
+          }
+        ],
+        "wrongReasonReplies": {
+          "sub-b2": "This step subtracts the same number from both sides. Did a line subtract b² from both sides?",
+          "diff-sq": "This rule says (a+b)(a−b) = a² − b². Which line is a product of a sum and a difference?",
+          "zero-product": "This rule says: if ab = 0, then a = 0 or b = 0. Which line has a product equal to 0?",
+          "solve-each": "This step solves two simple equations. Which line gives x alone?",
+          "sq-sum": "This rule squares a sum. Is there a square of a sum in this step?",
+          "cancel-mul": "This rule cancels a factor on both sides. Did a factor cancel here?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "The equation $x^2 = b^2$ has exactly two solutions, $b$ and $-b$."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "3.2.06",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "The root sign",
+      "prompt": "The symbol $\\sqrt{a}$ means the positive root only. The solutions of $x^2 = a$ are $x = \\pm\\sqrt{a}$. Say: plus or minus root $a$.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "p",
+            "label": "3"
+          },
+          {
+            "id": "m",
+            "label": "−3",
+            "reply": "The root sign gives the positive root only. Is −3 positive?"
+          },
+          {
+            "id": "both",
+            "label": "3 or −3",
+            "reply": "The number √9 is one number. The equation x² = 9 has two solutions, but √9 is only the positive one."
+          }
+        ],
+        "correct": "p",
+        "feedback": {
+          "correctTitle": "Yes, 3.",
+          "correctWhy": "The symbol √ gives the positive root. The equation x² = 9 has the solutions 3 and −3."
+        },
+        "question": "What is $\\sqrt{9}$?"
+      },
+      "caption": "Choose an answer, then check."
+    },
+    {
+      "id": "3.2.07",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Absolute value",
+      "prompt": "The absolute value is $|x| = \\sqrt{x^2}$. On the line, $|x|$ is the distance from $x$ to 0.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "|-4| =",
+        "answer": {
+          "value": 4,
+          "correctTitle": "Yes, 4.",
+          "correctWhy": "The distance from −4 to 0 is 4. Also √((−4)²) = √16 = 4.",
+          "mistakes": [
+            {
+              "match": -4,
+              "reply": "A distance is never negative. The distance from −4 to 0 is 4."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Count the units from −4 to 0."
+      ]
+    },
+    {
+      "id": "3.2.08",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 3",
+      "title": "Solve x² = 7",
+      "prompt": "Solve the equation. Give all solutions. Type them with a comma.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "answer": {
+          "correctTitle": "Yes, ±√7.",
+          "correctWhy": "Both √7 and −√7 have a square of 7.",
+          "values": [
+            "sqrt(7)",
+            "-sqrt(7)"
+          ],
+          "mistakes": [
+            {
+              "match": "sqrt(7)",
+              "reply": "Look at the mirror screen. Which other number has the same square as √7?"
+            },
+            {
+              "match": "-sqrt(7)",
+              "reply": "Look at the mirror screen. Which other number has the same square as −√7?"
+            }
+          ]
+        },
+        "expression": "x^2 = 7:  x ="
+      },
+      "hints": [
+        "The equation has two solutions.",
+        "Write $\\pm\\sqrt{7}$, or type sqrt(7), -sqrt(7)."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 = 7",
+            "text": "Two numbers have a square of 7."
+          },
+          {
+            "math": "x = \\sqrt{7} \\text{ or } x = -\\sqrt{7}",
+            "text": "The root sign gives the positive root. Add the mirror number."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "set",
+        "answer": {
+          "correctTitle": "Yes, ±√13.",
+          "correctWhy": "Both √13 and −√13 have a square of 13.",
+          "values": [
+            "sqrt(13)",
+            "-sqrt(13)"
+          ]
+        },
+        "expression": "x^2 = 13:  x ="
+      }
+    },
+    {
+      "id": "3.2.09",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 3",
+      "title": "Root of a square",
+      "prompt": "Find the value.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "\\sqrt{(-4)^2} =",
+        "answer": {
+          "value": 4,
+          "correctTitle": "Yes, 4.",
+          "correctWhy": "(−4)² = 16 and √16 = 4. The root sign gives the positive root.",
+          "mistakes": [
+            {
+              "match": -4,
+              "reply": "The root sign gives the positive root only. What is √16?"
+            },
+            {
+              "match": 16,
+              "reply": "That is the square. Now find the root of 16."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Find $(-4)^2$ first.",
+        "Then find the positive root."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(-4)^2 = 16",
+            "text": "Square first."
+          },
+          {
+            "math": "\\sqrt{16} = 4",
+            "text": "The root sign gives the positive root."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "\\sqrt{(-6)^2} =",
+        "answer": {
+          "value": 6,
+          "correctTitle": "Yes, 6.",
+          "correctWhy": "(−6)² = 36 and √36 = 6."
+        }
+      }
+    },
+    {
+      "id": "3.2.10",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 3",
+      "title": "Solve |x − 2| = 5",
+      "prompt": "Solve the equation. Give all solutions.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "answer": {
+          "correctTitle": "Yes, 7 or −3.",
+          "correctWhy": "The points 5 units from 2 are 7 and −3.",
+          "values": [
+            "7",
+            "-3"
+          ],
+          "mistakes": [
+            {
+              "match": "7",
+              "reply": "The distance from x to 2 is 5. Find the point 5 units to the left of 2."
+            },
+            {
+              "match": "-3",
+              "reply": "The distance from x to 2 is 5. Find the point 5 units to the right of 2."
+            }
+          ]
+        },
+        "expression": "|x - 2| = 5:  x ="
+      },
+      "hints": [
+        "Draw 2 on the line. Go 5 units each way.",
+        "The two points are $2 + 5$ and $2 - 5$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x - 2 = 5 \\text{ or } x - 2 = -5",
+            "text": "The distance from x to 2 is 5."
+          },
+          {
+            "math": "x = 7 \\text{ or } x = -3",
+            "text": "Add 2 to each side."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "set",
+        "answer": {
+          "correctTitle": "Yes, 7 or −1.",
+          "correctWhy": "The points 4 units from 3 are 7 and −1.",
+          "values": [
+            "7",
+            "-1"
+          ]
+        },
+        "expression": "|x - 3| = 4:  x ="
+      }
+    },
+    {
+      "id": "3.2.11",
+      "kind": "trap-summary",
+      "label": "LESSON 3.2 COMPLETE",
+      "title": "The root sign is positive.",
+      "prompt": "You saved these rules:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: $\\sqrt{x^2} = x$ for all $x$.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Try x = −4. What is √((−4)²)?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "If $x = -4$, then $\\sqrt{x^2} = \\sqrt{16} = 4$, not −4. In general $\\sqrt{x^2} = |x|$."
+          }
+        },
+        "summary": [
+          "POS1",
+          "POS2",
+          "sqrt-exists",
+          "abs"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Simplify square roots"
+    }
+  ],
+  "next": {
+    "id": "3.3",
+    "title": "Simplify square roots"
+  }
+}

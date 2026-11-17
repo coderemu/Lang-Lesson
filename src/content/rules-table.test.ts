@@ -77,3 +77,29 @@ describe("rule book of Chapter 2 against the Assumed or proved table", () => {
     }
   });
 });
+
+describe("Chapter 3 rules", () => {
+  const DOC3: Record<string, RuleStatus> = {
+    "rules-real": "assumed", POS1: "assumed", POS2: "assumed", "one-positive": "proved", "sign-rules": "left-to-reader",
+    "sqrt-exists": "assumed", "two-roots": "proved", "nth-root-exists": "assumed", "thm-roots": "proved",
+    POW1: "assumed", POW2: "assumed", POW3: "assumed", "zero-pow": "proved", IN1: "proved", IN2: "proved", IN3: "left-to-reader",
+    "ineq-rules": "left-to-reader",
+  };
+  const chapter3 = rules.filter((r) => /^3\.\d$/.test(r.lesson));
+  const lessons3 = Object.values(
+    import.meta.glob<{ default: Lesson }>("../../content/lessons/lesson-3.*.json", { eager: true }),
+  ).map((m) => m.default);
+  it("rules have the status of the Assumed or proved table", () => {
+    const wrong = Object.entries(DOC3)
+      .map(([id, status]) => ({ id, status, has: rules.find((r) => r.id === id)?.status }))
+      .filter((x) => x.has !== x.status);
+    expect(wrong).toEqual([]);
+  });
+  it("each lesson 3.1–3.6 earns exactly its rules", () => {
+    expect(lessons3).toHaveLength(6);
+    for (const l of lessons3) {
+      const own = chapter3.filter((r) => r.lesson === l.id).map((r) => r.id).sort();
+      expect([...l.rulesEarned].sort(), `lesson ${l.id}`).toEqual(own);
+    }
+  });
+});

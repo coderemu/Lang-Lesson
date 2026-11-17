@@ -1,0 +1,176 @@
+{
+  "lesson": "3.6",
+  "title": "Bank 3.6",
+  "problems": [
+    {
+      "id": "b3.6.01",
+      "n": 1,
+      "prompt": "Prove: if $a < b$, then $a - c < b - c$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "(b − c) − (a − c) = b − a > 0",
+      "solution": [
+        "a < b means b − a > 0.",
+        "(b − c) − (a − c) = b − a.",
+        "So (b − c) − (a − c) > 0, that is a − c < b − c."
+      ],
+      "langType": "§4 ex. 5",
+      "hints": [
+        "Use the meaning of $<$."
+      ]
+    },
+    {
+      "id": "b3.6.02",
+      "n": 2,
+      "prompt": "Prove: if $a < b < 0$ and $c < d < 0$, then $ac > bd$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Use IN 3 two times, then IN 1",
+      "solution": [
+        "IN 3 with c < 0: ac > bc.",
+        "IN 3 with b < 0: bc > bd.",
+        "IN 1: ac > bd."
+      ],
+      "langType": "§4 ex. 3",
+      "hints": [
+        "Multiply by a negative number two times."
+      ]
+    },
+    {
+      "id": "b3.6.03",
+      "n": 3,
+      "prompt": "Is $\\dfrac{2}{5} < \\dfrac{3}{7}$? Use cross-multiplication of inequalities.",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Yes",
+          "No"
+        ],
+        "correct": 0
+      },
+      "answerText": "Yes, 14 < 15",
+      "solution": [
+        "Compare 2 · 7 and 5 · 3.",
+        "14 < 15, so 2/5 < 3/7."
+      ],
+      "langType": "§4 ex. 4",
+      "hints": [
+        "Compare $ad$ and $bc$."
+      ]
+    },
+    {
+      "id": "b3.6.04",
+      "n": 4,
+      "prompt": "Find the number $\\dfrac{a+c}{b+d}$ for $\\dfrac{1}{4}$ and $\\dfrac{1}{2}$. Check that it is between them.",
+      "answer": {
+        "type": "number",
+        "value": 0.3333333333333333,
+        "mistakes": [
+          {
+            "match": 0.75,
+            "reply": "That adds the fractions. Add the tops, then add the bottoms."
+          }
+        ]
+      },
+      "answerText": "1/3",
+      "solution": [
+        "(1 + 1)/(4 + 2) = 2/6 = 1/3.",
+        "1/4 < 1/3 < 1/2."
+      ],
+      "langType": "§4 ex. 8",
+      "hints": [
+        "Add the tops. Add the bottoms."
+      ],
+      "verify": "(1+1)/(4+2)"
+    },
+    {
+      "id": "b3.6.05",
+      "n": 5,
+      "prompt": "Prove: if $0 < x < y$, then $\\dfrac{1}{y} < \\dfrac{1}{x}$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Multiply by 1/(xy) > 0",
+      "solution": [
+        "xy > 0, so 1/(xy) > 0.",
+        "Multiply x < y by 1/(xy) (IN 2): 1/y < 1/x."
+      ],
+      "langType": "§4 ex. 4",
+      "hints": [
+        "Multiply by a positive number."
+      ]
+    },
+    {
+      "id": "b3.6.06",
+      "n": 6,
+      "prompt": "Solve $x^2 < 9$.",
+      "answer": {
+        "type": "interval",
+        "value": "-3 < x < 3"
+      },
+      "answerText": "−3 < x < 3",
+      "solution": [
+        "The ends are −3 and 3.",
+        "Numbers between them have a smaller square."
+      ],
+      "langType": "§4 ex. 25–28",
+      "hints": [
+        "Both 3 and −3 have the square 9."
+      ]
+    },
+    {
+      "id": "b3.6.07",
+      "n": 7,
+      "prompt": "Solve $x^2 > 5$. Use sqrt(5) for the root.",
+      "answer": {
+        "type": "interval",
+        "value": "x > sqrt(5) or x < -sqrt(5)"
+      },
+      "answerText": "x > √5 or x < −√5",
+      "solution": [
+        "The ends are −√5 and √5.",
+        "Numbers outside them have a larger square."
+      ],
+      "langType": "§4 ex. 29–32",
+      "hints": [
+        "Try $x = 0$ and $x = 3$."
+      ]
+    },
+    {
+      "id": "b3.6.08",
+      "n": 8,
+      "prompt": "Solve $x^2 \\le \\dfrac{1}{4}$.",
+      "answer": {
+        "type": "interval",
+        "value": "-1/2 <= x <= 1/2"
+      },
+      "answerText": "−1/2 ≤ x ≤ 1/2",
+      "solution": [
+        "The ends are −1/2 and 1/2. The ends are included, because ≤."
+      ],
+      "langType": "§4 ex. 25–28",
+      "hints": [
+        "Both 1/2 and −1/2 have the square 1/4."
+      ]
+    },
+    {
+      "id": "b3.6.09",
+      "n": 9,
+      "prompt": "Give numbers $a < b$ with $a^2 > b^2$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "For example −4 < 2, and 16 > 4",
+      "solution": [
+        "Take a = −4 and b = 2.",
+        "a < b, but a² = 16 and b² = 4. So a² > b²."
+      ],
+      "langType": "§4 ex. 6",
+      "hints": [
+        "Use a negative number for $a$."
+      ]
+    }
+  ]
+}

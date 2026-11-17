@@ -42,6 +42,8 @@ const textAnswer = z
     variables: z.array(z.string()).optional(),
     ...feedback,
     mistakes: z.array(mistake(z.string())).optional(),
+    noRootDenominator: z.boolean().optional(),
+    formReply: z.string().optional(),
   })
   .strict();
 const textInput = z
@@ -256,7 +258,13 @@ const practiceAnswer = z.discriminatedUnion("type", [
     })
     .strict(),
   z
-    .object({ type: z.literal("expression"), value: z.string(), variables: z.array(z.string()) })
+    .object({
+      type: z.literal("expression"),
+      value: z.string(),
+      variables: z.array(z.string()),
+      noRootDenominator: z.boolean().optional(),
+      formReply: z.string().optional(),
+    })
     .strict(),
   z.object({ type: z.literal("set"), values: z.array(z.string()) }).strict(),
   z.object({ type: z.literal("interval"), value: z.string() }).strict(),

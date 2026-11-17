@@ -10,6 +10,7 @@ import {
   partsText,
   partWords,
   powText,
+  readBrackets,
   type Part,
 } from "./ch3";
 import { AXIS_Y, LINE_W, clamp, fmt, spoken, valueAtX, xOf } from "./geometry";
@@ -117,7 +118,7 @@ export function ZoomLine({ spec, onChange, disabled }: ZoomLineProps) {
           </button>
         ))}
       </div>
-      <p className={c3.zoomMsg} role="status" aria-live="polite">
+      <p className={c3.zoomMsg} role="status" aria-live="polite" data-testid="zoom-msg">
         {msg ||
           (done
             ? ""
@@ -150,6 +151,12 @@ const DEFAULT_PART = (min: number, max: number): Part => ({
 
 function readParts(value: string, min: number, max: number, count: number): Part[] {
   const out: Part[] = [];
+  const own = value.trim() ? readBrackets(value, min, max) : null;
+  if (own) {
+    for (const q of own) out.push({ ...q, lo: clamp(q.lo, min, max), hi: clamp(q.hi, min, max) });
+    while (out.length < count) out.push(DEFAULT_PART(min, max));
+    return out.slice(0, count);
+  }
   const pieces = value.trim() ? parseInterval(value) : null;
   for (const q of pieces ?? []) {
     out.push({

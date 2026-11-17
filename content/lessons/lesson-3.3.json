@@ -1,0 +1,466 @@
+{
+  "id": "3.3",
+  "title": "Simplify square roots",
+  "book": {
+    "chapter": 3,
+    "sections": "§2"
+  },
+  "minutes": 12,
+  "goal": "Remove a square root from a denominator or a numerator with (x + y)(x − y) = x² − y².",
+  "needs": [
+    "3.2"
+  ],
+  "rulesEarned": [
+    "rationalise"
+  ],
+  "generalHint": "Multiply the top and the bottom by the same number with the opposite sign. Then use (x + y)(x − y) = x² − y².",
+  "screens": [
+    {
+      "id": "3.3.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "The formula",
+      "prompt": "Choose the value of $(a+b)(a-b)$.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "d",
+            "label": "$a^2 - b^2$"
+          },
+          {
+            "id": "s",
+            "label": "$a^2 + b^2$",
+            "reply": "The two middle terms ab and −ab cancel. What is left?"
+          },
+          {
+            "id": "q",
+            "label": "$a^2 - 2ab + b^2$",
+            "reply": "That is (a−b)². Here the signs are different. Expand the product again."
+          }
+        ],
+        "correct": "d",
+        "feedback": {
+          "correctTitle": "Yes, a² − b².",
+          "correctWhy": "The terms ab and −ab cancel. Only a² and −b² stay."
+        }
+      }
+    },
+    {
+      "id": "3.3.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Which is larger?",
+      "prompt": "Compare $\\dfrac{1}{3+\\sqrt{2}}$ and 0.25. Guess which number is larger.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "f",
+            "label": "$\\dfrac{1}{3+\\sqrt{2}}$",
+            "reply": "The number √2 is more than 1, so 3 + √2 is more than 4. Is 1/(3+√2) more than 1/4?"
+          },
+          {
+            "id": "q",
+            "label": "0.25"
+          }
+        ],
+        "correct": "q",
+        "feedback": {
+          "correctTitle": "Yes, 0.25 is larger.",
+          "correctWhy": "The number √2 is more than 1, so 3 + √2 is more than 4. So 1/(3 + √2) is less than 1/4."
+        },
+        "question": "Which number is larger?"
+      },
+      "hints": [
+        "Compare the denominators: 4 and $3 + \\sqrt{2}$."
+      ]
+    },
+    {
+      "id": "3.3.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "The √2 strips cancel",
+      "prompt": "Draw a rectangle with sides $3+\\sqrt{2}$ and $3-\\sqrt{2}$. It has four parts: 9, two strips of area $3\\sqrt{2}$ with opposite signs, and $-2$. The strips cancel. Find the value.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "(3+\\sqrt{2})(3-\\sqrt{2}) =",
+        "answer": {
+          "value": 7,
+          "correctTitle": "Yes, 7.",
+          "correctWhy": "The strips +3√2 and −3√2 cancel. The result is 9 − 2 = 7.",
+          "mistakes": [
+            {
+              "match": 11,
+              "reply": "The last part is −√2·√2 = −2. What is 9 − 2?"
+            },
+            {
+              "match": 9,
+              "reply": "The last part is −√2·√2. What is its value?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use $(a+b)(a-b) = a^2 - b^2$ with $a = 3$ and $b = \\sqrt{2}$."
+      ]
+    },
+    {
+      "id": "3.3.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Rationalise the denominator",
+      "prompt": "To remove the root from $\\dfrac{1}{3+\\sqrt{2}}$, multiply the top and the bottom by $3-\\sqrt{2}$. The result is $\\dfrac{3-\\sqrt{2}}{7}$. Lang says this step is not useful in general. Use it only when it helps.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "rationalise"
+        ]
+      }
+    },
+    {
+      "id": "3.3.05",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Rationalise the numerator",
+      "prompt": "You can also remove roots from a numerator: $\\dfrac{\\sqrt{x+h}-\\sqrt{x}}{h} = \\dfrac{1}{\\sqrt{x+h}+\\sqrt{x}}$. Calculus uses this step.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "p",
+            "label": "$\\sqrt{x+h}+\\sqrt{x}$"
+          },
+          {
+            "id": "m",
+            "label": "$\\sqrt{x+h}-\\sqrt{x}$",
+            "reply": "Use the opposite sign. Then the root terms cancel."
+          },
+          {
+            "id": "r",
+            "label": "$\\sqrt{x}$",
+            "reply": "That does not use the formula (x+y)(x−y). Which number has the same terms with the opposite sign?"
+          }
+        ],
+        "correct": "p",
+        "feedback": {
+          "correctTitle": "Yes, the sum.",
+          "correctWhy": "(√(x+h) − √x)(√(x+h) + √x) = (x + h) − x = h. The h cancels with the h below."
+        },
+        "question": "What do you multiply the top and the bottom by?"
+      }
+    },
+    {
+      "id": "3.3.06",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Solve with roots",
+      "prompt": "Solve $\\sqrt{x+5} = 1 + \\sqrt{x}$. Square the two sides. The $x$ terms cancel. Find $x$.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "x =",
+        "answer": {
+          "value": 4,
+          "correctTitle": "Yes, 4.",
+          "correctWhy": "Squaring gives x + 5 = 1 + 2√x + x, so √x = 2 and x = 4. Check: √9 = 3 = 1 + 2.",
+          "mistakes": [
+            {
+              "match": 2,
+              "reply": "That is the value of √x. Square it to find x."
+            },
+            {
+              "match": 16,
+              "reply": "If √x = 2, then x = 2². What is 2²?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "$(1+\\sqrt{x})^2 = 1 + 2\\sqrt{x} + x$.",
+        "The $x$ terms cancel. Then $\\sqrt{x} = 2$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x + 5 = 1 + 2\\sqrt{x} + x",
+            "text": "Square the two sides."
+          },
+          {
+            "math": "\\sqrt{x} = 2",
+            "text": "Subtract $x$ and 1. Divide by 2."
+          },
+          {
+            "math": "x = 4",
+            "text": "Square again. Check: $\\sqrt{9} = 3 = 1 + 2$."
+          }
+        ]
+      }
+    },
+    {
+      "id": "3.3.07",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "A false solution",
+      "prompt": "Solve $\\sqrt{x+5} = 1 - \\sqrt{x}$. The same steps give $x = 4$. Check $x = 4$ in the equation. Does it work?",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "y",
+            "label": "Yes, it solves the equation",
+            "reply": "Check: √9 = 3 and 1 − √4 = −1. Is 3 = −1?"
+          },
+          {
+            "id": "n",
+            "label": "No, the equation has no solution"
+          }
+        ],
+        "correct": "n",
+        "feedback": {
+          "correctTitle": "No, this equation has no solution.",
+          "correctWhy": "The check fails: 3 ≠ 1 − 2. The steps give only x = 4, so there is no solution."
+        },
+        "question": "Does $x = 4$ solve $\\sqrt{x+5} = 1 - \\sqrt{x}$?"
+      },
+      "hints": [
+        "Put $x = 4$ in both sides."
+      ]
+    },
+    {
+      "id": "3.3.08",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Always check",
+      "prompt": "If you square the two sides, you can get a false solution. Always check the answer in the original equation.",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "a",
+            "label": "Squaring can add a false solution"
+          },
+          {
+            "id": "b",
+            "label": "To find a second solution",
+            "reply": "A check does not find new solutions. It tests the answer you have. What can squaring add?"
+          },
+          {
+            "id": "c",
+            "label": "Because $x$ always has two values",
+            "reply": "Not always. Look at the last two screens. Squaring gave a number that failed the check."
+          }
+        ],
+        "correct": "a",
+        "feedback": {
+          "correctTitle": "Yes, squaring can add a false solution.",
+          "correctWhy": "The squared equation can have solutions that the original equation does not have."
+        },
+        "question": "Why do you check the answer in the original equation?"
+      }
+    },
+    {
+      "id": "3.3.09",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 3",
+      "title": "Rationalise a denominator",
+      "prompt": "Remove the root from the denominator. Type the result.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "expression",
+        "answer": {
+          "correctTitle": "Yes, √5 + 2.",
+          "correctWhy": "(√5 − 2)(√5 + 2) = 5 − 4 = 1. So the result is √5 + 2.",
+          "value": "sqrt(5)+2",
+          "variables": [],
+          "mistakes": [
+            {
+              "match": "1",
+              "reply": "The value changes. Multiply the top and the bottom by the same number."
+            }
+          ],
+          "noRootDenominator": true,
+          "formReply": "The value is right, but a root is still in the denominator. Multiply the top and the bottom by the number with the opposite sign."
+        },
+        "expression": "\\dfrac{1}{\\sqrt{5}-2} ="
+      },
+      "hints": [
+        "Multiply the top and the bottom by $\\sqrt{5}+2$.",
+        "The bottom becomes $5 - 4$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "\\dfrac{1}{\\sqrt{5}-2}\\cdot\\dfrac{\\sqrt{5}+2}{\\sqrt{5}+2}",
+            "text": "Multiply the top and the bottom by $\\sqrt{5}+2$."
+          },
+          {
+            "math": "\\dfrac{\\sqrt{5}+2}{5-4} = \\sqrt{5}+2",
+            "text": "The bottom is $(\\sqrt{5})^2 - 2^2 = 1$."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "expression",
+        "answer": {
+          "correctTitle": "Yes, (√7 + 2)/3.",
+          "correctWhy": "(√7 − 2)(√7 + 2) = 7 − 4 = 3. So the result is (√7 + 2)/3.",
+          "value": "(sqrt(7)+2)/3",
+          "variables": [],
+          "noRootDenominator": true,
+          "formReply": "The value is right, but a root is still in the denominator."
+        },
+        "expression": "\\dfrac{1}{\\sqrt{7}-2} ="
+      }
+    },
+    {
+      "id": "3.3.10",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 3",
+      "title": "Rationalise a denominator",
+      "prompt": "Remove the root from the denominator. Type the result.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "expression",
+        "answer": {
+          "correctTitle": "Yes, √3 − 1.",
+          "correctWhy": "(1 + √3)(√3 − 1) = 3 − 1 = 2. So the result is 2(√3 − 1)/2 = √3 − 1.",
+          "value": "sqrt(3)-1",
+          "variables": [],
+          "mistakes": [
+            {
+              "match": "1",
+              "reply": "The value changes. Multiply the top and the bottom by the same number."
+            }
+          ],
+          "noRootDenominator": true,
+          "formReply": "The value is right, but a root is still in the denominator. Multiply the top and the bottom by the number with the opposite sign."
+        },
+        "expression": "\\dfrac{2}{1+\\sqrt{3}} ="
+      },
+      "hints": [
+        "Multiply the top and the bottom by $\\sqrt{3}-1$.",
+        "The bottom becomes $3 - 1$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "\\dfrac{2}{1+\\sqrt{3}}\\cdot\\dfrac{\\sqrt{3}-1}{\\sqrt{3}-1}",
+            "text": "Multiply the top and the bottom by $\\sqrt{3}-1$."
+          },
+          {
+            "math": "\\dfrac{2(\\sqrt{3}-1)}{3-1} = \\sqrt{3}-1",
+            "text": "The bottom is $(\\sqrt{3})^2 - 1^2 = 2$."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "expression",
+        "answer": {
+          "correctTitle": "Yes, 3√2 − 3.",
+          "correctWhy": "(1 + √2)(√2 − 1) = 2 − 1 = 1. So the result is 3(√2 − 1).",
+          "value": "3*sqrt(2)-3",
+          "variables": [],
+          "noRootDenominator": true,
+          "formReply": "The value is right, but a root is still in the denominator."
+        },
+        "expression": "\\dfrac{3}{1+\\sqrt{2}} ="
+      }
+    },
+    {
+      "id": "3.3.11",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 3",
+      "title": "Solve and check",
+      "prompt": "Solve $\\sqrt{x-3} = 3 - \\sqrt{x}$. Check the answer.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "x =",
+        "answer": {
+          "value": 4,
+          "correctTitle": "Yes, 4.",
+          "correctWhy": "Squaring gives x − 3 = 9 − 6√x + x, so √x = 2 and x = 4. Check: √1 = 1 = 3 − 2.",
+          "mistakes": [
+            {
+              "match": 2,
+              "reply": "That is the value of √x. Square it to find x."
+            },
+            {
+              "match": 12,
+              "reply": "Check the squaring: (3−√x)² = 9 − 6√x + x. Then find √x."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Square the two sides. The $x$ terms cancel.",
+        "Then $6\\sqrt{x} = 12$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x - 3 = 9 - 6\\sqrt{x} + x",
+            "text": "Square the two sides."
+          },
+          {
+            "math": "6\\sqrt{x} = 12,\\ \\sqrt{x} = 2",
+            "text": "The $x$ terms cancel."
+          },
+          {
+            "math": "x = 4",
+            "text": "Check: $\\sqrt{1} = 1 = 3 - 2$."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "x =",
+        "answer": {
+          "value": 2.25,
+          "correctTitle": "Yes, 9/4.",
+          "correctWhy": "Solve √(x − 2) = 2 − √x: x − 2 = 4 − 4√x + x, so √x = 3/2 and x = 9/4. Check: √(1/4) = 1/2 = 2 − 3/2."
+        }
+      }
+    },
+    {
+      "id": "3.3.12",
+      "kind": "trap-summary",
+      "label": "LESSON 3.3 COMPLETE",
+      "title": "Roots do not add that way.",
+      "prompt": "You saved this method:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: $\\sqrt{a+b} = \\sqrt{a} + \\sqrt{b}$.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Try a = 9 and b = 16. What are √(9+16) and √9+√16?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "For a = 9 and b = 16: √(9 + 16) = 5, but √9 + √16 = 7."
+          }
+        },
+        "summary": [
+          "rationalise"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Powers and roots"
+    }
+  ],
+  "next": {
+    "id": "3.4",
+    "title": "Powers and roots"
+  }
+}

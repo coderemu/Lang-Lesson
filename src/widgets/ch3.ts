@@ -70,3 +70,17 @@ export function partWords(p: Part, min: number, max: number): string {
 }
 
 export const mediant = (a: number, b: number, c: number, d: number) => ({ n: a + c, d: b + d });
+
+/** Read the text that `partsText` writes: "(-2, 5] U (7, inf)". No mathjs needed. null = other text. */
+export function readBrackets(text: string, min: number, max: number): Part[] | null {
+  const parts: Part[] = [];
+  for (const piece of text.split(/\s+U\s+/)) {
+    const m = /^([([])\s*(-?inf|-?\d+)\s*,\s*(-?inf|-?\d+)\s*([)\]])$/.exec(piece.trim());
+    if (!m) return null;
+    const at = (v: string, edge: number) => (v.endsWith("inf") ? edge : Number(v));
+    const lo = at(m[2], min);
+    const hi = at(m[3], max);
+    parts.push({ lo, hi, loClosed: m[1] === "[" && lo > min, hiClosed: m[4] === "]" && hi < max });
+  }
+  return parts;
+}

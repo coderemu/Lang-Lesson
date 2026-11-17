@@ -4,11 +4,11 @@ import { describe, expect, it } from "vitest";
 import type { PracticeBank } from "../../content/schema";
 
 /**
- * Criterion 5: each bank of Chapters 1 and 2 holds every problem of practice-banks.md, with the same answer text and Lang type.
+ * Criterion 5: each bank of Chapters 1 to 3 holds every problem of practice-banks.md, with the same answer text and Lang type.
  */
 const doc = readFileSync(join(process.cwd(), "docs/lesson-design/practice-banks.md"), "utf8");
 const banks = Object.values(
-  import.meta.glob<{ default: PracticeBank }>("../../content/practice/bank-[12].*.json", { eager: true }),
+  import.meta.glob<{ default: PracticeBank }>("../../content/practice/bank-[123].*.json", { eager: true }),
 ).map((m) => m.default);
 
 const norm = (s: string) =>
@@ -28,7 +28,7 @@ function docRows(lesson: string): { n: number; problem: string; answer: string; 
     .slice(start, end)
     .split("\n")
     .filter((l) => /^\| \d+ \|/.test(l))
-    .map((l) => l.split("|").slice(1, -1).map((c) => c.trim()))
+    .map((l) => l.replace(/\\\|/g, "\u0001").split("|").slice(1, -1).map((c) => c.trim()))
     .map(([n, problem, answer, lang]) => ({ n: Number(n), problem, answer, lang }));
 }
 

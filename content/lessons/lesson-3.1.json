@@ -1,0 +1,235 @@
+{
+  "id": "3.1",
+  "title": "The real numbers",
+  "book": {
+    "chapter": 3,
+    "sections": "§1"
+  },
+  "minutes": 8,
+  "goal": "Know that the real numbers are all points on the line, and that the rules of Chapter 1 apply to them.",
+  "needs": [
+    "1.7"
+  ],
+  "rulesEarned": [
+    "rules-real"
+  ],
+  "generalHint": "Remember: the real numbers obey the same rules as before. Use (a + b)(a − b) = a² − b².",
+  "screens": [
+    {
+      "id": "3.1.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Is √2 a fraction?",
+      "prompt": "Look back at lesson 1.7. Is $\\sqrt{2}$ a rational number?",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Yes, it is rational",
+            "reply": "Lesson 1.7 shows that no fraction has a square equal to 2. Can √2 be a fraction?"
+          },
+          {
+            "id": "no",
+            "label": "No, it is not rational"
+          }
+        ],
+        "correct": "no",
+        "feedback": {
+          "correctTitle": "No, √2 is not rational.",
+          "correctWhy": "Lesson 1.7 proves that no fraction has a square equal to 2."
+        }
+      },
+      "caption": "Choose an answer, then check."
+    },
+    {
+      "id": "3.1.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "Is each point a fraction?",
+      "prompt": "Pick any point of the number line. Guess: is each point a fraction?",
+      "interaction": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "all",
+            "label": "Yes, each point is a fraction",
+            "reply": "The point √2 is on the line. Lesson 1.7 shows that it is not a fraction. Is each point a fraction?"
+          },
+          {
+            "id": "some",
+            "label": "No, some points are not fractions"
+          }
+        ],
+        "correct": "some",
+        "feedback": {
+          "correctTitle": "No, some points are not fractions.",
+          "correctWhy": "The point $\\sqrt{2}$ is on the line, but it is not a fraction. You see it on the next screen."
+        }
+      },
+      "hints": [
+        "Think of $\\sqrt{2}$. Where is it on the line?"
+      ],
+      "caption": "Choose an answer, then check."
+    },
+    {
+      "id": "3.1.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Find √2 digit by digit",
+      "prompt": "Each point has a decimal. Find the decimal of $\\sqrt{2}$. Pick the next digit each time. The line zooms by 10.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "zoom",
+        "widget": {
+          "n": 2,
+          "p": 2,
+          "depth": 3
+        },
+        "followUp": {
+          "type": "choice",
+          "options": [
+            {
+              "id": "yes",
+              "label": "Yes, after some digits",
+              "reply": "A decimal that stops is a fraction. For example, 1.414 = 1414/1000. Is √2 a fraction?"
+            },
+            {
+              "id": "no",
+              "label": "No, the digits never stop"
+            }
+          ],
+          "correct": "no",
+          "feedback": {
+            "correctTitle": "No, the digits never stop.",
+            "correctWhy": "A decimal that stops is a fraction. The number $\\sqrt{2}$ is not a fraction."
+          },
+          "question": "Can the digits of $\\sqrt{2}$ stop?"
+        }
+      },
+      "caption": "Pick digits until the search ends. Then answer the question."
+    },
+    {
+      "id": "3.1.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Real numbers",
+      "prompt": "Each point of the line is a real number. Real numbers have decimals, and some decimals never stop, for example 9.123145… Addition and multiplication obey the same rules as before. Each real number $a \\ne 0$ has an inverse.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "rules-real"
+        ]
+      },
+      "note": {
+        "label": "WORDS MATTER",
+        "text": "Real number means a point of the line. Rational means a fraction."
+      }
+    },
+    {
+      "id": "3.1.05",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "The E/I system",
+      "prompt": "Two objects E (even) and I (odd). Fill the two tables. Tap a cell to choose E or I. These two objects obey the same rules as numbers.",
+      "interaction": {
+        "type": "ei-table",
+        "feedback": {
+          "correctTitle": "Yes, the tables are right.",
+          "correctWhy": "E acts like 0 and I acts like 1. Only these two objects obey the same rules."
+        },
+        "wrongReply": "Check each cell with real numbers. For example, 3 + 5 = 8 is I + I. Is 8 even or odd?"
+      },
+      "hints": [
+        "Use numbers: 2 is even and 3 is odd. Find 2 + 3 and 2 · 3."
+      ],
+      "caption": "Fill all eight cells, then check."
+    },
+    {
+      "id": "3.1.06",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 1",
+      "title": "Use (a + b)(a − b)",
+      "prompt": "Find the value. Use $(a+b)(a-b) = a^2 - b^2$.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "(\\sqrt{2} + 1)(\\sqrt{2} - 1) =",
+        "answer": {
+          "value": 1,
+          "correctTitle": "Yes, 1.",
+          "correctWhy": "(√2)² − 1² = 2 − 1 = 1.",
+          "mistakes": [
+            {
+              "match": 3,
+              "reply": "Use the formula a² − b². What is (√2)² − 1²?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use $a = \\sqrt{2}$ and $b = 1$.",
+        "$(\\sqrt{2})^2 = 2$. Then subtract $1^2$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "(\\sqrt{2}+1)(\\sqrt{2}-1) = (\\sqrt{2})^2 - 1^2",
+            "text": "Use the formula for $(a+b)(a-b)$."
+          },
+          {
+            "math": "2 - 1 = 1",
+            "text": "$(\\sqrt{2})^2$ is 2."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "(\\sqrt{3} + 1)(\\sqrt{3} - 1) =",
+        "answer": {
+          "value": 2,
+          "correctTitle": "Yes, 2.",
+          "correctWhy": "(√3)² − 1² = 3 − 1 = 2."
+        }
+      }
+    },
+    {
+      "id": "3.1.07",
+      "kind": "trap-summary",
+      "label": "LESSON 3.1 COMPLETE",
+      "title": "The same rules hold.",
+      "prompt": "You saved this rule:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: the rules N1–N12 apply to integers only.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "You used the formula a² − b² with √2. Is √2 an integer?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "The rules hold for rational numbers and for real numbers. For example, $(\\sqrt{2}+1)(\\sqrt{2}-1) = 1$ uses the rules."
+          }
+        },
+        "summary": [
+          "rules-real"
+        ]
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Next: Positive numbers and square roots"
+    }
+  ],
+  "next": {
+    "id": "3.2",
+    "title": "Positive numbers and square roots"
+  }
+}

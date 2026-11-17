@@ -1,0 +1,198 @@
+{
+  "lesson": "3.3",
+  "title": "Bank 3.3",
+  "problems": [
+    {
+      "id": "b3.3.01",
+      "n": 1,
+      "prompt": "Rationalise the denominator of $\\dfrac{1}{2+\\sqrt{3}}$.",
+      "answer": {
+        "type": "expression",
+        "value": "2-sqrt(3)",
+        "variables": [],
+        "noRootDenominator": true
+      },
+      "answerText": "2 − √3",
+      "solution": [
+        "Multiply the top and the bottom by 2 − √3.",
+        "The bottom is 4 − 3 = 1."
+      ],
+      "langType": "§2 ex. 16",
+      "hints": [
+        "Use the number with the opposite sign."
+      ]
+    },
+    {
+      "id": "b3.3.02",
+      "n": 2,
+      "prompt": "Rationalise the denominator of $\\dfrac{3}{\\sqrt{7}-2}$.",
+      "answer": {
+        "type": "expression",
+        "value": "sqrt(7)+2",
+        "variables": [],
+        "noRootDenominator": true
+      },
+      "answerText": "√7 + 2",
+      "solution": [
+        "Multiply the top and the bottom by √7 + 2.",
+        "The bottom is 7 − 4 = 3. Then 3(√7 + 2)/3 = √7 + 2."
+      ],
+      "langType": "§2 ex. 16",
+      "hints": [
+        "Use the number with the opposite sign."
+      ]
+    },
+    {
+      "id": "b3.3.03",
+      "n": 3,
+      "prompt": "Write the inverse of $1+\\sqrt{2}$ as $c + d\\sqrt{2}$ with rational $c$, $d$. Type $c$, then $d$.",
+      "answer": {
+        "type": "numbers",
+        "values": [
+          -1,
+          1
+        ],
+        "ordered": true
+      },
+      "answerText": "−1 + √2",
+      "solution": [
+        "The inverse is 1/(1 + √2).",
+        "Multiply the top and the bottom by √2 − 1. The bottom is 2 − 1 = 1.",
+        "The result is √2 − 1 = −1 + √2."
+      ],
+      "langType": "§2 ex. 6–9",
+      "hints": [
+        "Rationalise the denominator."
+      ]
+    },
+    {
+      "id": "b3.3.04",
+      "n": 4,
+      "prompt": "Write $(1+2\\sqrt{3})(2-\\sqrt{3})$ as $c + d\\sqrt{3}$. Type $c$, then $d$.",
+      "answer": {
+        "type": "numbers",
+        "values": [
+          -4,
+          3
+        ],
+        "ordered": true
+      },
+      "answerText": "−4 + 3√3",
+      "solution": [
+        "Expand: 2 − √3 + 4√3 − 2 · 3.",
+        "= 2 + 3√3 − 6 = −4 + 3√3."
+      ],
+      "langType": "§2 ex. 10–11",
+      "hints": [
+        "Expand the product. Use $(\\sqrt{3})^2 = 3$."
+      ]
+    },
+    {
+      "id": "b3.3.05",
+      "n": 5,
+      "prompt": "Rationalise the numerator of $\\dfrac{\\sqrt{x+2h}-\\sqrt{x}}{h}$.",
+      "answer": {
+        "type": "expression",
+        "value": "2/(sqrt(x+2*h)+sqrt(x))",
+        "variables": [
+          "x",
+          "h"
+        ]
+      },
+      "answerText": "2/(√(x + 2h) + √x)",
+      "solution": [
+        "Multiply the top and the bottom by √(x + 2h) + √x.",
+        "The top becomes (x + 2h) − x = 2h. The h cancels."
+      ],
+      "langType": "§2 ex. 12",
+      "hints": [
+        "Use $(a-b)(a+b)$ on the top."
+      ]
+    },
+    {
+      "id": "b3.3.06",
+      "n": 6,
+      "prompt": "Solve $\\sqrt{x+7} = 1 + \\sqrt{x}$. Check the answer.",
+      "answer": {
+        "type": "number",
+        "value": 9,
+        "mistakes": [
+          {
+            "match": 3,
+            "reply": "That is the value of $\\sqrt{x}$. Square it to find $x$."
+          }
+        ]
+      },
+      "answerText": "9",
+      "solution": [
+        "Square: x + 7 = 1 + 2√x + x, so √x = 3.",
+        "x = 9. Check: √16 = 4 = 1 + 3."
+      ],
+      "langType": "§2 ex. 19",
+      "hints": [
+        "Square the two sides. The $x$ terms cancel."
+      ],
+      "verify": "((7-1)/2)^2"
+    },
+    {
+      "id": "b3.3.07",
+      "n": 7,
+      "prompt": "Solve $\\sqrt{x+7} = 1 - \\sqrt{x}$.",
+      "answer": {
+        "type": "none"
+      },
+      "answerText": "No solution (9 fails the check)",
+      "solution": [
+        "Square: x + 7 = 1 − 2√x + x, so √x = −3. That has no solution.",
+        "Also x = 9 from the steps fails: √16 = 4 and 1 − 3 = −2."
+      ],
+      "langType": "§2 ex. 19",
+      "hints": [
+        "Square the two sides. Then check the answer."
+      ]
+    },
+    {
+      "id": "b3.3.08",
+      "n": 8,
+      "prompt": "Solve $\\sqrt{x-3} = 3 - \\sqrt{x}$.",
+      "answer": {
+        "type": "number",
+        "value": 4,
+        "mistakes": [
+          {
+            "match": 2,
+            "reply": "That is the value of $\\sqrt{x}$. Square it to find $x$."
+          }
+        ]
+      },
+      "answerText": "4",
+      "solution": [
+        "Square: x − 3 = 9 − 6√x + x, so √x = 2.",
+        "x = 4. Check: √1 = 1 = 3 − 2."
+      ],
+      "langType": "§2 ex. 18–19",
+      "hints": [
+        "Square the two sides."
+      ],
+      "verify": "((3^2+3)/6)^2"
+    },
+    {
+      "id": "b3.3.09",
+      "n": 9,
+      "prompt": "Show that no real number $x$ has $\\sqrt{x-5} = 1 + \\sqrt{x}$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Squaring gives 2√x = −6",
+      "solution": [
+        "Square: x − 5 = 1 + 2√x + x.",
+        "So 2√x = −6.",
+        "But √x is not negative. So no x fits."
+      ],
+      "langType": "§2 ex. 17",
+      "hints": [
+        "Square the two sides. Look at the sign of $\\sqrt{x}$."
+      ]
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
 import { readFileSync, readdirSync } from "node:fs";
 
-/** Every bank problem of Chapters 1 and 2 opens; full bank play-throughs are step 1E. */
+/** Every bank problem of Chapters 1 to 3 opens; full bank play-throughs are step 1E. */
 const dir = new URL("../content/practice/", import.meta.url);
 const banks = readdirSync(dir)
-  .filter((f) => /^bank-[12]\.\d\.json$/.test(f))
+  .filter((f) => /^bank-[123]\.\d\.json$/.test(f))
   .map(
     (f) =>
       JSON.parse(readFileSync(new URL(f, dir), "utf8")) as {

@@ -127,7 +127,13 @@ export function checkText(i: TextInputInteraction, text: string): CheckResult {
   if (i.checker === "interval")
     return checkInterval({ value: a.value ?? "", mistakes: a.mistakes }, text);
   return checkExpression(
-    { value: a.value ?? "", variables: a.variables ?? [], mistakes: a.mistakes },
+    {
+      value: a.value ?? "",
+      variables: a.variables ?? [],
+      mistakes: a.mistakes,
+      noRootDenominator: a.noRootDenominator,
+      formReply: a.formReply,
+    },
     text,
   );
 }

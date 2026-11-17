@@ -1,0 +1,88 @@
+{
+  "lesson": "3.1",
+  "title": "Bank 3.1",
+  "problems": [
+    {
+      "id": "b3.1.01",
+      "n": 1,
+      "prompt": "In the E/I system, show that addition is commutative and associative. Which object acts as 0?",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Check all cases; E acts as 0",
+      "solution": [
+        "Commutative: the + table is the same when you swap the rows and columns. For example, E + I = I + E = I.",
+        "Associative: check the eight cases. For example, (I + I) + I = E + I = I and I + (I + I) = I + E = I.",
+        "E acts as 0: E + E = E and E + I = I."
+      ],
+      "langType": "§1 ex. 1(a)",
+      "hints": [
+        "Use the + table of lesson 3.1."
+      ]
+    },
+    {
+      "id": "b3.1.02",
+      "n": 2,
+      "prompt": "In the E/I system, which object acts as 1 for multiplication? Show that distributivity holds.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "I acts as 1; check all cases",
+      "solution": [
+        "I acts as 1: I · E = E and I · I = I.",
+        "Distributivity: check the eight cases of a(b + c) = ab + ac. For example, I(I + I) = I · E = E and I · I + I · I = I + I = E."
+      ],
+      "langType": "§1 ex. 1(b)",
+      "hints": [
+        "Use the × table of lesson 3.1."
+      ]
+    },
+    {
+      "id": "b3.1.03",
+      "n": 3,
+      "prompt": "Find the value of $(\\sqrt{3}+2)(\\sqrt{3}-2)$.",
+      "answer": {
+        "type": "number",
+        "value": -1,
+        "mistakes": [
+          {
+            "match": 7,
+            "reply": "Use $a^2 - b^2$. What is $(\\sqrt{3})^2 - 2^2$?"
+          }
+        ]
+      },
+      "answerText": "−1",
+      "solution": [
+        "Use (a + b)(a − b) = a² − b².",
+        "(√3)² − 2² = 3 − 4 = −1."
+      ],
+      "langType": "§1 text",
+      "hints": [
+        "Use $a = \\sqrt{3}$ and $b = 2$."
+      ],
+      "verify": "(sqrt(3)+2)*(sqrt(3)-2)"
+    },
+    {
+      "id": "b3.1.04",
+      "n": 4,
+      "prompt": "Write $(\\sqrt{5}+1)^2$ as $c + d\\sqrt{5}$. Type $c$, then $d$.",
+      "answer": {
+        "type": "numbers",
+        "values": [
+          6,
+          2
+        ],
+        "ordered": true
+      },
+      "answerText": "6 + 2√5",
+      "solution": [
+        "Use (a + b)² = a² + 2ab + b².",
+        "(√5)² + 2 · √5 · 1 + 1² = 5 + 2√5 + 1 = 6 + 2√5."
+      ],
+      "langType": "§1 text",
+      "hints": [
+        "Use the square of a sum."
+      ]
+    }
+  ]
+}

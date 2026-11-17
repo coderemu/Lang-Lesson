@@ -218,6 +218,8 @@ export interface TextAnswer extends Feedback {
   values?: string[];          // set: each a mathjs text
   variables?: string[];       // expression: the letters in the answer
   mistakes?: Mistake<string>[];   // matched with the same checker
+  noRootDenominator?: boolean;    // expression: equal values are not enough if a root stays in a denominator
+  formReply?: string;             // reply for that case
 }
 
 export interface TextInputInteraction {
@@ -247,7 +249,7 @@ export type PracticeAnswer =
   | { type: "numbers"; values: number[]; ordered: boolean }        // several separate results
   | { type: "pair"; values: { x: number; y: number } }
   | { type: "triple"; values: { x: number; y: number; z: number } }
-  | { type: "expression"; value: string; variables: string[] }    // checked by equivalence (Phase 3)
+  | { type: "expression"; value: string; variables: string[]; noRootDenominator?: boolean; formReply?: string }  // checked by equivalence
   | { type: "set"; values: string[] }                              // solutions as mathjs text, "1+sqrt(5)"
   | { type: "interval"; value: string }                            // e.g. "(-2, 1/2)", "(-inf,3) U (7,inf)"
   | { type: "choice"; options: string[]; correct: number }

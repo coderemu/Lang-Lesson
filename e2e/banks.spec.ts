@@ -7,7 +7,7 @@ type Problem = { id: string; n: number; prompt: string; answer: any; stretch?: b
 type Bank = { lesson: string; problems: Problem[] };
 const dir = new URL("../content/practice/", import.meta.url);
 const banks: Bank[] = readdirSync(dir)
-  .filter((f) => /^bank-[12]\.\d\.json$/.test(f))
+  .filter((f) => /^bank-[123]\.\d\.json$/.test(f))
   .sort()
   .map((f) => JSON.parse(readFileSync(new URL(f, dir), "utf8")));
 
@@ -42,6 +42,10 @@ async function solve(page: Page, p: Problem, kb: boolean) {
       page.getByRole("group", { name: "Choices" }).getByRole("button").nth(1),
       kb,
     );
+  } else if (a.type === "expression" || a.type === "interval") {
+    await typeInto(page, page.getByLabel("Your answer"), a.value, kb);
+  } else if (a.type === "set") {
+    await typeInto(page, page.getByLabel("Your answer"), a.values.join(", "), kb);
   } else throw new Error(`unsupported answer type ${a.type}`);
   await activate(page, checkButton(page), kb);
   await expect(feedback(page)).toContainText("Correct.");

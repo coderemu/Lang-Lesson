@@ -45,12 +45,12 @@ describe("zoom widget", () => {
     const user = userEvent.setup();
     render(<ZoomLine spec={{ n: 2, p: 2, depth: 3 }} />);
     await user.click(screen.getByRole("button", { name: "Digit 5" }));
-    expect(screen.getByRole("status").textContent).toMatch(/more than 2/);
+    expect(screen.getByTestId("zoom-msg").textContent).toMatch(/more than 2/);
     await user.click(screen.getByRole("button", { name: "Digit 4" }));
-    expect(screen.getByRole("status").textContent).toMatch(/between 1\.4 and 1\.5/);
+    expect(screen.getByTestId("zoom-msg").textContent).toMatch(/between 1\.4 and 1\.5/);
     await user.click(screen.getByRole("button", { name: "Digit 1" }));
     await user.click(screen.getByRole("button", { name: "Digit 4" }));
-    expect(screen.getByRole("status").textContent).toMatch(/Search finished/);
+    expect(screen.getByTestId("zoom-msg").textContent).toMatch(/Search finished/);
     expect(screen.getByRole("button", { name: "Digit 0" })).toBeDisabled();
   });
 });

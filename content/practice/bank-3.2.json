@@ -1,0 +1,183 @@
+{
+  "lesson": "3.2",
+  "title": "Bank 3.2",
+  "problems": [
+    {
+      "id": "b3.2.01",
+      "n": 1,
+      "prompt": "Prove: if $a > 0$ and $b < 0$, then $ab < 0$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "a(−b) > 0 by POS 1, so −(ab) > 0",
+      "solution": [
+        "Since b < 0, we have −b > 0 (POS 2).",
+        "a(−b) > 0 by POS 1.",
+        "a(−b) = −(ab) by N9. So −(ab) > 0, and ab < 0."
+      ],
+      "langType": "§2 ex. 1",
+      "hints": [
+        "Use −b > 0 and POS 1."
+      ]
+    },
+    {
+      "id": "b3.2.02",
+      "n": 2,
+      "prompt": "Prove: if $a < 0$, then $a^{-1} < 0$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "If a⁻¹ > 0, then aa⁻¹ < 0, a contradiction",
+      "solution": [
+        "Suppose a⁻¹ > 0. Then a⁻¹ is a positive number.",
+        "From problem 1: a < 0 and a⁻¹ > 0 give a · a⁻¹ < 0.",
+        "But a · a⁻¹ = 1 > 0. This is a contradiction, so a⁻¹ < 0."
+      ],
+      "langType": "§2 ex. 3",
+      "hints": [
+        "Suppose the opposite. Use problem 1."
+      ]
+    },
+    {
+      "id": "b3.2.03",
+      "n": 3,
+      "prompt": "Prove: if $a, b > 0$, then $\\sqrt{ab} = \\sqrt{a}\\sqrt{b}$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "(√a√b)² = ab, and √a√b > 0",
+      "solution": [
+        "(√a√b)² = (√a)²(√b)² = ab.",
+        "√a√b > 0 by POS 1.",
+        "The positive number with square ab is √(ab). So √(ab) = √a√b."
+      ],
+      "langType": "§2 ex. 4",
+      "hints": [
+        "Show that $\\sqrt{a}\\sqrt{b}$ is positive and has the square $ab$."
+      ]
+    },
+    {
+      "id": "b3.2.04",
+      "n": 4,
+      "prompt": "Solve $x^2 = 10$. Give all solutions.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "sqrt(10)",
+          "-sqrt(10)"
+        ]
+      },
+      "answerText": "±√10",
+      "solution": [
+        "Two numbers have a square of 10.",
+        "x = √10 or x = −√10."
+      ],
+      "langType": "§2 text",
+      "hints": [
+        "Type two numbers, for example sqrt(10), -sqrt(10)."
+      ]
+    },
+    {
+      "id": "b3.2.05",
+      "n": 5,
+      "prompt": "Solve $|x+3| = 4$. Give all solutions.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "1",
+          "-7"
+        ]
+      },
+      "answerText": "1 or −7",
+      "solution": [
+        "x + 3 = 4 or x + 3 = −4.",
+        "x = 1 or x = −7."
+      ],
+      "langType": "§2 ex. 13",
+      "hints": [
+        "The distance from $x$ to $-3$ is 4."
+      ]
+    },
+    {
+      "id": "b3.2.06",
+      "n": 6,
+      "prompt": "Solve $|x-5| = 2$. Give all solutions.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "7",
+          "3"
+        ]
+      },
+      "answerText": "7 or 3",
+      "solution": [
+        "x − 5 = 2 or x − 5 = −2.",
+        "x = 7 or x = 3."
+      ],
+      "langType": "§2 ex. 13",
+      "hints": [
+        "The distance from $x$ to 5 is 2."
+      ]
+    },
+    {
+      "id": "b3.2.07",
+      "n": 7,
+      "prompt": "Solve $|2x+1| = 5$. Give all solutions.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "2",
+          "-3"
+        ]
+      },
+      "answerText": "2 or −3",
+      "solution": [
+        "2x + 1 = 5 or 2x + 1 = −5.",
+        "x = 2 or x = −3."
+      ],
+      "langType": "§2 ex. 14",
+      "hints": [
+        "Write two equations without the absolute value."
+      ]
+    },
+    {
+      "id": "b3.2.08",
+      "n": 8,
+      "prompt": "Solve $|3x-2| = 4$. Give all solutions.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "2",
+          "-2/3"
+        ]
+      },
+      "answerText": "2 or −2/3",
+      "solution": [
+        "3x − 2 = 4 or 3x − 2 = −4.",
+        "x = 2 or x = −2/3."
+      ],
+      "langType": "§2 ex. 14",
+      "hints": [
+        "Write two equations without the absolute value."
+      ]
+    },
+    {
+      "id": "b3.2.09",
+      "n": 9,
+      "prompt": "Prove: $|a-b| = |b-a|$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "(a − b)² = (b − a)²",
+      "solution": [
+        "(a − b)² = a² − 2ab + b².",
+        "(b − a)² = b² − 2ab + a² = (a − b)².",
+        "So the square roots are equal: |a − b| = |b − a|."
+      ],
+      "langType": "§2 ex. 20",
+      "hints": [
+        "Use $|x| = \\sqrt{x^2}$."
+      ]
+    }
+  ]
+}

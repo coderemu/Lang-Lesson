@@ -99,12 +99,53 @@ export function readable(raw: string, variables: string[]): boolean {
   return points(variables, 3).some((s) => evalNumber(t, s) !== null);
 }
 
+/** Is there a root sign in a denominator? "2/(1+sqrt(3))" yes, "(3-sqrt(2))/7" no. */
+export function rootInDenominator(raw: string): boolean {
+  const t = normalise(raw);
+  if (t === null) return false;
+  const matching = (from: number): number => {
+    let depth = 0;
+    for (let i = from; i < t.length; i++) {
+      if (t[i] === "(") depth++;
+      if (t[i] === ")" && --depth === 0) return i;
+    }
+    return t.length - 1;
+  };
+  for (let i = 0; i < t.length; i++) {
+    if (t[i] !== "/") continue;
+    let j = i + 1;
+    while (t[j] === " ") j++;
+    let end = j;
+    if (t[j] === "(") end = matching(j);
+    else {
+      while (end < t.length && /[A-Za-z0-9_.]/.test(t[end])) end++;
+      if (t[end] === "(") end = matching(end);
+      else end--;
+    }
+    if (/sqrt/.test(t.slice(j, end + 1))) return true;
+  }
+  return false;
+}
+
+export const FORM_REPLY =
+  "The value is right, but a root is still in the denominator. Remove it from the denominator.";
+
 export function checkExpression(
-  answer: { value: string; variables: string[]; mistakes?: { match: string; reply: string }[] },
+  answer: {
+    value: string;
+    variables: string[];
+    mistakes?: { match: string; reply: string }[];
+    noRootDenominator?: boolean;
+    formReply?: string;
+  },
   input: string,
 ): CheckResult {
   if (!readable(input, answer.variables)) return { kind: "invalid" };
-  if (sameExpression(input, answer.value, answer.variables)) return { kind: "correct" };
+  if (sameExpression(input, answer.value, answer.variables)) {
+    if (answer.noRootDenominator && rootInDenominator(input))
+      return { kind: "mistake", reply: answer.formReply ?? FORM_REPLY };
+    return { kind: "correct" };
+  }
   const hit = answer.mistakes?.find((m) => sameExpression(input, m.match, answer.variables));
   return hit ? { kind: "mistake", reply: hit.reply } : { kind: "unknown" };
 }

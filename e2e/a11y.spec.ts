@@ -19,7 +19,7 @@ async function audit(page: Page, name: string) {
 
 test.describe("axe", () => {
   test.skip(({ viewport }) => (viewport?.width ?? 0) > 900, "mobile only");
-  test.beforeEach(async ({ page }) => seed(page, completedState(new Date(), [1, 2])));
+  test.beforeEach(async ({ page }) => seed(page, completedState(new Date(), [1, 2, 3])));
 
   for (const [name, path] of [
     ["Home", "/"],
@@ -34,6 +34,10 @@ test.describe("axe", () => {
     ["Bank problem: pair", "/practice/2.1/1"],
     ["Bank problem: triple", "/practice/2.2/1"],
     ["Bank problem: no solution", "/practice/2.1/6"],
+    ["Bank problem: expression", "/practice/3.3/1"],
+    ["Bank problem: set", "/practice/3.2/4"],
+    ["Bank problem: interval", "/practice/3.5/2"],
+    ["Bank problem: numbers (c, d)", "/practice/3.3/3"],
     ["Design system", "/design-system"],
   ] as const) {
     test(name, async ({ page }) => {
@@ -69,6 +73,16 @@ test.describe("axe", () => {
     ["multi number input (ad - bc)", "2.3", "2.3.03"],
     ["proof with letters", "2.3", "2.3.04"],
     ["elimination general", "2.3", "2.3.08"],
+    ["number line zoom + choice", "3.1", "3.1.03"],
+    ["E/I table", "3.1", "3.1.05"],
+    ["proof (1 is positive)", "3.2", "3.2.04"],
+    ["text input: set", "3.2", "3.2.08"],
+    ["text input: expression", "3.3", "3.3.09"],
+    ["multi number input with powers", "3.4", "3.4.08"],
+    ["number line interval + text input", "3.5", "3.5.06"],
+    ["text input: interval", "3.5", "3.5.09"],
+    ["square tiles compare", "3.6", "3.6.08"],
+    ["fraction strips mediant", "3.6", "3.6.09"],
   ];
   for (const [name, lesson, id] of screens) {
     test(`lesson screen: ${name}`, async ({ page }) => {

@@ -1,0 +1,131 @@
+{
+  "lesson": "3.5",
+  "title": "Bank 3.5",
+  "problems": [
+    {
+      "id": "b3.5.01",
+      "n": 1,
+      "prompt": "Prove IN 3: if $a > b$ and $c < 0$, then $ac < bc$.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "(a − b)(−c) > 0 by POS 1",
+      "solution": [
+        "a − b > 0 and −c > 0.",
+        "(a − b)(−c) > 0 by POS 1.",
+        "(a − b)(−c) = bc − ac. So bc − ac > 0, that is ac < bc."
+      ],
+      "langType": "§4 ex. 1",
+      "hints": [
+        "Use $-c > 0$."
+      ]
+    },
+    {
+      "id": "b3.5.02",
+      "n": 2,
+      "prompt": "Solve $4x - 3 > 5$.",
+      "answer": {
+        "type": "interval",
+        "value": "x > 2"
+      },
+      "answerText": "x > 2",
+      "solution": [
+        "4x > 8.",
+        "x > 2."
+      ],
+      "langType": "§4 ex. 9–18",
+      "hints": [
+        "Add 3. Then divide by 4."
+      ]
+    },
+    {
+      "id": "b3.5.03",
+      "n": 3,
+      "prompt": "Solve $-3x + 2 < 8$.",
+      "answer": {
+        "type": "interval",
+        "value": "x > -2"
+      },
+      "answerText": "x > −2",
+      "solution": [
+        "−3x < 6.",
+        "Divide by −3 and turn the sign around: x > −2."
+      ],
+      "langType": "§4 ex. 9–18",
+      "hints": [
+        "Divide by a negative number. Turn the sign around."
+      ]
+    },
+    {
+      "id": "b3.5.04",
+      "n": 4,
+      "prompt": "Solve $2x + 5 < 5x - 1$.",
+      "answer": {
+        "type": "interval",
+        "value": "x > 2"
+      },
+      "answerText": "x > 2",
+      "solution": [
+        "6 < 3x.",
+        "x > 2."
+      ],
+      "langType": "§4 ex. 9–18",
+      "hints": [
+        "Collect the $x$ terms on one side."
+      ]
+    },
+    {
+      "id": "b3.5.05",
+      "n": 5,
+      "prompt": "Solve $\\dfrac{x+1}{x-3} < 2$.",
+      "answer": {
+        "type": "interval",
+        "value": "x < 3 or x > 7"
+      },
+      "answerText": "x < 3 or x > 7",
+      "solution": [
+        "If x > 3: x + 1 < 2x − 6, so x > 7.",
+        "If x < 3: x + 1 > 2x − 6, so x < 7. Together with x < 3: x < 3."
+      ],
+      "langType": "§4 ex. 19–24",
+      "hints": [
+        "Examine $x > 3$ and $x < 3$ separately."
+      ]
+    },
+    {
+      "id": "b3.5.06",
+      "n": 6,
+      "prompt": "Solve $\\dfrac{2-x}{x+1} > 1$.",
+      "answer": {
+        "type": "interval",
+        "value": "-1 < x < 1/2"
+      },
+      "answerText": "−1 < x < 1/2",
+      "solution": [
+        "If x > −1: 2 − x > x + 1, so x < 1/2.",
+        "If x < −1: 2 − x < x + 1, so x > 1/2. That is impossible."
+      ],
+      "langType": "§4 ex. 19–24",
+      "hints": [
+        "Examine $x > -1$ and $x < -1$ separately."
+      ]
+    },
+    {
+      "id": "b3.5.07",
+      "n": 7,
+      "prompt": "Draw the intervals $-2 < x \\le 5$ and $x \\ge 1$ on the line.",
+      "answer": {
+        "type": "self-check"
+      },
+      "answerText": "Half-open; infinite with filled endpoint",
+      "solution": [
+        "−2 < x ≤ 5: an empty dot at −2, a filled dot at 5, and a shaded line between.",
+        "x ≥ 1: a filled dot at 1 and a shaded line to the right with an arrow."
+      ],
+      "langType": "§4 text",
+      "hints": [
+        "Empty dot: not included. Filled dot: included."
+      ]
+    }
+  ]
+}
