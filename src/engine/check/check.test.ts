@@ -112,7 +112,6 @@ describe("other checkers", () => {
     expect(
       checkPractice({ type: "numbers", values: [1], ordered: true }, { text: ["1"] }).kind,
     ).toBe("correct");
-    expect(checkPractice({ type: "set", values: ["1"] }, { text: ["1"] }).kind).toBe("unknown");
   });
 });
 

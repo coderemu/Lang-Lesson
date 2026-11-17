@@ -15,6 +15,11 @@ import {
   EliminationBoard,
   FractionStrips,
   SquareTiles,
+  ZoomLine,
+  IntervalLine,
+  EITable,
+  MediantStrips,
+  CompareTiles,
   MirrorPicture,
   NumberLine,
   ProofStepper,
@@ -25,7 +30,7 @@ import {
 } from "../widgets";
 import { fmt } from "../widgets/geometry";
 import type { Removed } from "../widgets/balanceLogic";
-import { answerSpec, systemVars, type Input } from "./answers";
+import { TEXT_HELP, answerSpec, systemVars, type Input } from "./answers";
 import { parseNumber } from "./check";
 import styles from "./ScreenRenderer.module.css";
 
@@ -206,6 +211,26 @@ export function ScreenRenderer(props: ScreenRendererProps) {
           </div>
         );
       }
+      case "text":
+        return (
+          <div className={styles.parts}>
+            <div className={styles.row}>
+              {spec.i.expression && <Tex tex={spec.i.expression} className={styles.expr} />}
+              <NumberSlot
+                label="Your answer"
+                value={input.text[0] ?? ""}
+                onChange={(v) => setText(0, v)}
+                state={slotState(verdict)}
+                disabled={locked}
+                style={{ width: "min(100%, 280px)" }}
+              />
+              {hint}
+            </div>
+            <p className={styles.question}>{TEXT_HELP}</p>
+          </div>
+        );
+      case "ei":
+        return hint ? <div className={styles.row}>{hint}</div> : null;
       case "none":
         return hint ? <div className={styles.row}>{hint}</div> : null;
     }
@@ -237,7 +262,28 @@ export function ScreenRenderer(props: ScreenRendererProps) {
           </div>
         );
       case "number-line": {
-        if (i.mode === "zoom" || i.mode === "interval") return null; // Phase 3
+        if (i.mode === "zoom") {
+          const w = i.widget as unknown as { n: number; p?: number; depth?: number };
+          return (
+            <Stage>
+              <ZoomLine spec={w} disabled={locked} />
+            </Stage>
+          );
+        }
+        if (i.mode === "interval") {
+          const w = i.widget as unknown as { min: number; max: number; parts?: number };
+          return (
+            <Stage tone={tone}>
+              <IntervalLine
+                spec={w}
+                value={input.text[0] ?? ""}
+                onChange={(t) => onInput({ ...input, text: [t] })}
+                onEnter={props.onEnter}
+                disabled={locked || verdict === "correct"}
+              />
+            </Stage>
+          );
+        }
         return (
           <Stage
             tone={tone}
@@ -303,9 +349,7 @@ export function ScreenRenderer(props: ScreenRendererProps) {
       case "square-tiles":
       case "fraction-strips": {
         const supported =
-          i.type === "area-model" ||
-          (i.type === "square-tiles" && i.mode === "expand") ||
-          (i.type === "fraction-strips" && i.mode !== "mediant");
+          i.type === "area-model" || i.type === "square-tiles" || i.type === "fraction-strips";
         if (!supported) return null;
         return (
           <Stage>
@@ -313,6 +357,19 @@ export function ScreenRenderer(props: ScreenRendererProps) {
           </Stage>
         );
       }
+      case "ei-table":
+        return (
+          <Stage tone={tone}>
+            <EITable
+              value={input.text[0] ?? ""}
+              onChange={(v) => setText(0, v)}
+              showWrong={verdict === "wrong"}
+              disabled={locked || verdict === "correct"}
+            />
+          </Stage>
+        );
+      case "text-input":
+        return null;
       case "elimination":
         return (
           <Stage>
@@ -382,6 +439,12 @@ function ExploreWidget({
   const [value, setValue] = useState<number | null>(null);
   const common = { value, onChange: setValue, onEnter, disabled };
   if (i.type === "area-model") return <AreaModel mode={i.mode} spec={i.widget} {...common} />;
-  if (i.type === "square-tiles") return <SquareTiles mode="expand" spec={i.widget} {...common} />;
+  if (i.type === "square-tiles")
+    return i.mode === "compare" ? (
+      <CompareTiles spec={i.widget} {...common} />
+    ) : (
+      <SquareTiles mode="expand" spec={i.widget} {...common} />
+    );
+  if (i.mode === "mediant") return <MediantStrips spec={i.widget} {...common} />;
   return <FractionStrips mode={i.mode as "cut" | "add" | "invert"} spec={i.widget} {...common} />;
 }

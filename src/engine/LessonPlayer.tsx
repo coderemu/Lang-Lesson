@@ -1,3 +1,4 @@
+import { useMath } from "./useMath";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import type { Interaction, Lesson, Rule, Screen } from "../../content/schema";
@@ -106,6 +107,9 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
   const interaction: Interaction = onTwin && screen.twin ? screen.twin : screen.interaction;
   const spec = useMemo(() => answerSpec(interaction), [interaction]);
   const isTrap = interaction.type === "trap-summary";
+  const mathReady = useMath(
+    spec.t === "text" || (interaction.type === "number-line" && interaction.mode === "interval"),
+  );
   const hints = screen.hints ?? [];
   const proofI = interaction.type === "proof" ? interaction : null;
   const proofDoneSet = useMemo(() => new Set(Object.keys(proofDone).map(Number)), [proofDone]);
@@ -196,7 +200,7 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
   const check = () => {
     if (proofI) return proofComplete ? advance() : checkProof();
     if (spec.t === "none") return advance();
-    if (!hasAnswer(spec, input)) return;
+    if (!hasAnswer(spec, input) || !mathReady) return;
     const result = evaluate(spec, input, lesson.generalHint);
     if (result.kind === "invalid") {
       setInvalid(result.body);

@@ -7,6 +7,11 @@ import {
   EliminationBoard,
   FractionStrips,
   SquareTiles,
+  ZoomLine,
+  IntervalLine,
+  EITable,
+  MediantStrips,
+  CompareTiles,
   MirrorPicture,
   NumberLine,
   ProofStepper,
@@ -69,6 +74,11 @@ export function DesignWidgets() {
   const [cut, setCut] = useState<number | null>(null);
   const [add, setAdd] = useState<number | null>(null);
   const [inv, setInv] = useState<number | null>(null);
+  const [ivA, setIvA] = useState("");
+  const [ivB, setIvB] = useState("");
+  const [ei, setEi] = useState("--------");
+  const [med, setMed] = useState<number | null>(null);
+  const [cmp, setCmp] = useState<number | null>(null);
   const [live, setLive] = useState<{ done: Record<number, string>; pending: string | null }>({
     done: {},
     pending: null,
@@ -290,6 +300,41 @@ export function DesignWidgets() {
               value={tilesA}
               onChange={setTilesA}
             />
+          </Stage>
+        </Spec>
+        <Spec name="Number line · zoom · live (decimal search for √2)">
+          <Stage>
+            <ZoomLine spec={{ n: 2, p: 2, depth: 3 }} />
+          </Stage>
+        </Spec>
+        <Spec name="Number line · interval · one part (drag the orange handles)">
+          <Stage>
+            <IntervalLine spec={{ min: -5, max: 10 }} value={ivA} onChange={setIvA} />
+          </Stage>
+        </Spec>
+        <Spec name="Number line · interval · two parts">
+          <Stage>
+            <IntervalLine spec={{ min: -5, max: 10, parts: 2 }} value={ivB} onChange={setIvB} />
+          </Stage>
+        </Spec>
+        <Spec name="E/I table · live">
+          <Stage>
+            <EITable value={ei} onChange={setEi} />
+          </Stage>
+        </Spec>
+        <Spec name="E/I table · wrong cells marked">
+          <Stage tone="wrong">
+            <EITable value="EEIEEEEE" showWrong disabled />
+          </Stage>
+        </Spec>
+        <Spec name="Fraction strips · mediant · live">
+          <Stage>
+            <MediantStrips spec={{ a: 1, b: 3, c: 1, d: 2 }} value={med} onChange={setMed} />
+          </Stage>
+        </Spec>
+        <Spec name="Square tiles · compare · live">
+          <Stage>
+            <CompareTiles spec={{ b: 5, a: 3 }} value={cmp} onChange={setCmp} />
           </Stage>
         </Spec>
         <Spec name="Fraction strips · cut · live">

@@ -96,6 +96,8 @@ export type Interaction =
   | SquareTilesInteraction
   | FractionStripsInteraction
   | EliminationInteraction
+  | TextInputInteraction
+  | EITableInteraction
   | TrapSummaryInteraction;
 
 export interface NoInteraction { type: "none" }
@@ -120,10 +122,11 @@ export interface NumberLineSpec {
 export interface NumberLineInteraction {
   type: "number-line";
   mode: "place" | "hops" | "compare" | "mirror" | "zoom" | "interval";
+  // zoom: widget { min, max, target, power } (find target by digits); interval: widget { min, max, intervals? }
   widget: NumberLineSpec;
   equation?: string;          // TeX shown above the line; "?" replaced live
   answer?: NumberAnswer;      // absent for pure explore screens
-  followUp?: ChoiceInteraction | NumberInputInteraction;
+  followUp?: ChoiceInteraction | NumberInputInteraction | TextInputInteraction;
 }
 
 export interface ThermometerInteraction {
@@ -181,7 +184,7 @@ export interface AreaModelInteraction {
   mode: "distribute" | "width-2" | "doubling-strip";
   widget: Record<string, number | string>;
   answer?: NumberAnswer;
-  followUp?: ChoiceInteraction | NumberInputInteraction;
+  followUp?: ChoiceInteraction | NumberInputInteraction | TextInputInteraction;
 }
 
 export interface SquareTilesInteraction {
@@ -189,7 +192,7 @@ export interface SquareTilesInteraction {
   mode: "expand" | "complete" | "compare";
   widget: Record<string, number | string>;
   answer?: NumberAnswer;
-  followUp?: ChoiceInteraction | NumberInputInteraction;
+  followUp?: ChoiceInteraction | NumberInputInteraction | TextInputInteraction;
 }
 
 export interface FractionStripsInteraction {
@@ -197,7 +200,7 @@ export interface FractionStripsInteraction {
   mode: "cut" | "add" | "invert" | "mediant";
   widget: Record<string, number | string | number[]>;
   answer?: NumberAnswer;
-  followUp?: ChoiceInteraction | NumberInputInteraction;
+  followUp?: ChoiceInteraction | NumberInputInteraction | TextInputInteraction;
 }
 
 export interface EliminationInteraction {
@@ -207,6 +210,28 @@ export interface EliminationInteraction {
   balance?: boolean;          // show the linked balances (Balance mode "system")
   answer: { values: Record<string, number> | "none" | "many" } & Feedback;
   mistakes?: Mistake<string>[];
+}
+
+/** Typed algebra answer (Phase 3). `value` for expression and interval, `values` for set. */
+export interface TextAnswer extends Feedback {
+  value?: string;             // mathjs text, e.g. "sqrt(5)+2", "x < 3 or x > 7"
+  values?: string[];          // set: each a mathjs text
+  variables?: string[];       // expression: the letters in the answer
+  mistakes?: Mistake<string>[];   // matched with the same checker
+}
+
+export interface TextInputInteraction {
+  type: "text-input";
+  checker: "expression" | "set" | "interval";
+  expression?: string;        // TeX before the slot, "x ="
+  answer: TextAnswer;
+}
+
+/** E/I tables (lesson 3.1). Cells hold "E" or "I"; the learner fills them. */
+export interface EITableInteraction {
+  type: "ei-table";
+  feedback: Feedback;
+  wrongReply?: string;        // shown when a cell is wrong
 }
 
 export interface TrapSummaryInteraction {
@@ -223,7 +248,7 @@ export type PracticeAnswer =
   | { type: "pair"; values: { x: number; y: number } }
   | { type: "triple"; values: { x: number; y: number; z: number } }
   | { type: "expression"; value: string; variables: string[] }    // checked by equivalence (Phase 3)
-  | { type: "set"; values: string[] }                              // solutions; TeX values like "1+\\sqrt{5}"
+  | { type: "set"; values: string[] }                              // solutions as mathjs text, "1+sqrt(5)"
   | { type: "interval"; value: string }                            // e.g. "(-2, 1/2)", "(-inf,3) U (7,inf)"
   | { type: "choice"; options: string[]; correct: number }
   | { type: "none" }                                               // "Is there a solution?" Chips: yes / no solution

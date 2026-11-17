@@ -10,7 +10,7 @@ import { evaluate } from "mathjs";
 import { z } from "zod";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../..");
-const CURRENT_PHASE = 2;
+const CURRENT_PHASE = 3;
 
 /* ───────── zod schemas (mirror content/schema.ts) ───────── */
 
@@ -35,7 +35,24 @@ const choice = z
 const numberInput = z
   .object({ type: z.literal("number-input"), expression: z.string(), answer: numberAnswer })
   .strict();
-const followUp = z.discriminatedUnion("type", [choice, numberInput]);
+const textAnswer = z
+  .object({
+    value: z.string().optional(),
+    values: z.array(z.string()).optional(),
+    variables: z.array(z.string()).optional(),
+    ...feedback,
+    mistakes: z.array(mistake(z.string())).optional(),
+  })
+  .strict();
+const textInput = z
+  .object({
+    type: z.literal("text-input"),
+    checker: z.enum(["expression", "set", "interval"]),
+    expression: z.string().optional(),
+    answer: textAnswer,
+  })
+  .strict();
+const followUp = z.discriminatedUnion("type", [choice, numberInput, textInput]);
 const widgetSpec = z.record(z.string(), z.unknown());
 
 const interaction = z.discriminatedUnion("type", [
@@ -153,6 +170,14 @@ const interaction = z.discriminatedUnion("type", [
         })
         .strict(),
       mistakes: z.array(mistake(z.string())).optional(),
+    })
+    .strict(),
+  textInput,
+  z
+    .object({
+      type: z.literal("ei-table"),
+      feedback: z.object(feedback).strict(),
+      wrongReply: z.string().optional(),
     })
     .strict(),
   z
@@ -411,6 +436,12 @@ for (const f of readdirSync(join(ROOT, "content/lessons")).filter((f) => f.endsW
       if (x.type === "number-input") numberCheck(x.answer, where);
       if (x.type === "multi-number-input")
         x.parts.forEach((p, k) => numberCheck(p.answer, `${where} part ${k + 1}`));
+      if (x.type === "text-input") {
+        const ok = x.checker === "set" ? Boolean(x.answer.values?.length) : Boolean(x.answer.value);
+        if (!ok) fail(file, `${where}: text-input "${x.checker}" has no answer value`);
+        if (x.checker === "expression" && !x.answer.variables)
+          fail(file, `${where}: expression answer needs "variables"`);
+      }
       if (x.type === "choice") choiceCheck(x, where);
       if (x.type === "trap-summary") choiceCheck(x.trap, where);
       if (

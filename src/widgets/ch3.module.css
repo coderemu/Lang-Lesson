@@ -1,0 +1,157 @@
+.ctrls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  justify-content: center;
+}
+.digit {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: var(--font-weight-semibold) var(--text-body) var(--font-math);
+  cursor: pointer;
+}
+.digit:focus-visible,
+.toggle:focus-visible,
+.cell:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.digit[data-state="right"] {
+  border-color: var(--color-correct);
+  background: var(--tint-correct);
+}
+.digit[data-state="tried"] {
+  border-color: var(--color-line);
+  color: var(--color-ink-muted);
+}
+.zoomText {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  margin: 0;
+  font: var(--text-small) var(--font-math);
+  color: var(--color-ink);
+}
+.zoomMsg {
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-small);
+  color: var(--color-ink-soft);
+}
+.seg {
+  stroke: var(--color-primary);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+.zoomTick {
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+.zoomLabel {
+  font: 12px var(--font-math);
+  fill: var(--color-ink);
+  text-anchor: middle;
+}
+.range {
+  stroke: var(--color-primary);
+  stroke-width: 8;
+  stroke-linecap: butt;
+  opacity: 0.55;
+}
+.handleOrange {
+  fill: var(--color-negative);
+  stroke: var(--color-negative);
+  stroke-width: 3;
+  cursor: grab;
+}
+.handleOrange[data-closed="false"] {
+  fill: var(--color-paper);
+}
+.handleOrange:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.arrow {
+  fill: var(--color-primary);
+}
+.partRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-2);
+  justify-content: center;
+}
+.partName {
+  font-size: var(--text-small);
+  color: var(--color-ink-soft);
+  min-width: 56px;
+}
+.toggle {
+  min-height: 44px;
+  padding: 0 var(--spacing-3);
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-negative);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: var(--font-weight-medium) var(--text-small) var(--font-body);
+  cursor: pointer;
+}
+.toggle[aria-pressed="true"] {
+  background: var(--tint-negative);
+}
+.eiGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  justify-content: center;
+}
+.eiTable {
+  border-collapse: collapse;
+  font: var(--text-body) var(--font-math);
+}
+.eiTable th,
+.eiTable td {
+  width: 52px;
+  height: 52px;
+  text-align: center;
+  border: 2px solid var(--color-line);
+  padding: 0;
+}
+.eiTable th {
+  background: var(--tint-primary);
+}
+.cell {
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font: var(--font-weight-semibold) var(--text-body) var(--font-math);
+  cursor: pointer;
+}
+.cell[data-wrong="true"] {
+  background: var(--tint-incorrect);
+}
+.cell[data-filled="false"] {
+  background: var(--tint-hint);
+}
+.strip {
+  stroke: var(--color-line);
+  stroke-width: 1;
+}
+.stripFill {
+  fill: var(--tint-primary);
+}
+.stripMed {
+  fill: var(--tint-rule);
+}
+.big {
+  fill: var(--color-surface);
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}

@@ -12,3 +12,4 @@ export type { ChipDef } from "./proof";
 export { AreaModel } from "./AreaModel";
 export { SquareTiles } from "./SquareTiles";
 export { FractionStrips } from "./FractionStrips";
+export { ZoomLine, IntervalLine, EITable, MediantStrips, CompareTiles } from "./Chapter3";

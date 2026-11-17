@@ -2,6 +2,8 @@ import type { Mistake, NumberAnswer, PracticeAnswer } from "../../../content/sch
 import { parseNumber, sameNumber } from "./parse";
 
 export { parseNumber, sameNumber } from "./parse";
+export { loadMath, mathLoaded } from "./expr";
+import { checkExpression, checkInterval, checkSet } from "./expr";
 
 /** Result of a checker. `unknown` = a wrong answer with no matching mistake reply. */
 export type CheckResult =
@@ -214,8 +216,13 @@ export function checkPractice(
       if (input.choice == null) return INVALID;
       return input.choice === 1 ? CORRECT : UNKNOWN;
     }
+    case "expression":
+      return checkExpression(answer, input.text?.[0] ?? "");
+    case "set":
+      return checkSet(answer, input.text?.[0] ?? "");
+    case "interval":
+      return checkInterval(answer, input.text?.[0] ?? "");
     default:
-      // expression, set, interval: later phases.
       return UNKNOWN;
   }
 }

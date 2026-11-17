@@ -1,3 +1,4 @@
+import { useMath } from "./useMath";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import type { PracticeBank, PracticeProblem } from "../../content/schema";
@@ -19,6 +20,7 @@ import {
   NOT_QUITE,
   type Input,
   type PracticeOutcome,
+  TEXT_HELP,
 } from "./answers";
 import { PlayerFrame } from "./PlayerFrame";
 import { useActiveTime } from "./useActiveTime";
@@ -128,7 +130,11 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
     );
   };
 
+  const mathReady = useMath(
+    answer.type === "expression" || answer.type === "set" || answer.type === "interval",
+  );
   const check = () => {
+    if (!mathReady) return;
     const result = evaluatePractice(answer, input);
     if (result.kind === "invalid") {
       setInvalid(result.body);
@@ -159,6 +165,9 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
     "pair",
     "triple",
     "none",
+    "expression",
+    "set",
+    "interval",
   ].includes(answer.type);
   const unknowns =
     answer.type === "pair" ? ["x", "y"] : answer.type === "triple" ? ["x", "y", "z"] : [];
@@ -172,7 +181,9 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
           ? input.choice !== null
           : answer.type === "pair" || answer.type === "triple"
             ? unknowns.every((_, k) => (input.text[k] ?? "").trim() !== "")
-            : true;
+            : answer.type === "expression" || answer.type === "set" || answer.type === "interval"
+              ? (input.text[0] ?? "").trim() !== ""
+              : true;
 
   const toggleHint = () => {
     if (!hintOpen) {
@@ -211,6 +222,26 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
           {hints.length > 0 && phase === "answering" && (
             <HintChip onClick={toggleHint} open={hintOpen} />
           )}
+        </div>
+      );
+    }
+    if (answer.type === "expression" || answer.type === "set" || answer.type === "interval") {
+      return (
+        <div className={ruleStyles.parts}>
+          <div className={ruleStyles.row}>
+            <NumberSlot
+              label="Your answer"
+              value={input.text[0] ?? ""}
+              onChange={(v) => setInput({ ...input, text: [v] })}
+              state={verdict === "idle" ? "default" : verdict}
+              disabled={phase !== "answering"}
+              style={{ width: "min(100%, 320px)" }}
+            />
+            {hints.length > 0 && phase === "answering" && (
+              <HintChip onClick={toggleHint} open={hintOpen} />
+            )}
+          </div>
+          <p className={ruleStyles.question}>{TEXT_HELP}</p>
         </div>
       );
     }
