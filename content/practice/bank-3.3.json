@@ -119,7 +119,7 @@
         "mistakes": [
           {
             "match": 3,
-            "reply": "That is the value of $\\sqrt{x}$. Square it to find $x$."
+            "reply": "That is the value of √x. Square it to find x."
           }
         ]
       },
@@ -161,7 +161,7 @@
         "mistakes": [
           {
             "match": 2,
-            "reply": "That is the value of $\\sqrt{x}$. Square it to find $x$."
+            "reply": "That is the value of √x. Square it to find x."
           }
         ]
       },

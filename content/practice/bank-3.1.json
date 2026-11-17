@@ -47,7 +47,7 @@
         "mistakes": [
           {
             "match": 7,
-            "reply": "Use $a^2 - b^2$. What is $(\\sqrt{3})^2 - 2^2$?"
+            "reply": "Use a² − b². What is (√3)² − 2²?"
           }
         ]
       },

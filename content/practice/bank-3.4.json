@@ -120,7 +120,7 @@
         "mistakes": [
           {
             "match": 9,
-            "reply": "That uses $x - 1 = 8$. The cube is 8, so take the cube root of 8 first."
+            "reply": "That uses x − 1 = 8. The cube is 8, so take the cube root of 8 first."
           }
         ]
       },

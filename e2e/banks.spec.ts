@@ -129,8 +129,8 @@ test("a wrong answer gives the exact reply, and Show me why comes after two wron
       }
     }
   }
-  // Only bank 1.2 has mistake replies in the file (5); the design doc gives none for the other banks.
-  expect(checked).toBe(5);
+  // Bank 1.2 has 5 mistake replies; banks 3.1, 3.3, 3.4 and 3.6 add 5 more. The doc gives none for the other banks.
+  expect(checked).toBe(10);
   await page.goto("/practice/1.1/2");
   for (const wrong of ["1", "2"]) {
     await page.getByLabel("Your answer").fill(wrong);
