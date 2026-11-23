@@ -12,9 +12,14 @@ let loading: Promise<void> | null = null;
 /** Load mathjs (a separate chunk). Safe to call many times. */
 export function loadMath(): Promise<void> {
   if (evaluator) return Promise.resolve();
-  loading ??= import("mathjs/number").then((m) => {
-    evaluator = m.evaluate as Evaluate;
-  });
+  loading ??= import("mathjs/number")
+    .then((m) => {
+      evaluator = m.evaluate as Evaluate;
+    })
+    .catch((e) => {
+      loading = null; // a later call can try again
+      throw e;
+    });
   return loading;
 }
 export const mathLoaded = (): boolean => evaluator !== null;

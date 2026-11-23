@@ -111,6 +111,8 @@ export type Outcome =
 
 export const NOT_QUITE = "Not quite.";
 export const INVALID_SYSTEM = "Enter a number for each letter, for example 3, −3 or 6/7.";
+export const MATH_LOAD_ERROR =
+  "The checker did not load. Check your connection and press Check again.";
 export const INVALID_NUMBER = "Enter a number, for example 3, −3 or 1/2.";
 export const TEXT_HELP =
   "Type sqrt(5) for √5, a/b for fractions and inf for ∞. Use or between parts.";

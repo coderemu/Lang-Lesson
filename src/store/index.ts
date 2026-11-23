@@ -69,6 +69,35 @@ export const localDate = (d: Date = new Date()): string => {
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
 };
 
+const isObj = (v: unknown): v is Record<string, unknown> =>
+  typeof v === "object" && v !== null && !Array.isArray(v);
+
+/** Keep only the entries of a record that pass `ok`. A damaged entry would crash the screens that read it. */
+function keepValid<T>(rec: unknown, ok: (v: unknown) => boolean): Record<string, T> {
+  return Object.fromEntries(
+    Object.entries(isObj(rec) ? rec : {}).filter(([, v]) => ok(v)),
+  ) as Record<string, T>;
+}
+
+const validLesson = (v: unknown): boolean =>
+  isObj(v) &&
+  (v.state === "in-progress" || v.state === "complete") &&
+  typeof v.screen === "number" &&
+  Array.isArray(v.screensDone) &&
+  isObj(v.attempts) &&
+  typeof v.lastDate === "string";
+
+const validBank = (v: unknown): boolean =>
+  isObj(v) &&
+  typeof v.position === "number" &&
+  isObj(v.problems) &&
+  Object.values(v.problems).every(
+    (p) =>
+      isObj(p) &&
+      (p.state === "correct" || p.state === "not-yet") &&
+      typeof p.attempts === "number",
+  );
+
 /** Upgrade saved data from an older version. Version 1 is the first. */
 export function migrate(persisted: unknown, version: number): ProgressData {
   const base = emptyData();
@@ -77,10 +106,10 @@ export function migrate(persisted: unknown, version: number): ProgressData {
   // Future: switch (version) { case 1: ... }. Unknown fields are dropped, missing ones get defaults.
   void version;
   return {
-    lessons: old.lessons ?? base.lessons,
-    banks: old.banks ?? base.banks,
-    rules: old.rules ?? base.rules,
-    seconds: old.seconds ?? base.seconds,
+    lessons: keepValid(old.lessons, validLesson),
+    banks: keepValid(old.banks, validBank),
+    rules: keepValid(old.rules, (v) => typeof v === "string"),
+    seconds: keepValid(old.seconds, (v) => typeof v === "number"),
     settings: { ...base.settings, ...(old.settings ?? {}) },
     persistAsked: old.persistAsked ?? false,
   };

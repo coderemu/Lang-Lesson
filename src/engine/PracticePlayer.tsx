@@ -18,6 +18,7 @@ import { requestPersistentStorage, useProgress } from "../store";
 import {
   emptyInput,
   evaluatePractice,
+  MATH_LOAD_ERROR,
   NOT_QUITE,
   type Input,
   type PracticeOutcome,
@@ -136,7 +137,7 @@ function Problem({ bank, n }: { bank: PracticeBank; n: number }) {
   useMath(needsMath);
   const check = () => {
     if (needsMath && !mathLoaded()) {
-      void loadMath().then(check);
+      loadMath().then(check, () => setInvalid(MATH_LOAD_ERROR));
       return;
     }
     const result = evaluatePractice(answer, input);

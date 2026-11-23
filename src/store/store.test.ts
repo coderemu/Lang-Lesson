@@ -119,6 +119,23 @@ describe("backup and restore", () => {
       "lang-lessons-backup-2026-11-07.json",
     );
   });
+  it("drops damaged lesson and bank entries instead of crashing later", () => {
+    const text = JSON.stringify({
+      app: "lang-lessons",
+      version: 1,
+      data: {
+        lessons: { "1.1": { state: "complete" }, "1.2": { ...emptyData().lessons, state: "x" } },
+        banks: { "1.1": { problems: { a: { state: "correct" } }, position: 0 } },
+        rules: {},
+      },
+    });
+    const r = parseBackup(text);
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.data.lessons).toEqual({});
+      expect(r.data.banks).toEqual({});
+    }
+  });
   it("rejects bad files and changes nothing", () => {
     useProgress.getState().startLesson("1.1");
     const before = dataOf(useProgress.getState());

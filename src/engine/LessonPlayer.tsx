@@ -15,6 +15,7 @@ import {
   emptyInput,
   evaluate,
   hasAnswer,
+  MATH_LOAD_ERROR,
   partStates,
   type Input,
   type Outcome,
@@ -142,7 +143,10 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
   const advance = () => {
     completeScreen(lesson.id, screen.id);
     if (isLast) {
-      completeLesson(lesson.id, lesson.rulesEarned);
+      // A jump to the last screen (?screen=) must not finish a lesson with screens undone.
+      const done = new Set(useProgress.getState().lessons[lesson.id]?.screensDone);
+      if (lesson.screens.every((s) => done.has(s.id)))
+        completeLesson(lesson.id, lesson.rulesEarned);
       navigate("/");
       return;
     }
@@ -204,7 +208,7 @@ function Player({ lesson, rules }: { lesson: Lesson; rules: Map<string, Rule> })
     if (!hasAnswer(spec, input)) return;
     if (needsMath && !mathLoaded()) {
       // Check pressed before the mathjs chunk arrived: wait for it, then check.
-      void loadMath().then(check);
+      loadMath().then(check, () => setInvalid(MATH_LOAD_ERROR));
       return;
     }
     const result = evaluate(spec, input, lesson.generalHint);

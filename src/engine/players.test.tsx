@@ -107,8 +107,21 @@ describe("lesson player", () => {
     expect(await screen.findByTestId("continue")).toBeInTheDocument();
   });
 
+  it("does not finish a lesson when a jump to the last screen skipped the rest", async () => {
+    const user = userEvent.setup();
+    renderLesson("/lesson/1.2?screen=1.2.14");
+    await screen.findByText("ONE LAST TRAP");
+    await user.click(screen.getByRole("button", { name: "False" }));
+    await user.click(screen.getByTestId("primary"));
+    await waitFor(() => expect(screen.getByText("HOME")).toBeInTheDocument());
+    expect(useProgress.getState().lessons["1.2"].state).not.toBe("complete");
+    expect(useProgress.getState().rules).toEqual({});
+  });
+
   it("finishes the lesson: saves rules and marks it complete", async () => {
     const user = userEvent.setup();
+    for (const s of lesson12.screens.slice(0, -1))
+      useProgress.getState().completeScreen("1.2", s.id);
     renderLesson("/lesson/1.2?screen=1.2.14");
     await screen.findByText("ONE LAST TRAP");
     await user.click(screen.getByRole("button", { name: "False" }));

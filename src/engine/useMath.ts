@@ -7,7 +7,10 @@ export function useMath(needed: boolean): boolean {
   useEffect(() => {
     if (!needed || ready) return;
     let live = true;
-    void loadMath().then(() => live && setReady(true));
+    loadMath().then(
+      () => live && setReady(true),
+      () => {}, // Check shows the error and retries
+    );
     return () => {
       live = false;
     };

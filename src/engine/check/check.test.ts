@@ -29,6 +29,9 @@ describe("parseNumber (FR-22)", () => {
     ["2.5", 2.5],
     ["-.5", -0.5],
     ["1,5", 1.5],
+    ["5,120", 5120],
+    ["4,00,000", 400000],
+    ["-320,000", -320000],
   ])("parses %s", (text, value) => {
     expect(parseNumber(text)).toBeCloseTo(value);
   });
