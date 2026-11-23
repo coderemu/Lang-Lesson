@@ -20,6 +20,8 @@ import {
   EITable,
   MediantStrips,
   CompareTiles,
+  CompleteTiles,
+  DiscriminantSlider,
   MirrorPicture,
   NumberLine,
   ProofStepper,
@@ -270,6 +272,13 @@ export function ScreenRenderer(props: ScreenRendererProps) {
             </Stage>
           );
         }
+        if (i.mode === "discriminant") {
+          return (
+            <Stage>
+              <DiscriminantSlider spec={i.widget as never} disabled={locked} />
+            </Stage>
+          );
+        }
         if (i.mode === "interval") {
           const w = i.widget as unknown as { min: number; max: number; parts?: number };
           return (
@@ -442,6 +451,8 @@ function ExploreWidget({
   if (i.type === "square-tiles")
     return i.mode === "compare" ? (
       <CompareTiles spec={i.widget} {...common} />
+    ) : i.mode === "complete" ? (
+      <CompleteTiles spec={i.widget} {...common} />
     ) : (
       <SquareTiles mode="expand" spec={i.widget} {...common} />
     );

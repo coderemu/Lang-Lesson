@@ -172,8 +172,8 @@ export function parseSet(raw: string): number[] | null {
   return distinct;
 }
 
-const sameList = (a: number[], b: number[]) =>
-  a.length === b.length && a.every((v, i) => close(v, b[i]));
+const sameList = (a: number[], b: number[], tol = 0) =>
+  a.length === b.length && a.every((v, i) => (tol ? Math.abs(v - b[i]) <= tol : close(v, b[i])));
 
 export function checkSet(
   answer: { values: string[]; mistakes?: { match: string; reply: string }[] },
@@ -183,6 +183,8 @@ export function checkSet(
   if (got === null) return { kind: "invalid" };
   const want = parseSet(answer.values.join(","));
   if (want && sameList(got, want)) return { kind: "correct" };
+  // A typed decimal ("0.5 ± 1.118") is right within 0.001. Only when the learner typed a decimal point.
+  if (want && /\d\.\d/.test(input) && sameList(got, want, 0.001)) return { kind: "correct" };
   const hit = answer.mistakes?.find((m) => {
     const w = parseSet(m.match);
     return w !== null && sameList(got, w);

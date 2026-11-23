@@ -117,12 +117,13 @@ export interface NumberLineSpec {
   ringStart?: number;         // initial ring position
   paths?: { start: number; adds: number[] }[];  // mode "compare"
   mirrorOf?: number;          // mode "mirror"
+  a?: number; b?: number; c?: number;   // mode "discriminant": start values
 }
 
 export interface NumberLineInteraction {
   type: "number-line";
-  mode: "place" | "hops" | "compare" | "mirror" | "zoom" | "interval";
-  // zoom: widget { min, max, target, power } (find target by digits); interval: widget { min, max, intervals? }
+  mode: "place" | "hops" | "compare" | "mirror" | "zoom" | "interval" | "discriminant";
+  // discriminant: widget { a, b, c } start values; zoom: widget { min, max, target, power } (find target by digits); interval: widget { min, max, intervals? }
   widget: NumberLineSpec;
   equation?: string;          // TeX shown above the line; "?" replaced live
   answer?: NumberAnswer;      // absent for pure explore screens

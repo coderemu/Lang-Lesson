@@ -12,6 +12,8 @@ import {
   EITable,
   MediantStrips,
   CompareTiles,
+  CompleteTiles,
+  DiscriminantSlider,
   MirrorPicture,
   NumberLine,
   ProofStepper,
@@ -79,6 +81,7 @@ export function DesignWidgets() {
   const [ei, setEi] = useState("--------");
   const [med, setMed] = useState<number | null>(null);
   const [cmp, setCmp] = useState<number | null>(null);
+  const [corner, setCorner] = useState<number | null>(null);
   const [live, setLive] = useState<{ done: Record<number, string>; pending: string | null }>({
     done: {},
     pending: null,
@@ -335,6 +338,16 @@ export function DesignWidgets() {
         <Spec name="Square tiles · compare · live">
           <Stage>
             <CompareTiles spec={{ b: 5, a: 3 }} value={cmp} onChange={setCmp} />
+          </Stage>
+        </Spec>
+        <Spec name="Square tiles · complete · live">
+          <Stage>
+            <CompleteTiles spec={{ b: 6 }} value={corner} onChange={setCorner} />
+          </Stage>
+        </Spec>
+        <Spec name="Discriminant slider · live">
+          <Stage>
+            <DiscriminantSlider spec={{ a: 1, b: 2, c: -3 }} />
           </Stage>
         </Spec>
         <Spec name="Fraction strips · cut · live">

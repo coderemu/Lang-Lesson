@@ -1,0 +1,52 @@
+.gap {
+  fill: none;
+  stroke: var(--color-negative);
+  stroke-width: 3;
+  stroke-dasharray: 6 4;
+}
+.tile {
+  stroke: var(--color-negative);
+  stroke-width: 2;
+}
+.tile[data-fit="true"] {
+  fill: var(--tint-correct);
+  stroke: var(--color-correct);
+}
+.tile[data-fit="false"] {
+  fill: var(--tint-negative);
+}
+.sliders {
+  display: grid;
+  gap: var(--spacing-2);
+}
+.sliderRow {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 3rem;
+  align-items: center;
+  gap: var(--spacing-3);
+  font: var(--text-body) var(--font-math);
+  color: var(--color-ink);
+}
+.sliderRow input {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--color-negative);
+}
+.sliderRow input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.value {
+  text-align: right;
+}
+.root {
+  fill: var(--color-correct);
+  stroke: var(--color-paper);
+  stroke-width: 2;
+}
+.note {
+  margin: 0;
+  text-align: center;
+  font: var(--text-body) var(--font-body);
+  color: var(--color-ink);
+}
