@@ -1,0 +1,171 @@
+{
+  "lesson": "4.2",
+  "title": "Bank 4.2",
+  "problems": [
+    {
+      "id": "b4.2.01",
+      "n": 1,
+      "prompt": "Solve $x^2 + 5x + 6 = 0$.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "-2",
+          "-3"
+        ]
+      },
+      "answerText": "−2 or −3",
+      "solution": [
+        "b² − 4ac = 25 − 24 = 1.",
+        "x = (−5 ± 1)/2 = −2 or −3."
+      ],
+      "langType": "Ch 4 ex. 1–4",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first."
+      ]
+    },
+    {
+      "id": "b4.2.02",
+      "n": 2,
+      "prompt": "Solve $2x^2 - 7x + 3 = 0$.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "3",
+          "1/2"
+        ]
+      },
+      "answerText": "3 or 1/2",
+      "solution": [
+        "b² − 4ac = 49 − 24 = 25.",
+        "x = (7 ± 5)/4 = 3 or 1/2."
+      ],
+      "langType": "Ch 4 ex. 5–10",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first."
+      ]
+    },
+    {
+      "id": "b4.2.03",
+      "n": 3,
+      "prompt": "Solve $4x^2 + 4x + 1 = 0$.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "-1/2"
+        ]
+      },
+      "answerText": "−1/2 (one solution)",
+      "solution": [
+        "b² − 4ac = 16 − 16 = 0.",
+        "x = −4/8 = −1/2. There is one solution."
+      ],
+      "langType": "Ch 4 ex. 5–10",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first."
+      ]
+    },
+    {
+      "id": "b4.2.04",
+      "n": 4,
+      "prompt": "Does $x^2 + x + 1 = 0$ have a real solution?",
+      "answer": {
+        "type": "none"
+      },
+      "answerText": "No real solution (−3)",
+      "solution": [
+        "b² − 4ac = 1 − 4 = −3.",
+        "The number is negative, so there is no real solution."
+      ],
+      "langType": "Ch 4 ex. 3",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first."
+      ]
+    },
+    {
+      "id": "b4.2.05",
+      "n": 5,
+      "prompt": "Solve $3x^2 + 2x - 2 = 0$.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "(-1+sqrt(7))/3",
+          "(-1-sqrt(7))/3"
+        ]
+      },
+      "answerText": "(−1 ± √7)/3",
+      "solution": [
+        "b² − 4ac = 4 + 24 = 28, and √28 = 2√7.",
+        "x = (−2 ± 2√7)/6 = (−1 ± √7)/3."
+      ],
+      "langType": "Ch 4 ex. 5–10",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first.",
+        "You can type (-1 ± sqrt(7))/3."
+      ]
+    },
+    {
+      "id": "b4.2.06",
+      "n": 6,
+      "prompt": "Solve $x^2 - \\sqrt{3}x - 1 = 0$.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "(sqrt(3)+sqrt(7))/2",
+          "(sqrt(3)-sqrt(7))/2"
+        ]
+      },
+      "answerText": "(√3 ± √7)/2",
+      "solution": [
+        "Here b = −√3. b² − 4ac = 3 + 4 = 7.",
+        "x = (√3 ± √7)/2."
+      ],
+      "langType": "Ch 4 ex. 11–16",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first.",
+        "Here $b = -\\sqrt{3}$ and $b^2 = 3$."
+      ]
+    },
+    {
+      "id": "b4.2.07",
+      "n": 7,
+      "prompt": "Solve $x^2 + 2\\sqrt{2}x + 2 = 0$.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "-sqrt(2)"
+        ]
+      },
+      "answerText": "−√2 (one solution)",
+      "solution": [
+        "b² = 8 and 4ac = 8, so b² − 4ac = 0.",
+        "x = −2√2/2 = −√2. There is one solution."
+      ],
+      "langType": "Ch 4 ex. 11–16",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first."
+      ]
+    },
+    {
+      "id": "b4.2.08",
+      "n": 8,
+      "prompt": "Solve $-x^2 + 4x - 1 = 0$.",
+      "answer": {
+        "type": "set",
+        "values": [
+          "2+sqrt(3)",
+          "2-sqrt(3)"
+        ]
+      },
+      "answerText": "2 ± √3",
+      "solution": [
+        "Here a = −1. b² − 4ac = 16 − 4 = 12, and √12 = 2√3.",
+        "x = (−4 ± 2√3)/(−2) = 2 ∓ √3."
+      ],
+      "langType": "Ch 4 ex. 8–9",
+      "hints": [
+        "Use the formula. Find $b^2 - 4ac$ first.",
+        "Here $a = -1$."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,597 @@
+{
+  "id": "4.2",
+  "title": "The quadratic formula",
+  "book": {
+    "chapter": 4,
+    "sections": "Ch 4"
+  },
+  "minutes": 12,
+  "goal": "Use x = (−b ± √(b² − 4ac))/2a, and use b² − 4ac to find the number of solutions.",
+  "needs": [
+    "4.1"
+  ],
+  "rulesEarned": [
+    "quadratic-formula"
+  ],
+  "generalHint": "Write a, b and c first. Find b² − 4ac. Then divide all of −b ± √(…) by 2a.",
+  "screens": [
+    {
+      "id": "4.2.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Complete the square",
+      "prompt": "Look at $x^2 + 2x$. Find the number that makes it a square.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "x^2 + 2x + \\;? = (x+1)^2:\\; ?=",
+        "answer": {
+          "value": 1,
+          "correctTitle": "Yes, 1.",
+          "correctWhy": "Half of 2 is 1. The square of 1 is 1.",
+          "mistakes": [
+            {
+              "match": 4,
+              "reply": "Use (b/2)², not b². What is half of 2, squared?"
+            },
+            {
+              "match": 2,
+              "reply": "Use (b/2)². What is half of 2, squared?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use $(b/2)^2$."
+      ]
+    },
+    {
+      "id": "4.2.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "One formula for all?",
+      "prompt": "In lesson 4.1 the steps were the same for each equation. Only the numbers changed. Guess if one formula can solve all equations $ax^2 + bx + c = 0$.",
+      "interaction": {
+        "type": "choice",
+        "question": "Can one formula solve all of them?",
+        "options": [
+          {
+            "id": "yes",
+            "label": "Yes: the steps use only a, b and c"
+          },
+          {
+            "id": "no",
+            "label": "No: each equation needs its own method",
+            "reply": "The steps in 4.1 did not depend on the numbers. Try them with letters."
+          }
+        ],
+        "correct": "yes",
+        "feedback": {
+          "correctTitle": "Yes.",
+          "correctWhy": "The steps never used the special numbers. If you do them with the letters a, b and c, you get a formula."
+        }
+      }
+    },
+    {
+      "id": "4.2.03",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Complete the square with letters",
+      "prompt": "Lang takes $a \\ne 0$ and starts with $\\va{a}x^2 + \\vb{b}x + \\vc{c} = 0$. Say why each line follows. Lang uses $s = b/2a$.",
+      "interaction": {
+        "type": "proof",
+        "goal": "\\left(x + \\tfrac{b}{2a}\\right)^2 = \\dfrac{b^2 - 4ac}{4a^2}",
+        "lines": [
+          {
+            "math": "ax^2 + bx + c = 0",
+            "reason": null
+          },
+          {
+            "math": "ax^2 + bx = -c",
+            "reason": "add-c"
+          },
+          {
+            "math": "x^2 + \\tfrac{b}{a}x = -\\tfrac{c}{a}",
+            "reason": "div-a"
+          },
+          {
+            "math": "x^2 + \\tfrac{b}{a}x + \\tfrac{b^2}{4a^2} = -\\tfrac{c}{a} + \\tfrac{b^2}{4a^2}",
+            "reason": "add-sq"
+          },
+          {
+            "math": "\\left(x + \\tfrac{b}{2a}\\right)^2 = -\\tfrac{c}{a} + \\tfrac{b^2}{4a^2}",
+            "reason": "left-sq"
+          },
+          {
+            "math": "\\left(x + \\tfrac{b}{2a}\\right)^2 = \\dfrac{b^2 - 4ac}{4a^2}",
+            "reason": "common"
+          }
+        ],
+        "tray": [
+          "add-c",
+          "div-a",
+          "add-sq",
+          "left-sq",
+          "common",
+          "two-roots"
+        ],
+        "steps": [
+          {
+            "id": "add-c",
+            "label": "add −c to both sides"
+          },
+          {
+            "id": "div-a",
+            "label": "divide both sides by a"
+          },
+          {
+            "id": "add-sq",
+            "label": "add b²/4a² to both sides"
+          },
+          {
+            "id": "left-sq",
+            "label": "the left side is a square"
+          },
+          {
+            "id": "common",
+            "label": "write over one denominator"
+          }
+        ],
+        "wrongReasonReplies": {
+          "add-c": "This step moves a term to the other side. Which line has c on the right side?",
+          "div-a": "This step divides every term by a. Which line has the x² alone?",
+          "add-sq": "This step adds the same number to the two sides. Which number is it? Half of b/a, squared.",
+          "left-sq": "This step writes the left side as a square. Which line shows a square on the left?",
+          "common": "This step joins two fractions with one denominator. Which line has one fraction on the right?",
+          "two-roots": "This step takes both square roots. Is there a square root in this step?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "The left side is a square, and the right side has the number b² − 4ac over 4a²."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "4.2.04",
+      "kind": "prove-it",
+      "label": "PROVE IT",
+      "title": "Solve for x",
+      "prompt": "Now take the last line of the proof. Suppose $b^2 - 4ac$ is 0 or positive. Say why each line follows.",
+      "interaction": {
+        "type": "proof",
+        "goal": "x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+        "lines": [
+          {
+            "math": "\\left(x + \\tfrac{b}{2a}\\right)^2 = \\dfrac{b^2 - 4ac}{4a^2}",
+            "reason": null
+          },
+          {
+            "math": "x + \\tfrac{b}{2a} = \\pm\\dfrac{\\sqrt{b^2 - 4ac}}{2a}",
+            "reason": "two-roots"
+          },
+          {
+            "math": "x = -\\tfrac{b}{2a} \\pm \\dfrac{\\sqrt{b^2 - 4ac}}{2a}",
+            "reason": "sub-b"
+          },
+          {
+            "math": "x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+            "reason": "same-den"
+          }
+        ],
+        "tray": [
+          "two-roots",
+          "sub-b",
+          "same-den",
+          "add-sq",
+          "left-sq"
+        ],
+        "steps": [
+          {
+            "id": "sub-b",
+            "label": "subtract b/2a from both sides"
+          },
+          {
+            "id": "same-den",
+            "label": "the two fractions have the same denominator"
+          },
+          {
+            "id": "add-sq",
+            "label": "add b²/4a² to both sides"
+          },
+          {
+            "id": "left-sq",
+            "label": "the left side is a square"
+          }
+        ],
+        "wrongReasonReplies": {
+          "two-roots": "This step takes both square roots. Is there a square root in this step?",
+          "sub-b": "This step moves b/2a to the right. Is there a root in this step?",
+          "same-den": "This step joins two fractions with the same denominator. Is there a square root in this step?",
+          "add-sq": "This step adds the same number to the two sides. Which number is it? Half of b/a, squared.",
+          "left-sq": "This step writes the left side as a square. Which line shows a square on the left?"
+        },
+        "feedback": {
+          "correctTitle": "Proved.",
+          "correctWhy": "This is the quadratic formula. If b² − 4ac is negative, the right side has no real square root, so there is no real solution."
+        }
+      },
+      "caption": "Tap a reason to fill the orange slot."
+    },
+    {
+      "id": "4.2.05",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "The quadratic formula",
+      "prompt": "Read it aloud like a poem: “x equals minus b, plus or minus root of b squared minus 4ac, over 2a.” Lang says to memorize it.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "quadratic-formula"
+        ],
+        "picture": "tiles"
+      }
+    },
+    {
+      "id": "4.2.06",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "How many solutions?",
+      "prompt": "Move the sliders. The number $b^2 - 4ac$ tells how many real solutions there are. Keep $a = 1$ and $b = 2$. Move $c$ until there is one solution.",
+      "interaction": {
+        "type": "number-line",
+        "mode": "discriminant",
+        "widget": {
+          "min": -8,
+          "max": 8,
+          "a": 1,
+          "b": 2,
+          "c": -3
+        },
+        "followUp": {
+          "type": "number-input",
+          "expression": "c =",
+          "answer": {
+            "value": 1,
+            "correctTitle": "Yes, c = 1.",
+            "correctWhy": "For a = 1 and b = 2: b² − 4ac = 4 − 4c. This is 0 when c = 1. Then x = −1 is the only solution.",
+            "mistakes": [
+              {
+                "match": 4,
+                "reply": "b² − 4ac = 4 − 4c. For which c is it 0?"
+              },
+              {
+                "match": -1,
+                "reply": "For c = −1: 4 − 4(−1) = 8. That is not 0. Try again."
+              }
+            ]
+          }
+        }
+      },
+      "hints": [
+        "$b^2 - 4ac = 4 - 4c$. It must be 0."
+      ],
+      "caption": "Move c, type its value, then check."
+    },
+    {
+      "id": "4.2.07",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "The number b² − 4ac",
+      "prompt": "If $b^2 - 4ac > 0$, there are two solutions. If it is 0, there is one. If it is negative, there is no real solution.",
+      "interaction": {
+        "type": "choice",
+        "question": "The number $b^2 - 4ac$ is negative. How many real solutions are there?",
+        "options": [
+          {
+            "id": "none",
+            "label": "None"
+          },
+          {
+            "id": "one",
+            "label": "One",
+            "reply": "With a negative number under the root, the formula has no real value. How many solutions is that?"
+          },
+          {
+            "id": "two",
+            "label": "Two",
+            "reply": "With a negative number under the root, the formula has no real value. How many solutions is that?"
+          }
+        ],
+        "correct": "none",
+        "feedback": {
+          "correctTitle": "Yes, none.",
+          "correctWhy": "The root of a negative number is not a real number. The formula gives no real solution."
+        }
+      }
+    },
+    {
+      "id": "4.2.08",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 4",
+      "title": "Solve 2x² + 3x − 2 = 0",
+      "prompt": "Use the formula. Here $a = 2$, $b = 3$, $c = -2$. Type the solutions with a comma.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "2x^2 + 3x - 2 = 0:  x =",
+        "answer": {
+          "values": [
+            "1/2",
+            "-2"
+          ],
+          "correctTitle": "Yes, 1/2 or −2.",
+          "correctWhy": "b² − 4ac = 9 + 16 = 25. So x = (−3 ± 5)/4. This is 1/2 or −2.",
+          "mistakes": [
+            {
+              "match": "-7/4, -17/4",
+              "reply": "The full top, −b ± √(…), is over 2a. Divide −3 ± 5 by 4."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Find $b^2 - 4ac$ first. Then divide all of $-b \\pm \\sqrt{\\ldots}$ by $2a$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "b^2 - 4ac = 9 - 4(2)(-2) = 25",
+            "text": "The number under the root is 25."
+          },
+          {
+            "math": "x = \\dfrac{-3 \\pm 5}{4}",
+            "text": "The root of 25 is 5. Divide the whole top by 4."
+          },
+          {
+            "math": "x = \\tfrac{1}{2} \\text{ or } x = -2",
+            "text": "(−3 + 5)/4 = 1/2 and (−3 − 5)/4 = −2."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "3x^2 + 5x - 2 = 0:  x =",
+        "answer": {
+          "values": [
+            "1/3",
+            "-2"
+          ],
+          "correctTitle": "Yes, 1/3 or −2.",
+          "correctWhy": "b² − 4ac = 25 + 24 = 49. So x = (−5 ± 7)/6."
+        }
+      }
+    },
+    {
+      "id": "4.2.09",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 4",
+      "title": "Solve x² − 6x + 9 = 0",
+      "prompt": "Use the formula. Here $b = -6$. Type the solution.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 - 6x + 9 = 0:  x =",
+        "answer": {
+          "values": [
+            "3"
+          ],
+          "correctTitle": "Yes, 3.",
+          "correctWhy": "b² − 4ac = 36 − 36 = 0. So x = 6/2 = 3. There is only one solution.",
+          "mistakes": [
+            {
+              "match": "-3",
+              "reply": "Use N4: −(−6) = 6. What is 6/2?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Here $-b = -(-6) = 6$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "b^2 - 4ac = 36 - 36 = 0",
+            "text": "The root of 0 is 0. There is one solution."
+          },
+          {
+            "math": "x = \\dfrac{6}{2} = 3",
+            "text": "−b = −(−6) = 6."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 - 10x + 25 = 0:  x =",
+        "answer": {
+          "values": [
+            "5"
+          ],
+          "correctTitle": "Yes, 5.",
+          "correctWhy": "b² − 4ac = 100 − 100 = 0. So x = 10/2 = 5."
+        }
+      }
+    },
+    {
+      "id": "4.2.10",
+      "kind": "practice",
+      "label": "PRACTICE · 3 OF 4",
+      "title": "Is there a real solution?",
+      "prompt": "Look at $x^2 + 2x + 5 = 0$. Calculate $b^2 - 4ac$.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "b^2 - 4ac =",
+        "answer": {
+          "value": -16,
+          "correctTitle": "Yes, −16.",
+          "correctWhy": "b² − 4ac = 4 − 20 = −16. This is negative.",
+          "mistakes": [
+            {
+              "match": 24,
+              "reply": "−4ac = −4 · 1 · 5 = −20. What is 4 − 20?"
+            },
+            {
+              "match": 4,
+              "reply": "Subtract 4ac. What is 4ac?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "$a = 1$, $b = 2$, $c = 5$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "b^2 = 4",
+            "text": "Here b = 2."
+          },
+          {
+            "math": "4ac = 4 \\cdot 1 \\cdot 5 = 20",
+            "text": "Find 4ac."
+          },
+          {
+            "math": "4 - 20 = -16",
+            "text": "Subtract."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "x^2 + 4x + 7 = 0:\\; b^2 - 4ac =",
+        "answer": {
+          "value": -12,
+          "correctTitle": "Yes, −12.",
+          "correctWhy": "b² − 4ac = 16 − 28 = −12."
+        }
+      }
+    },
+    {
+      "id": "4.2.11",
+      "kind": "practice",
+      "label": "PRACTICE · 4 OF 4",
+      "title": "Calculate b² − 4ac first",
+      "prompt": "Look at $3x^2 - 2x + 1 = 0$. Here $b = -2$. Calculate $b^2 - 4ac$.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "b^2 - 4ac =",
+        "answer": {
+          "value": -8,
+          "correctTitle": "Yes, −8.",
+          "correctWhy": "b² = (−2)(−2) = 4. 4ac = 12. So b² − 4ac = 4 − 12 = −8.",
+          "mistakes": [
+            {
+              "match": -16,
+              "reply": "(−2)² = (−2)(−2). Use the rule from 1.3."
+            },
+            {
+              "match": 16,
+              "reply": "Subtract 4ac. What is 4 − 12?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "$(-2)^2 = (-2)(-2)$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "b^2 = (-2)^2 = 4",
+            "text": "A minus number times a minus number is positive."
+          },
+          {
+            "math": "4ac = 4 \\cdot 3 \\cdot 1 = 12",
+            "text": "Find 4ac."
+          },
+          {
+            "math": "4 - 12 = -8",
+            "text": "Subtract."
+          }
+        ]
+      },
+      "twin": {
+        "type": "number-input",
+        "expression": "2x^2 - 3x + 4 = 0:\\; b^2 - 4ac =",
+        "answer": {
+          "value": -23,
+          "correctTitle": "Yes, −23.",
+          "correctWhy": "b² = 9. 4ac = 32. So 9 − 32 = −23."
+        }
+      }
+    },
+    {
+      "id": "4.2.12",
+      "kind": "practice",
+      "label": "CHECK",
+      "title": "Does it have a real solution?",
+      "prompt": "You found $b^2 - 4ac = -8$ for $3x^2 - 2x + 1 = 0$.",
+      "interaction": {
+        "type": "choice",
+        "question": "How many real solutions does $3x^2 - 2x + 1 = 0$ have?",
+        "options": [
+          {
+            "id": "none",
+            "label": "None"
+          },
+          {
+            "id": "one",
+            "label": "One",
+            "reply": "One solution needs b² − 4ac = 0. Here the number is −8."
+          },
+          {
+            "id": "two",
+            "label": "Two",
+            "reply": "Two solutions need b² − 4ac > 0. Here the number is −8."
+          }
+        ],
+        "correct": "none",
+        "feedback": {
+          "correctTitle": "Yes, none.",
+          "correctWhy": "b² − 4ac is negative, so the formula has no real value."
+        }
+      }
+    },
+    {
+      "id": "4.2.13",
+      "kind": "trap-summary",
+      "label": "LESSON 4.2 COMPLETE",
+      "title": "Watch the sign of b.",
+      "prompt": "You saved this rule:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: if $b$ is negative, then $-b$ is negative.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Try b = −6. What is −(−6)? Use N4."
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "If b = −6, then −b = 6. Minus a minus number is positive."
+          }
+        },
+        "summary": [
+          "quadratic-formula"
+        ]
+      },
+      "note": {
+        "label": "LANG'S NOTE",
+        "text": "In a larger number system, the complex numbers, the formula gives solutions in all cases. A later chapter covers this."
+      },
+      "caption": "Saved to your rule book.",
+      "buttonLabel": "Finish the course"
+    }
+  ]
+}

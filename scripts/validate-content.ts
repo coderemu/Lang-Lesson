@@ -10,7 +10,7 @@ import { evaluate } from "mathjs";
 import { z } from "zod";
 
 const ROOT = resolve(fileURLToPath(import.meta.url), "../..");
-const CURRENT_PHASE = 3;
+const CURRENT_PHASE = 4;
 
 /* ───────── zod schemas (mirror content/schema.ts) ───────── */
 
@@ -69,7 +69,7 @@ const interaction = z.discriminatedUnion("type", [
   z
     .object({
       type: z.literal("number-line"),
-      mode: z.enum(["place", "hops", "compare", "mirror", "zoom", "interval"]),
+      mode: z.enum(["place", "hops", "compare", "mirror", "zoom", "interval", "discriminant"]),
       widget: widgetSpec,
       equation: z.string().optional(),
       answer: numberAnswer.optional(),

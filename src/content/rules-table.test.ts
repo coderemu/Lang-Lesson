@@ -103,3 +103,21 @@ describe("Chapter 3 rules", () => {
     }
   });
 });
+
+describe("Chapter 4 rules", () => {
+  const lessons4 = Object.values(
+    import.meta.glob<{ default: Lesson }>("../../content/lessons/lesson-4.*.json", { eager: true }),
+  ).map((m) => m.default);
+  it("the quadratic formula is proved (Assumed or proved table); completing the square is shown", () => {
+    const status = (id: string) => rules.find((r) => r.id === id)?.status;
+    expect(status("quadratic-formula")).toBe("proved");
+    expect(status("complete-square")).toBe("shown");
+  });
+  it("each lesson 4.1–4.2 earns exactly its rules", () => {
+    expect(lessons4).toHaveLength(2);
+    for (const l of lessons4) {
+      const own = rules.filter((r) => r.lesson === l.id).map((r) => r.id);
+      expect([...l.rulesEarned].sort(), `lesson ${l.id}`).toEqual(own.sort());
+    }
+  });
+});

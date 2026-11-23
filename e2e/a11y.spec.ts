@@ -19,7 +19,7 @@ async function audit(page: Page, name: string) {
 
 test.describe("axe", () => {
   test.skip(({ viewport }) => (viewport?.width ?? 0) > 900, "mobile only");
-  test.beforeEach(async ({ page }) => seed(page, completedState(new Date(), [1, 2, 3])));
+  test.beforeEach(async ({ page }) => seed(page, completedState(new Date(), [1, 2, 3, 4])));
 
   for (const [name, path] of [
     ["Home", "/"],
@@ -38,6 +38,8 @@ test.describe("axe", () => {
     ["Bank problem: set", "/practice/3.2/4"],
     ["Bank problem: interval", "/practice/3.5/2"],
     ["Bank problem: numbers (c, d)", "/practice/3.3/3"],
+    ["Bank problem: set with radicals", "/practice/4.2/5"],
+    ["Bank problem: no real solution", "/practice/4.2/4"],
     ["Design system", "/design-system"],
   ] as const) {
     test(name, async ({ page }) => {
@@ -83,6 +85,9 @@ test.describe("axe", () => {
     ["text input: interval", "3.5", "3.5.09"],
     ["square tiles compare", "3.6", "3.6.08"],
     ["fraction strips mediant", "3.6", "3.6.09"],
+    ["square tiles complete", "4.1", "4.1.03"],
+    ["discriminant slider + number input", "4.2", "4.2.06"],
+    ["proof, Lang derivation", "4.2", "4.2.03"],
   ];
   for (const [name, lesson, id] of screens) {
     test(`lesson screen: ${name}`, async ({ page }) => {

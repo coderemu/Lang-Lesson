@@ -1,0 +1,621 @@
+{
+  "id": "4.1",
+  "title": "Complete the square",
+  "book": {
+    "chapter": 4,
+    "sections": "Ch 4"
+  },
+  "minutes": 12,
+  "goal": "Change x² + bx into a perfect square, then solve with square roots.",
+  "needs": [
+    "1.4",
+    "3.2"
+  ],
+  "rulesEarned": [
+    "complete-square"
+  ],
+  "generalHint": "Look at the tiles. Add (b/2)² to the two sides. Then take both square roots.",
+  "next": {
+    "id": "4.2",
+    "title": "The quadratic formula"
+  },
+  "screens": [
+    {
+      "id": "4.1.01",
+      "kind": "recall",
+      "label": "RECALL",
+      "title": "Solve x² = 7",
+      "prompt": "Solve the equation. Give all solutions. Type them with a comma.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 = 7:  x =",
+        "answer": {
+          "values": [
+            "sqrt(7)",
+            "-sqrt(7)"
+          ],
+          "correctTitle": "Yes, ±√7.",
+          "correctWhy": "Both √7 and −√7 have a square of 7.",
+          "mistakes": [
+            {
+              "match": "sqrt(7)",
+              "reply": "Two numbers have a square of 7. Which other number works?"
+            },
+            {
+              "match": "-sqrt(7)",
+              "reply": "Two numbers have a square of 7. Which other number works?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "The equation has two solutions.",
+        "Write $\\pm\\sqrt{7}$, or type sqrt(7), -sqrt(7)."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 = 7",
+            "text": "Two numbers have a square of 7."
+          },
+          {
+            "math": "x = \\sqrt{7} \\text{ or } x = -\\sqrt{7}",
+            "text": "The root sign gives the positive root. Add the mirror number."
+          }
+        ]
+      }
+    },
+    {
+      "id": "4.1.02",
+      "kind": "hook",
+      "label": "PUZZLE",
+      "title": "A corner for a square",
+      "prompt": "The picture shows $x^2$ and two strips. Each strip is 3 wide. Together they make $x^2 + 6x$. Move the orange corner into the gap. Guess its size.",
+      "interaction": {
+        "type": "square-tiles",
+        "mode": "complete",
+        "widget": {
+          "b": 6
+        },
+        "followUp": {
+          "type": "choice",
+          "question": "Which corner makes a full square?",
+          "options": [
+            {
+              "id": "a",
+              "label": "A 3 × 3 square"
+            },
+            {
+              "id": "b",
+              "label": "A 6 × 6 square",
+              "reply": "Look at the tiles. The corner is 3 × 3. Use (b/2)²."
+            },
+            {
+              "id": "c",
+              "label": "A 9 × 9 square",
+              "reply": "Look at the tiles. The gap is as wide as a strip. A strip is 3 wide."
+            }
+          ],
+          "correct": "a",
+          "feedback": {
+            "correctTitle": "Yes, 3 × 3.",
+            "correctWhy": "The gap is as wide as the strips, and the strips are 3 wide. The corner has area 9."
+          }
+        }
+      },
+      "hints": [
+        "Look at the gap. It has the same width as a strip."
+      ],
+      "caption": "Move the corner, choose an answer, then check."
+    },
+    {
+      "id": "4.1.03",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "The square is complete",
+      "prompt": "Put the 3 × 3 corner in the gap. The four parts make one big square with side $x + 3$. Say which equation is true.",
+      "interaction": {
+        "type": "square-tiles",
+        "mode": "complete",
+        "widget": {
+          "b": 6
+        },
+        "followUp": {
+          "type": "choice",
+          "question": "Which equation is true?",
+          "options": [
+            {
+              "id": "a",
+              "label": "$x^2 + 6x + 9 = (x+3)^2$"
+            },
+            {
+              "id": "b",
+              "label": "$x^2 + 6x + 9 = (x+6)^2$",
+              "reply": "The side of the big square is x + 3, not x + 6. Look at the picture."
+            },
+            {
+              "id": "c",
+              "label": "$x^2 + 6x + 36 = (x+3)^2$",
+              "reply": "The corner has area 9, not 36. Look at the picture."
+            }
+          ],
+          "correct": "a",
+          "feedback": {
+            "correctTitle": "Yes.",
+            "correctWhy": "The big square has side x + 3. Its parts are x², two strips of 3x, and the corner 9."
+          }
+        }
+      },
+      "hints": [
+        "The corner has area 9. The side of the big square is $x+3$."
+      ],
+      "caption": "Move the corner, choose an answer, then check."
+    },
+    {
+      "id": "4.1.04",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "Complete the square",
+      "prompt": "To complete $x^2 + bx$, add $(b/2)^2$. The new left side is the square $(x + b/2)^2$. Lang adds the same number to the two sides of the equation.",
+      "interaction": {
+        "type": "rule-card",
+        "ruleIds": [
+          "complete-square"
+        ],
+        "picture": "tiles"
+      }
+    },
+    {
+      "id": "4.1.05",
+      "kind": "practice",
+      "label": "TRY IT",
+      "title": "What do you add?",
+      "prompt": "Complete the square for $x^2 + 10x$. Find the number to add.",
+      "interaction": {
+        "type": "number-input",
+        "expression": "x^2 + 10x + \\;? = (x+5)^2:\\; ?=",
+        "answer": {
+          "value": 25,
+          "correctTitle": "Yes, 25.",
+          "correctWhy": "Half of 10 is 5. The square of 5 is 25.",
+          "mistakes": [
+            {
+              "match": 100,
+              "reply": "Look at the tiles. The corner is (b/2) × (b/2). Use (b/2)², not b²."
+            },
+            {
+              "match": 5,
+              "reply": "5 is half of 10. The corner has area 5 × 5. What is 5²?"
+            },
+            {
+              "match": 10,
+              "reply": "Use (b/2)². What is half of 10?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Use $(b/2)^2$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "b = 10",
+            "text": "Take half of b: 5."
+          },
+          {
+            "math": "5^2 = 25",
+            "text": "Square it. Add 25."
+          }
+        ]
+      }
+    },
+    {
+      "id": "4.1.06",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Solve x² + 6x = 7",
+      "prompt": "Add 9 to the two sides. The left side becomes $(x+3)^2$. Then $(x+3)^2 = 16$. Take the square root. Solve for $x$.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 + 6x = 7:  x =",
+        "answer": {
+          "values": [
+            "1",
+            "-7"
+          ],
+          "correctTitle": "Yes, 1 or −7.",
+          "correctWhy": "(x + 3)² = 16 gives x + 3 = 4 or x + 3 = −4. So x = 1 or x = −7.",
+          "mistakes": [
+            {
+              "match": "1",
+              "reply": "A square of 16 has two roots. Use ±4."
+            },
+            {
+              "match": "-7",
+              "reply": "A square of 16 has two roots. Use ±4."
+            },
+            {
+              "match": "-3+sqrt(7), -3-sqrt(7)",
+              "reply": "The balance tips. Add 9 to the two sides."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Add 9 to the two sides: $(x+3)^2 = 16$.",
+        "Then $x + 3 = 4$ or $x + 3 = -4$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 + 6x + 9 = 7 + 9",
+            "text": "Add 9 to the two sides."
+          },
+          {
+            "math": "(x+3)^2 = 16",
+            "text": "The left side is a square."
+          },
+          {
+            "math": "x + 3 = 4 \\text{ or } x + 3 = -4",
+            "text": "Both 4 and −4 have a square of 16."
+          },
+          {
+            "math": "x = 1 \\text{ or } x = -7",
+            "text": "Subtract 3."
+          }
+        ]
+      }
+    },
+    {
+      "id": "4.1.07",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Solve x² − 3x + 1 = 0",
+      "prompt": "First write $x^2 - 3x = -1$. Half of 3 is 3/2. Add $(3/2)^2 = 9/4$ to the two sides. Then $(x - 3/2)^2 = 5/4$. Solve for $x$.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 - 3x + 1 = 0:  x =",
+        "answer": {
+          "values": [
+            "3/2+sqrt(5)/2",
+            "3/2-sqrt(5)/2"
+          ],
+          "correctTitle": "Yes, 3/2 ± √5/2.",
+          "correctWhy": "(x − 3/2)² = 5/4 gives x − 3/2 = ±√5/2. So x = 3/2 ± √5/2.",
+          "mistakes": [
+            {
+              "match": "3/2+sqrt(5)/2",
+              "reply": "A square of 5/4 has two roots. Use ±."
+            },
+            {
+              "match": "3/2-sqrt(5)/2",
+              "reply": "A square of 5/4 has two roots. Use ±."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "$(x - 3/2)^2 = 5/4$, so $x - 3/2 = \\pm\\sqrt{5}/2$.",
+        "Type (3 + sqrt(5))/2, (3 - sqrt(5))/2 or use ±: (3 ± sqrt(5))/2."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 - 3x = -1",
+            "text": "Move 1 to the right."
+          },
+          {
+            "math": "x^2 - 3x + \\tfrac{9}{4} = -1 + \\tfrac{9}{4}",
+            "text": "Add (3/2)² to the two sides."
+          },
+          {
+            "math": "\\left(x - \\tfrac{3}{2}\\right)^2 = \\tfrac{5}{4}",
+            "text": "The left side is a square."
+          },
+          {
+            "math": "x = \\tfrac{3}{2} \\pm \\tfrac{\\sqrt{5}}{2}",
+            "text": "Take both roots. Add 3/2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "4.1.08",
+      "kind": "name-it",
+      "label": "NAME IT",
+      "title": "No real solution",
+      "prompt": "Look at $x^2 + 4x + 5 = 0$. Add 4 to $x^2 + 4x = -5$. You get $(x+2)^2 = -1$. A square is never negative.",
+      "interaction": {
+        "type": "choice",
+        "question": "How many real solutions does $(x+2)^2 = -1$ have?",
+        "options": [
+          {
+            "id": "none",
+            "label": "None"
+          },
+          {
+            "id": "one",
+            "label": "One",
+            "reply": "A square is never negative. Is there a number whose square is −1?"
+          },
+          {
+            "id": "two",
+            "label": "Two",
+            "reply": "A square is never negative. Is there a number whose square is −1?"
+          }
+        ],
+        "correct": "none",
+        "feedback": {
+          "correctTitle": "Yes, none.",
+          "correctWhy": "If the right side is negative, no real number has that square. The equation has no real solution."
+        }
+      }
+    },
+    {
+      "id": "4.1.09",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "A number before x²",
+      "prompt": "In $2x^2 - 3x - 5 = 0$, the number 2 stands before $x^2$. The method needs $x^2$ alone. Choose the first step.",
+      "interaction": {
+        "type": "choice",
+        "question": "What do you do first?",
+        "options": [
+          {
+            "id": "div",
+            "label": "Divide the whole equation by 2"
+          },
+          {
+            "id": "add",
+            "label": "Add 9/4 to the left side",
+            "reply": "First divide by 2, so that x² stands alone. Then add (b/2)² to the two sides."
+          },
+          {
+            "id": "root",
+            "label": "Take the square root of both sides",
+            "reply": "Not yet. The left side is not a square."
+          }
+        ],
+        "correct": "div",
+        "feedback": {
+          "correctTitle": "Yes, divide by 2.",
+          "correctWhy": "The equation becomes x² − (3/2)x − 5/2 = 0. Now the method of the last screens works."
+        }
+      },
+      "hints": [
+        "Compare with $x^2 + bx$. Here $x^2$ has the number 2 before it."
+      ]
+    },
+    {
+      "id": "4.1.10",
+      "kind": "explore",
+      "label": "EXPLORE",
+      "title": "Solve 2x² − 3x − 5 = 0",
+      "prompt": "After the division: $x^2 - \\tfrac{3}{2}x = \\tfrac{5}{2}$. Add $(3/4)^2 = 9/16$ to the two sides. Then $(x - 3/4)^2 = 49/16$. Solve for $x$.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "2x^2 - 3x - 5 = 0:  x =",
+        "answer": {
+          "values": [
+            "5/2",
+            "-1"
+          ],
+          "correctTitle": "Yes, 5/2 or −1.",
+          "correctWhy": "(x − 3/4)² = 49/16 gives x − 3/4 = ±7/4. So x = 3/4 + 7/4 = 5/2, or x = 3/4 − 7/4 = −1.",
+          "mistakes": [
+            {
+              "match": "5/2",
+              "reply": "A square of 49/16 has two roots. Use ±7/4."
+            },
+            {
+              "match": "-1",
+              "reply": "A square of 49/16 has two roots. Use ±7/4."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "$x - 3/4 = 7/4$ or $x - 3/4 = -7/4$."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 - \\tfrac{3}{2}x = \\tfrac{5}{2}",
+            "text": "Divide by 2."
+          },
+          {
+            "math": "\\left(x - \\tfrac{3}{4}\\right)^2 = \\tfrac{49}{16}",
+            "text": "Add 9/16 to the two sides. Here 5/2 + 9/16 = 49/16."
+          },
+          {
+            "math": "x - \\tfrac{3}{4} = \\pm\\tfrac{7}{4}",
+            "text": "Take both roots."
+          },
+          {
+            "math": "x = \\tfrac{5}{2} \\text{ or } x = -1",
+            "text": "Add 3/4."
+          }
+        ]
+      }
+    },
+    {
+      "id": "4.1.11",
+      "kind": "practice",
+      "label": "PRACTICE · 1 OF 2",
+      "title": "Solve x² − 8x = 9",
+      "prompt": "Complete the square. Solve the equation. Type all solutions with a comma.",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 - 8x = 9:  x =",
+        "answer": {
+          "values": [
+            "9",
+            "-1"
+          ],
+          "correctTitle": "Yes, 9 or −1.",
+          "correctWhy": "(x − 4)² = 25 gives x − 4 = ±5. So x = 9 or x = −1.",
+          "mistakes": [
+            {
+              "match": "9",
+              "reply": "A square of 25 has two roots. Use ±5."
+            },
+            {
+              "match": "-1",
+              "reply": "A square of 25 has two roots. Use ±5."
+            },
+            {
+              "match": "4+sqrt(9), 4-sqrt(9)",
+              "reply": "The balance tips. Add 16 to the two sides, not only to the left side."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Half of 8 is 4. Add $4^2 = 16$ to the two sides."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 - 8x + 16 = 9 + 16",
+            "text": "Add 16 to the two sides."
+          },
+          {
+            "math": "(x - 4)^2 = 25",
+            "text": "The left side is a square."
+          },
+          {
+            "math": "x - 4 = 5 \\text{ or } x - 4 = -5",
+            "text": "Both 5 and −5 have a square of 25."
+          },
+          {
+            "math": "x = 9 \\text{ or } x = -1",
+            "text": "Add 4."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 - 6x = 16:  x =",
+        "answer": {
+          "values": [
+            "8",
+            "-2"
+          ],
+          "correctTitle": "Yes, 8 or −2.",
+          "correctWhy": "(x − 3)² = 25 gives x − 3 = ±5."
+        }
+      }
+    },
+    {
+      "id": "4.1.12",
+      "kind": "practice",
+      "label": "PRACTICE · 2 OF 2",
+      "title": "Solve x² + 2x − 4 = 0",
+      "prompt": "Complete the square. Type the solutions. You can use ±, for example -1 ± sqrt(5).",
+      "interaction": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 + 2x - 4 = 0:  x =",
+        "answer": {
+          "values": [
+            "-1+sqrt(5)",
+            "-1-sqrt(5)"
+          ],
+          "correctTitle": "Yes, −1 ± √5.",
+          "correctWhy": "(x + 1)² = 5 gives x + 1 = ±√5. So x = −1 ± √5.",
+          "mistakes": [
+            {
+              "match": "-1+sqrt(5)",
+              "reply": "A square of 5 has two roots. Use ±√5."
+            },
+            {
+              "match": "-1-sqrt(5)",
+              "reply": "A square of 5 has two roots. Use ±√5."
+            },
+            {
+              "match": "1+sqrt(5), 1-sqrt(5)",
+              "reply": "Look at the sign. (x + 1)² = 5 gives x + 1 = ±√5. Subtract 1."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Write $x^2 + 2x = 4$. Add 1 to the two sides."
+      ],
+      "showMe": {
+        "steps": [
+          {
+            "math": "x^2 + 2x = 4",
+            "text": "Move 4 to the right."
+          },
+          {
+            "math": "x^2 + 2x + 1 = 5",
+            "text": "Add 1 to the two sides."
+          },
+          {
+            "math": "(x+1)^2 = 5",
+            "text": "The left side is a square."
+          },
+          {
+            "math": "x = -1 \\pm \\sqrt{5}",
+            "text": "Take both roots. Subtract 1."
+          }
+        ]
+      },
+      "twin": {
+        "type": "text-input",
+        "checker": "set",
+        "expression": "x^2 + 4x - 1 = 0:  x =",
+        "answer": {
+          "values": [
+            "-2+sqrt(5)",
+            "-2-sqrt(5)"
+          ],
+          "correctTitle": "Yes, −2 ± √5.",
+          "correctWhy": "(x + 2)² = 5 gives x + 2 = ±√5."
+        }
+      }
+    },
+    {
+      "id": "4.1.13",
+      "kind": "trap-summary",
+      "label": "LESSON 4.1 COMPLETE",
+      "title": "A square has two roots.",
+      "prompt": "You saved this rule:",
+      "interaction": {
+        "type": "trap-summary",
+        "trap": {
+          "type": "choice",
+          "question": "True or false: $x^2 = 16$ gives $x = 4$ only.",
+          "options": [
+            {
+              "id": "true",
+              "label": "True",
+              "reply": "Try x = −4. What is (−4)(−4)?"
+            },
+            {
+              "id": "false",
+              "label": "False"
+            }
+          ],
+          "correct": "false",
+          "feedback": {
+            "correctTitle": "Correct. It is false.",
+            "correctWhy": "Both 4 and −4 have a square of 16. A square root gives two numbers."
+          }
+        },
+        "summary": [
+          "complete-square"
+        ]
+      },
+      "caption": "Saved to your rule book."
+    }
+  ]
+}

@@ -7,7 +7,7 @@ type Problem = { id: string; n: number; prompt: string; answer: any; stretch?: b
 type Bank = { lesson: string; problems: Problem[] };
 const dir = new URL("../content/practice/", import.meta.url);
 const banks: Bank[] = readdirSync(dir)
-  .filter((f) => /^bank-[123]\.\d\.json$/.test(f))
+  .filter((f) => /^bank-[1234]\.\d\.json$/.test(f))
   .sort()
   .map((f) => JSON.parse(readFileSync(new URL(f, dir), "utf8")));
 

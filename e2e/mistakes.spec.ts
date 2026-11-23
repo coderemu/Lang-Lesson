@@ -20,6 +20,8 @@ const lessons = [
   "3.4",
   "3.5",
   "3.6",
+  "4.1",
+  "4.2",
 ];
 const KNOWN_UNREACHABLE = ["1.2: 1.2.03: 8"];
 

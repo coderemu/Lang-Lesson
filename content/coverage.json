@@ -1298,6 +1298,94 @@
       "lessonScreens": [],
       "bankProblems": [],
       "note": "Lang refers to induction, a later chapter"
+    },
+    {
+      "id": "c4.0.01",
+      "chapter": 4,
+      "section": "",
+      "kind": "topic",
+      "topic": "Completing the square, three examples",
+      "lessonScreens": [
+        "4.1.02",
+        "4.1.03",
+        "4.1.04",
+        "4.1.05",
+        "4.1.06",
+        "4.1.07",
+        "4.1.08",
+        "4.1.09",
+        "4.1.10"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c4.0.02",
+      "chapter": 4,
+      "section": "",
+      "kind": "topic",
+      "topic": "The theorem and its proof; b² − 4ac",
+      "lessonScreens": [
+        "4.2.03",
+        "4.2.04",
+        "4.2.05",
+        "4.2.06",
+        "4.2.07"
+      ],
+      "bankProblems": []
+    },
+    {
+      "id": "c4.0.03",
+      "chapter": 4,
+      "section": "",
+      "kind": "topic",
+      "topic": "Remark on a larger number system",
+      "lessonScreens": [
+        "4.2.13"
+      ],
+      "bankProblems": [],
+      "note": "Lang refers to the chapter on complex numbers"
+    },
+    {
+      "id": "c4.0.04",
+      "chapter": 4,
+      "section": "",
+      "kind": "exercises",
+      "topic": "Exercises 1–16",
+      "lessonScreens": [
+        "4.1.01",
+        "4.1.05",
+        "4.1.11",
+        "4.1.12",
+        "4.2.08",
+        "4.2.09",
+        "4.2.10",
+        "4.2.11",
+        "4.2.12"
+      ],
+      "bankProblems": [
+        "bank:4.1",
+        "bank:4.2"
+      ]
+    },
+    {
+      "id": "c4.0.05",
+      "chapter": 4,
+      "section": "",
+      "kind": "skip",
+      "topic": "Intersections of lines with circles and conics",
+      "lessonScreens": [],
+      "bankProblems": [],
+      "note": "Lang refers to a later chapter"
+    },
+    {
+      "id": "c4.0.06",
+      "chapter": 4,
+      "section": "",
+      "kind": "skip",
+      "topic": "Square roots of negative numbers",
+      "lessonScreens": [],
+      "bankProblems": [],
+      "note": "Lang refers to the chapter on complex numbers"
     }
   ]
 }
