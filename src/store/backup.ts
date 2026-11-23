@@ -65,14 +65,4 @@ export function parseBackup(text: string): ParseResult {
   };
 }
 
-/** Pick the data fields out of the store state. */
-export function dataOf(s: ProgressData): ProgressData {
-  return {
-    lessons: s.lessons,
-    banks: s.banks,
-    rules: s.rules,
-    seconds: s.seconds,
-    settings: s.settings,
-    persistAsked: s.persistAsked,
-  };
-}
+export { dataOf } from "./index";

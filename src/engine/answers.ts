@@ -16,7 +16,7 @@ import {
   parseNumber,
   type CheckResult,
 } from "./check";
-import { checkExpression, checkInterval, checkSet, readable } from "./check/expr";
+import { checkExpression, checkInterval, checkSet } from "./check/expr";
 import { EI_KEY } from "../widgets/ch3";
 
 /** What the learner has entered on one screen. */
@@ -139,7 +139,6 @@ export function checkText(i: TextInputInteraction, text: string): CheckResult {
     text,
   );
 }
-export { readable };
 
 const wrong = (result: CheckResult, generalHint: string): Outcome => {
   if (result.kind === "invalid") return { kind: "invalid", body: INVALID_NUMBER };

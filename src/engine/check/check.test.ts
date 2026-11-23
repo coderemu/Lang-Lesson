@@ -5,7 +5,6 @@ import bank12 from "../../../content/practice/bank-1.2.json";
 import {
   checkChoice,
   checkMultiNumber,
-  checkNone,
   checkNumber,
   checkNumbers,
   checkPractice,
@@ -96,11 +95,10 @@ describe("other checkers", () => {
     });
     expect(checkProofLine("N2", "N1").kind).toBe("unknown");
   });
-  it("checkSelfCheck and checkNone", () => {
+  it("checkSelfCheck", () => {
     expect(checkSelfCheck("got-it").kind).toBe("correct");
     expect(checkSelfCheck("not-yet").kind).toBe("unknown");
     expect(checkSelfCheck(null).kind).toBe("invalid");
-    expect(checkNone().kind).toBe("correct");
   });
   it("checkPractice routes by type", () => {
     expect(checkPractice({ type: "number", value: 8 }, { text: ["8"] }).kind).toBe("correct");

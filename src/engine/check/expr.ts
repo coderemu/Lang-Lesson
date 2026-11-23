@@ -28,7 +28,6 @@ const SUPERSCRIPT: Record<string, string> = {
   "²": "^2",
   "³": "^3",
   "⁴": "^4",
-  "⁻": "^-",
 };
 
 /** Learner text → mathjs text. Returns null when it cannot be read. */

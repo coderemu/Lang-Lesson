@@ -151,7 +151,6 @@ export function checkSystem(
   mistakes: Mistake<string>[] = [],
 ): CheckResult {
   const vars = typeof values === "object" ? Object.keys(values) : [];
-  const reply = (r: CheckResult): CheckResult => r;
   const hit = (predicate: (m: Mistake<string>) => boolean): CheckResult => {
     const m = mistakes.find(predicate);
     return m ? { kind: "mistake", reply: m.reply } : UNKNOWN;
@@ -172,22 +171,15 @@ export function checkSystem(
     )
       return CORRECT;
   }
-  return reply(
-    hit((m) => {
-      const want = parseMatchTuple(m.match, tupleVars);
-      return want !== null && sameTuple(got, want);
-    }),
-  );
+  return hit((m) => {
+    const want = parseMatchTuple(m.match, tupleVars);
+    return want !== null && sameTuple(got, want);
+  });
 }
 
 function parseMatchTuple(match: string, vars: string[]): number[] | null {
   if (match === "none" || match === "many") return null;
   return parseTuple(match.replace(/;/g, ","), vars);
-}
-
-/** Screens with no answer. */
-export function checkNone(): CheckResult {
-  return CORRECT;
 }
 
 /** Check a practice-bank answer. `input` is the typed text(s) or the chosen index. */
@@ -208,7 +200,6 @@ export function checkPractice(
     case "self-check":
       return checkSelfCheck(input.mark ?? null);
     case "pair":
-      return checkTuple(answer.values, input.text ?? []);
     case "triple":
       return checkTuple(answer.values, input.text ?? []);
     case "none": {

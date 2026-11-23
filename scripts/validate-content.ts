@@ -559,11 +559,10 @@ if (coverage) {
     if (lesson.book.chapter <= CURRENT_PHASE && !pointedScreens.has(id))
       fail("content/coverage.json", `lesson ${id} has no coverage row that points to it (rule 7)`);
   }
-  for (const [id, bank] of banks) {
+  for (const id of banks.keys()) {
     const chapter = Number(id.split(".")[0]);
     if (chapter <= CURRENT_PHASE && !pointedBanks.has(id))
       fail("content/coverage.json", `bank ${id} has no coverage row that points to it (rule 7)`);
-    void bank;
   }
 }
 

@@ -2,7 +2,7 @@ import { useMath } from "./useMath";
 import { loadMath, mathLoaded } from "./check/expr";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import type { Interaction, Lesson, Rule, Screen } from "../../content/schema";
+import type { Interaction, Lesson, Rule } from "../../content/schema";
 import { Button, FeedbackSheet, HintDrawer, LessonBar, TryBox } from "../components";
 import { hasLesson, loadLesson, loadRules } from "../content/load";
 import { Math as Tex, RichText } from "../math";
@@ -485,5 +485,3 @@ function trapBody(i: Extract<Interaction, { type: "trap-summary" }>, input: Inpu
   if (input.choice === i.trap.correct) return i.trap.feedback.correctWhy;
   return i.trap.options.find((o) => o.id === input.choice)?.reply ?? i.trap.feedback.correctWhy;
 }
-
-export type { Screen };

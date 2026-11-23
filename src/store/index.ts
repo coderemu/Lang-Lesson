@@ -123,6 +123,16 @@ const blankLesson = (): LessonProgress => ({
   lastDate: localDate(),
 });
 
+/** Pick the data fields out of the store state (saved, backed up). */
+export const dataOf = (s: ProgressData): ProgressData => ({
+  lessons: s.lessons,
+  banks: s.banks,
+  rules: s.rules,
+  seconds: s.seconds,
+  settings: s.settings,
+  persistAsked: s.persistAsked,
+});
+
 export const useProgress = create<ProgressStore>()(
   persist(
     (set) => ({
@@ -207,14 +217,7 @@ export const useProgress = create<ProgressStore>()(
       name: STORE_KEY,
       version: STORE_VERSION,
       storage: createJSONStorage(() => localStorage),
-      partialize: (s): ProgressData => ({
-        lessons: s.lessons,
-        banks: s.banks,
-        rules: s.rules,
-        seconds: s.seconds,
-        settings: s.settings,
-        persistAsked: s.persistAsked,
-      }),
+      partialize: (s) => dataOf(s),
       migrate: (persisted, version) => migrate(persisted, version) as ProgressStore,
     },
   ),
